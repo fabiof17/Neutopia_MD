@@ -1,0 +1,29 @@
+{
+    "files.associations": {
+        "sprites.h": "c",
+        "xutility": "c",
+        "variables.h": "c",
+        "maps_ecran_titre.h": "c",
+        "type_traits": "c",
+        "xtr1common": "c",
+        "palettes.h": "c",
+        "main.h": "c",
+        "sprites_jeu.h": "c",
+        "init.h": "c",
+        "routines.h": "c",
+        "maps_niveau1.h": "c",
+        "gestionpad.h": "c",
+        "genesis.h": "c",
+        "animation_ennemis.h": "c",
+        "animation_sprites.h": "c",
+        "tilemaps_ennemis.h": "c",
+        "tilemaps_plateformes.h": "c",
+        "palettes_ennemis.h": "c",
+        "dma.h": "c",
+        "tableaux.h": "c",
+        "structures.h": "c",
+        "manette.h": "c",
+        "outils.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
