@@ -15,7 +15,7 @@
 extern const Palette				*TABLE_PAL_NIVEAUX[2][4];
 
 //////////////////////////////////////////////////////////
-//                    SPRITES DECOR 1                   //
+//                    SPRITES NIVEAU 1                  //
 //////////////////////////////////////////////////////////
 
 extern const u8					    TABLE_NB_SPRITES_DECOR_1[8][8];
@@ -40,7 +40,7 @@ extern const u8					    TABLE_PAL_SPRITES_DECOR_1[8][8];
 //******************************************************//
 
 //////////////////////////////////////////////////////////
-//                    ENNEMIS DECOR 1                   //
+//                    ENNEMIS NIVEAU 1                  //
 //////////////////////////////////////////////////////////
 
 extern const u8                 	TABLE_NB_ENNEMIS_DECOR_1[8][8];
