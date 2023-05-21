@@ -10,15 +10,6 @@
 u8 scene_JEU = 0;
 u8 etat_JEU = 0;
 
-u32 pos_X_CAM = 0;
-u32 pos_Y_CAM = 0;
-
-u32 pos_X_CAM_DONJON = 0;
-u32 pos_Y_CAM_DONJON = 0;
-
-//u8 index_X_CARTE = 0;
-//u8 index_Y_CARTE = 0;
-
 bool PAUSE = 0;
 bool GAMEOVER = 0;
 
@@ -61,6 +52,9 @@ u8 index_Y_MENU = 0;
 
 u16 pos_X_CURSEUR = 0;
 u16 pos_Y_CURSEUR = 0;
+
+u8 index_X_CARTE_MENU = 0;
+u8 index_Y_CARTE_MENU = 0;
 
 bool cle_OK = 0;
 bool crystal_OK = 0;
@@ -105,6 +99,12 @@ u8 nb_ENERGIE = 5;
 bool niveau_OK = 0;
 u8 num_NIVEAU = 1;
 
+u32 pos_X_CAM_NIVEAU = 0;
+u32 pos_Y_CAM_NIVEAU = 0;
+
+u8 index_X_CARTE_NIVEAU = 0;
+u8 index_Y_CARTE_NIVEAU = 0;
+
 u16 adr_VRAM_BG_A = 0;
 u16 adr_VRAM_BG_B = 0;
 
@@ -112,3 +112,26 @@ Map *map_NIVEAU_BG_A;
 Map *map_NIVEAU_BG_B;
 Map *map_COLLISION;
 
+
+
+
+//******************************************************//
+//                                                      //
+//                        DONJONS                       //
+//                                                      //
+//******************************************************//
+
+u32 pos_X_CAM_NIVEAU_DONJON = 0;
+u32 pos_Y_CAM_NIVEAU_DONJON = 0;
+
+
+
+
+//******************************************************//
+//                                                      //
+//                         SALLES                       //
+//                                                      //
+//******************************************************//
+
+u32 pos_X_CAM_NIVEAU_SALLE = 0;
+u32 pos_Y_CAM_NIVEAU_SALLE = 0;

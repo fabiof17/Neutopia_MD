@@ -119,7 +119,7 @@ int main(bool resetType)
                     if(niveau_OK == 0)
                     {
                         // Init NIVEAU //
-                        init_NIVEAU(num_NIVEAU , 0);
+                        init_DECOR(num_NIVEAU , 0);
                         afficher_MENU();
                         init_PALETTES(num_NIVEAU);
 
@@ -163,6 +163,11 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }  
 
+                        // SORTIE CAVE - DONJON - NIVEAU //
+                        else if(etat_JEU == 3)
+                        {
+                            JOY_setEventHandler(desactiver_Callback);
+                        }  
 
                         SPR_update();
                         SYS_doVBlankProcess();

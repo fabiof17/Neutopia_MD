@@ -46,20 +46,14 @@ void init_VARIABLES_GENERALES()
 	scene_JEU = 2;				// 0: TITRE  -  1: INTRO  -  2: JEU
 	etat_JEU = 0;
 
-	pos_X_CAM = 768;
-	pos_Y_CAM = 1104 - 40;	
-
-	pos_X_CAM_DONJON = 0;
-	pos_Y_CAM_DONJON = 0;
-
-	//index_X_CARTE = 0;
-	//index_Y_CARTE = 0;
-
 	PAUSE = 0;
 	GAMEOVER = 0;
 
 	nb_BOMBES = 10;
 	nb_GOLD = 20;
+
+	niveau_EPEE = 0;
+	niveau_BOUCLIER = 0;
 
 
 	//******************************************************//
@@ -87,11 +81,16 @@ void init_VARIABLES_GENERALES()
 	//                                                      //
 	//******************************************************//
 
+	menu_OK = 0;
+
 	index_X_MENU = 0;
 	index_Y_MENU = 0;
 
 	pos_X_CURSEUR = -24;
 	pos_Y_CURSEUR = -24;
+
+	index_X_CARTE_MENU = 0;
+	index_Y_CARTE_MENU = 0;
 
 	cle_OK = 0;
 	crystal_OK = 0;
@@ -161,8 +160,36 @@ void init_VARIABLES_GENERALES()
 	niveau_OK = 0;
 	num_NIVEAU = 1;
 
+	pos_X_CAM_NIVEAU = 768;
+	pos_Y_CAM_NIVEAU = 1104 - 40;
+
+	index_X_CARTE_NIVEAU = 3;
+	index_Y_CARTE_NIVEAU = 6;
+
 	adr_VRAM_BG_A = 0;
 	adr_VRAM_BG_B = 0;
+
+
+	//******************************************************//
+	//                                                      //
+	//                        DONJONS                       //
+	//                                                      //
+	//******************************************************//
+
+	pos_X_CAM_NIVEAU_DONJON = 0;
+	pos_Y_CAM_NIVEAU_DONJON = 0;
+
+
+
+
+	//******************************************************//
+	//                                                      //
+	//                         SALLES                       //
+	//                                                      //
+	//******************************************************//
+
+	pos_X_CAM_NIVEAU_SALLE = 0;
+	pos_Y_CAM_NIVEAU_SALLE = 0;
 }
 
 
@@ -471,39 +498,66 @@ void init_WINDOW()
 //                                                      //
 //******************************************************//
 
-void init_NIVEAU( u8 index , u8 type )
+void init_DECOR( u8 index , u8 type )
 {
 	index -= 1;
+
+	//////////////////////////////////////////////////////////
+    //                        NIVEAU                        //
+    //////////////////////////////////////////////////////////
+	if(type == 0)
+	{
+		// BG_B //
+		VDP_loadTileSet(TABLE_TILESET_NIVEAUX[0][index], adr_VRAM_BG_B, CPU);
+		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
+		SYS_doVBlankProcess();
+
+		// creation structures MAP //
+		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_NIVEAUX[0][index], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
+		SYS_doVBlankProcess();
+
+
+
+
+		// BG_A //
+		VDP_loadTileSet(TABLE_TILESET_NIVEAUX[1][index], adr_VRAM_BG_A, CPU);
+		SYS_doVBlankProcess();
+		
+		// creation structures MAP //
+		map_NIVEAU_BG_A = MAP_create(TABLE_MAPDEF_NIVEAUX[1][index], BG_A, TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE, adr_VRAM_BG_A));
+		SYS_doVBlankProcess();
+
+
+		
+
+		// init structures MAP //
+		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
+		SYS_doVBlankProcess();
+		
+		MAP_scrollTo(map_NIVEAU_BG_A, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
+		SYS_doVBlankProcess();
+	}
+
+	//////////////////////////////////////////////////////////
+    //                         CAVE                         //
+    //////////////////////////////////////////////////////////
+	else if(type == 1)
+	{
+		//
+	}
+
+	//////////////////////////////////////////////////////////
+    //                        DONJON                        //
+    //////////////////////////////////////////////////////////
+	else if(type == 2)
+	{
+			//
+	}
+
+
+
 	
-	// BG_B //
-	VDP_loadTileSet(TABLE_TILESET_NIVEAUX[0][index], adr_VRAM_BG_B, CPU);
-	adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
-	SYS_doVBlankProcess();
 
-	// creation structures MAP //
-	map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_NIVEAUX[0][index], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
-	SYS_doVBlankProcess();
-
-
-
-	
-	// BG_A //
-	VDP_loadTileSet(TABLE_TILESET_NIVEAUX[1][index], adr_VRAM_BG_A, CPU);
-	SYS_doVBlankProcess();
-	
-	// creation structures MAP //
-	map_NIVEAU_BG_A = MAP_create(TABLE_MAPDEF_NIVEAUX[1][index], BG_A, TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE, adr_VRAM_BG_A));
-	SYS_doVBlankProcess();
-
-
-	
-
-	// init structures MAP //
-	MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM, pos_Y_CAM);
-	SYS_doVBlankProcess();
-	
-	MAP_scrollTo(map_NIVEAU_BG_A, pos_X_CAM, pos_Y_CAM);
-	SYS_doVBlankProcess();
 	
 }
 

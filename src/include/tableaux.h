@@ -96,6 +96,8 @@ extern const TileSet		        *TABLE_TILESET_NIVEAUX[2][4];
 
 extern const MapDefinition          *TABLE_MAPDEF_NIVEAUX[2][4];
 
+extern const TileSet*				(*TABLE_TILESET[3])[2][4];
+
 
 
 

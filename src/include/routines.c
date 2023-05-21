@@ -60,7 +60,7 @@ void afficher_MENU()
 	//                                                      //
 	//******************************************************//
 
-    VDP_setTileMapEx(BG_A, image_MENU.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_MENU), 32 + (pos_X_CAM >> 3), 5 + (pos_Y_CAM >> 3), 0, 5, 32, 23, CPU);
+    VDP_setTileMapEx(BG_A, image_MENU.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_MENU), 32 + (pos_X_CAM_NIVEAU >> 3), 5 + (pos_Y_CAM_NIVEAU >> 3), 0, 5, 32, 23, CPU);
 
 
 	//******************************************************//
@@ -69,7 +69,7 @@ void afficher_MENU()
 	//                                                      //
 	//******************************************************//
 
-	VDP_setTileMapEx(BG_A, image_BOUSSOLE.tilemap, TILE_ATTR_FULL(PAL3, TRUE, FALSE, FALSE, adr_VRAM_BOUSSOLE), 18 + 32 + (pos_X_CAM >> 3), 10 + (pos_Y_CAM >> 3), 0, 0, 4, 4, CPU);
+	VDP_setTileMapEx(BG_A, image_BOUSSOLE.tilemap, TILE_ATTR_FULL(PAL3, TRUE, FALSE, FALSE, adr_VRAM_BOUSSOLE), 18 + 32 + (pos_X_CAM_NIVEAU >> 3), 10 + (pos_Y_CAM_NIVEAU >> 3), 0, 0, 4, 4, CPU);
 
 
 	//******************************************************//
@@ -91,7 +91,7 @@ void afficher_MENU()
 		{
 			if(TABLE_OBJETS_BAS[y][x] != NULL)
 			{
-				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_BAS[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_BAS[y][x]), 		32 + 3 + (x*3) + (pos_X_CAM >> 3),		19 + (y*3) + (pos_Y_CAM >> 3),		0, 0, 2, 2, CPU);
+				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_BAS[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_BAS[y][x]), 		32 + 3 + (x*3) + (pos_X_CAM_NIVEAU >> 3),		19 + (y*3) + (pos_Y_CAM_NIVEAU >> 3),		0, 0, 2, 2, CPU);
 			}
 		}
 		
@@ -107,7 +107,7 @@ void afficher_MENU()
 		{
 			if(TABLE_OBJETS_HAUT[y][x] != NULL)
 			{
-				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[y][x]), 		32 + 3 + (x*3) + (pos_X_CAM >> 3),		10 + (y*3) + (pos_Y_CAM >> 3),		0, 0, 2, 2, CPU);
+				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[y][x]), 		32 + 3 + (x*3) + (pos_X_CAM_NIVEAU >> 3),		10 + (y*3) + (pos_Y_CAM_NIVEAU >> 3),		0, 0, 2, 2, CPU);
 			}
 		}
 		

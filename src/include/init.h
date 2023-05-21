@@ -57,7 +57,7 @@ extern void init_WINDOW();
 //                                                      //
 //******************************************************//
 
-extern void init_NIVEAU( u8 index );
+extern void init_DECOR( u8 index , u8 type );
 
 
 

@@ -22,16 +22,6 @@
 extern u8 scene_JEU;
 extern u8 etat_JEU;
 
-extern u32 pos_X_CAM;
-extern u32 pos_Y_CAM;
-
-//extern u8 index_X_CARTE;
-//extern u8 index_Y_CARTE;
-
-extern u32 pos_X_CAM_DONJON;
-extern u32 pos_Y_CAM_DONJON;
-
-
 extern bool PAUSE;
 extern bool GAMEOVER;
 
@@ -42,6 +32,8 @@ extern u8 niveau_EPEE;
 extern u8 niveau_BOUCLIER;
 
 
+
+
 //******************************************************//
 //                                                      //
 //                         TITRE                        //
@@ -50,6 +42,7 @@ extern u8 niveau_BOUCLIER;
 
 extern bool titre_OK;
 extern u8 phase_TITRE;
+
 
 
 
@@ -77,6 +70,9 @@ extern u8 index_Y_MENU;
 
 extern u16 pos_X_CURSEUR;
 extern u16 pos_Y_CURSEUR;
+
+extern u8 index_X_CARTE_MENU;
+extern u8 index_Y_CARTE_MENU;
 
 extern bool cle_OK;
 extern bool crystal_OK;
@@ -121,12 +117,42 @@ extern u8 nb_ENERGIE;
 extern bool niveau_OK;
 extern u8 num_NIVEAU;
 
+extern u32 pos_X_CAM_NIVEAU;
+extern u32 pos_Y_CAM_NIVEAU;
+
+extern u8 index_X_CARTE_NIVEAU;
+extern u8 index_Y_CARTE_NIVEAU;
+
 extern u16 adr_VRAM_BG_A;
 extern u16 adr_VRAM_BG_B;
 
 extern Map *map_NIVEAU_BG_A;
 extern Map *map_NIVEAU_BG_B;
 extern Map *map_COLLISION;
+
+
+
+
+//******************************************************//
+//                                                      //
+//                        DONJON                        //
+//                                                      //
+//******************************************************//
+
+extern u32 pos_X_CAM_NIVEAU_DONJON;
+extern u32 pos_Y_CAM_NIVEAU_DONJON;
+
+
+
+
+//******************************************************//
+//                                                      //
+//                         SALLES                       //
+//                                                      //
+//******************************************************//
+
+extern u32 pos_X_CAM_NIVEAU_SALLE;
+extern u32 pos_Y_CAM_NIVEAU_SALLE;
 
 
 
