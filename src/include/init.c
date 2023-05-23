@@ -179,10 +179,13 @@ void init_VARIABLES_GENERALES()
 	//                        DONJONS                       //
 	//                                                      //
 	//******************************************************//
+	/*
+	pos_X_CAM_NIVEAU_DONJON = TABLE_INIT_CAM_DONJONS[0][num_NIVEAU - 1];
+	pos_Y_CAM_NIVEAU_DONJON = TABLE_INIT_CAM_DONJONS[1][num_NIVEAU - 1] - 40;
 
-	pos_X_CAM_NIVEAU_DONJON = 0;
-	pos_Y_CAM_NIVEAU_DONJON = 0;
-
+	index_X_CARTE_DONJONS = TABLE_INIT_INDEX_DONJONS[0][num_NIVEAU - 1];
+	index_X_CARTE_DONJONS = TABLE_INIT_INDEX_DONJONS[1][num_NIVEAU - 1];
+	*/
 
 
 

@@ -149,6 +149,9 @@ extern Map *map_COLLISION;
 extern u32 pos_X_CAM_NIVEAU_DONJON;
 extern u32 pos_Y_CAM_NIVEAU_DONJON;
 
+extern u8 index_X_CARTE_DONJONS;
+extern u8 index_Y_CARTE_DONJONS;
+
 
 
 

@@ -120,6 +120,29 @@ extern const u16                    TABLE_OFFSET_TILE_NIVEAUX[8][8];
 
 
 
+//******************************************************//
+//                                                      //
+//                     TABLES SALLES                    //
+//                                                      //
+//******************************************************//
+
+extern const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAU1[43];
+
+
+
+
+//******************************************************//
+//                                                      //
+//                    TABLES DONJONS                    //
+//                                                      //
+//******************************************************//
+
+extern const s16                    TABLE_INIT_CAM_DONJONS[2][8];
+
+extern const u8                     TABLE_INIT_INDEX_DONJONS[2][8];
+
+
+
 
 
 

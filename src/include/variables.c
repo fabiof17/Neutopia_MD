@@ -133,6 +133,9 @@ Map *map_COLLISION;
 u32 pos_X_CAM_NIVEAU_DONJON = 0;
 u32 pos_Y_CAM_NIVEAU_DONJON = 0;
 
+u8 index_X_CARTE_DONJONS = 0;
+u8 index_Y_CARTE_DONJONS = 0;
+
 
 
 

@@ -6,6 +6,7 @@
 
 #include "maps_NIVEAUX.h"
 #include "maps_ENTREES.h"
+#include "maps_SALLES.h"
 //#include "maps_DONJONS.h"
 
 
@@ -222,3 +223,49 @@ const u8					TABLE_ID_ENTREES_NIVEAU1[43]		=	{ 1,2,1,1,1,1,1,
 /*
 const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };
 */
+
+
+
+
+//******************************************************//
+//                                                      //
+//                     TABLES SALLES                    //
+//                                                      //
+//******************************************************//
+
+const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAU1[43]	=	{ &map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																	  NULL,NULL,NULL,NULL,NULL,NULL,
+																	  &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
+																	  NULL ,NULL ,NULL ,
+																	  &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
+																	  &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
+																	  NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
+																	  &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL
+																	};
+
+const TileSet				*TABLE_TILESET_SALLES_NIVEAU1[43]	=	{ &tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																	  NULL,NULL,NULL,NULL,NULL,NULL,
+																	  &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
+																	  NULL ,NULL ,NULL ,
+																	  &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
+																	  &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
+																	  NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
+																	  &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL
+																	};
+
+
+
+
+//******************************************************//
+//                                                      //
+//                    TABLES DONJONS                    //
+//                                                      //
+//******************************************************//
+
+const s16					TABLE_INIT_CAM_DONJONS[2][8]		=	{ {256,1024,768,768,768,1024,1024,768},
+																	  {1288,1104,1288,1288,1288,1288,1288,920}
+																	};
+
+const u8					TABLE_INIT_INDEX_DONJONS[2][8]		=	{ {1,4,3,3,3,4,4,3},
+																	  {7,6,7,7,7,7,7,5}
+																	};
