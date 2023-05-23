@@ -10,7 +10,7 @@
 
 extern void init_SYSTEME();
 extern void init_VARIABLES_GENERALES();
-extern void init_PALETTES( u8 index );
+extern void init_PALETTES_MENU();
 
 
 

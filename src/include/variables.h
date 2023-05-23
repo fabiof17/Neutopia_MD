@@ -22,6 +22,8 @@
 extern u8 scene_JEU;
 extern u8 etat_JEU;
 
+extern u8 type_DECOR;
+
 extern bool PAUSE;
 extern bool GAMEOVER;
 
@@ -33,9 +35,7 @@ extern u8 niveau_BOUCLIER;
 
 extern u16 id_TILE;
 
-extern bool crea_BG_A;
-
-extern bool map_BG_B_OK;
+//extern bool map_BG_B_OK;
 extern bool map_BG_A_OK;
 
 
@@ -161,8 +161,8 @@ extern u8 index_Y_CARTE_DONJONS;
 //                                                      //
 //******************************************************//
 
-extern u32 pos_X_CAM_NIVEAU_SALLE;
-extern u32 pos_Y_CAM_NIVEAU_SALLE;
+extern u32 pos_X_CAM_SALLE;
+extern u32 pos_Y_CAM_SALLE;
 
 
 

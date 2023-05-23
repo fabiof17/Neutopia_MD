@@ -47,6 +47,8 @@ void init_VARIABLES_GENERALES()
 	scene_JEU = 2;				// 0: TITRE  -  1: INTRO  -  2: JEU
 	etat_JEU = 0;
 
+	type_DECOR = 0;
+
 	PAUSE = 0;
 	GAMEOVER = 0;
 
@@ -56,7 +58,8 @@ void init_VARIABLES_GENERALES()
 	niveau_EPEE = 0;
 	niveau_BOUCLIER = 0;
 
-	map_BG_B_OK = 0;
+	id_TILE = 0;
+
 	map_BG_A_OK = 0;
 
 
@@ -164,9 +167,6 @@ void init_VARIABLES_GENERALES()
 	niveau_OK = 0;
 	num_NIVEAU = 1;
 
-	pos_X_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
-	pos_Y_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1] - 40;
-
 	index_X_CARTE_NIVEAU = TABLE_INIT_INDEX_NIVEAUX[0][num_NIVEAU - 1];
 	index_Y_CARTE_NIVEAU = TABLE_INIT_INDEX_NIVEAUX[1][num_NIVEAU - 1];
 
@@ -195,23 +195,14 @@ void init_VARIABLES_GENERALES()
 	//                                                      //
 	//******************************************************//
 
-	pos_X_CAM_NIVEAU_SALLE = 0;
-	pos_Y_CAM_NIVEAU_SALLE = 0;
 }
 
 
-void init_PALETTES( u8 index )
+void init_PALETTES_MENU()
 {
-    index -= 1;
-	
 	PAL_setPalette(PAL0, palette_MENU.data, DMA);
-    PAL_setPalette(PAL1, TABLE_PAL_NIVEAUX[0][index]->data, DMA);
-	PAL_setPalette(PAL2, TABLE_PAL_NIVEAUX[1][index]->data, DMA);
 	PAL_setPalette(PAL3, palette_OBJETS_VIOLET.data, DMA);
-	
-	SYS_doVBlankProcess();
 }
-
 
 
 //******************************************************//
@@ -514,32 +505,52 @@ void init_DECOR( u8 index , u8 type )
     //////////////////////////////////////////////////////////
 	if(type == 0)
 	{
-		// BG_B //
+
+		//////////////////////////////////////////////////////////
+		//                CHARGEMENT TILES BG_B                 //
+		//////////////////////////////////////////////////////////
 		VDP_loadTileSet(TABLE_TILESET_NIVEAUX[0][index], adr_VRAM_BG_B, CPU);
 		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
 		SYS_doVBlankProcess();
 
-		// creation structures MAP //
+		//////////////////////////////////////////////////////////
+		//                  CREATION MAP BG_B                   //
+		//////////////////////////////////////////////////////////
 		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_NIVEAUX[0][index], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
-		map_BG_B_OK = 1;
+		//map_BG_B_OK = 1;
 		SYS_doVBlankProcess();
 
 
 
 
-		// BG_A //
+		//////////////////////////////////////////////////////////
+		//                CHARGEMENT TILES BG_A                 //
+		//////////////////////////////////////////////////////////
 		VDP_loadTileSet(TABLE_TILESET_NIVEAUX[1][index], adr_VRAM_BG_A, CPU);
 		SYS_doVBlankProcess();
 		
-		// creation structures MAP //
+		//////////////////////////////////////////////////////////
+		//                  CREATION MAP BG_A                   //
+		//////////////////////////////////////////////////////////
 		map_NIVEAU_BG_A = MAP_create(TABLE_MAPDEF_NIVEAUX[1][index], BG_A, TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE, adr_VRAM_BG_A));
 		map_BG_A_OK = 1;
 		SYS_doVBlankProcess();
 
 
+
+
+		//////////////////////////////////////////////////////////
+		//                     INIT CAMERA                      //
+		//////////////////////////////////////////////////////////
+		pos_X_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
+		pos_Y_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1] - 40;
+
 		
 
-		// init structures MAP //
+
+		//////////////////////////////////////////////////////////
+		//                      INIT MAPS                       //
+		//////////////////////////////////////////////////////////
 		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
 		SYS_doVBlankProcess();
 		
@@ -547,17 +558,45 @@ void init_DECOR( u8 index , u8 type )
 		SYS_doVBlankProcess();
 	}
 
+
 	//////////////////////////////////////////////////////////
     //                         SALLE                        //
     //////////////////////////////////////////////////////////
 	else if(type == 1)
 	{
-		// BG_B //
-		VDP_loadTileSet(TABLE_TILESET_NIVEAUX[0][index], adr_VRAM_BG_B, CPU);
+
+		//////////////////////////////////////////////////////////
+		//                CHARGEMENT TILES BG_B                 //
+		//////////////////////////////////////////////////////////
+		VDP_loadTileSet(TABLE_TILESET_SALLES_NIVEAUX[num_NIVEAU][id_TILE], adr_VRAM_BG_B, CPU);
 		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
 		SYS_doVBlankProcess();
 
-		map_BG_B_OK = 1;
+		//////////////////////////////////////////////////////////
+		//                  CREATION MAP BG_B                   //
+		//////////////////////////////////////////////////////////
+		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_SALLES_NIVEAUX[num_NIVEAU][id_TILE], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
+		//map_BG_B_OK = 1;
+		SYS_doVBlankProcess();
+
+
+
+
+		//////////////////////////////////////////////////////////
+		//                     INIT CAMERA                      //
+		//////////////////////////////////////////////////////////
+		pos_X_CAM_SALLE = 0;
+		pos_Y_CAM_SALLE = 0;
+
+
+
+
+		//////////////////////////////////////////////////////////
+		//                      INIT MAPS                       //
+		//////////////////////////////////////////////////////////
+		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_SALLE, pos_Y_CAM_SALLE);
+		SYS_doVBlankProcess();
+		
 	}
 
 	//////////////////////////////////////////////////////////
@@ -565,7 +604,8 @@ void init_DECOR( u8 index , u8 type )
     //////////////////////////////////////////////////////////
 	else if(type == 2)
 	{
-			//
+		
+		//
 	}
 
 

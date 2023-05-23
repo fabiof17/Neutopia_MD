@@ -126,7 +126,9 @@ extern const u16                    TABLE_OFFSET_TILE_NIVEAUX[8][8];
 //                                                      //
 //******************************************************//
 
-extern const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAU1[43];
+extern const TileSet				*TABLE_TILESET_SALLES_NIVEAUX[4][43];
+
+extern const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAUX[4][43];
 
 
 

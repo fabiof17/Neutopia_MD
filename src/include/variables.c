@@ -10,6 +10,8 @@
 u8 scene_JEU = 0;
 u8 etat_JEU = 0;
 
+u8 type_DECOR = 0;
+
 bool PAUSE = 0;
 bool GAMEOVER = 0;
 
@@ -21,9 +23,6 @@ u8 niveau_BOUCLIER = 0;
 
 u16 id_TILE = 0;
 
-bool crea_BG_A = 0;
-
-bool map_BG_B_OK = 0;
 bool map_BG_A_OK = 0;
 
 
@@ -145,5 +144,5 @@ u8 index_Y_CARTE_DONJONS = 0;
 //                                                      //
 //******************************************************//
 
-u32 pos_X_CAM_NIVEAU_SALLE = 0;
-u32 pos_Y_CAM_NIVEAU_SALLE = 0;
+u32 pos_X_CAM_SALLE = 0;
+u32 pos_Y_CAM_SALLE = 0;

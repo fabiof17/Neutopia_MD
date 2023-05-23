@@ -119,9 +119,10 @@ int main(bool resetType)
                     if(niveau_OK == 0)
                     {
                         // Init NIVEAU //
-                        init_DECOR(num_NIVEAU , 0);
+                        init_DECOR(num_NIVEAU , type_DECOR);
                         afficher_MENU();
-                        init_PALETTES(num_NIVEAU);
+                        init_PALETTES_MENU();
+                        maj_PALETTES(num_NIVEAU , type_DECOR);
 
                         niveau_OK = 1;
                     }

@@ -121,4 +121,18 @@ void afficher_MENU()
 
 
 
+//******************************************************//
+//                                                      //
+//                        NIVEAU                        //
+//                                                      //
+//******************************************************//
+
+void maj_PALETTES( u8 index , u8 type )
+{
+    index -= 1;
+	
+	PAL_setPalette(PAL1, TABLE_PAL_NIVEAUX[0][index]->data, DMA);
+	PAL_setPalette(PAL2, TABLE_PAL_NIVEAUX[1][index]->data, DMA);
+}
+
 

@@ -192,8 +192,6 @@ const MapDefinition			*TABLE_MAPDEF_NIVEAUX[2][4]			=	{ {&map_NIVEAU1_BG_B,&map_
 																	  {&map_NIVEAU1_BG_A,&map_NIVEAU2_BG_A,&map_NIVEAU3_BG_A,&map_NIVEAU4_BG_A}
 																	};
 
-//const TileSet*				(*TABLE_TILESET[3])[2][4]			=	{&TABLE_TILESET_NIVEAUX , &TABLE_TILESET_NIVEAUX , &TABLE_TILESET_NIVEAUX};
-
 
 
 
@@ -233,25 +231,79 @@ const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };
 //                                                      //
 //******************************************************//
 
-const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAU1[43]	=	{ &map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																	  NULL,NULL,NULL,NULL,NULL,NULL,
-																	  &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
-																	  NULL ,NULL ,NULL ,
-																	  &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
-																	  &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
-																	  NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
-																	  &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL
-																	};
+const TileSet				*TABLE_TILESET_SALLES_NIVEAUX[4][43]	=	{ {&tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		   NULL,NULL,NULL,NULL,NULL,NULL,
+																		   &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
+																		   NULL ,NULL ,NULL ,
+																		   &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
+																		   &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
+																		   NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
+																		   &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL},
 
-const TileSet				*TABLE_TILESET_SALLES_NIVEAU1[43]	=	{ &tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																	  NULL,NULL,NULL,NULL,NULL,NULL,
-																	  &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
-																	  NULL ,NULL ,NULL ,
-																	  &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
-																	  &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
-																	  NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
-																	  &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL
-																	};
+																		  {&tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		   NULL,NULL,NULL,NULL,NULL,NULL,
+																		   &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
+																		   NULL ,NULL ,NULL ,
+																		   &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
+																		   &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
+																		   NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
+																		   &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL},
+
+																		  {&tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		   NULL,NULL,NULL,NULL,NULL,NULL,
+																		   &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
+																		   NULL ,NULL ,NULL ,
+																		   &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
+																		   &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
+																		   NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
+																		   &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL},
+
+																		  {&tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		   NULL,NULL,NULL,NULL,NULL,NULL,
+																		   &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
+																		   NULL ,NULL ,NULL ,
+																		   &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
+																		   &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
+																		   NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
+																		   &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL}
+																		};
+
+const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAUX[4][43]		=	{ {&map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		   NULL,NULL,NULL,NULL,NULL,NULL,
+																		   &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
+																		   NULL ,NULL ,NULL ,
+																		   &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
+																		   &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
+																		   NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
+																		   &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL},
+
+																		  {&map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		   NULL,NULL,NULL,NULL,NULL,NULL,
+																		   &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
+																		   NULL ,NULL ,NULL ,
+																		   &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
+																		   &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
+																		   NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
+																		   &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL},
+
+																		  {&map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		   NULL,NULL,NULL,NULL,NULL,NULL,
+																		   &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
+																		   NULL ,NULL ,NULL ,
+																		   &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
+																		   &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
+																		   NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
+																		   &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL},
+
+																		  {&map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		   NULL,NULL,NULL,NULL,NULL,NULL,
+																		   &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
+																		   NULL ,NULL ,NULL ,
+																		   &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
+																		   &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
+																		   NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
+																		   &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL}
+																		};
 
 
 
