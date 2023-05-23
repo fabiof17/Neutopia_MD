@@ -11,6 +11,7 @@
 #include "maps_GLOBAL.h"
 #include "maps_MENU.h"
 #include "maps_NIVEAUX.h"
+#include "maps_ENTREES.h"
 
 #include "palettes.h"
 
@@ -117,3 +118,7 @@ void afficher_MENU()
 
 	SYS_doVBlankProcess();
 }
+
+
+
+

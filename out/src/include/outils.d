@@ -11,4 +11,4 @@ out/src/include/outils.o: src/include/outils.c C:/sgdk/inc/genesis.h \
  C:/sgdk/inc/sound.h C:/sgdk/inc/xgm.h C:/sgdk/inc/z80_ctrl.h \
  C:/sgdk/inc/ym2612.h C:/sgdk/inc/psg.h C:/sgdk/inc/joy.h \
  C:/sgdk/inc/timer.h C:/sgdk/inc/task.h C:/sgdk/inc/task_cst.h \
- src/include/variables.h res/maps_MENU.h
+ src/include/variables.h src/include/tableaux.h res/maps_MENU.h

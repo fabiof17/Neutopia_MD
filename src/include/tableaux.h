@@ -92,11 +92,30 @@ extern const u8                     TABLE_PAL_OBJETS_BAS[2][4];
 //                                                      //
 //******************************************************//
 
+extern const s16                    TABLE_INIT_CAM_NIVEAUX[2][4];
+
+extern const u8                     TABLE_INIT_INDEX_NIVEAUX[2][4];
+
 extern const TileSet		        *TABLE_TILESET_NIVEAUX[2][4];
 
 extern const MapDefinition          *TABLE_MAPDEF_NIVEAUX[2][4];
 
-extern const TileSet*				(*TABLE_TILESET[3])[2][4];
+//extern const TileSet*				(*TABLE_TILESET[3])[2][4];
+
+
+
+
+//******************************************************//
+//                                                      //
+//                    TABLES ENTREES                    //
+//                                                      //
+//******************************************************//
+
+//////////////////////////////////////////////////////////
+//                    ENTREES NIVEAU 1                  //
+//////////////////////////////////////////////////////////
+
+extern const u16                    TABLE_OFFSET_TILE_NIVEAUX[8][8];
 
 
 

@@ -11,6 +11,7 @@
 #include "maps_TITRE.h"
 #include "maps_MENU.h"
 #include "maps_NIVEAUX.h"
+#include "maps_SALLES.h"
 
 #include "palettes.h"
 
@@ -54,6 +55,9 @@ void init_VARIABLES_GENERALES()
 
 	niveau_EPEE = 0;
 	niveau_BOUCLIER = 0;
+
+	map_BG_B_OK = 0;
+	map_BG_A_OK = 0;
 
 
 	//******************************************************//
@@ -160,11 +164,11 @@ void init_VARIABLES_GENERALES()
 	niveau_OK = 0;
 	num_NIVEAU = 1;
 
-	pos_X_CAM_NIVEAU = 768;
-	pos_Y_CAM_NIVEAU = 1104 - 40;
+	pos_X_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
+	pos_Y_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1] - 40;
 
-	index_X_CARTE_NIVEAU = 3;
-	index_Y_CARTE_NIVEAU = 6;
+	index_X_CARTE_NIVEAU = TABLE_INIT_INDEX_NIVEAUX[0][num_NIVEAU - 1];
+	index_Y_CARTE_NIVEAU = TABLE_INIT_INDEX_NIVEAUX[1][num_NIVEAU - 1];
 
 	adr_VRAM_BG_A = 0;
 	adr_VRAM_BG_B = 0;
@@ -514,6 +518,7 @@ void init_DECOR( u8 index , u8 type )
 
 		// creation structures MAP //
 		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_NIVEAUX[0][index], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
+		map_BG_B_OK = 1;
 		SYS_doVBlankProcess();
 
 
@@ -525,6 +530,7 @@ void init_DECOR( u8 index , u8 type )
 		
 		// creation structures MAP //
 		map_NIVEAU_BG_A = MAP_create(TABLE_MAPDEF_NIVEAUX[1][index], BG_A, TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE, adr_VRAM_BG_A));
+		map_BG_A_OK = 1;
 		SYS_doVBlankProcess();
 
 
@@ -539,11 +545,16 @@ void init_DECOR( u8 index , u8 type )
 	}
 
 	//////////////////////////////////////////////////////////
-    //                         CAVE                         //
+    //                         SALLE                        //
     //////////////////////////////////////////////////////////
 	else if(type == 1)
 	{
-		//
+		// BG_B //
+		VDP_loadTileSet(TABLE_TILESET_NIVEAUX[0][index], adr_VRAM_BG_B, CPU);
+		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
+		SYS_doVBlankProcess();
+
+		map_BG_B_OK = 1;
 	}
 
 	//////////////////////////////////////////////////////////

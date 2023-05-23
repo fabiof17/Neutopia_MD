@@ -3,7 +3,9 @@
 #include "palettes.h"
 #include "sprites_DECOR.h"
 #include "sprites_ENNEMIS.h"
+
 #include "maps_NIVEAUX.h"
+#include "maps_ENTREES.h"
 //#include "maps_DONJONS.h"
 
 
@@ -165,20 +167,26 @@ const u8					TABLE_PAL_OBJETS_BAS[2][4]			=	{ {PAL0,PAL3,PAL0,PAL0},
 																	};
 
 
+
+
 //******************************************************//
 //                                                      //
 //                    TABLES NIVEAUX                    //
 //                                                      //
 //******************************************************//
 
+const s16					TABLE_INIT_CAM_NIVEAUX[2][4]		=	{ {768,512,1536,256},
+																	  {1104,1104,736,184}
+																	};
+
+const u8					TABLE_INIT_INDEX_NIVEAUX[2][4]		=	{ {3,2,6,1},
+																	  {6,6,4,1}
+																	};
+
 const TileSet				*TABLE_TILESET_NIVEAUX[2][4]		=	{ {&tileset_NIVEAU1_BG_B,&tileset_NIVEAU2_BG_B,&tileset_NIVEAU3_BG_B,&tileset_NIVEAU4_BG_B},
 																      {&tileset_NIVEAU1_BG_A,&tileset_NIVEAU2_BG_A,&tileset_NIVEAU3_BG_A,&tileset_NIVEAU4_BG_A}
 																	};
 														
-
-
-
-
 const MapDefinition			*TABLE_MAPDEF_NIVEAUX[2][4]			=	{ {&map_NIVEAU1_BG_B,&map_NIVEAU2_BG_B,&map_NIVEAU3_BG_B,&map_NIVEAU4_BG_B},
 																	  {&map_NIVEAU1_BG_A,&map_NIVEAU2_BG_A,&map_NIVEAU3_BG_A,&map_NIVEAU4_BG_A}
 																	};
@@ -186,3 +194,31 @@ const MapDefinition			*TABLE_MAPDEF_NIVEAUX[2][4]			=	{ {&map_NIVEAU1_BG_B,&map_
 //const TileSet*				(*TABLE_TILESET[3])[2][4]			=	{&TABLE_TILESET_NIVEAUX , &TABLE_TILESET_NIVEAUX , &TABLE_TILESET_NIVEAUX};
 
 
+
+
+//******************************************************//
+//                                                      //
+//                    TABLES ENTREES                    //
+//                                                      //
+//******************************************************//
+
+//////////////////////////////////////////////////////////
+//                    ENTREES NIVEAU 1                  //
+//////////////////////////////////////////////////////////
+
+const u16					TABLE_OFFSET_TILE_NIVEAUX[8][8]		=	{ {0,32,64,96,128,160,192,224},
+																	  {0,6144,12288,18432,24576,30720,36864,43008}
+																	};
+
+const u8					TABLE_ID_ENTREES_NIVEAU1[43]		=	{ 1,2,1,1,1,1,1,
+																	  1,1,1,1,1,1,
+																	  1,1,1,1,1,1,2,
+																	  1,1,1,
+																	  1,1,1,
+																	  1,1,1,1,1,1,
+																	  1,1,1,1,1,1,
+																	  1,1,1,1,1
+																	};
+/*
+const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };
+*/

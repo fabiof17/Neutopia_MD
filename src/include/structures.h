@@ -37,6 +37,8 @@ extern Struct_SpriteDecor_ SpriteDecor;
 
 
 
+
+
 #endif // _MAIN
 
 

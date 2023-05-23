@@ -31,6 +31,13 @@ extern u16 nb_GOLD;
 extern u8 niveau_EPEE;
 extern u8 niveau_BOUCLIER;
 
+extern u16 id_TILE;
+
+extern bool crea_BG_A;
+
+extern bool map_BG_B_OK;
+extern bool map_BG_A_OK;
+
 
 
 

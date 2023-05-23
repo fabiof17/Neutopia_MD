@@ -13,4 +13,5 @@ out/src/include/init.o: src/include/init.c C:/sgdk/inc/genesis.h \
  C:/sgdk/inc/timer.h C:/sgdk/inc/task.h C:/sgdk/inc/task_cst.h \
  src/include/variables.h src/include/tableaux.h src/include/outils.h \
  src/include/sprites_JEU.h res/sprites_MENU.h res/maps_GLOBAL.h \
- res/maps_TITRE.h res/maps_MENU.h res/maps_NIVEAUX.h res/palettes.h
+ res/maps_TITRE.h res/maps_MENU.h res/maps_NIVEAUX.h res/maps_SALLES.h \
+ res/palettes.h

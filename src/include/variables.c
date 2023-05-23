@@ -19,6 +19,15 @@ u16 nb_GOLD = 0;
 u8 niveau_EPEE = 0;
 u8 niveau_BOUCLIER = 0;
 
+u16 id_TILE = 0;
+
+bool crea_BG_A = 0;
+
+bool map_BG_B_OK = 0;
+bool map_BG_A_OK = 0;
+
+
+
 
 //******************************************************//
 //                                                      //
