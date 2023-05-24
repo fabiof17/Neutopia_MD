@@ -53,15 +53,30 @@ void boucle_TITRE()
 //                                                      //
 //******************************************************//
 
-void afficher_MENU()
+void afficher_MENU(u8 type)
 {
+	s16 cam_X = 0;
+	s16 cam_Y = 0;
+
+	if(type == 0)
+	{
+		cam_X = pos_X_CAM_NIVEAU;
+		cam_Y = pos_Y_CAM_NIVEAU;
+	}
+
+	else if(type == 1)
+	{
+		cam_X = pos_X_CAM_SALLE;
+		cam_Y = pos_Y_CAM_SALLE;
+	}
+	
 	//******************************************************//
 	//                                                      //
 	//                        BG_A                          //
 	//                                                      //
 	//******************************************************//
 
-    VDP_setTileMapEx(BG_A, image_MENU.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_MENU), 32 + (pos_X_CAM_NIVEAU >> 3), 5 + (pos_Y_CAM_NIVEAU >> 3), 0, 5, 32, 23, CPU);
+    VDP_setTileMapEx(BG_A, image_MENU.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_MENU), 32 + (cam_X >> 3), 5 + (cam_Y >> 3), 0, 5, 32, 23, CPU);
 
 
 	//******************************************************//
@@ -70,7 +85,7 @@ void afficher_MENU()
 	//                                                      //
 	//******************************************************//
 
-	VDP_setTileMapEx(BG_A, image_BOUSSOLE.tilemap, TILE_ATTR_FULL(PAL3, TRUE, FALSE, FALSE, adr_VRAM_BOUSSOLE), 18 + 32 + (pos_X_CAM_NIVEAU >> 3), 10 + (pos_Y_CAM_NIVEAU >> 3), 0, 0, 4, 4, CPU);
+	VDP_setTileMapEx(BG_A, image_BOUSSOLE.tilemap, TILE_ATTR_FULL(PAL3, TRUE, FALSE, FALSE, adr_VRAM_BOUSSOLE), 18 + 32 + (cam_X >> 3), 10 + (cam_Y >> 3), 0, 0, 4, 4, CPU);
 
 
 	//******************************************************//
@@ -92,7 +107,7 @@ void afficher_MENU()
 		{
 			if(TABLE_OBJETS_BAS[y][x] != NULL)
 			{
-				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_BAS[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_BAS[y][x]), 		32 + 3 + (x*3) + (pos_X_CAM_NIVEAU >> 3),		19 + (y*3) + (pos_Y_CAM_NIVEAU >> 3),		0, 0, 2, 2, CPU);
+				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_BAS[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_BAS[y][x]), 		32 + 3 + (x*3) + (cam_X >> 3),		19 + (y*3) + (cam_Y >> 3),		0, 0, 2, 2, CPU);
 			}
 		}
 		
@@ -108,7 +123,7 @@ void afficher_MENU()
 		{
 			if(TABLE_OBJETS_HAUT[y][x] != NULL)
 			{
-				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[y][x]), 		32 + 3 + (x*3) + (pos_X_CAM_NIVEAU >> 3),		10 + (y*3) + (pos_Y_CAM_NIVEAU >> 3),		0, 0, 2, 2, CPU);
+				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[y][x]), 		32 + 3 + (x*3) + (cam_X >> 3),		10 + (y*3) + (cam_Y >> 3),		0, 0, 2, 2, CPU);
 			}
 		}
 		
@@ -131,8 +146,33 @@ void maj_PALETTES( u8 index , u8 type )
 {
     index -= 1;
 	
-	PAL_setPalette(PAL1, TABLE_ADR_PAL_NIVEAUX[0][index]->data, DMA);
-	PAL_setPalette(PAL2, TABLE_ADR_PAL_NIVEAUX[1][index]->data, DMA);
+	//////////////////////////////////////////////////////////
+    //                        NIVEAU                        //
+    //////////////////////////////////////////////////////////
+	if(type == 0)
+	{
+		PAL_setPalette(PAL1, TABLE_ADR_PAL_NIVEAUX[0][index]->data, DMA);
+		PAL_setPalette(PAL2, TABLE_ADR_PAL_NIVEAUX[1][index]->data, DMA);
+	}
+
+
+	//////////////////////////////////////////////////////////
+    //                         SALLE                        //
+    //////////////////////////////////////////////////////////
+	else if(type == 1)
+	{
+		PAL_setPalette(PAL1, TABLE_ADR_PAL_SALLES[id_TILE + offset_TABLES_SALLES]->data, DMA);
+		//PAL_setPalette(PAL2, TABLE_ADR_PAL_NIVEAUX[1][index]->data, DMA);
+	}
+
+
+	//////////////////////////////////////////////////////////
+    //                        DONJON                        //
+    //////////////////////////////////////////////////////////
+	else if(type == 2)
+	{
+		//
+	}
 }
 
 

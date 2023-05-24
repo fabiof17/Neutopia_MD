@@ -47,7 +47,7 @@ void init_VARIABLES_GENERALES()
 	scene_JEU = 2;				// 0: TITRE  -  1: INTRO  -  2: JEU
 	etat_JEU = 0;
 
-	type_DECOR = 0;
+	type_DECOR = 1;
 
 	PAUSE = 0;
 	GAMEOVER = 0;
@@ -595,7 +595,7 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		//                      INIT MAPS                       //
 		//////////////////////////////////////////////////////////
-		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_SALLE, pos_Y_CAM_SALLE);
+		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_SALLE, pos_Y_CAM_SALLE - 40);
 		SYS_doVBlankProcess();
 		
 	}

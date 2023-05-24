@@ -30,7 +30,7 @@ const u16					TABLE_OFFSET_SALLES[4]				=	{0,43,NULL,NULL};
 //                   PALETTES NIVEAUX                   //
 //////////////////////////////////////////////////////////
 
-const Palette				*TABLE_ADR_PAL_NIVEAUX[2][4]			=	{ {&palette_NIVEAU1_BG_B,&palette_NIVEAU1_BG_B,&palette_NIVEAU1_BG_B,&palette_NIVEAU1_BG_B},
+const Palette				*TABLE_ADR_PAL_NIVEAUX[2][4]		=	{ {&palette_NIVEAU1_BG_B,&palette_NIVEAU1_BG_B,&palette_NIVEAU1_BG_B,&palette_NIVEAU1_BG_B},
 														  		  	  {&palette_NIVEAU1_BG_A,&palette_NIVEAU1_BG_A,&palette_NIVEAU1_BG_A,&palette_NIVEAU1_BG_A}
 																	};
 
