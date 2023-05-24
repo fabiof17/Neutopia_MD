@@ -569,14 +569,14 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		//                CHARGEMENT TILES BG_B                 //
 		//////////////////////////////////////////////////////////
-		VDP_loadTileSet(TABLE_TILESET_SALLES_NIVEAUX[id_TILE + offset_TABLES_SALLES], adr_VRAM_BG_B, CPU);
+		VDP_loadTileSet(TABLE_TILESET_SALLES[id_TILE + offset_TABLES_SALLES], adr_VRAM_BG_B, CPU);
 		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
 		SYS_doVBlankProcess();
 
 		//////////////////////////////////////////////////////////
 		//                  CREATION MAP BG_B                   //
 		//////////////////////////////////////////////////////////
-		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_SALLES_NIVEAUX[id_TILE + offset_TABLES_SALLES], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
+		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_SALLES[id_TILE + offset_TABLES_SALLES], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
 		//map_BG_B_OK = 1;
 		SYS_doVBlankProcess();
 

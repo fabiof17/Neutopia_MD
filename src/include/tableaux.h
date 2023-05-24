@@ -23,7 +23,7 @@ extern const u16					TABLE_OFFSET_SALLES[4];
 //                   PALETTES NIVEAUX                   //
 //////////////////////////////////////////////////////////
 
-extern const Palette				*TABLE_PAL_NIVEAUX[2][4];
+extern const Palette				*TABLE_ADR_PAL_NIVEAUX[2][4];
 
 //////////////////////////////////////////////////////////
 //                    SPRITES NIVEAU 1                  //
@@ -137,9 +137,9 @@ extern const u16                    TABLE_OFFSET_TILE_NIVEAUX[8][8];
 //                                                      //
 //******************************************************//
 
-extern const TileSet				*TABLE_TILESET_SALLES_NIVEAUX[43];
+extern const TileSet				*TABLE_TILESET_SALLES[43];
 
-extern const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAUX[43];
+extern const MapDefinition			*TABLE_MAPDEF_SALLES[43];
 
 extern const Palette				*TABLE_ADR_PAL_SALLES[43];
 
