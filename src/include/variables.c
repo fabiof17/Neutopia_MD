@@ -25,6 +25,8 @@ u16 id_TILE = 0;
 
 bool map_BG_A_OK = 0;
 
+u16 offset_TABLES_SALLES = 0;
+
 
 
 
@@ -129,8 +131,8 @@ Map *map_COLLISION;
 //                                                      //
 //******************************************************//
 
-u32 pos_X_CAM_NIVEAU_DONJON = 0;
-u32 pos_Y_CAM_NIVEAU_DONJON = 0;
+u32 pos_X_CAM_DONJON = 0;
+u32 pos_Y_CAM_DONJON = 0;
 
 u8 index_X_CARTE_DONJONS = 0;
 u8 index_Y_CARTE_DONJONS = 0;

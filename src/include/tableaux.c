@@ -9,6 +9,16 @@
 #include "maps_SALLES.h"
 //#include "maps_DONJONS.h"
 
+//******************************************************//
+//                                                      //
+//                   TABLES GLOBALES                    //
+//                                                      //
+//******************************************************//
+
+const u16					TABLE_OFFSET_SALLES[4]				=	{0,43,NULL,NULL};
+
+
+
 
 //******************************************************//
 //                                                      //
@@ -31,7 +41,7 @@ const Palette				*TABLE_PAL_NIVEAUX[2][4]			=	{ {&palette_NIVEAU1_BG_B,&palette_
 //                    SPRITES NIVEAU 1                  //
 //////////////////////////////////////////////////////////
 
-const u8					TABLE_NB_SPRITES_DECOR_1[8][8]  	=   { {0,0,0,1,0,1,0,1},
+const u8					TABLE_NB_SPRITES_NIVEAU1[8][8]  	=   { {0,0,0,1,0,1,0,1},
 														  	 	      {0,0,0,0,0,0,1,0},
 														  		      {0,1,1,0,0,0,0,0},
 														  		      {0,1,0,0,1,0,0,0},
@@ -41,9 +51,9 @@ const u8					TABLE_NB_SPRITES_DECOR_1[8][8]  	=   { {0,0,0,1,0,1,0,1},
 														  		      {0,0,0,0,0,0,0,1}
 																	};
 
-const SpriteDefinition		*TABLE_ADR_SPRITES_DECOR_1[4]		= 	{ &tiles_SPR_ARBRE_VERT , &tiles_SPR_ARBRE_MARRON , &tiles_SPR_ROCHER , &tiles_SPR_STATUE };
+const SpriteDefinition		*TABLE_ADR_SPRITES_NIVEAU1[4]		= 	{ &tiles_SPR_ARBRE_VERT , &tiles_SPR_ARBRE_MARRON , &tiles_SPR_ROCHER , &tiles_SPR_STATUE };
 
-const u8					TABLE_ID_SPRITES_DECOR_1[8][8]  	= 	{ {NULL,NULL,NULL,0   ,NULL,1   ,NULL,2   },
+const u8					TABLE_ID_SPRITES_NIVEAU1[8][8]  	= 	{ {NULL,NULL,NULL,0   ,NULL,1   ,NULL,2   },
 														  		      {NULL,NULL,NULL,NULL,NULL,NULL,2   ,NULL},
 														  		      {NULL,3   ,0   ,NULL,NULL,NULL,NULL,NULL},
 														  		      {NULL,3   ,NULL,NULL,0   ,NULL,NULL,NULL},
@@ -53,7 +63,7 @@ const u8					TABLE_ID_SPRITES_DECOR_1[8][8]  	= 	{ {NULL,NULL,NULL,0   ,NULL,1  
 														  		      {NULL,NULL,NULL,NULL,NULL,NULL,NULL,0   }
 																  	};
 
-const u8					TABLE_POSX_SPRITES_DECOR_1[8][8]	=	{ {NULL,NULL,NULL,112 ,NULL,64  ,NULL,144 },
+const u8					TABLE_POSX_SPRITES_NIVEAU1[8][8]	=	{ {NULL,NULL,NULL,112 ,NULL,64  ,NULL,144 },
 														  		      {NULL,NULL,NULL,NULL,NULL,NULL,192 ,NULL},
 														  		      {NULL,128 ,80  ,NULL,NULL,NULL,NULL,NULL},
 														  		      {NULL,16  ,NULL,NULL,128 ,NULL,NULL,NULL},
@@ -63,7 +73,7 @@ const u8					TABLE_POSX_SPRITES_DECOR_1[8][8]	=	{ {NULL,NULL,NULL,112 ,NULL,64  
 														  		      {NULL,NULL,NULL,NULL,NULL,NULL,NULL,128 }
 																	};
 
-const u8					TABLE_POSY_SPRITES_DECOR_1[8][8]	=	{ {NULL,NULL,NULL,64  ,NULL,48  ,NULL,80  },
+const u8					TABLE_POSY_SPRITES_NIVEAU1[8][8]	=	{ {NULL,NULL,NULL,64  ,NULL,48  ,NULL,80  },
 														  		      {NULL,NULL,NULL,NULL,NULL,NULL,80  ,NULL},
 														  		      {NULL,0   ,80  ,NULL,NULL,NULL,NULL,NULL},
 														  		      {NULL,16  ,NULL,NULL,112 ,NULL,NULL,NULL},
@@ -73,7 +83,7 @@ const u8					TABLE_POSY_SPRITES_DECOR_1[8][8]	=	{ {NULL,NULL,NULL,64  ,NULL,48  
 														  		      {NULL,NULL,NULL,NULL,NULL,NULL,NULL,64  }
 																	};
 
-const u8					TABLE_PAL_SPRITES_DECOR_1[8][8]	=		{ {NULL,NULL,NULL,PAL1,NULL,PAL2,NULL,PAL1},
+const u8					TABLE_PAL_SPRITES_NIVEAU1[8][8]	=		{ {NULL,NULL,NULL,PAL1,NULL,PAL2,NULL,PAL1},
 														  		      {NULL,NULL,NULL,NULL,NULL,NULL,PAL1,NULL},
 														  		      {NULL,PAL1,PAL1,NULL,NULL,NULL,NULL,NULL},
 														  		      {NULL,PAL1,NULL,NULL,PAL1,NULL,NULL,NULL},
@@ -96,7 +106,7 @@ const u8					TABLE_PAL_SPRITES_DECOR_1[8][8]	=		{ {NULL,NULL,NULL,PAL1,NULL,PAL2
 //                    ENNEMIS NIVEAU1                   //
 //////////////////////////////////////////////////////////
 
-const u8                 	TABLE_NB_ENNEMIS_DECOR_1[8][8]		= 	{ {2,1,3,1,2,3,2,3},
+const u8                 	TABLE_NB_ENNEMIS_NIVEAU1[8][8]		= 	{ {2,1,3,1,2,3,2,3},
 
 														  		  	  {3,1,4,3,3,3,4,2},
 														  		  	  {2,4,2,3,4,2,3,2},
@@ -107,7 +117,7 @@ const u8                 	TABLE_NB_ENNEMIS_DECOR_1[8][8]		= 	{ {2,1,3,1,2,3,2,3}
 														  		  	  {2,2,3,2,3,3,3,3}
 																 	};
 
-const u8                 	TABLE_INDEX_ENNEMIS_DECOR_1[8][8]	=	{ {0,2,3,6,7,9,12,14},
+const u8                 	TABLE_INDEX_ENNEMIS_NIVEAU1[8][8]	=	{ {0,2,3,6,7,9,12,14},
 														     	  	  {17,20,21,25,28,31,34,38},
 														     	  	  {40,42,46,48,51,55,57,60},
 														     	  	  {65,65,68,71,73,77,79,81},
@@ -117,9 +127,9 @@ const u8                 	TABLE_INDEX_ENNEMIS_DECOR_1[8][8]	=	{ {0,2,3,6,7,9,12,
 														     	  	  {147,149,151,154,156,159,162,165}
 														   		    };
 
-const SpriteDefinition		*TABLE_ID_ENNEMIS_DECOR_1[9]		=  	{ &tiles_SPR_SCORPION , &tiles_SPR_LEZARD , &tiles_SPR_GRENOUILLE , &tiles_SPR_POULPE , &tiles_SPR_SABLE , &tiles_SPR_MOUCHE , &tiles_SPR_SOLDAT_BLEU , &tiles_SPR_GOBLIN , &tiles_SPR_BLOB };
+const SpriteDefinition		*TABLE_ID_ENNEMIS_NIVEAU1[9]		=  	{ &tiles_SPR_SCORPION , &tiles_SPR_LEZARD , &tiles_SPR_GRENOUILLE , &tiles_SPR_POULPE , &tiles_SPR_SABLE , &tiles_SPR_MOUCHE , &tiles_SPR_SOLDAT_BLEU , &tiles_SPR_GOBLIN , &tiles_SPR_BLOB };
 
-const u8					TABLE_ADR_ENNEMIS_DECOR_1[169]		=	{ 0,0,1,1,1,1,2,2,3,4,4,4,0,0,4,4,4,
+const u8					TABLE_ADR_ENNEMIS_NIVEAU1[169]		=	{ 0,0,1,1,1,1,2,2,3,4,4,4,0,0,4,4,4,
 																	  4,4,4,0,4,4,4,4,5,5,5,6,6,3,6,6,3,0,0,0,0,4,4,
 																	  4,4,0,0,0,0,2,2,5,5,5,7,7,7,7,7,3,6,6,6,6,6,
 																	  4,4,4,0,0,0,5,5,5,7,7,1,1,1,1,5,3,6,3,6,6,6,3,
@@ -231,79 +241,36 @@ const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };
 //                                                      //
 //******************************************************//
 
-const TileSet				*TABLE_TILESET_SALLES_NIVEAUX[4][43]	=	{ {&tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		   NULL,NULL,NULL,NULL,NULL,NULL,
-																		   &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
-																		   NULL ,NULL ,NULL ,
-																		   &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
-																		   &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
-																		   NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
-																		   &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL},
-
-																		  {&tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		   NULL,NULL,NULL,NULL,NULL,NULL,
-																		   &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
-																		   NULL ,NULL ,NULL ,
-																		   &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
-																		   &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
-																		   NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
-																		   &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL},
-
-																		  {&tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		   NULL,NULL,NULL,NULL,NULL,NULL,
-																		   &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
-																		   NULL ,NULL ,NULL ,
-																		   &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
-																		   &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
-																		   NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
-																		   &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL},
-
-																		  {&tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		   NULL,NULL,NULL,NULL,NULL,NULL,
-																		   &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
-																		   NULL ,NULL ,NULL ,
-																		   &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
-																		   &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
-																		   NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
-																		   &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL}
+const TileSet				*TABLE_TILESET_SALLES_NIVEAUX[43]		=	{ &tileset_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		  NULL,NULL,NULL,NULL,NULL,NULL,
+																		  &tileset_NIVEAU1_SALLE_14,NULL,NULL,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_24,NULL,NULL,
+																		  NULL ,NULL ,NULL ,
+																		  &tileset_NIVEAU1_SALLE_24,&tileset_NIVEAU1_SALLE_1,NULL,
+																		  &tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,NULL,NULL,NULL,&tileset_NIVEAU1_SALLE_32,
+																		  NULL,&tileset_NIVEAU1_SALLE_32,&tileset_NIVEAU1_SALLE_35,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_24,
+																		  &tileset_NIVEAU1_SALLE_39,&tileset_NIVEAU1_SALLE_40,&tileset_NIVEAU1_SALLE_14,&tileset_NIVEAU1_SALLE_14,NULL
 																		};
 
-const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAUX[4][43]		=	{ {&map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		   NULL,NULL,NULL,NULL,NULL,NULL,
-																		   &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
-																		   NULL ,NULL ,NULL ,
-																		   &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
-																		   &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
-																		   NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
-																		   &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL},
-
-																		  {&map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		   NULL,NULL,NULL,NULL,NULL,NULL,
-																		   &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
-																		   NULL ,NULL ,NULL ,
-																		   &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
-																		   &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
-																		   NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
-																		   &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL},
-
-																		  {&map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		   NULL,NULL,NULL,NULL,NULL,NULL,
-																		   &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
-																		   NULL ,NULL ,NULL ,
-																		   &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
-																		   &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
-																		   NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
-																		   &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL},
-
-																		  {&map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		   NULL,NULL,NULL,NULL,NULL,NULL,
-																		   &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
-																		   NULL ,NULL ,NULL ,
-																		   &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
-																		   &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
-																		   NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
-																		   &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL}
+const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAUX[43]		=	{ &map_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		  NULL,NULL,NULL,NULL,NULL,NULL,
+																		  &map_NIVEAU1_SALLE_14,NULL,NULL,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_24,NULL,NULL,
+																		  NULL ,NULL ,NULL ,
+																		  &map_NIVEAU1_SALLE_24,&map_NIVEAU1_SALLE_1,NULL,
+																		  &map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,NULL,NULL,NULL,&map_NIVEAU1_SALLE_32,
+																		  NULL,&map_NIVEAU1_SALLE_32,&map_NIVEAU1_SALLE_35,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_24,
+																		  &map_NIVEAU1_SALLE_39,&map_NIVEAU1_SALLE_40,&map_NIVEAU1_SALLE_14,&map_NIVEAU1_SALLE_14,NULL
 																		};
+
+const Palette				*TABLE_ADR_PAL_SALLES[43]				=	{ &palette_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
+																		  NULL,NULL,NULL,NULL,NULL,NULL,
+																		  NULL,NULL,NULL,NULL,NULL,NULL,NULL,
+																		  NULL,NULL,NULL,
+																		  NULL,NULL,NULL,
+																		  NULL,NULL,NULL,NULL,NULL,NULL,
+																		  NULL,NULL,NULL,NULL,NULL,NULL,
+																		  NULL,NULL,NULL,NULL,NULL
+																		};
+
 
 
 
@@ -321,3 +288,4 @@ const s16					TABLE_INIT_CAM_DONJONS[2][8]		=	{ {256,1024,768,768,768,1024,1024,
 const u8					TABLE_INIT_INDEX_DONJONS[2][8]		=	{ {1,4,3,3,3,4,4,3},
 																	  {7,6,7,7,7,7,7,5}
 																	};
+

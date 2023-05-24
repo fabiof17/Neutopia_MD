@@ -4,6 +4,17 @@
 
 //******************************************************//
 //                                                      //
+//                   TABLES GLOBALES                    //
+//                                                      //
+//******************************************************//
+
+extern const u16					TABLE_OFFSET_SALLES[4];
+
+
+
+
+//******************************************************//
+//                                                      //
 //                    TABLES DECOR                      //
 //                                                      //
 //******************************************************//
@@ -18,17 +29,17 @@ extern const Palette				*TABLE_PAL_NIVEAUX[2][4];
 //                    SPRITES NIVEAU 1                  //
 //////////////////////////////////////////////////////////
 
-extern const u8					    TABLE_NB_SPRITES_DECOR_1[8][8];
+extern const u8					    TABLE_NB_SPRITES_NIVEAU1[8][8];
 
-extern const SpriteDefinition		*TABLE_ADR_SPRITES_DECOR_1[4];
+extern const SpriteDefinition		*TABLE_ADR_SPRITES_NIVEAU1[4];
 
-extern const u8					    TABLE_ID_SPRITES_DECOR_1[8][8];
+extern const u8					    TABLE_ID_SPRITES_NIVEAU1[8][8];
 
-extern const u8					    TABLE_POSX_SPRITES_DECOR_1[8][8];
+extern const u8					    TABLE_POSX_SPRITES_NIVEAU1[8][8];
 
-extern const u8					    TABLE_POSY_SPRITES_DECOR_1[8][8];
+extern const u8					    TABLE_POSY_SPRITES_NIVEAU1[8][8];
 
-extern const u8					    TABLE_PAL_SPRITES_DECOR_1[8][8];
+extern const u8					    TABLE_PAL_SPRITES_NIVEAU1[8][8];
 
 
 
@@ -43,13 +54,13 @@ extern const u8					    TABLE_PAL_SPRITES_DECOR_1[8][8];
 //                    ENNEMIS NIVEAU 1                  //
 //////////////////////////////////////////////////////////
 
-extern const u8                 	TABLE_NB_ENNEMIS_DECOR_1[8][8];
+extern const u8                 	TABLE_NB_ENNEMIS_NIVEAU1[8][8];
 
-extern const u8                 	TABLE_INDEX_ENNEMIS_DECOR_1[8][8];
+extern const u8                 	TABLE_INDEX_ENNEMIS_NIVEAU1[8][8];
 
-extern const SpriteDefinition		*TABLE_ID_ENNEMIS_DECOR_1[9];
+extern const SpriteDefinition		*TABLE_ID_ENNEMIS_NIVEAU1[9];
 
-extern const u8					    TABLE_ADR_ENNEMIS_DECOR_1[169];
+extern const u8					    TABLE_ADR_ENNEMIS_NIVEAU1[169];
 
 
 
@@ -126,9 +137,11 @@ extern const u16                    TABLE_OFFSET_TILE_NIVEAUX[8][8];
 //                                                      //
 //******************************************************//
 
-extern const TileSet				*TABLE_TILESET_SALLES_NIVEAUX[4][43];
+extern const TileSet				*TABLE_TILESET_SALLES_NIVEAUX[43];
 
-extern const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAUX[4][43];
+extern const MapDefinition			*TABLE_MAPDEF_SALLES_NIVEAUX[43];
+
+extern const Palette				*TABLE_ADR_PAL_SALLES[43];
 
 
 

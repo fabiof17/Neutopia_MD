@@ -33,3 +33,14 @@ PALETTE palette_NIVEAU1_BG_B                "palettes/niveaux/palette_NIVEAU1_BG
 PALETTE palette_NIVEAU1_BG_A                "palettes/niveaux/palette_NIVEAU1_BG_A.png"
 
 
+
+
+//******************************************************//
+//                                                      //
+//                        SALLES                        //
+//                                                      //
+//******************************************************//
+
+PALETTE palette_NIVEAU1_SALLE_1                "palettes/salles/niveau1/palette_NIVEAU1_SALLE_1.png"
+
+

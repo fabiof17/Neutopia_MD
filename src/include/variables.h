@@ -38,6 +38,8 @@ extern u16 id_TILE;
 //extern bool map_BG_B_OK;
 extern bool map_BG_A_OK;
 
+extern u16 offset_TABLES_SALLES;
+
 
 
 
@@ -146,8 +148,8 @@ extern Map *map_COLLISION;
 //                                                      //
 //******************************************************//
 
-extern u32 pos_X_CAM_NIVEAU_DONJON;
-extern u32 pos_Y_CAM_NIVEAU_DONJON;
+extern u32 pos_X_CAM_DONJON;
+extern u32 pos_Y_CAM_DONJON;
 
 extern u8 index_X_CARTE_DONJONS;
 extern u8 index_Y_CARTE_DONJONS;

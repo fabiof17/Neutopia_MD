@@ -180,8 +180,8 @@ void init_VARIABLES_GENERALES()
 	//                                                      //
 	//******************************************************//
 	/*
-	pos_X_CAM_NIVEAU_DONJON = TABLE_INIT_CAM_DONJONS[0][num_NIVEAU - 1];
-	pos_Y_CAM_NIVEAU_DONJON = TABLE_INIT_CAM_DONJONS[1][num_NIVEAU - 1] - 40;
+	pos_X_CAM_DONJON = TABLE_INIT_CAM_DONJONS[0][num_NIVEAU - 1];
+	pos_Y_CAM_DONJON = TABLE_INIT_CAM_DONJONS[1][num_NIVEAU - 1] - 40;
 
 	index_X_CARTE_DONJONS = TABLE_INIT_INDEX_DONJONS[0][num_NIVEAU - 1];
 	index_X_CARTE_DONJONS = TABLE_INIT_INDEX_DONJONS[1][num_NIVEAU - 1];
@@ -564,18 +564,19 @@ void init_DECOR( u8 index , u8 type )
     //////////////////////////////////////////////////////////
 	else if(type == 1)
 	{
-
+		offset_TABLES_SALLES = TABLE_OFFSET_SALLES[num_NIVEAU - 1];
+		
 		//////////////////////////////////////////////////////////
 		//                CHARGEMENT TILES BG_B                 //
 		//////////////////////////////////////////////////////////
-		VDP_loadTileSet(TABLE_TILESET_SALLES_NIVEAUX[num_NIVEAU][id_TILE], adr_VRAM_BG_B, CPU);
+		VDP_loadTileSet(TABLE_TILESET_SALLES_NIVEAUX[id_TILE + offset_TABLES_SALLES], adr_VRAM_BG_B, CPU);
 		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
 		SYS_doVBlankProcess();
 
 		//////////////////////////////////////////////////////////
 		//                  CREATION MAP BG_B                   //
 		//////////////////////////////////////////////////////////
-		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_SALLES_NIVEAUX[num_NIVEAU][id_TILE], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
+		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_SALLES_NIVEAUX[id_TILE + offset_TABLES_SALLES], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
 		//map_BG_B_OK = 1;
 		SYS_doVBlankProcess();
 
