@@ -41,6 +41,7 @@ PALETTE palette_NIVEAU1_BG_A                "palettes/niveaux/palette_NIVEAU1_BG
 //                                                      //
 //******************************************************//
 
-PALETTE palette_NIVEAU1_SALLE_1                "palettes/salles/niveau1/palette_NIVEAU1_SALLE_1.png"
+PALETTE palette_SALLE_1                "palettes/salles/palette_SALLE_1.png"
+PALETTE palette_SALLE_2                "palettes/salles/palette_SALLE_2.png"
 
 

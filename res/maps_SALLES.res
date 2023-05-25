@@ -1,31 +1,20 @@
-
-//////////////////////////////////////////////////////////////////////////////////////
-//                                   NIVEAU 1                                       //
-//////////////////////////////////////////////////////////////////////////////////////
-
 //**********************************************************************************//
 //                                                                                  //
 //                                   TILESET                                        //
 //                                                                                  //
 //**********************************************************************************//
 
-TILESET tileset_NIVEAU1_SALLE_1             "maps/salles/niveau1/tiles_NIVEAU1_SALLE_1.png"     NONE ALL
-TILESET tileset_NIVEAU1_SALLE_10            "maps/salles/niveau1/tiles_NIVEAU1_SALLE_10.png"    NONE ALL
+TILESET tileset_SALLE_1             "maps/salles/tiles_SALLE_1.png"      NONE ALL
+TILESET tileset_SALLE_2             "maps/salles/tiles_SALLE_2.png"      NONE ALL
+TILESET tileset_SALLE_3             "maps/salles/tiles_SALLE_3.png"      NONE ALL
+TILESET tileset_SALLE_4             "maps/salles/tiles_SALLE_4.png"      NONE ALL
+TILESET tileset_SALLE_5             "maps/salles/tiles_SALLE_5.png"      NONE ALL
+TILESET tileset_SALLE_6             "maps/salles/tiles_SALLE_6.png"      NONE ALL
+TILESET tileset_SALLE_7             "maps/salles/tiles_SALLE_7.png"      NONE ALL
+TILESET tileset_SALLE_8             "maps/salles/tiles_SALLE_8.png"      NONE ALL
+TILESET tileset_SALLE_9             "maps/salles/tiles_SALLE_9.png"      NONE ALL
 
 
-TILESET tileset_NIVEAU1_SALLE_14            "maps/salles/niveau1/tiles_NIVEAU1_SALLE_14.png"    NONE ALL
-
-
-TILESET tileset_NIVEAU1_SALLE_23            "maps/salles/niveau1/tiles_NIVEAU1_SALLE_23.png"    NONE ALL
-TILESET tileset_NIVEAU1_SALLE_24            "maps/salles/niveau1/tiles_NIVEAU1_SALLE_24.png"    NONE ALL
-
-
-TILESET tileset_NIVEAU1_SALLE_32            "maps/salles/niveau1/tiles_NIVEAU1_SALLE_32.png"    NONE ALL
-TILESET tileset_NIVEAU1_SALLE_35            "maps/salles/niveau1/tiles_NIVEAU1_SALLE_35.png"    NONE ALL
-TILESET tileset_NIVEAU1_SALLE_39            "maps/salles/niveau1/tiles_NIVEAU1_SALLE_39.png"    NONE ALL
-
-
-TILESET tileset_NIVEAU1_SALLE_40            "maps/salles/niveau1/tiles_NIVEAU1_SALLE_40.png"    NONE ALL
 
 
 //**********************************************************************************//
@@ -34,23 +23,15 @@ TILESET tileset_NIVEAU1_SALLE_40            "maps/salles/niveau1/tiles_NIVEAU1_S
 //                                                                                  //
 //**********************************************************************************//
 
-MAP map_NIVEAU1_SALLE_1                     "maps/salles/niveau1/tiles_NIVEAU1_SALLE_1.png" tileset_NIVEAU1_SALLE_1         NONE
-MAP map_NIVEAU1_SALLE_10                    "maps/salles/niveau1/tiles_NIVEAU1_SALLE_10.png" tileset_NIVEAU1_SALLE_10       NONE
-
-
-MAP map_NIVEAU1_SALLE_14                    "maps/salles/niveau1/tiles_NIVEAU1_SALLE_14.png" tileset_NIVEAU1_SALLE_14       NONE
-
-
-MAP map_NIVEAU1_SALLE_23                    "maps/salles/niveau1/tiles_NIVEAU1_SALLE_23.png" tileset_NIVEAU1_SALLE_23       NONE
-MAP map_NIVEAU1_SALLE_24                    "maps/salles/niveau1/tiles_NIVEAU1_SALLE_24.png" tileset_NIVEAU1_SALLE_24       NONE
-
-
-MAP map_NIVEAU1_SALLE_32                    "maps/salles/niveau1/tiles_NIVEAU1_SALLE_32.png" tileset_NIVEAU1_SALLE_32       NONE
-MAP map_NIVEAU1_SALLE_35                    "maps/salles/niveau1/tiles_NIVEAU1_SALLE_35.png" tileset_NIVEAU1_SALLE_35       NONE
-MAP map_NIVEAU1_SALLE_39                    "maps/salles/niveau1/tiles_NIVEAU1_SALLE_39.png" tileset_NIVEAU1_SALLE_39       NONE
-
-
-MAP map_NIVEAU1_SALLE_40                    "maps/salles/niveau1/tiles_NIVEAU1_SALLE_40.png" tileset_NIVEAU1_SALLE_40       NONE
+MAP map_SALLE_1             "maps/salles/tiles_SALLE_1.png"     tileset_SALLE_1     NONE
+MAP map_SALLE_2             "maps/salles/tiles_SALLE_2.png"     tileset_SALLE_2     NONE
+MAP map_SALLE_3             "maps/salles/tiles_SALLE_3.png"     tileset_SALLE_3     NONE
+MAP map_SALLE_4             "maps/salles/tiles_SALLE_4.png"     tileset_SALLE_4     NONE
+MAP map_SALLE_5             "maps/salles/tiles_SALLE_5.png"     tileset_SALLE_5     NONE
+MAP map_SALLE_6             "maps/salles/tiles_SALLE_6.png"     tileset_SALLE_6     NONE
+MAP map_SALLE_7             "maps/salles/tiles_SALLE_7.png"     tileset_SALLE_7     NONE
+MAP map_SALLE_8             "maps/salles/tiles_SALLE_8.png"     tileset_SALLE_8     NONE
+MAP map_SALLE_9             "maps/salles/tiles_SALLE_9.png"     tileset_SALLE_9     NONE
 
 
 
