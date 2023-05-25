@@ -1,7 +1,13 @@
 #include <genesis.h>
 
 #include "variables.h"
-#include "tableaux.h"
+
+#include "tables_DONJONS.h"
+#include "tables_ENTREES.h"
+#include "tables_MENU.h"
+#include "tables_NIVEAUX.h"
+#include "tables_SALLES.h"
+
 #include "outils.h"
 
 #include "sprites_JEU.h"
@@ -44,10 +50,10 @@ void init_VARIABLES_GENERALES()
 	//                                                      //
 	//******************************************************//
 
-	scene_JEU = 2;				// 0: TITRE  -  1: INTRO  -  2: JEU
+	scene_JEU = 2;				// 0: TITRE   -  1: INTRO  -  2: JEU
 	etat_JEU = 0;
 
-	type_DECOR = 1;
+	type_DECOR = 1;				// 0: NIVEAU  -  1: SALLE  -  2: DONJON
 
 	PAUSE = 0;
 	GAMEOVER = 0;

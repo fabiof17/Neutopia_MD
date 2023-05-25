@@ -9,20 +9,10 @@
 #include "maps_SALLES.h"
 //#include "maps_DONJONS.h"
 
-//******************************************************//
-//                                                      //
-//                   TABLES GLOBALES                    //
-//                                                      //
-//******************************************************//
-
-const u16					TABLE_OFFSET_SALLES[4]				=	{0,43,NULL,NULL};
-
-
-
 
 //******************************************************//
 //                                                      //
-//                    TABLES DECOR                      //
+//                    TABLES NIVEAUX                    //
 //                                                      //
 //******************************************************//
 
@@ -141,45 +131,6 @@ const u8					TABLE_ADR_ENNEMIS_NIVEAU1[169]		=	{ 0,0,1,1,1,1,2,2,3,4,4,4,0,0,4,4
 
 
 
-
-
-//******************************************************//
-//                                                      //
-//                 TABLES OBJETS MENU                   //
-//                                                      //
-//******************************************************//
-
-bool						TABLE_OBJETS_HAUT[2][4]				=	{ {NULL,NULL,NULL,NULL},
-																	  {NULL,NULL,NULL,NULL}
-																	};
-
-
-u16							TABLE_ADR_VRAM_OBJETS_HAUT[2][4]	=	{ {NULL,NULL,NULL,NULL},
-																	  {NULL,NULL,NULL,NULL}
-																	};
-
-const u8					TABLE_PAL_OBJETS_HAUT[2][4]			=	{ {PAL3,PAL3,PAL0,PAL0},
-																	  {PAL0,PAL0,PAL0,PAL0}
-																	};
-
-
-
-
-bool						TABLE_OBJETS_BAS[2][4]				=	{ {NULL,NULL,NULL,NULL},
-																	  {NULL,NULL,NULL,NULL}
-																	};
-
-u16							TABLE_ADR_VRAM_OBJETS_BAS[2][4]		=	{ {NULL,NULL,NULL,NULL},
-																	  {NULL,NULL,NULL,NULL}
-																	};
-
-const u8					TABLE_PAL_OBJETS_BAS[2][4]			=	{ {PAL0,PAL3,PAL0,PAL0},
-																	  {PAL3,PAL0,PAL0,PAL0}
-																	};
-
-
-
-
 //******************************************************//
 //                                                      //
 //                    TABLES NIVEAUX                    //
@@ -203,89 +154,4 @@ const MapDefinition			*TABLE_MAPDEF_NIVEAUX[2][4]			=	{ {&map_NIVEAU1_BG_B,&map_
 																	};
 
 
-
-
-//******************************************************//
-//                                                      //
-//                    TABLES ENTREES                    //
-//                                                      //
-//******************************************************//
-
-//////////////////////////////////////////////////////////
-//                    ENTREES NIVEAU 1                  //
-//////////////////////////////////////////////////////////
-
-const u16					TABLE_OFFSET_TILE_NIVEAUX[8][8]		=	{ {0,32,64,96,128,160,192,224},
-																	  {0,6144,12288,18432,24576,30720,36864,43008}
-																	};
-
-const u8					TABLE_ID_ENTREES_NIVEAU1[43]		=	{ 1,2,1,1,1,1,1,
-																	  1,1,1,1,1,1,
-																	  1,1,1,1,1,1,2,
-																	  1,1,1,
-																	  1,1,1,
-																	  1,1,1,1,1,1,
-																	  1,1,1,1,1,1,
-																	  1,1,1,1,1
-																	};
-/*
-const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };
-*/
-
-
-
-
-//******************************************************//
-//                                                      //
-//                     TABLES SALLES                    //
-//                                                      //
-//******************************************************//
-
-const TileSet				*TABLE_TILESET_SALLES[43]				=	{ &tileset_NIVEAU1_SALLE_1 , NULL , &tileset_NIVEAU1_SALLE_40 , NULL , NULL , NULL , NULL ,
-																		  NULL , &tileset_NIVEAU1_SALLE_14 , &tileset_NIVEAU1_SALLE_10 , &tileset_NIVEAU1_SALLE_14 , NULL , NULL ,
-																		  &tileset_NIVEAU1_SALLE_14 , &tileset_NIVEAU1_SALLE_24 , NULL , &tileset_NIVEAU1_SALLE_40 , &tileset_NIVEAU1_SALLE_24 , &tileset_NIVEAU1_SALLE_14 , NULL ,
-																		  NULL , NULL , NULL ,
-																		  &tileset_NIVEAU1_SALLE_24 , &tileset_NIVEAU1_SALLE_1 , NULL ,
-																		  &tileset_NIVEAU1_SALLE_40 , &tileset_NIVEAU1_SALLE_14 , NULL , NULL , &tileset_NIVEAU1_SALLE_39 , &tileset_NIVEAU1_SALLE_32 ,
-																		  NULL , &tileset_NIVEAU1_SALLE_32 , &tileset_NIVEAU1_SALLE_35 , &tileset_NIVEAU1_SALLE_40 , &tileset_NIVEAU1_SALLE_14 , &tileset_NIVEAU1_SALLE_24 ,
-																		  &tileset_NIVEAU1_SALLE_39 , &tileset_NIVEAU1_SALLE_40 , &tileset_NIVEAU1_SALLE_14 , &tileset_NIVEAU1_SALLE_14 , NULL
-																		};
-
-const MapDefinition			*TABLE_MAPDEF_SALLES[43]				=	{ &map_NIVEAU1_SALLE_1 , NULL , &map_NIVEAU1_SALLE_40 , NULL , NULL , NULL , NULL ,
-																		  NULL , &map_NIVEAU1_SALLE_14 , &map_NIVEAU1_SALLE_10 , &map_NIVEAU1_SALLE_14 , NULL , NULL ,
-																		  &map_NIVEAU1_SALLE_14 , &map_NIVEAU1_SALLE_24 , NULL , &map_NIVEAU1_SALLE_40 , &map_NIVEAU1_SALLE_24 , &map_NIVEAU1_SALLE_14 , NULL ,
-																		  NULL , NULL , NULL ,
-																		  &map_NIVEAU1_SALLE_24 , &map_NIVEAU1_SALLE_1 , NULL ,
-																		  &map_NIVEAU1_SALLE_40 , &map_NIVEAU1_SALLE_14 , NULL , NULL , &map_NIVEAU1_SALLE_39 , &map_NIVEAU1_SALLE_32 ,
-																		  NULL , &map_NIVEAU1_SALLE_32 , &map_NIVEAU1_SALLE_35 , &map_NIVEAU1_SALLE_40 , &map_NIVEAU1_SALLE_14 , &map_NIVEAU1_SALLE_24 ,
-																		  &map_NIVEAU1_SALLE_39 , &map_NIVEAU1_SALLE_40 , &map_NIVEAU1_SALLE_14 , &map_NIVEAU1_SALLE_14 , NULL
-																		};
-
-const Palette				*TABLE_ADR_PAL_SALLES[43]				=	{ &palette_NIVEAU1_SALLE_1 ,NULL,NULL,NULL,NULL,NULL,NULL,
-																		  NULL,NULL,NULL,NULL,NULL,NULL,
-																		  NULL,NULL,NULL,NULL,NULL,NULL,NULL,
-																		  NULL,NULL,NULL,
-																		  NULL,NULL,NULL,
-																		  NULL,NULL,NULL,NULL,NULL,NULL,
-																		  NULL,NULL,NULL,NULL,NULL,NULL,
-																		  NULL,NULL,NULL,NULL,NULL
-																		};
-
-
-
-
-
-//******************************************************//
-//                                                      //
-//                    TABLES DONJONS                    //
-//                                                      //
-//******************************************************//
-
-const s16					TABLE_INIT_CAM_DONJONS[2][8]		=	{ {256,1024,768,768,768,1024,1024,768},
-																	  {1288,1104,1288,1288,1288,1288,1288,920}
-																	};
-
-const u8					TABLE_INIT_INDEX_DONJONS[2][8]		=	{ {1,4,3,3,3,4,4,3},
-																	  {7,6,7,7,7,7,7,5}
-																	};
 

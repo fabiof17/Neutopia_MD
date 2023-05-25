@@ -1,7 +1,12 @@
 #include <genesis.h>
 
 #include "variables.h"
-#include "tableaux.h"
+
+#include "tables_DONJONS.h"
+#include "tables_ENTREES.h"
+#include "tables_MENU.h"
+#include "tables_NIVEAUX.h"
+#include "tables_SALLES.h"
 
 #include "maps_MENU.h"
 
