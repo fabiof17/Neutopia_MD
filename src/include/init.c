@@ -64,7 +64,7 @@ void init_VARIABLES_GENERALES()
 	niveau_EPEE = 0;
 	niveau_BOUCLIER = 0;
 
-	id_TILE = 0;
+	id_TILE = 34;
 
 	map_BG_A_OK = 0;
 
