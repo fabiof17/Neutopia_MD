@@ -2,6 +2,7 @@
 
 #include "variables.h"
 
+#include "tables_JOUEUR.h"
 #include "tables_DONJONS.h"
 #include "tables_ENTREES.h"
 #include "tables_MENU.h"

@@ -5,13 +5,13 @@
 
 //******************************************************//
 //                                                      //
-//                       GLOBALES                       //
+//                     SPRITE DECOR                     //
 //                                                      //
 //******************************************************//
 
 typedef struct
 {
-    Sprite* SpriteDecor;
+    Sprite* sprite_DECOR;
  
     s16 pos_X;
     s16 pos_Y;
@@ -28,34 +28,41 @@ typedef struct
     
     u8 CompteurFrameAnim;		// Compteur frame d'animation
 
-} Struct_SpriteDecor_;
+} struct_ELEMENT_DECOR_;
 
-extern Struct_SpriteDecor_ SpriteDecor;
-
-
+extern struct_ELEMENT_DECOR_ ELEMENT_DECOR;
 
 
 
 
+//******************************************************//
+//                                                      //
+//                     SPRITE JOUEUR                    //
+//                                                      //
+//******************************************************//
 
+typedef struct
+{
+    Sprite* sprite_JOUEUR;
+    Sprite* sprite_EPEE;
+ 
+    s16 pos_X_JOUEUR;
+    s16 pos_Y_JOUEUR;
 
-#endif // _MAIN
+    s16 pos_X_EPEE;
+    s16 pos_Y_EPEE;
 
+    //s16 pt_Coll_HG_X;
+    //s16 pt_Coll_HG_Y;
+    //s16 pt_Coll_BD_X;
+    //s16 pt_Coll_BD_Y;
 
+    
+    //u8 CompteurFrameAnim;		// Compteur frame d'animation
 
+} struct_JOUEUR_;
 
-
-
-
-
-
-
-
-
-
-
-
-
+extern struct_JOUEUR_ JOUEUR;
 
 
 

@@ -20,6 +20,7 @@ u16 nb_GOLD = 0;
 
 u8 niveau_EPEE = 0;
 u8 niveau_BOUCLIER = 0;
+u8 niveau_ARMURE = 0;
 
 u16 id_TILE = 0;
 

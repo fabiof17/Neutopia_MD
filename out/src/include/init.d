@@ -11,9 +11,10 @@ out/src/include/init.o: src/include/init.c C:/sgdk/inc/genesis.h \
  C:/sgdk/inc/sound.h C:/sgdk/inc/xgm.h C:/sgdk/inc/z80_ctrl.h \
  C:/sgdk/inc/ym2612.h C:/sgdk/inc/psg.h C:/sgdk/inc/joy.h \
  C:/sgdk/inc/timer.h C:/sgdk/inc/task.h C:/sgdk/inc/task_cst.h \
- src/include/variables.h src/include/tables_DONJONS.h \
+ src/include/variables.h src/include/structures.h \
+ src/include/tables_JOUEUR.h src/include/tables_DONJONS.h \
  src/include/tables_ENTREES.h src/include/tables_MENU.h \
  src/include/tables_NIVEAUX.h src/include/tables_SALLES.h \
  src/include/outils.h src/include/sprites_JEU.h res/sprites_MENU.h \
- res/maps_GLOBAL.h res/maps_TITRE.h res/maps_MENU.h res/maps_NIVEAUX.h \
- res/maps_SALLES.h res/palettes.h
+ res/sprites_JOUEUR.h res/maps_GLOBAL.h res/maps_TITRE.h res/maps_MENU.h \
+ res/maps_NIVEAUX.h res/maps_SALLES.h res/palettes.h

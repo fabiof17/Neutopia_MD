@@ -1,7 +1,9 @@
 #include <genesis.h>
 
 #include "variables.h"
+#include "structures.h"
 
+#include "tables_JOUEUR.h"
 #include "tables_DONJONS.h"
 #include "tables_ENTREES.h"
 #include "tables_MENU.h"
@@ -12,6 +14,7 @@
 
 #include "sprites_JEU.h"
 #include "sprites_MENU.h"
+#include "sprites_JOUEUR.h"
 
 #include "maps_GLOBAL.h"
 #include "maps_TITRE.h"
@@ -53,7 +56,7 @@ void init_VARIABLES_GENERALES()
 	scene_JEU = 2;				// 0: TITRE   -  1: INTRO  -  2: JEU
 	etat_JEU = 0;
 
-	type_DECOR = 1;				// 0: NIVEAU  -  1: SALLE  -  2: DONJON
+	type_DECOR = 0;				// 0: NIVEAU  -  1: SALLE  -  2: DONJON
 
 	PAUSE = 0;
 	GAMEOVER = 0;
@@ -64,7 +67,7 @@ void init_VARIABLES_GENERALES()
 	niveau_EPEE = 0;
 	niveau_BOUCLIER = 0;
 
-	id_TILE = 34;
+	id_TILE = 7;
 
 	map_BG_A_OK = 0;
 
@@ -498,6 +501,30 @@ void init_WINDOW()
 
 //******************************************************//
 //                                                      //
+//                        JOUEUR                        //
+//                                                      //
+//******************************************************//
+
+void init_JOUEUR()
+{
+	JOUEUR.pos_X_JOUEUR = 124;
+	JOUEUR.pos_Y_JOUEUR = 150;
+
+	JOUEUR.sprite_JOUEUR = SPR_addSprite(&tiles_Sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_ARMURE], FALSE, FALSE, FALSE));
+
+
+
+	JOUEUR.pos_X_EPEE = 0;
+	JOUEUR.pos_Y_EPEE = 0;
+
+	JOUEUR.sprite_EPEE = SPR_addSprite(&tiles_Sprite_EPEE, JOUEUR.pos_X_EPEE, JOUEUR.pos_Y_EPEE, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
+}
+
+
+
+
+//******************************************************//
+//                                                      //
 //                       NIVEAUX                        //
 //                                                      //
 //******************************************************//
@@ -549,7 +576,7 @@ void init_DECOR( u8 index , u8 type )
 		//                     INIT CAMERA                      //
 		//////////////////////////////////////////////////////////
 		pos_X_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
-		pos_Y_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1] - 40;
+		pos_Y_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1];
 
 		
 
@@ -601,7 +628,7 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		//                      INIT MAPS                       //
 		//////////////////////////////////////////////////////////
-		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_SALLE, pos_Y_CAM_SALLE - 40);
+		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_SALLE, pos_Y_CAM_SALLE);
 		SYS_doVBlankProcess();
 		
 	}

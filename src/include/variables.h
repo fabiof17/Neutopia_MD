@@ -32,6 +32,7 @@ extern u16 nb_GOLD;
 
 extern u8 niveau_EPEE;
 extern u8 niveau_BOUCLIER;
+extern u8 niveau_ARMURE;
 
 extern u16 id_TILE;
 

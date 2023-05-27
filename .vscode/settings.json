@@ -23,7 +23,11 @@
         "tableaux.h": "c",
         "structures.h": "c",
         "manette.h": "c",
-        "outils.h": "c"
+        "outils.h": "c",
+        "tables_donjons.h": "c",
+        "tables_entrees.h": "c",
+        "tables_joueur.h": "c",
+        "tables_salles.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

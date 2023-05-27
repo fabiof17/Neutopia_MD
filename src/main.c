@@ -121,6 +121,8 @@ int main(bool resetType)
                         // Init NIVEAU //
                         init_DECOR(num_NIVEAU , type_DECOR);
                         afficher_MENU(type_DECOR);
+                        init_JOUEUR();
+                        
                         init_PALETTES_MENU();
                         maj_PALETTES(num_NIVEAU , type_DECOR);
 

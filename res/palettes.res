@@ -41,14 +41,14 @@ PALETTE palette_NIVEAU1_BG_A                "palettes/niveaux/palette_NIVEAU1_BG
 //                                                      //
 //******************************************************//
 
-PALETTE palette_SALLE_1                "palettes/salles/palette_SALLE_1.png"
-PALETTE palette_SALLE_2                "palettes/salles/palette_SALLE_2.png"
-PALETTE palette_SALLE_3                "palettes/salles/palette_SALLE_3.png"
-PALETTE palette_SALLE_4                "palettes/salles/palette_SALLE_4.png"
-PALETTE palette_SALLE_5                "palettes/salles/palette_SALLE_5.png"
-PALETTE palette_SALLE_6                "palettes/salles/palette_SALLE_6.png"
-PALETTE palette_SALLE_7                "palettes/salles/palette_SALLE_7.png"
-PALETTE palette_SALLE_8                "palettes/salles/palette_SALLE_8.png"
-PALETTE palette_SALLE_9                "palettes/salles/palette_SALLE_9.png"
+PALETTE palette_SALLE_1                     "maps/salles/tiles_SALLE_1.png"
+PALETTE palette_SALLE_2                     "maps/salles/tiles_SALLE_2.png"
+PALETTE palette_SALLE_3                     "maps/salles/tiles_SALLE_3.png"
+PALETTE palette_SALLE_4                     "maps/salles/tiles_SALLE_4.png"
+PALETTE palette_SALLE_5                     "maps/salles/tiles_SALLE_5.png"
+PALETTE palette_SALLE_6                     "maps/salles/tiles_SALLE_6.png"
+PALETTE palette_SALLE_7                     "maps/salles/tiles_SALLE_7.png"
+PALETTE palette_SALLE_8                     "maps/salles/tiles_SALLE_8.png"
+PALETTE palette_SALLE_9                     "maps/salles/tiles_SALLE_9.png"
 
 
