@@ -122,7 +122,7 @@ int main(bool resetType)
                         init_DECOR(num_NIVEAU , type_DECOR);
                         afficher_MENU(type_DECOR);
                         init_JOUEUR();
-                        
+
                         init_PALETTES_MENU();
                         maj_PALETTES(num_NIVEAU , type_DECOR);
 
@@ -139,7 +139,7 @@ int main(bool resetType)
                         {
                             if(PAUSE == 0)
                             {
-                                JOY_setEventHandler(niveau_Callback);  
+                                JOY_setEventHandler(niveau_Callback);
                             }
 
                             else
@@ -170,7 +170,9 @@ int main(bool resetType)
                         else if(etat_JEU == 3)
                         {
                             JOY_setEventHandler(desactiver_Callback);
-                        }  
+                        }
+
+                        //SYS_showFrameLoad(TRUE);
 
                         SPR_update();
                         SYS_doVBlankProcess();

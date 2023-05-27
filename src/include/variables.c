@@ -22,6 +22,9 @@ u8 niveau_EPEE = 0;
 u8 niveau_BOUCLIER = 0;
 u8 niveau_ARMURE = 0;
 
+bool tiles_ARRET_OK = 0;
+bool tiles_ATTAQUE_OK = 0;
+
 u16 id_TILE = 0;
 
 bool map_BG_A_OK = 0;

@@ -34,6 +34,9 @@ extern u8 niveau_EPEE;
 extern u8 niveau_BOUCLIER;
 extern u8 niveau_ARMURE;
 
+extern bool tiles_ARRET_OK;
+extern bool tiles_ATTAQUE_OK ;
+
 extern u16 id_TILE;
 
 //extern bool map_BG_B_OK;
