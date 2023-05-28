@@ -17,6 +17,13 @@
 //                                                      //
 //******************************************************//
 
+void VDP_drawInt(u16 valeur,u8 zeros,s16 x, s16 y)
+{
+	intToStr(valeur,texteSortie,zeros); //MIN -500.000.000 - MAX 500.000.000
+	VDP_drawTextBG(WINDOW,texteSortie,x,y);
+}
+
+
 int calcul_DIGITS(u16 nombre)
 {
 	u8 nb_digits = 0;

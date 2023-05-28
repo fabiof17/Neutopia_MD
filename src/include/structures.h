@@ -26,7 +26,7 @@ typedef struct
 
     u8 ID;						// Type de sprite : arbre, rocher, statue, etc...
     
-    u8 CompteurFrameAnim;		// Compteur frame d'animation
+    u8 compteur_ANIM;		// compteur frame d'animation
 
 } struct_ELEMENT_DECOR_;
 
@@ -45,6 +45,9 @@ typedef struct
 {
     Sprite* sprite_JOUEUR;
     Sprite* sprite_EPEE;
+
+
+
  
     s16 pos_X_JOUEUR;
     s16 pos_Y_JOUEUR;
@@ -52,13 +55,15 @@ typedef struct
     s16 pos_X_EPEE;
     s16 pos_Y_EPEE;
 
-    //s16 pt_Coll_HG_X;
-    //s16 pt_Coll_HG_Y;
-    //s16 pt_Coll_BD_X;
-    //s16 pt_Coll_BD_Y;
+    s16 pt_X_COLL_DECOR_G;
+    s16 pt_Y_COLL_DECOR_G;
+
+    s16 pt_X_COLL_DECOR_D;
+    s16 pt_Y_COLL_DECOR_D;
 
     
-    //u8 CompteurFrameAnim;		// Compteur frame d'animation
+    u8 compteur_ANIM;		// compteur frame d'animation
+    u8 index_ANIM;          // index frame d'animation
 
 } struct_JOUEUR_;
 

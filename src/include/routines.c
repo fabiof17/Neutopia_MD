@@ -1,6 +1,7 @@
 #include <genesis.h>
 
 #include "variables.h"
+#include "structures.h"
 
 #include "tables_JOUEUR.h"
 #include "tables_DONJONS.h"
@@ -9,7 +10,7 @@
 #include "tables_NIVEAUX.h"
 #include "tables_SALLES.h"
 
-#include "manette.h"
+#include "boutons_MANETTE.h"
 #include "outils.h"
 
 #include "sprites_JEU.h"
@@ -183,3 +184,135 @@ void maj_PALETTES( u8 index , u8 type )
 }
 
 
+void manette_JOUEUR()
+{
+	u16 value=JOY_readJoypad(JOY_1);
+
+	//////////////////////////////////////////////////////////
+	//                  SI PAS TIR OU TOUCHE                //
+	//////////////////////////////////////////////////////////
+	if(etat_JOUEUR != TIR && etat_JOUEUR != TOUCHE)
+	{
+		
+		//////////////////////////////////////////////////////////
+		//                         ARRET                        //
+		//////////////////////////////////////////////////////////
+		if((value & BUTTON_DIR) == 0)
+		{
+			etat_JOUEUR = ARRET;
+
+			JOUEUR.compteur_ANIM = 0;
+			JOUEUR.index_ANIM = 0;
+
+			//SPR_setAnim(JOUEUR.sprite_JOUEUR,0);
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
+
+			return;
+		}
+
+
+
+
+		//////////////////////////////////////////////////////////
+		//                          BAS                        //
+		//////////////////////////////////////////////////////////		
+		else if(value & BUTTON_DOWN)
+		{
+			etat_JOUEUR = MARCHE;
+			axe_JOUEUR = BAS;
+			return;
+		}
+
+		//////////////////////////////////////////////////////////
+		//                          HAUT                        //
+		//////////////////////////////////////////////////////////		
+		else if(value & BUTTON_UP)
+		{
+			etat_JOUEUR = MARCHE;
+			axe_JOUEUR = HAUT;
+			return;
+		}
+
+		//////////////////////////////////////////////////////////
+		//                         DROITE                       //
+		//////////////////////////////////////////////////////////		
+		else if(value & BUTTON_RIGHT)
+		{
+			etat_JOUEUR = MARCHE;
+			axe_JOUEUR = DROITE;
+			return;
+		}
+
+		//////////////////////////////////////////////////////////
+		//                         GAUCHE                       //
+		//////////////////////////////////////////////////////////		
+		else if(value & BUTTON_LEFT)
+		{
+			etat_JOUEUR = MARCHE;
+			axe_JOUEUR = GAUCHE;
+			return;
+		}
+	}
+}
+
+
+void anim_JOUEUR()
+{
+	if(etat_JOUEUR == MARCHE)
+	{
+
+		JOUEUR.compteur_ANIM +=1;
+		if(JOUEUR.compteur_ANIM > 7)
+		{
+			JOUEUR.compteur_ANIM = 0;
+			JOUEUR.index_ANIM += 1;
+
+			if(JOUEUR.index_ANIM > 3)
+			{
+				JOUEUR.index_ANIM = 0;
+			}
+		}
+
+
+		if(axe_JOUEUR == BAS)
+		{
+			JOUEUR.pos_Y_JOUEUR += 1;
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+
+			SPR_setAnim(JOUEUR.sprite_JOUEUR,0);
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
+			SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
+			return;
+		}
+
+		else if(axe_JOUEUR == HAUT)
+		{
+			JOUEUR.pos_Y_JOUEUR -= 1;
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+			SPR_setAnim(JOUEUR.sprite_JOUEUR,1);
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
+			SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
+			return;
+		}
+
+		else if(axe_JOUEUR == DROITE)
+		{
+			JOUEUR.pos_X_JOUEUR += 1;
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+			SPR_setAnim(JOUEUR.sprite_JOUEUR,2);
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
+			SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
+			return;
+		}
+
+		else if(axe_JOUEUR == GAUCHE)
+		{
+			JOUEUR.pos_X_JOUEUR -= 1;
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+			SPR_setAnim(JOUEUR.sprite_JOUEUR,2);
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
+			SPR_setHFlip(JOUEUR.sprite_JOUEUR, TRUE);
+			return;
+		}
+	}
+}

@@ -1,5 +1,5 @@
-#ifndef _ROUTINES_H
-#define _ROUTINES_H
+#ifndef _BOUTONS_MANETTE_H
+#define _BOUTONS_MANETTE_H
 
 
 //******************************************************//
@@ -8,8 +8,6 @@
 //                                                      //
 //******************************************************//
 
-extern void anim_TITRE();
-extern void boucle_TITRE();
 
 
 
@@ -20,29 +18,20 @@ extern void boucle_TITRE();
 //                                                      //
 //******************************************************//
 
-extern void afficher_MENU(u8 type);
+extern void menu_Callback(u16 joy, u16 changed, u16 state);
 
 
 
 
 //******************************************************//
 //                                                      //
-//                        NIVEAU                        //
+//                       NIVEAUX                        //
 //                                                      //
 //******************************************************//
 
-extern void maj_PALETTES( u8 index , u8 type );
+extern void niveau_Callback(u16 joy, u16 changed, u16 state);
 
-extern void manette_JOUEUR();
-
-extern void anim_JOUEUR();
-
-
-
-
-
-
-
+extern void desactiver_Callback(u16 joy, u16 changed, u16 state);
 
 
 #endif // _MAIN

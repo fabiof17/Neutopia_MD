@@ -507,8 +507,17 @@ void init_WINDOW()
 
 void init_JOUEUR()
 {
+	etat_JOUEUR = ARRET;
+	axe_JOUEUR = 0;
+
+	JOUEUR.compteur_ANIM = 0;
+	JOUEUR.index_ANIM = 0;
+	
 	JOUEUR.pos_X_JOUEUR = 124;
 	JOUEUR.pos_Y_JOUEUR = 150;
+
+	JOUEUR.pt_X_COLL_DECOR_G = JOUEUR.pos_X_JOUEUR;
+	JOUEUR.pt_Y_COLL_DECOR_G = JOUEUR.pos_Y_JOUEUR;
 
 	JOUEUR.sprite_JOUEUR = SPR_addSprite(&tiles_Sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_ARMURE], FALSE, FALSE, FALSE));
 

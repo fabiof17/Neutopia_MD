@@ -7,8 +7,11 @@
 //                                                      //
 //******************************************************//
 
+char texteSortie[3];
+
 u8 scene_JEU = 0;
 u8 etat_JEU = 0;
+u8 etat_JOUEUR = 0;
 
 u8 type_DECOR = 0;
 
@@ -30,6 +33,8 @@ u16 id_TILE = 0;
 bool map_BG_A_OK = 0;
 
 u16 offset_TABLES_SALLES = 0;
+
+u8 axe_JOUEUR = 0;
 
 
 

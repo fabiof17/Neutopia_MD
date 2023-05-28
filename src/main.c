@@ -1,9 +1,10 @@
 #include <genesis.h>
 
+#include "include/outils.h"
 #include "include/variables.h"
 #include "include/init.h"
 #include "include/routines.h"
-#include "include/manette.h"
+#include "include/boutons_MANETTE.h"
 
 
 
@@ -140,6 +141,8 @@ int main(bool resetType)
                             if(PAUSE == 0)
                             {
                                 JOY_setEventHandler(niveau_Callback);
+                                manette_JOUEUR();
+                                anim_JOUEUR();
                             }
 
                             else
@@ -172,6 +175,7 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
+                        VDP_drawInt( axe_JOUEUR , 1 , 0 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();

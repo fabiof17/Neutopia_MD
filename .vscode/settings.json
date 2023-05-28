@@ -27,7 +27,8 @@
         "tables_donjons.h": "c",
         "tables_entrees.h": "c",
         "tables_joueur.h": "c",
-        "tables_salles.h": "c"
+        "tables_salles.h": "c",
+        "boutons_manette.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -2,6 +2,17 @@
 #define _VARIABLES_H
 
 
+#define ARRET                   0
+#define MARCHE                  1
+#define TIR                     2
+#define TOUCHE                  3
+
+#define BAS                     0
+#define HAUT                    1
+#define DROITE                  2
+#define GAUCHE                  3
+
+
 //******************************************************//
 //                                                      //
 //                       CONSTANTES                     //
@@ -19,8 +30,11 @@
 //                                                      //
 //******************************************************//
 
+extern char texteSortie[3];
+
 extern u8 scene_JEU;
 extern u8 etat_JEU;
+extern u8 etat_JOUEUR;
 
 extern u8 type_DECOR;
 
@@ -44,6 +58,7 @@ extern bool map_BG_A_OK;
 
 extern u16 offset_TABLES_SALLES;
 
+extern u8 axe_JOUEUR;
 
 
 
