@@ -26,4 +26,14 @@ extern Sprite *sprite_AIGUILLE;
 
 
 
+//******************************************************//
+//                                                      //
+//                        NIVEAUX                       //
+//                                                      //
+//******************************************************//
+
+extern Sprite *sprite_POINT1;
+extern Sprite *sprite_POINT2;
+
+
 #endif // _MAIN

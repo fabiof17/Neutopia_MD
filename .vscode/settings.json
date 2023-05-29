@@ -28,7 +28,9 @@
         "tables_entrees.h": "c",
         "tables_joueur.h": "c",
         "tables_salles.h": "c",
-        "boutons_manette.h": "c"
+        "boutons_manette.h": "c",
+        "tables_niveaux.h": "c",
+        "tables_menu.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

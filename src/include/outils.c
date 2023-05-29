@@ -79,3 +79,33 @@ u16 maj_ID_TILE(const TileMap *maTilemap , s16 x , s16 y)
 
 	return id_TILE;
 }
+
+
+s16 aligner_JOUEUR(u16 x)
+{
+	s16 reste = x % 8; // retourne un nommbre entre 0 et 7
+	s16 milieu	= 4;		// 7/2 = 3.5 = 3
+	s16 resultat = 0;
+
+	//VDP_drawInt( reste , 1 , 0 , 0 );
+
+	if(reste !=0)
+	{
+		if(reste < milieu)
+		{
+			resultat = -1;
+		}
+
+		else if(reste > milieu)
+		{
+			resultat = 1;
+		}
+	}
+
+	else
+	{
+		resultat = reste;
+	}
+
+	return resultat;
+}

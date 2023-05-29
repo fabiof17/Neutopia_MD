@@ -55,11 +55,16 @@ typedef struct
     s16 pos_X_EPEE;
     s16 pos_Y_EPEE;
 
-    s16 pt_X_COLL_DECOR_G;
-    s16 pt_Y_COLL_DECOR_G;
 
-    s16 pt_X_COLL_DECOR_D;
-    s16 pt_Y_COLL_DECOR_D;
+
+
+    s16 pt1_X_COLL_DECOR;
+    s16 pt1_Y_COLL_DECOR;
+
+    s16 pt2_X_COLL_DECOR;
+    s16 pt2_Y_COLL_DECOR;
+
+
 
     
     u8 compteur_ANIM;		// compteur frame d'animation

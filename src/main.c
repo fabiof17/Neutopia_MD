@@ -143,7 +143,7 @@ int main(bool resetType)
                             {
                                 JOY_setEventHandler(niveau_Callback);
                                 manette_JOUEUR();
-                                anim_JOUEUR();
+                                tiles_JOUEUR();
                             }
 
                             else
@@ -176,7 +176,7 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
-                        VDP_drawInt( JOUEUR.compteur_ATTAQUE , 1 , 0 , 0 );
+                        //VDP_drawInt( JOUEUR.compteur_ATTAQUE , 1 , 0 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();

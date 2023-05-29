@@ -21,3 +21,15 @@ Sprite *sprite_NUAGE_TITRE;
 
 Sprite *sprite_CURSEUR;
 Sprite *sprite_AIGUILLE;
+
+
+
+
+//******************************************************//
+//                                                      //
+//                        NIVEAUX                       //
+//                                                      //
+//******************************************************//
+
+Sprite *sprite_POINT1;
+Sprite *sprite_POINT2;

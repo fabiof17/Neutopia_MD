@@ -184,6 +184,16 @@ void maj_PALETTES( u8 index , u8 type )
 }
 
 
+void maj_PT_COLL_DECOR()
+{
+	JOUEUR.pt1_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + TABLE_POS_PT1_COLL_DECOR[0][axe_JOUEUR];
+	JOUEUR.pt1_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + TABLE_POS_PT1_COLL_DECOR[1][axe_JOUEUR];
+
+	JOUEUR.pt2_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + TABLE_POS_PT2_COLL_DECOR[0][axe_JOUEUR];
+	JOUEUR.pt2_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + TABLE_POS_PT2_COLL_DECOR[1][axe_JOUEUR];
+}
+
+
 void manette_JOUEUR()
 {
 	u16 value=JOY_readJoypad(JOY_1);
@@ -199,6 +209,8 @@ void manette_JOUEUR()
 		//////////////////////////////////////////////////////////
 		if((value & BUTTON_DIR) == 0)
 		{
+			maj_PT_COLL_DECOR();
+			
 			etat_JOUEUR = ARRET;
 			return;
 		}
@@ -208,6 +220,15 @@ void manette_JOUEUR()
 		//////////////////////////////////////////////////////////		
 		else if(value & BUTTON_DOWN)
 		{
+			JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
+			JOUEUR.pos_Y_JOUEUR += 1;
+
+			maj_PT_COLL_DECOR();
+
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+			
 			etat_JOUEUR = MARCHE;
 			axe_JOUEUR = BAS;
 			return;
@@ -218,6 +239,15 @@ void manette_JOUEUR()
 		//////////////////////////////////////////////////////////		
 		else if(value & BUTTON_UP)
 		{
+			JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
+			JOUEUR.pos_Y_JOUEUR -= 1;
+
+			maj_PT_COLL_DECOR();
+
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+			
 			etat_JOUEUR = MARCHE;
 			axe_JOUEUR = HAUT;
 			return;
@@ -228,6 +258,15 @@ void manette_JOUEUR()
 		//////////////////////////////////////////////////////////		
 		else if(value & BUTTON_RIGHT)
 		{
+			JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
+			JOUEUR.pos_X_JOUEUR += 1;
+
+			maj_PT_COLL_DECOR();
+
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+
 			etat_JOUEUR = MARCHE;
 			axe_JOUEUR = DROITE;
 			return;
@@ -238,6 +277,15 @@ void manette_JOUEUR()
 		//////////////////////////////////////////////////////////		
 		else if(value & BUTTON_LEFT)
 		{
+			JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
+			JOUEUR.pos_X_JOUEUR -= 1;
+
+			maj_PT_COLL_DECOR();
+
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+
 			etat_JOUEUR = MARCHE;
 			axe_JOUEUR = GAUCHE;
 			return;
@@ -246,7 +294,7 @@ void manette_JOUEUR()
 }
 
 
-void anim_JOUEUR()
+void tiles_JOUEUR()
 {
 	//////////////////////////////////////////////////////////
 	//                         ARRET                        //
@@ -254,7 +302,7 @@ void anim_JOUEUR()
 	if(etat_JOUEUR == ARRET)
 	{
 		JOUEUR.compteur_ANIM = 0;
-		JOUEUR.index_ANIM = 0;
+		JOUEUR.index_ANIM = 1;
 
 		SPR_setAnim(JOUEUR.sprite_JOUEUR,axe_JOUEUR);
 		SPR_setFrame(JOUEUR.sprite_JOUEUR,0);
@@ -269,7 +317,7 @@ void anim_JOUEUR()
 	{
 
 		JOUEUR.compteur_ANIM +=1;
-		if(JOUEUR.compteur_ANIM > 7)
+		if(JOUEUR.compteur_ANIM > 5)
 		{
 			JOUEUR.compteur_ANIM = 0;
 			JOUEUR.index_ANIM += 1;
@@ -283,45 +331,33 @@ void anim_JOUEUR()
 
 		if(axe_JOUEUR == BAS)
 		{
-			JOUEUR.pos_Y_JOUEUR += 1;
-			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-
 			SPR_setAnim(JOUEUR.sprite_JOUEUR,0);
 			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-			//SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
 			return;
 		}
 
 		else if(axe_JOUEUR == HAUT)
 		{
-			JOUEUR.pos_Y_JOUEUR -= 1;
-			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setAnim(JOUEUR.sprite_JOUEUR,1);
 			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-			//SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
 			return;
 		}
 
 		else if(axe_JOUEUR == DROITE)
 		{
-			JOUEUR.pos_X_JOUEUR += 1;
-			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setAnim(JOUEUR.sprite_JOUEUR,2);
 			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-			//SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
 			return;
 		}
 
 		else if(axe_JOUEUR == GAUCHE)
 		{
-			JOUEUR.pos_X_JOUEUR -= 1;
-			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setAnim(JOUEUR.sprite_JOUEUR,3);
 			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-			//SPR_setHFlip(JOUEUR.sprite_JOUEUR, TRUE);
 			return;
 		}
 	}
+
 
 	//////////////////////////////////////////////////////////
 	//                        ATTAQUE                       //
@@ -329,6 +365,7 @@ void anim_JOUEUR()
 	else if(etat_JOUEUR == ATTAQUE)
 	{
 		SPR_setPosition(JOUEUR.sprite_EPEE, JOUEUR.pos_X_JOUEUR + TABLE_POS_EPEE[0][axe_JOUEUR], JOUEUR.pos_Y_JOUEUR +  + TABLE_POS_EPEE[1][axe_JOUEUR]);
+
 		SPR_setAnim(JOUEUR.sprite_EPEE,axe_JOUEUR);
 
 		SPR_setAnim(JOUEUR.sprite_JOUEUR,axe_JOUEUR + 4);
@@ -341,7 +378,7 @@ void anim_JOUEUR()
 			JOUEUR.compteur_ATTAQUE = 0;
 			etat_JOUEUR = ARRET;
 
-			SPR_setPosition(JOUEUR.sprite_EPEE, 0, 0);
+			SPR_setPosition(JOUEUR.sprite_EPEE, 0, -16);
 		}
 	}
 }
