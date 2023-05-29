@@ -9,7 +9,7 @@
 //******************************************************//
 
 extern const u8					TABLE_PAL_JOUEUR[4];
-
+extern const s16                TABLE_POS_EPEE[4][4];
 
 
 

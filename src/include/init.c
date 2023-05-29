@@ -507,11 +507,24 @@ void init_WINDOW()
 
 void init_JOUEUR()
 {
+
+
+	JOUEUR.pos_X_EPEE = 0;
+	JOUEUR.pos_Y_EPEE = 0;
+
+	JOUEUR.sprite_EPEE = SPR_addSprite(&tiles_Sprite_EPEE, JOUEUR.pos_X_EPEE, JOUEUR.pos_Y_EPEE, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
+
+
+
 	etat_JOUEUR = ARRET;
 	axe_JOUEUR = 0;
 
+
+
 	JOUEUR.compteur_ANIM = 0;
 	JOUEUR.index_ANIM = 0;
+
+	JOUEUR.compteur_ATTAQUE = 0;
 	
 	JOUEUR.pos_X_JOUEUR = 124;
 	JOUEUR.pos_Y_JOUEUR = 150;
@@ -521,12 +534,6 @@ void init_JOUEUR()
 
 	JOUEUR.sprite_JOUEUR = SPR_addSprite(&tiles_Sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_ARMURE], FALSE, FALSE, FALSE));
 
-
-
-	JOUEUR.pos_X_EPEE = 0;
-	JOUEUR.pos_Y_EPEE = 0;
-
-	JOUEUR.sprite_EPEE = SPR_addSprite(&tiles_Sprite_EPEE, JOUEUR.pos_X_EPEE, JOUEUR.pos_Y_EPEE, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
 }
 
 

@@ -191,7 +191,7 @@ void manette_JOUEUR()
 	//////////////////////////////////////////////////////////
 	//                  SI PAS TIR OU TOUCHE                //
 	//////////////////////////////////////////////////////////
-	if(etat_JOUEUR != TIR && etat_JOUEUR != TOUCHE)
+	if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE)
 	{
 		
 		//////////////////////////////////////////////////////////
@@ -200,18 +200,8 @@ void manette_JOUEUR()
 		if((value & BUTTON_DIR) == 0)
 		{
 			etat_JOUEUR = ARRET;
-
-			JOUEUR.compteur_ANIM = 0;
-			JOUEUR.index_ANIM = 0;
-
-			//SPR_setAnim(JOUEUR.sprite_JOUEUR,0);
-			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-
 			return;
 		}
-
-
-
 
 		//////////////////////////////////////////////////////////
 		//                          BAS                        //
@@ -258,7 +248,24 @@ void manette_JOUEUR()
 
 void anim_JOUEUR()
 {
-	if(etat_JOUEUR == MARCHE)
+	//////////////////////////////////////////////////////////
+	//                         ARRET                        //
+	//////////////////////////////////////////////////////////
+	if(etat_JOUEUR == ARRET)
+	{
+		JOUEUR.compteur_ANIM = 0;
+		JOUEUR.index_ANIM = 0;
+
+		SPR_setAnim(JOUEUR.sprite_JOUEUR,axe_JOUEUR);
+		SPR_setFrame(JOUEUR.sprite_JOUEUR,0);
+		return;
+	}
+
+
+	//////////////////////////////////////////////////////////
+	//                         MARCHE                       //
+	//////////////////////////////////////////////////////////	
+	else if(etat_JOUEUR == MARCHE)
 	{
 
 		JOUEUR.compteur_ANIM +=1;
@@ -281,7 +288,7 @@ void anim_JOUEUR()
 
 			SPR_setAnim(JOUEUR.sprite_JOUEUR,0);
 			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-			SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
+			//SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
 			return;
 		}
 
@@ -291,7 +298,7 @@ void anim_JOUEUR()
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setAnim(JOUEUR.sprite_JOUEUR,1);
 			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-			SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
+			//SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
 			return;
 		}
 
@@ -301,7 +308,7 @@ void anim_JOUEUR()
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setAnim(JOUEUR.sprite_JOUEUR,2);
 			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-			SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
+			//SPR_setHFlip(JOUEUR.sprite_JOUEUR, FALSE);
 			return;
 		}
 
@@ -309,10 +316,32 @@ void anim_JOUEUR()
 		{
 			JOUEUR.pos_X_JOUEUR -= 1;
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setAnim(JOUEUR.sprite_JOUEUR,2);
+			SPR_setAnim(JOUEUR.sprite_JOUEUR,3);
 			SPR_setFrame(JOUEUR.sprite_JOUEUR,JOUEUR.index_ANIM);
-			SPR_setHFlip(JOUEUR.sprite_JOUEUR, TRUE);
+			//SPR_setHFlip(JOUEUR.sprite_JOUEUR, TRUE);
 			return;
+		}
+	}
+
+	//////////////////////////////////////////////////////////
+	//                        ATTAQUE                       //
+	//////////////////////////////////////////////////////////
+	else if(etat_JOUEUR == ATTAQUE)
+	{
+		SPR_setPosition(JOUEUR.sprite_EPEE, JOUEUR.pos_X_JOUEUR + TABLE_POS_EPEE[0][axe_JOUEUR], JOUEUR.pos_Y_JOUEUR +  + TABLE_POS_EPEE[1][axe_JOUEUR]);
+		SPR_setAnim(JOUEUR.sprite_EPEE,axe_JOUEUR);
+
+		SPR_setAnim(JOUEUR.sprite_JOUEUR,axe_JOUEUR + 4);
+		SPR_setFrame(JOUEUR.sprite_JOUEUR,0);
+
+		JOUEUR.compteur_ATTAQUE += 1;
+
+		if(JOUEUR.compteur_ATTAQUE > 7)
+		{
+			JOUEUR.compteur_ATTAQUE = 0;
+			etat_JOUEUR = ARRET;
+
+			SPR_setPosition(JOUEUR.sprite_EPEE, 0, 0);
 		}
 	}
 }

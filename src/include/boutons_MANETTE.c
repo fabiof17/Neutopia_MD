@@ -125,6 +125,9 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
 {
     if(joy == JOY_1)
     {
+    	//////////////////////////////////////////////////////////
+		//                          MENU                        //
+		//////////////////////////////////////////////////////////	
         if (changed & state & BUTTON_START)
         {
             pos_X_CURSEUR = 20 + (index_X_MENU * 24);
@@ -137,6 +140,14 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
             VDP_setTileMapEx(WINDOW, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[index_Y_MENU][index_X_MENU], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[index_Y_MENU][index_X_MENU]), 3, 2, 0, 0, 2, 2, CPU);
 
             PAUSE = 1;
+        }
+
+        //////////////////////////////////////////////////////////
+		//                        ATTAQUE                       //
+		//////////////////////////////////////////////////////////
+        else if(changed & state & BUTTON_B)
+        {
+            etat_JOUEUR = ATTAQUE;
         }
     }
 }

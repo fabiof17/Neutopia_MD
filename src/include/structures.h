@@ -65,6 +65,8 @@ typedef struct
     u8 compteur_ANIM;		// compteur frame d'animation
     u8 index_ANIM;          // index frame d'animation
 
+    u8 compteur_ATTAQUE;    // durée de l'attaque
+
 } struct_JOUEUR_;
 
 extern struct_JOUEUR_ JOUEUR;

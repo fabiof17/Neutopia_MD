@@ -1,6 +1,7 @@
 #include <genesis.h>
 
 #include "include/outils.h"
+#include "include/structures.h"
 #include "include/variables.h"
 #include "include/init.h"
 #include "include/routines.h"
@@ -175,7 +176,7 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
-                        VDP_drawInt( axe_JOUEUR , 1 , 0 , 0 );
+                        VDP_drawInt( JOUEUR.compteur_ATTAQUE , 1 , 0 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();

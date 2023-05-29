@@ -4,7 +4,7 @@
 
 #define ARRET                   0
 #define MARCHE                  1
-#define TIR                     2
+#define ATTAQUE                 2
 #define TOUCHE                  3
 
 #define BAS                     0
