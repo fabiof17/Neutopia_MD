@@ -160,5 +160,7 @@ const MapDefinition			*TABLE_MAPDEF_NIVEAUX[2][4]			=	{ {&map_NIVEAU1_BG_B,&map_
 																	  {&map_NIVEAU1_BG_A,&map_NIVEAU2_BG_A,&map_NIVEAU3_BG_A,&map_NIVEAU4_BG_A}
 																	};
 
+const MapDefinition			*TABLE_MAPCOLL_NIVEAUX[4]			=	{&map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1};																	
+
 
 

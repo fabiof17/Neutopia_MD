@@ -219,11 +219,12 @@ void manette_JOUEUR()
 		//                          BAS                        //
 		//////////////////////////////////////////////////////////		
 		else if(value & BUTTON_DOWN)
-		{
+		{			
 			JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
 			JOUEUR.pos_Y_JOUEUR += 1;
 
 			maj_PT_COLL_DECOR();
+			id_TILE = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR)>>3 , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
@@ -243,6 +244,7 @@ void manette_JOUEUR()
 			JOUEUR.pos_Y_JOUEUR -= 1;
 
 			maj_PT_COLL_DECOR();
+			id_TILE = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR)>>3 , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
@@ -262,6 +264,7 @@ void manette_JOUEUR()
 			JOUEUR.pos_X_JOUEUR += 1;
 
 			maj_PT_COLL_DECOR();
+			id_TILE = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR)>>3 , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
@@ -281,6 +284,7 @@ void manette_JOUEUR()
 			JOUEUR.pos_X_JOUEUR -= 1;
 
 			maj_PT_COLL_DECOR();
+			id_TILE = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR)>>3 , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);

@@ -598,6 +598,14 @@ void init_DECOR( u8 index , u8 type )
 
 
 		//////////////////////////////////////////////////////////
+		//                 CREATION MAP COLLISION               //
+		//////////////////////////////////////////////////////////
+		map_COLLISION = MAP_create(TABLE_MAPCOLL_NIVEAUX[num_NIVEAU], 0, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, 0));
+
+
+
+
+		//////////////////////////////////////////////////////////
 		//                     INIT CAMERA                      //
 		//////////////////////////////////////////////////////////
 		pos_X_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
