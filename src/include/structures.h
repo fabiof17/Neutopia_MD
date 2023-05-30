@@ -65,6 +65,13 @@ typedef struct
     s16 pt2_Y_COLL_DECOR;
 
 
+    s16 pt3_X_COLL_DECOR;
+    s16 pt3_Y_COLL_DECOR;
+
+    s16 pt4_X_COLL_DECOR;
+    s16 pt4_Y_COLL_DECOR;
+
+
 
     
     u8 compteur_ANIM;		// compteur frame d'animation

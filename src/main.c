@@ -176,7 +176,8 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
-                        VDP_drawInt( id_TILE , 1 , 0 , 0 );
+                        //VDP_drawInt( pos_X_CAM_NIVEAU , 3 , 0 , 0 );
+                        //VDP_drawInt( pos_Y_CAM_NIVEAU , 3 , 8 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();

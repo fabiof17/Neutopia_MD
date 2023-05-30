@@ -51,7 +51,10 @@ extern u8 niveau_ARMURE;
 extern bool tiles_ARRET_OK;
 extern bool tiles_ATTAQUE_OK ;
 
-extern u16 id_TILE;
+extern u16 id_TILE1;
+extern u16 id_TILE2;
+extern u16 id_TILE3;
+extern u16 id_TILE4;
 
 //extern bool map_BG_B_OK;
 extern bool map_BG_A_OK;

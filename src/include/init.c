@@ -67,7 +67,8 @@ void init_VARIABLES_GENERALES()
 	niveau_EPEE = 0;
 	niveau_BOUCLIER = 0;
 
-	id_TILE = 7;
+	id_TILE3 = 43;
+	id_TILE4 = 43;
 
 	map_BG_A_OK = 0;
 
@@ -516,8 +517,8 @@ void init_JOUEUR()
 
 
 
-	sprite_POINT1 = SPR_addSprite(&tiles_Sprite_POINT, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
-	sprite_POINT2 = SPR_addSprite(&tiles_Sprite_POINT, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
+	sprite_POINT1 = SPR_addSprite(&tiles_Sprite_POINT, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
+	sprite_POINT2 = SPR_addSprite(&tiles_Sprite_POINT, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
 
 
 
@@ -533,16 +534,16 @@ void init_JOUEUR()
 	JOUEUR.pos_X_JOUEUR = 124;
 	JOUEUR.pos_Y_JOUEUR = 150;
 
-	JOUEUR.pt1_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + TABLE_POS_PT1_COLL_DECOR[0][axe_JOUEUR];
-	JOUEUR.pt1_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + TABLE_POS_PT1_COLL_DECOR[1][axe_JOUEUR];
+	JOUEUR.pt3_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + TABLE_POS_PT1_COLL_DECOR[0][axe_JOUEUR];
+	JOUEUR.pt3_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + TABLE_POS_PT1_COLL_DECOR[1][axe_JOUEUR];
 
 	JOUEUR.sprite_JOUEUR = SPR_addSprite(&tiles_Sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_ARMURE], FALSE, FALSE, FALSE));
 
 
 
 
-	SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
-	SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+	SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+	SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 }
 
 
@@ -635,14 +636,14 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		//                CHARGEMENT TILES BG_B                 //
 		//////////////////////////////////////////////////////////
-		VDP_loadTileSet(TABLE_TILESET_SALLES[id_TILE + offset_TABLES_SALLES], adr_VRAM_BG_B, CPU);
+		VDP_loadTileSet(TABLE_TILESET_SALLES[id_TILE3 + offset_TABLES_SALLES], adr_VRAM_BG_B, CPU);
 		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
 		SYS_doVBlankProcess();
 
 		//////////////////////////////////////////////////////////
 		//                  CREATION MAP BG_B                   //
 		//////////////////////////////////////////////////////////
-		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_SALLES[id_TILE + offset_TABLES_SALLES], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
+		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_SALLES[id_TILE3 + offset_TABLES_SALLES], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
 		//map_BG_B_OK = 1;
 		SYS_doVBlankProcess();
 

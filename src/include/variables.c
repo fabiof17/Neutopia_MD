@@ -28,7 +28,10 @@ u8 niveau_ARMURE = 0;
 bool tiles_ARRET_OK = 0;
 bool tiles_ATTAQUE_OK = 0;
 
-u16 id_TILE = 0;
+u16 id_TILE1 = 0;
+u16 id_TILE2 = 0;
+u16 id_TILE3 = 0;
+u16 id_TILE4 = 0;
 
 bool map_BG_A_OK = 0;
 

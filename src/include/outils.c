@@ -71,16 +71,6 @@ void maj_SCORE(u16 nombre , u8 nb_TILES , u16 pos_X , u16 pos_Y)
 }
 
 
-u16 maj_ID_TILE(const TileMap *maTilemap , s16 x , s16 y)
-{
-	u16 index_TILE = TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] + ((y >> 3) * 24) + (x >> 3);
-
-	u16 id_TILE = maTilemap->tilemap[index_TILE]&TILE_INDEX_MASK;
-
-	return id_TILE;
-}
-
-
 s16 aligner_JOUEUR(u16 x)
 {
 	s16 reste = x % 8; // retourne un nommbre entre 0 et 7

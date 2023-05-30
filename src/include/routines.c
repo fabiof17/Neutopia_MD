@@ -169,7 +169,7 @@ void maj_PALETTES( u8 index , u8 type )
     //////////////////////////////////////////////////////////
 	else if(type == 1)
 	{
-		PAL_setPalette(PAL1, TABLE_ADR_PAL_SALLES[id_TILE + offset_TABLES_SALLES]->data, DMA);
+		PAL_setPalette(PAL1, TABLE_ADR_PAL_SALLES[id_TILE3 + offset_TABLES_SALLES]->data, DMA);
 		//PAL_setPalette(PAL2, TABLE_ADR_PAL_NIVEAUX[1][index]->data, DMA);
 	}
 
@@ -186,11 +186,23 @@ void maj_PALETTES( u8 index , u8 type )
 
 void maj_PT_COLL_DECOR()
 {
-	JOUEUR.pt1_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + TABLE_POS_PT1_COLL_DECOR[0][axe_JOUEUR];
-	JOUEUR.pt1_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + TABLE_POS_PT1_COLL_DECOR[1][axe_JOUEUR];
+	JOUEUR.pt1_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 4;
+	JOUEUR.pt1_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 21;
 
-	JOUEUR.pt2_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + TABLE_POS_PT2_COLL_DECOR[0][axe_JOUEUR];
-	JOUEUR.pt2_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + TABLE_POS_PT2_COLL_DECOR[1][axe_JOUEUR];
+	JOUEUR.pt2_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 19;
+	JOUEUR.pt2_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 21;
+
+	JOUEUR.pt3_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 4;
+	JOUEUR.pt3_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 31;
+
+	JOUEUR.pt4_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 19;
+	JOUEUR.pt4_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 31;
+}
+
+
+void test_COLL_DECOR()
+{
+	id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + (pos_X_CAM_NIVEAU>>3) , (JOUEUR.pt3_Y_COLL_DECOR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 }
 
 
@@ -203,10 +215,11 @@ void manette_JOUEUR()
 	//////////////////////////////////////////////////////////
 	if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE)
 	{
-		
-		//////////////////////////////////////////////////////////
-		//                         ARRET                        //
-		//////////////////////////////////////////////////////////
+		//******************************************************//
+		//                                                      //
+		//                        ARRET                         //
+		//                                                      //
+		//******************************************************//
 		if((value & BUTTON_DIR) == 0)
 		{
 			maj_PT_COLL_DECOR();
@@ -215,80 +228,166 @@ void manette_JOUEUR()
 			return;
 		}
 
-		//////////////////////////////////////////////////////////
-		//                          BAS                        //
-		//////////////////////////////////////////////////////////		
+		//******************************************************//
+		//                                                      //
+		//                         BAS                          //
+		//                                                      //
+		//******************************************************//	
 		else if(value & BUTTON_DOWN)
 		{			
-			JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
-			JOUEUR.pos_Y_JOUEUR += 1;
+			//////////////////////////////////////////////////////////
+			//			 	 TEST COLLISION POINT 1					//
+			//////////////////////////////////////////////////////////
+
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+
+			// TOUCHE MUR //
+			if(id_TILE3 == 44)
+			{
+				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+
+				// TOUCHE VIDE //
+				if(id_TILE4 == 43)
+				{
+					JOUEUR.pos_X_JOUEUR += 1;
+					//JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
+					axe_JOUEUR = DROITE;
+				}
+			}
+
+			// TOUCHE VIDE //
+			else if(id_TILE3 != 44)
+			{
+				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+
+				// TOUCHE MUR //
+				if(id_TILE4 == 44)
+				{
+					JOUEUR.pos_X_JOUEUR -= 1;
+					//JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
+					axe_JOUEUR = GAUCHE;
+				}
+
+				// TOUCHE VIDE //
+				else
+				{
+					JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
+					JOUEUR.pos_Y_JOUEUR += 1;
+					axe_JOUEUR = BAS;
+				}
+			}
 
 			maj_PT_COLL_DECOR();
-			id_TILE = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR)>>3 , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
-			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 			
 			etat_JOUEUR = MARCHE;
-			axe_JOUEUR = BAS;
+			
 			return;
 		}
 
-		//////////////////////////////////////////////////////////
-		//                          HAUT                        //
-		//////////////////////////////////////////////////////////		
+		//******************************************************//
+		//                                                      //
+		//                         HAUT                         //
+		//                                                      //
+		//******************************************************//	
 		else if(value & BUTTON_UP)
 		{
-			JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
-			JOUEUR.pos_Y_JOUEUR -= 1;
+			//////////////////////////////////////////////////////////
+			//			 	 TEST COLLISION POINT 1					//
+			//////////////////////////////////////////////////////////
+
+			id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+
+			// TOUCHE MUR //
+			if(id_TILE1 == 44)
+			{
+				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+
+				// TOUCHE VIDE //
+				if(id_TILE2 == 43)
+				{
+					JOUEUR.pos_X_JOUEUR += 1;
+					//JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
+					axe_JOUEUR = DROITE;
+				}
+			}
+
+			// TOUCHE VIDE //
+			else if(id_TILE1 != 44)
+			{
+				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+
+				// TOUCHE MUR //
+				if(id_TILE2 == 44)
+				{
+					JOUEUR.pos_X_JOUEUR -= 1;
+					//JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
+					axe_JOUEUR = GAUCHE;
+				}
+
+				// TOUCHE VIDE //
+				else
+				{
+					JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
+					JOUEUR.pos_Y_JOUEUR -= 1;
+					axe_JOUEUR = HAUT;
+				}
+			}
 
 			maj_PT_COLL_DECOR();
-			id_TILE = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR)>>3 , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
-			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 			
 			etat_JOUEUR = MARCHE;
-			axe_JOUEUR = HAUT;
+
 			return;
 		}
 
-		//////////////////////////////////////////////////////////
-		//                         DROITE                       //
-		//////////////////////////////////////////////////////////		
+		//******************************************************//
+		//                                                      //
+		//                        DROITE                        //
+		//                                                      //
+		//******************************************************//	
 		else if(value & BUTTON_RIGHT)
 		{
 			JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
 			JOUEUR.pos_X_JOUEUR += 1;
 
 			maj_PT_COLL_DECOR();
-			id_TILE = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR)>>3 , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
+			//test_COLL_DECOR();
+			//id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR>>3) + (pos_X_CAM_NIVEAU>>3) , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
-			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
 			etat_JOUEUR = MARCHE;
 			axe_JOUEUR = DROITE;
 			return;
 		}
 
-		//////////////////////////////////////////////////////////
-		//                         GAUCHE                       //
-		//////////////////////////////////////////////////////////		
+		//******************************************************//
+		//                                                      //
+		//                        GAUCHE                        //
+		//                                                      //
+		//******************************************************//		
 		else if(value & BUTTON_LEFT)
 		{
 			JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
 			JOUEUR.pos_X_JOUEUR -= 1;
 
 			maj_PT_COLL_DECOR();
-			id_TILE = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR)>>3 , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
+			//test_COLL_DECOR();
+			//id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR>>3) + (pos_X_CAM_NIVEAU>>3) , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
-			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
 			etat_JOUEUR = MARCHE;
 			axe_JOUEUR = GAUCHE;

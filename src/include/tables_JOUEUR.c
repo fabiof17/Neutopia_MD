@@ -22,6 +22,6 @@ const s16                   TABLE_POS_PT1_COLL_DECOR[2][4]      =   { {4,4,16,7}
                                                                     };
 
 const s16                   TABLE_POS_PT2_COLL_DECOR[2][4]      =   { {19,19,16,7},
-                                                                      {31,23,23,23}
+                                                                      {31,23,23,31}
                                                                     };
 
