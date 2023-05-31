@@ -33,3 +33,5 @@ Sprite *sprite_AIGUILLE;
 
 Sprite *sprite_POINT1;
 Sprite *sprite_POINT2;
+Sprite *sprite_POINT3;
+Sprite *sprite_POINT4;

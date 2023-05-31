@@ -241,7 +241,7 @@ void manette_JOUEUR()
 				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
 
 				// TOUCHE VIDE //
-				if(id_TILE4 == 43)
+				if(id_TILE4 != 44)
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
 					axe_JOUEUR = DROITE;
@@ -272,8 +272,11 @@ void manette_JOUEUR()
 			maj_PT_COLL_DECOR();
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
-			SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 			
 			etat_JOUEUR = MARCHE;
 			
@@ -299,7 +302,7 @@ void manette_JOUEUR()
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
 
 				// TOUCHE VIDE //
-				if(id_TILE2 == 43)
+				if(id_TILE2 != 44)
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
 					axe_JOUEUR = DROITE;
@@ -330,8 +333,11 @@ void manette_JOUEUR()
 			maj_PT_COLL_DECOR();
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
-			SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 			
 			etat_JOUEUR = MARCHE;
 
@@ -351,8 +357,11 @@ void manette_JOUEUR()
 			maj_PT_COLL_DECOR();
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
-			SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
 			etat_JOUEUR = MARCHE;
 			axe_JOUEUR = DROITE;
@@ -372,8 +381,11 @@ void manette_JOUEUR()
 			maj_PT_COLL_DECOR();
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
-			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
-			SPR_setPosition(sprite_POINT2, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
 			etat_JOUEUR = MARCHE;
 			axe_JOUEUR = GAUCHE;
