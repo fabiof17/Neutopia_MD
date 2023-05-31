@@ -35,6 +35,10 @@ extern void maj_PALETTES( u8 index , u8 type );
 
 extern void maj_PT_COLL_DECOR();
 
+extern void scrolling_ECRAN();
+
+extern void sortie_SCROLLING();
+
 extern void manette_JOUEUR();
 
 extern void tiles_JOUEUR();

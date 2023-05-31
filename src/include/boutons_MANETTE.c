@@ -42,6 +42,7 @@ void menu_Callback(u16 joy, u16 changed, u16 state)
             SPR_setPosition(sprite_CURSEUR, pos_X_CURSEUR, pos_Y_CURSEUR);
 
             VDP_setHorizontalScroll(BG_A, (s16)pos_X_CAM_NIVEAU);
+            VDP_setVerticalScroll(BG_A, (s16)pos_Y_CAM_NIVEAU);
 
             PAUSE = 0;
         }
@@ -136,6 +137,7 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
             SPR_setPosition(sprite_CURSEUR, pos_X_CURSEUR, pos_Y_CURSEUR);
 
             VDP_setHorizontalScroll(BG_A, (s16)pos_X_CAM_NIVEAU + 256);
+            VDP_setVerticalScroll(BG_A, (s16)pos_Y_CAM_NIVEAU + 256);
 
             VDP_setTileMapEx(WINDOW, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[index_Y_MENU][index_X_MENU], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[index_Y_MENU][index_X_MENU]), 3, 2, 0, 0, 2, 2, CPU);
 

@@ -84,7 +84,7 @@ void afficher_MENU(u8 type)
 	//                                                      //
 	//******************************************************//
 
-    VDP_setTileMapEx(BG_A, image_MENU.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_MENU), 32 + (cam_X >> 3), 5 + (cam_Y >> 3), 0, 5, 32, 23, CPU);
+    VDP_setTileMapEx(BG_A, image_MENU.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_MENU), 32 + (cam_X >> 3), 5 + (cam_Y >> 3) + 32, 0, 5, 32, 23, CPU);
 
 
 	//******************************************************//
@@ -93,7 +93,7 @@ void afficher_MENU(u8 type)
 	//                                                      //
 	//******************************************************//
 
-	VDP_setTileMapEx(BG_A, image_BOUSSOLE.tilemap, TILE_ATTR_FULL(PAL3, TRUE, FALSE, FALSE, adr_VRAM_BOUSSOLE), 18 + 32 + (cam_X >> 3), 10 + (cam_Y >> 3), 0, 0, 4, 4, CPU);
+	VDP_setTileMapEx(BG_A, image_BOUSSOLE.tilemap, TILE_ATTR_FULL(PAL3, TRUE, FALSE, FALSE, adr_VRAM_BOUSSOLE), 18 + 32 + (cam_X >> 3), 10 + (cam_Y >> 3) + 32, 0, 0, 4, 4, CPU);
 
 
 	//******************************************************//
@@ -115,7 +115,7 @@ void afficher_MENU(u8 type)
 		{
 			if(TABLE_OBJETS_BAS[y][x] != NULL)
 			{
-				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_BAS[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_BAS[y][x]), 		32 + 3 + (x*3) + (cam_X >> 3),		19 + (y*3) + (cam_Y >> 3),		0, 0, 2, 2, CPU);
+				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_BAS[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_BAS[y][x]), 		32 + 3 + (x*3) + (cam_X >> 3),		19 + (y*3) + (cam_Y >> 3) + 32,		0, 0, 2, 2, CPU);
 			}
 		}
 		
@@ -131,7 +131,7 @@ void afficher_MENU(u8 type)
 		{
 			if(TABLE_OBJETS_HAUT[y][x] != NULL)
 			{
-				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[y][x]), 		32 + 3 + (x*3) + (cam_X >> 3),		10 + (y*3) + (cam_Y >> 3),		0, 0, 2, 2, CPU);
+				VDP_setTileMapEx(BG_A, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[y][x], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[y][x]), 		32 + 3 + (x*3) + (cam_X >> 3),		10 + (y*3) + (cam_Y >> 3) + 32,		0, 0, 2, 2, CPU);
 			}
 		}
 		
@@ -200,6 +200,97 @@ void maj_PT_COLL_DECOR()
 }
 
 
+
+
+void scrolling_ECRAN()
+{
+	//////////////////////////////////////////////////////////
+    //                         BAS                          //
+    //////////////////////////////////////////////////////////
+	if(axe_JOUEUR == BAS)
+	{
+		pos_Y_CAM_NIVEAU += 4;
+		JOUEUR.pos_Y_JOUEUR -= 4;
+	}
+
+	//////////////////////////////////////////////////////////
+    //                         HAUT                         //
+    //////////////////////////////////////////////////////////
+	else if(axe_JOUEUR == HAUT)
+	{
+		pos_Y_CAM_NIVEAU -= 4;
+		JOUEUR.pos_Y_JOUEUR += 4;
+	}
+
+	//////////////////////////////////////////////////////////
+    //                        DROITE                        //
+    //////////////////////////////////////////////////////////
+	else if(axe_JOUEUR == DROITE)
+	{
+		pos_X_CAM_NIVEAU += 4;
+		JOUEUR.pos_X_JOUEUR -= 4;
+	}
+
+	//////////////////////////////////////////////////////////
+    //                        GAUCHE                        //
+    //////////////////////////////////////////////////////////
+	else if(axe_JOUEUR == GAUCHE)
+	{
+		pos_X_CAM_NIVEAU -= 4;
+		JOUEUR.pos_X_JOUEUR += 4;
+	}
+
+
+	MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
+	MAP_scrollTo(map_NIVEAU_BG_A, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
+
+
+	SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);	
+
+
+	compteur_SCROLLING += 1;
+
+	if(compteur_SCROLLING > 63)
+	{
+		compteur_SCROLLING = 0;
+		etat_JEU = 2;
+	}
+}
+
+
+void sortie_SCROLLING()
+{
+	if(axe_JOUEUR == 2)
+	{
+		if(JOUEUR.pos_X_JOUEUR < -4)
+		{
+			JOUEUR.pos_X_JOUEUR += 1;
+			maj_PT_COLL_DECOR();
+
+
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+
+			etat_JOUEUR = MARCHE;
+			
+		}
+
+		else
+		{
+			afficher_MENU(type_DECOR);
+			maj_PT_COLL_DECOR();
+			etat_JEU = 0;
+		}
+	}
+}
+
+
+
+
 void manette_JOUEUR()
 {
 	u16 value=JOY_readJoypad(JOY_1);
@@ -230,15 +321,15 @@ void manette_JOUEUR()
 		else if(value & BUTTON_DOWN)
 		{			
 			//////////////////////////////////////////////////////////
-			//			 	 TEST COLLISION POINT 1					//
+			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
 
-			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
 
 			// TOUCHE MUR //
 			if(id_TILE3 == 44)
 			{
-				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
 
 				// TOUCHE VIDE //
 				if(id_TILE4 != 44)
@@ -251,7 +342,7 @@ void manette_JOUEUR()
 			// TOUCHE VIDE //
 			else if(id_TILE3 != 44)
 			{
-				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
 
 				// TOUCHE MUR //
 				if(id_TILE4 == 44)
@@ -279,6 +370,21 @@ void manette_JOUEUR()
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 			
 			etat_JOUEUR = MARCHE;
+
+
+
+
+			//******************************************************//
+			//                                                      //
+			//                  DETECTION ENTREES                   //
+			//                                                      //
+			//******************************************************//
+			/*
+			if(id_TILE3 < 43 && id_TILE3 == id_TILE4 )
+			{
+				//
+			}
+			*/		
 			
 			return;
 		}
@@ -291,15 +397,15 @@ void manette_JOUEUR()
 		else if(value & BUTTON_UP)
 		{
 			//////////////////////////////////////////////////////////
-			//			 	 TEST COLLISION POINT 1					//
+			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
 
-			id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+			id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
 
 			// TOUCHE MUR //
 			if(id_TILE1 == 44)
 			{
-				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
 
 				// TOUCHE VIDE //
 				if(id_TILE2 != 44)
@@ -312,7 +418,7 @@ void manette_JOUEUR()
 			// TOUCHE VIDE //
 			else if(id_TILE1 != 44)
 			{
-				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_X_CARTE_NIVEAU] );
+				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
 
 				// TOUCHE MUR //
 				if(id_TILE2 == 44)
@@ -351,8 +457,74 @@ void manette_JOUEUR()
 		//******************************************************//	
 		else if(value & BUTTON_RIGHT)
 		{
-			JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
-			JOUEUR.pos_X_JOUEUR += 1;
+			//////////////////////////////////////////////////////////
+			//			    	 TEST SORTIE ECRAN			    	//
+			//////////////////////////////////////////////////////////			
+			if(JOUEUR.pos_X_JOUEUR > 232)
+			{
+				index_X_CARTE_NIVEAU += 1,
+				
+				etat_JEU = 1;
+				return ;
+			}
+			
+
+
+
+			//******************************************************//
+			//                                                      //
+			//                  DETECTION ENTREES                   //
+			//                                                      //
+			//******************************************************//
+			/*
+			if(id_TILE3 < 43 && id_TILE3 == id_TILE4 )
+			{
+				//
+			}
+			*/
+
+
+
+
+			//////////////////////////////////////////////////////////
+			//			 	  TEST COLLISION DECOR					//
+			//////////////////////////////////////////////////////////
+
+			id_TILE4 = MAP_getTile(   map_COLLISION ,   (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU]   ,   ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU]   );
+
+			// TOUCHE MUR //
+			if(id_TILE4 == 44)
+			{
+				id_TILE2 = MAP_getTile(   map_COLLISION ,   (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU]   ,   ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU]   );
+
+				// TOUCHE VIDE //
+				if(id_TILE2 != 44)
+				{
+					JOUEUR.pos_Y_JOUEUR -= 1;
+					axe_JOUEUR = HAUT;
+				}
+			}
+
+			// TOUCHE VIDE //
+			else if(id_TILE4 != 44)
+			{
+				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
+
+				// TOUCHE MUR //
+				if(id_TILE2 == 44)
+				{
+					JOUEUR.pos_Y_JOUEUR += 1;
+					axe_JOUEUR = BAS;
+				}
+
+				// TOUCHE VIDE //
+				else
+				{
+					JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
+					JOUEUR.pos_X_JOUEUR += 1;
+					axe_JOUEUR = DROITE;
+				}
+			}
 
 			maj_PT_COLL_DECOR();
 
@@ -362,10 +534,11 @@ void manette_JOUEUR()
 			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
 			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
-
+			
 			etat_JOUEUR = MARCHE;
-			axe_JOUEUR = DROITE;
+
 			return;
+
 		}
 
 		//******************************************************//
@@ -375,8 +548,45 @@ void manette_JOUEUR()
 		//******************************************************//		
 		else if(value & BUTTON_LEFT)
 		{
-			JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
-			JOUEUR.pos_X_JOUEUR -= 1;
+			//////////////////////////////////////////////////////////
+			//			 	  TEST COLLISION DECOR					//
+			//////////////////////////////////////////////////////////
+
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
+
+			// TOUCHE MUR //
+			if(id_TILE3 == 44)
+			{
+				id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
+
+				// TOUCHE VIDE //
+				if(id_TILE1 != 44)
+				{
+					JOUEUR.pos_Y_JOUEUR -= 1;
+					axe_JOUEUR = HAUT;
+				}
+			}
+
+			// TOUCHE VIDE //
+			else if(id_TILE3 != 44)
+			{
+				id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_TILE_NIVEAUX[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_TILE_NIVEAUX[1][index_Y_CARTE_NIVEAU] );
+
+				// TOUCHE MUR //
+				if(id_TILE1 == 44)
+				{
+					JOUEUR.pos_Y_JOUEUR += 1;
+					axe_JOUEUR = BAS;
+				}
+
+				// TOUCHE VIDE //
+				else
+				{
+					JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
+					JOUEUR.pos_X_JOUEUR -= 1;
+					axe_JOUEUR = GAUCHE;
+				}
+			}
 
 			maj_PT_COLL_DECOR();
 
@@ -386,10 +596,11 @@ void manette_JOUEUR()
 			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
 			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
-
+			
 			etat_JOUEUR = MARCHE;
-			axe_JOUEUR = GAUCHE;
+
 			return;
+
 		}
 	}
 }

@@ -63,6 +63,9 @@ extern u16 offset_TABLES_SALLES;
 
 extern u8 axe_JOUEUR;
 
+extern u8 compteur_SCROLLING;
+
+
 
 
 //******************************************************//

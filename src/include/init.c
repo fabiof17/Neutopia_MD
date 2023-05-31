@@ -72,6 +72,8 @@ void init_VARIABLES_GENERALES()
 
 	map_BG_A_OK = 0;
 
+	compteur_SCROLLING = 0;
+
 
 	//******************************************************//
 	//                                                      //
@@ -571,6 +573,7 @@ void init_JOUEUR()
 
 void init_DECOR( u8 index , u8 type )
 {
+
 	index -= 1;
 
 	//////////////////////////////////////////////////////////
@@ -578,6 +581,14 @@ void init_DECOR( u8 index , u8 type )
     //////////////////////////////////////////////////////////
 	if(type == 0)
 	{
+		//////////////////////////////////////////////////////////
+		//                     INIT CAMERA                      //
+		//////////////////////////////////////////////////////////
+		pos_X_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
+		pos_Y_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1];
+
+
+
 
 		//////////////////////////////////////////////////////////
 		//                CHARGEMENT TILES BG_B                 //
@@ -617,25 +628,16 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		map_COLLISION = MAP_create(TABLE_MAPCOLL_NIVEAUX[num_NIVEAU], 0, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, 0));
 
-
-
-
-		//////////////////////////////////////////////////////////
-		//                     INIT CAMERA                      //
-		//////////////////////////////////////////////////////////
-		pos_X_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
-		pos_Y_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1];
-
 		
 
 
 		//////////////////////////////////////////////////////////
 		//                      INIT MAPS                       //
 		//////////////////////////////////////////////////////////
-		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
+		MAP_scrollTo(map_NIVEAU_BG_B, (u32)pos_X_CAM_NIVEAU, (u32)pos_Y_CAM_NIVEAU);
 		SYS_doVBlankProcess();
 		
-		MAP_scrollTo(map_NIVEAU_BG_A, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
+		MAP_scrollTo(map_NIVEAU_BG_A, (u32)pos_X_CAM_NIVEAU, (u32)pos_Y_CAM_NIVEAU);
 		SYS_doVBlankProcess();
 	}
 

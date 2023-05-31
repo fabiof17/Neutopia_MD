@@ -155,13 +155,16 @@ int main(bool resetType)
                         // SCROLLING ECRAN SUIVANT //
                         else if(etat_JEU == 1)
                         {
-                            JOY_setEventHandler(desactiver_Callback);
+                            //JOY_setEventHandler(desactiver_Callback);
+                            scrolling_ECRAN();
                         }
                         
                         // POSITIONNEMENT JOUEUR FIN SCROLLING //
                         else if(etat_JEU == 2)
                         {
-                            JOY_setEventHandler(desactiver_Callback);
+                            //JOY_setEventHandler(desactiver_Callback);
+                            sortie_SCROLLING();
+                            tiles_JOUEUR();
                         }                       
 
                         // ENTREE CAVE - DONJON - NIVEAU //
@@ -177,7 +180,7 @@ int main(bool resetType)
                         }
 
                         //VDP_drawInt( pos_X_CAM_NIVEAU , 3 , 0 , 0 );
-                        //VDP_drawInt( pos_Y_CAM_NIVEAU , 3 , 8 , 0 );
+                        VDP_drawInt( index_X_CARTE_NIVEAU , 3 , 8 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();

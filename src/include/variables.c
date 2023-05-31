@@ -39,6 +39,8 @@ u16 offset_TABLES_SALLES = 0;
 
 u8 axe_JOUEUR = 0;
 
+u8 compteur_SCROLLING = 0;
+
 
 
 
