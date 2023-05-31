@@ -260,7 +260,33 @@ void scrolling_ECRAN()
 
 void sortie_SCROLLING()
 {
-	if(axe_JOUEUR == 2)
+	if(axe_JOUEUR == GAUCHE)
+	{
+		if(JOUEUR.pos_X_JOUEUR > 236)
+		{
+			JOUEUR.pos_X_JOUEUR -= 1;
+			maj_PT_COLL_DECOR();
+
+
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+
+			etat_JOUEUR = MARCHE;			
+		}
+
+		else
+		{
+			afficher_MENU(type_DECOR);
+			maj_PT_COLL_DECOR();
+			etat_JEU = 0;
+		}
+	}
+
+	else if(axe_JOUEUR == DROITE)
 	{
 		if(JOUEUR.pos_X_JOUEUR < -4)
 		{
@@ -275,8 +301,7 @@ void sortie_SCROLLING()
 			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
-			etat_JOUEUR = MARCHE;
-			
+			etat_JOUEUR = MARCHE;			
 		}
 
 		else
@@ -548,6 +573,24 @@ void manette_JOUEUR()
 		//******************************************************//		
 		else if(value & BUTTON_LEFT)
 		{
+			//////////////////////////////////////////////////////////
+			//			    	 TEST SORTIE ECRAN			    	//
+			//////////////////////////////////////////////////////////			
+			if(JOUEUR.pos_X_JOUEUR < -3)
+			{
+				index_X_CARTE_NIVEAU -= 1,
+				
+				etat_JEU = 1;
+				return ;
+			}
+
+
+
+
+
+
+
+
 			//////////////////////////////////////////////////////////
 			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
