@@ -17,11 +17,3 @@ const s16                   TABLE_POS_EPEE[4][4]                =   { {5,4,22,-1
                                                                       {28,-10,15,15}
                                                                     };
 
-const s16                   TABLE_POS_PT1_COLL_DECOR[2][4]      =   { {4,4,16,7},
-                                                                      {31,23,31,31}
-                                                                    };
-
-const s16                   TABLE_POS_PT2_COLL_DECOR[2][4]      =   { {19,19,16,7},
-                                                                      {31,23,23,31}
-                                                                    };
-

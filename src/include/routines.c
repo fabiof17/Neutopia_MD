@@ -193,16 +193,10 @@ void maj_PT_COLL_DECOR()
 	JOUEUR.pt2_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 21;
 
 	JOUEUR.pt3_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 4;
-	JOUEUR.pt3_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 31;
+	JOUEUR.pt3_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 32;
 
 	JOUEUR.pt4_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 19;
-	JOUEUR.pt4_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 31;
-}
-
-
-void test_COLL_DECOR()
-{
-	id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + (pos_X_CAM_NIVEAU>>3) , (JOUEUR.pt3_Y_COLL_DECOR>>3) + (pos_Y_CAM_NIVEAU>>3) );
+	JOUEUR.pt4_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 32;
 }
 
 
@@ -250,7 +244,6 @@ void manette_JOUEUR()
 				if(id_TILE4 == 43)
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
-					//JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
 					axe_JOUEUR = DROITE;
 				}
 			}
@@ -264,7 +257,6 @@ void manette_JOUEUR()
 				if(id_TILE4 == 44)
 				{
 					JOUEUR.pos_X_JOUEUR -= 1;
-					//JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
 					axe_JOUEUR = GAUCHE;
 				}
 
@@ -310,7 +302,6 @@ void manette_JOUEUR()
 				if(id_TILE2 == 43)
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
-					//JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
 					axe_JOUEUR = DROITE;
 				}
 			}
@@ -324,7 +315,6 @@ void manette_JOUEUR()
 				if(id_TILE2 == 44)
 				{
 					JOUEUR.pos_X_JOUEUR -= 1;
-					//JOUEUR.pos_Y_JOUEUR += aligner_JOUEUR(JOUEUR.pos_Y_JOUEUR + 4);
 					axe_JOUEUR = GAUCHE;
 				}
 
@@ -359,8 +349,6 @@ void manette_JOUEUR()
 			JOUEUR.pos_X_JOUEUR += 1;
 
 			maj_PT_COLL_DECOR();
-			//test_COLL_DECOR();
-			//id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR>>3) + (pos_X_CAM_NIVEAU>>3) , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
@@ -382,8 +370,6 @@ void manette_JOUEUR()
 			JOUEUR.pos_X_JOUEUR -= 1;
 
 			maj_PT_COLL_DECOR();
-			//test_COLL_DECOR();
-			//id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pos_X_JOUEUR>>3) + (pos_X_CAM_NIVEAU>>3) , (JOUEUR.pos_Y_JOUEUR>>3) + (pos_Y_CAM_NIVEAU>>3) );
 
 			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
 			SPR_setPosition(sprite_POINT1, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
