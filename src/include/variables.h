@@ -12,6 +12,9 @@
 #define DROITE                  2
 #define GAUCHE                  3
 
+#define DUREE_SCROLL_H          63
+#define DUREE_SCROLL_V          45
+
 
 //******************************************************//
 //                                                      //
@@ -65,7 +68,7 @@ extern u8 axe_JOUEUR;
 
 extern u8 compteur_SCROLLING;
 
-
+extern u8 duree_SCROLLING;
 
 
 //******************************************************//

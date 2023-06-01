@@ -41,6 +41,7 @@ u8 axe_JOUEUR = 0;
 
 u8 compteur_SCROLLING = 0;
 
+u8 duree_SCROLLING = 0;
 
 
 

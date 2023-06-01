@@ -211,6 +211,8 @@ void scrolling_ECRAN()
 	{
 		pos_Y_CAM_NIVEAU += 4;
 		JOUEUR.pos_Y_JOUEUR -= 4;
+
+		duree_SCROLLING = DUREE_SCROLL_V;
 	}
 
 	//////////////////////////////////////////////////////////
@@ -220,6 +222,8 @@ void scrolling_ECRAN()
 	{
 		pos_Y_CAM_NIVEAU -= 4;
 		JOUEUR.pos_Y_JOUEUR += 4;
+
+		duree_SCROLLING = DUREE_SCROLL_V;
 	}
 
 	//////////////////////////////////////////////////////////
@@ -229,6 +233,8 @@ void scrolling_ECRAN()
 	{
 		pos_X_CAM_NIVEAU += 4;
 		JOUEUR.pos_X_JOUEUR -= 4;
+
+		duree_SCROLLING = DUREE_SCROLL_H;
 	}
 
 	//////////////////////////////////////////////////////////
@@ -238,6 +244,8 @@ void scrolling_ECRAN()
 	{
 		pos_X_CAM_NIVEAU -= 4;
 		JOUEUR.pos_X_JOUEUR += 4;
+
+		duree_SCROLLING = DUREE_SCROLL_H;
 	}
 
 
@@ -250,7 +258,7 @@ void scrolling_ECRAN()
 
 	compteur_SCROLLING += 1;
 
-	if(compteur_SCROLLING > 63)
+	if(compteur_SCROLLING > duree_SCROLLING)
 	{
 		compteur_SCROLLING = 0;
 		etat_JEU = 2;
@@ -260,11 +268,11 @@ void scrolling_ECRAN()
 
 void sortie_SCROLLING()
 {
-	if(axe_JOUEUR == GAUCHE)
+	if(axe_JOUEUR == BAS)
 	{
-		if(JOUEUR.pos_X_JOUEUR > 236)
+		if(JOUEUR.pos_Y_JOUEUR < 35)
 		{
-			JOUEUR.pos_X_JOUEUR -= 1;
+			JOUEUR.pos_Y_JOUEUR += 1;
 			maj_PT_COLL_DECOR();
 
 
@@ -285,6 +293,34 @@ void sortie_SCROLLING()
 			etat_JEU = 0;
 		}
 	}
+
+
+	else if(axe_JOUEUR == HAUT)
+	{
+		if(JOUEUR.pos_Y_JOUEUR > 192)
+		{
+			JOUEUR.pos_Y_JOUEUR -= 1;
+			maj_PT_COLL_DECOR();
+
+
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+
+			etat_JOUEUR = MARCHE;			
+		}
+
+		else
+		{
+			afficher_MENU(type_DECOR);
+			maj_PT_COLL_DECOR();
+			etat_JEU = 0;
+		}
+	}
+
 
 	else if(axe_JOUEUR == DROITE)
 	{
@@ -311,6 +347,34 @@ void sortie_SCROLLING()
 			etat_JEU = 0;
 		}
 	}
+
+
+	else if(axe_JOUEUR == GAUCHE)
+	{
+		if(JOUEUR.pos_X_JOUEUR > 236)
+		{
+			JOUEUR.pos_X_JOUEUR -= 1;
+			maj_PT_COLL_DECOR();
+
+
+			SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);
+
+			SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+
+			etat_JOUEUR = MARCHE;			
+		}
+
+		else
+		{
+			afficher_MENU(type_DECOR);
+			maj_PT_COLL_DECOR();
+			etat_JEU = 0;
+		}
+	}
+
 }
 
 
@@ -345,6 +409,26 @@ void manette_JOUEUR()
 		//******************************************************//	
 		else if(value & BUTTON_DOWN)
 		{			
+			//////////////////////////////////////////////////////////
+			//			    	 TEST SORTIE ECRAN			    	//
+			//////////////////////////////////////////////////////////			
+			if(JOUEUR.pos_Y_JOUEUR > 194)
+			{
+				axe_JOUEUR = BAS;
+				index_Y_CARTE_NIVEAU += 1,
+				
+				etat_JEU = 1;
+				return ;
+			}
+
+
+
+
+
+
+
+
+
 			//////////////////////////////////////////////////////////
 			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
@@ -422,6 +506,25 @@ void manette_JOUEUR()
 		else if(value & BUTTON_UP)
 		{
 			//////////////////////////////////////////////////////////
+			//			    	 TEST SORTIE ECRAN			    	//
+			//////////////////////////////////////////////////////////			
+			if(JOUEUR.pos_Y_JOUEUR < 28)
+			{
+				axe_JOUEUR = HAUT;
+				index_Y_CARTE_NIVEAU -= 1,
+				
+				etat_JEU = 1;
+				return ;
+			}
+
+
+
+
+
+
+
+
+			//////////////////////////////////////////////////////////
 			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
 
@@ -487,6 +590,7 @@ void manette_JOUEUR()
 			//////////////////////////////////////////////////////////			
 			if(JOUEUR.pos_X_JOUEUR > 232)
 			{
+				axe_JOUEUR = DROITE;
 				index_X_CARTE_NIVEAU += 1,
 				
 				etat_JEU = 1;
@@ -578,6 +682,7 @@ void manette_JOUEUR()
 			//////////////////////////////////////////////////////////			
 			if(JOUEUR.pos_X_JOUEUR < -3)
 			{
+				axe_JOUEUR = GAUCHE;
 				index_X_CARTE_NIVEAU -= 1,
 				
 				etat_JEU = 1;

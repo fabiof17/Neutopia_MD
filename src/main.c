@@ -155,14 +155,14 @@ int main(bool resetType)
                         // SCROLLING ECRAN SUIVANT //
                         else if(etat_JEU == 1)
                         {
-                            //JOY_setEventHandler(desactiver_Callback);
+                            JOY_setEventHandler(desactiver_Callback);
                             scrolling_ECRAN();
                         }
                         
                         // POSITIONNEMENT JOUEUR FIN SCROLLING //
                         else if(etat_JEU == 2)
                         {
-                            //JOY_setEventHandler(desactiver_Callback);
+                            JOY_setEventHandler(desactiver_Callback);
                             sortie_SCROLLING();
                             tiles_JOUEUR();
                         }                       
