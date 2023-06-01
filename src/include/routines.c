@@ -68,8 +68,8 @@ void afficher_MENU(u8 type)
 
 	if(type == 0)
 	{
-		cam_X = pos_X_CAM_NIVEAU;
-		cam_Y = pos_Y_CAM_NIVEAU;
+		cam_X = pos_X_CAM;
+		cam_Y = pos_Y_CAM;
 	}
 
 	else if(type == 1)
@@ -209,7 +209,7 @@ void scrolling_ECRAN()
     //////////////////////////////////////////////////////////
 	if(axe_JOUEUR == BAS)
 	{
-		pos_Y_CAM_NIVEAU += 4;
+		pos_Y_CAM += 4;
 		JOUEUR.pos_Y_JOUEUR -= 4;
 
 		duree_SCROLLING = DUREE_SCROLL_V;
@@ -220,7 +220,7 @@ void scrolling_ECRAN()
     //////////////////////////////////////////////////////////
 	else if(axe_JOUEUR == HAUT)
 	{
-		pos_Y_CAM_NIVEAU -= 4;
+		pos_Y_CAM -= 4;
 		JOUEUR.pos_Y_JOUEUR += 4;
 
 		duree_SCROLLING = DUREE_SCROLL_V;
@@ -231,7 +231,7 @@ void scrolling_ECRAN()
     //////////////////////////////////////////////////////////
 	else if(axe_JOUEUR == DROITE)
 	{
-		pos_X_CAM_NIVEAU += 4;
+		pos_X_CAM += 4;
 		JOUEUR.pos_X_JOUEUR -= 4;
 
 		duree_SCROLLING = DUREE_SCROLL_H;
@@ -242,15 +242,15 @@ void scrolling_ECRAN()
     //////////////////////////////////////////////////////////
 	else if(axe_JOUEUR == GAUCHE)
 	{
-		pos_X_CAM_NIVEAU -= 4;
+		pos_X_CAM -= 4;
 		JOUEUR.pos_X_JOUEUR += 4;
 
 		duree_SCROLLING = DUREE_SCROLL_H;
 	}
 
 
-	MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
-	MAP_scrollTo(map_NIVEAU_BG_A, pos_X_CAM_NIVEAU, pos_Y_CAM_NIVEAU);
+	MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM, pos_Y_CAM);
+	MAP_scrollTo(map_NIVEAU_BG_A, pos_X_CAM, pos_Y_CAM);
 
 
 	SPR_setPosition(JOUEUR.sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR);	

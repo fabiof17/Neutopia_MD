@@ -154,8 +154,8 @@ extern u8 nb_ENERGIE;
 extern bool niveau_OK;
 extern u8 num_NIVEAU;
 
-extern u32 pos_X_CAM_NIVEAU;
-extern u32 pos_Y_CAM_NIVEAU;
+extern u32 pos_X_CAM;
+extern u32 pos_Y_CAM;
 
 extern u8 index_X_CARTE_NIVEAU;
 extern u8 index_Y_CARTE_NIVEAU;

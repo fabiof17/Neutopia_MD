@@ -124,8 +124,8 @@ u8 nb_ENERGIE = 5;
 bool niveau_OK = 0;
 u8 num_NIVEAU = 1;
 
-u32 pos_X_CAM_NIVEAU = 0;
-u32 pos_Y_CAM_NIVEAU = 0;
+u32 pos_X_CAM = 0;
+u32 pos_Y_CAM = 0;
 
 u8 index_X_CARTE_NIVEAU = 0;
 u8 index_Y_CARTE_NIVEAU = 0;

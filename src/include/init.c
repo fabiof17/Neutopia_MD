@@ -584,8 +584,8 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		//                     INIT CAMERA                      //
 		//////////////////////////////////////////////////////////
-		pos_X_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
-		pos_Y_CAM_NIVEAU = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1];
+		pos_X_CAM = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
+		pos_Y_CAM = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1];
 
 
 
@@ -634,10 +634,10 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		//                      INIT MAPS                       //
 		//////////////////////////////////////////////////////////
-		MAP_scrollTo(map_NIVEAU_BG_B, (u32)pos_X_CAM_NIVEAU, (u32)pos_Y_CAM_NIVEAU);
+		MAP_scrollTo(map_NIVEAU_BG_B, (u32)pos_X_CAM, (u32)pos_Y_CAM);
 		SYS_doVBlankProcess();
 		
-		MAP_scrollTo(map_NIVEAU_BG_A, (u32)pos_X_CAM_NIVEAU, (u32)pos_Y_CAM_NIVEAU);
+		MAP_scrollTo(map_NIVEAU_BG_A, (u32)pos_X_CAM, (u32)pos_Y_CAM);
 		SYS_doVBlankProcess();
 	}
 
