@@ -248,13 +248,10 @@ void test_SPRITE_ENTREE()
 						return;
 					}
 				}
-
-				else
-				{
-					SPR_releaseSprite(sprite_ENTREE);
-					spr_ENTREE_OK = 0;
-				}
 			}
+			
+			SPR_releaseSprite(sprite_ENTREE);
+			spr_ENTREE_OK = 0;
 		}
 	}
 }
