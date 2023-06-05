@@ -33,14 +33,12 @@ u16 id_TILE2 = 0;
 u16 id_TILE3 = 0;
 u16 id_TILE4 = 0;
 
-bool map_BG_A_OK = 0;
 
 u16 offset_TABLES_SALLES = 0;
 
 u8 axe_JOUEUR = 0;
 
 u8 compteur_SCROLLING = 0;
-
 u8 duree_SCROLLING = 0;
 
 
@@ -127,6 +125,9 @@ u8 num_NIVEAU = 1;
 u32 pos_X_CAM = 0;
 u32 pos_Y_CAM = 0;
 
+u32 pos_X_ENTREE = 0;
+u32 pos_Y_ENTREE = 0;
+
 u8 index_X_CARTE_NIVEAU = 0;
 u8 index_Y_CARTE_NIVEAU = 0;
 
@@ -136,6 +137,8 @@ u16 adr_VRAM_BG_B = 0;
 Map *map_NIVEAU_BG_A;
 Map *map_NIVEAU_BG_B;
 Map *map_COLLISION;
+
+bool spr_ENTREE_OK = 0;
 
 
 

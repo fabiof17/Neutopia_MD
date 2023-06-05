@@ -162,5 +162,8 @@ const MapDefinition			*TABLE_MAPDEF_NIVEAUX[2][4]			=	{ {&map_NIVEAU1_BG_B,&map_
 
 const MapDefinition			*TABLE_MAPCOLL_NIVEAUX[4]			=	{&map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1};																	
 
+const u16					TABLE_OFFSET_COLLISION[8][8]		=	{ {0  , 32 , 64 , 96 , 128 , 160 , 192 , 224},
+																	  {18 , 41 , 64 , 87 , 110 , 133 , 156 , 179}
+																	};
 
 

@@ -59,15 +59,12 @@ extern u16 id_TILE2;
 extern u16 id_TILE3;
 extern u16 id_TILE4;
 
-//extern bool map_BG_B_OK;
-extern bool map_BG_A_OK;
 
 extern u16 offset_TABLES_SALLES;
 
 extern u8 axe_JOUEUR;
 
 extern u8 compteur_SCROLLING;
-
 extern u8 duree_SCROLLING;
 
 
@@ -157,6 +154,9 @@ extern u8 num_NIVEAU;
 extern u32 pos_X_CAM;
 extern u32 pos_Y_CAM;
 
+extern u32 pos_X_ENTREE;
+extern u32 pos_Y_ENTREE;
+
 extern u8 index_X_CARTE_NIVEAU;
 extern u8 index_Y_CARTE_NIVEAU;
 
@@ -167,7 +167,7 @@ extern Map *map_NIVEAU_BG_A;
 extern Map *map_NIVEAU_BG_B;
 extern Map *map_COLLISION;
 
-
+extern bool spr_ENTREE_OK;
 
 
 //******************************************************//

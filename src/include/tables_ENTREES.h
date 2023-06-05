@@ -12,10 +12,9 @@
 //                    ENTREES NIVEAU 1                  //
 //////////////////////////////////////////////////////////
 
-extern const u16                    TABLE_OFFSET_TILE_NIVEAUX[8][8];
-
 extern const u8                     TABLE_ID_ENTREES_NIVEAU1[43];
-
+extern const u8                     TABLE_POS_ENTREES_NIVEAU1[4][2];
+extern const SpriteDefinition		*TABLE_ADR_ENTREES_NIVEAU1[4];
 
 
 

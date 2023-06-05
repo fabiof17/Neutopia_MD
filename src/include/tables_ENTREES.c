@@ -20,10 +20,6 @@
 //                    ENTREES NIVEAU 1                  //
 //////////////////////////////////////////////////////////
 
-const u16					TABLE_OFFSET_TILE_NIVEAUX[8][8]		=	{ {0  , 32 , 64 , 96 , 128 , 160 , 192 , 224},
-																	  {18 , 41 , 64 , 87 , 110 , 133 , 156 , 179}
-																	};
-
 const u8					TABLE_ID_ENTREES_NIVEAU1[43]		=	{ 1,2,1,1,1,1,1,
 																	  1,1,1,1,1,1,
 																	  1,1,1,1,1,1,2,
@@ -33,6 +29,14 @@ const u8					TABLE_ID_ENTREES_NIVEAU1[43]		=	{ 1,2,1,1,1,1,1,
 																	  1,1,1,1,1,1,
 																	  1,1,1,1,1
 																	};
+
+const u8					TABLE_POS_ENTREES_NIVEAU1[4][2]		=	{ {1,0},
+																	  {2,7},
+																	  {1,4},
+																	  {3,6}
+																	};
+
+const SpriteDefinition		*TABLE_ADR_ENTREES_NIVEAU1[4]		=	{ &tiles_SPR_DONJON_NIVEAU1 , &tiles_SPR_DONJON_NIVEAU1 , &tiles_SPR_ENTREE_NIVEAU1 , &tiles_SPR_SANCTUAIRE };
 /*
 const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };
 */

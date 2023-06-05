@@ -180,7 +180,7 @@ int main(bool resetType)
                         }
 
                         //VDP_drawInt( pos_X_CAM_NIVEAU , 3 , 0 , 0 );
-                        //VDP_drawInt( index_X_CARTE_NIVEAU , 3 , 8 , 0 );
+                        VDP_drawInt( spr_ENTREE_OK , 3 , 8 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();

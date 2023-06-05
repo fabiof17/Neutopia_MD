@@ -70,7 +70,6 @@ void init_VARIABLES_GENERALES()
 	id_TILE3 = 43;
 	id_TILE4 = 43;
 
-	map_BG_A_OK = 0;
 
 	compteur_SCROLLING = 0;
 
@@ -617,7 +616,6 @@ void init_DECOR( u8 index , u8 type )
 		//                  CREATION MAP BG_A                   //
 		//////////////////////////////////////////////////////////
 		map_NIVEAU_BG_A = MAP_create(TABLE_MAPDEF_NIVEAUX[1][index], BG_A, TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE, adr_VRAM_BG_A));
-		map_BG_A_OK = 1;
 		SYS_doVBlankProcess();
 
 
