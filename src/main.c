@@ -107,6 +107,8 @@ int main(bool resetType)
 
                 init_MENU();
                 init_WINDOW();
+                init_SPRITE_ENTREE();
+                init_JOUEUR();
 
                 menu_OK = 1;
             }    
@@ -123,7 +125,7 @@ int main(bool resetType)
                         // Init NIVEAU //
                         init_DECOR(num_NIVEAU , type_DECOR);
                         afficher_MENU(type_DECOR);
-                        init_JOUEUR();
+                        //init_JOUEUR();
 
                         init_PALETTES_MENU();
                         maj_PALETTES(num_NIVEAU , type_DECOR);
@@ -179,8 +181,7 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
-                        //VDP_drawInt( pos_X_CAM_NIVEAU , 3 , 0 , 0 );
-                        VDP_drawInt( spr_ENTREE_OK , 3 , 8 , 0 );
+                        VDP_drawInt( id_TILE3 , 3 , 0 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();

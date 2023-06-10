@@ -35,13 +35,13 @@ extern void maj_PALETTES( u8 index , u8 type );
 
 extern void maj_PT_COLL_DECOR();
 
-extern void crea_SPRITE_ENTREE();
-
-extern void test_SPRITE_ENTREE();
+extern void maj_SPRITE_ENTREE();
 
 extern void scrolling_ECRAN();
 
 extern void sortie_SCROLLING();
+
+extern void entree_CAVE();
 
 extern void manette_JOUEUR();
 

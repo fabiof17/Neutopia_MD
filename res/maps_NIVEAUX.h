@@ -17,5 +17,8 @@ extern const MapDefinition map_NIVEAU3_BG_B;
 extern const MapDefinition map_NIVEAU3_BG_A;
 extern const MapDefinition map_NIVEAU4_BG_B;
 extern const MapDefinition map_NIVEAU4_BG_A;
+extern const TileSet tileset_COLLISION_NIVEAU1;
+extern const TileMap tilemap_COLLISION_NIVEAU1;
+extern const MapDefinition map_COLLISION_NIVEAU1;
 
 #endif // _RES_MAPS_NIVEAUX_H_

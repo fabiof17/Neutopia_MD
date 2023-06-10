@@ -51,8 +51,8 @@ extern u8 niveau_EPEE;
 extern u8 niveau_BOUCLIER;
 extern u8 niveau_ARMURE;
 
-extern bool tiles_ARRET_OK;
-extern bool tiles_ATTAQUE_OK ;
+//extern bool tiles_ARRET_OK;
+//extern bool tiles_ATTAQUE_OK ;
 
 extern u16 id_TILE1;
 extern u16 id_TILE2;
@@ -60,12 +60,16 @@ extern u16 id_TILE3;
 extern u16 id_TILE4;
 
 
-extern u16 offset_TABLES_SALLES;
+
 
 extern u8 axe_JOUEUR;
 
 extern u8 compteur_SCROLLING;
 extern u8 duree_SCROLLING;
+
+extern u8 index_X_CARTE;
+extern u8 index_Y_CARTE;
+
 
 
 //******************************************************//
@@ -154,6 +158,9 @@ extern u8 num_NIVEAU;
 extern u32 pos_X_CAM;
 extern u32 pos_Y_CAM;
 
+extern u32 pos_X_CAM_NIVEAU;
+extern u32 pos_Y_CAM_NIVEAU;
+
 extern u32 pos_X_ENTREE;
 extern u32 pos_Y_ENTREE;
 
@@ -167,7 +174,12 @@ extern Map *map_NIVEAU_BG_A;
 extern Map *map_NIVEAU_BG_B;
 extern Map *map_COLLISION;
 
+extern u8 id_ENTREE;
+extern u16 offset_TABLES_ENTREES;
+
 extern bool spr_ENTREE_OK;
+
+//extern u8 z_ORDER;
 
 
 //******************************************************//

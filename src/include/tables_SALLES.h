@@ -8,13 +8,13 @@
 //                                                      //
 //******************************************************//
 
-extern const u16					TABLE_OFFSET_SALLES[4];
+extern const u16					TABLE_OFFSET_ENTREES[4];
 
-extern const TileSet				*TABLE_TILESET_SALLES[43];
+extern const TileSet				*TABLE_TILESET_ENTREES[43];
 
-extern const MapDefinition			*TABLE_MAPDEF_SALLES[43];
+extern const MapDefinition			*TABLE_MAPDEF_ENTREES[43];
 
-extern const Palette				*TABLE_ADR_PAL_SALLES[43];
+extern const Palette				*TABLE_ADR_PAL_ENTREES[43];
 
 
 

@@ -3,9 +3,9 @@
 #include "variables.h"
 #include "structures.h"
 
-#include "tables_JOUEUR.h"
 #include "tables_DONJONS.h"
 #include "tables_ENTREES.h"
+#include "tables_JOUEUR.h"
 #include "tables_MENU.h"
 #include "tables_NIVEAUX.h"
 #include "tables_SALLES.h"
@@ -144,6 +144,7 @@ void afficher_MENU(u8 type)
 
 
 
+
 //******************************************************//
 //                                                      //
 //                        NIVEAU                        //
@@ -152,7 +153,7 @@ void afficher_MENU(u8 type)
 
 void maj_PALETTES( u8 index , u8 type )
 {
-    index -= 1;
+    //index -= 1;
 	
 	//////////////////////////////////////////////////////////
     //                        NIVEAU                        //
@@ -169,7 +170,7 @@ void maj_PALETTES( u8 index , u8 type )
     //////////////////////////////////////////////////////////
 	else if(type == 1)
 	{
-		PAL_setPalette(PAL1, TABLE_ADR_PAL_SALLES[id_TILE3 + offset_TABLES_SALLES]->data, DMA);
+		PAL_setPalette(PAL1, TABLE_ADR_PAL_ENTREES[id_TILE3 + offset_TABLES_ENTREES]->data, DMA);
 		//PAL_setPalette(PAL2, TABLE_ADR_PAL_NIVEAUX[1][index]->data, DMA);
 	}
 
@@ -200,63 +201,21 @@ void maj_PT_COLL_DECOR()
 }
 
 
-
-
-void crea_SPRITE_ENTREE()
+void maj_SPRITE_ENTREE()
 {
-	u8 i = 0;
-
-	if(type_DECOR == 0)
+	if(num_NIVEAU == 0)
 	{
-		if(num_NIVEAU == 1)
-		{
-			for(i=0 ; i<4 ; i++)
-			{
-				if(TABLE_POS_ENTREES_NIVEAU1[i][0] == index_X_CARTE_NIVEAU)
-				{
-					spr_ENTREE_OK = 1;
-					if(TABLE_POS_ENTREES_NIVEAU1[i][1] == index_Y_CARTE_NIVEAU)
-					{
-						pos_X_ENTREE = -32;
-						pos_Y_ENTREE = -40;
-						
-						sprite_ENTREE = SPR_addSprite(TABLE_ADR_ENTREES_NIVEAU1[i], pos_X_ENTREE, pos_Y_ENTREE, TILE_ATTR(PAL2, TRUE, FALSE, FALSE));
-						spr_ENTREE_OK = 1;
-						return;
-					}
-				}
-			}
+		if(TABLE_ADR_SPR_ENTREES_NIVEAU1[id_TILE3] != NULL)
+		{		
+			pos_X_ENTREE = TABLE_POS_ENTREES_NIVEAU1[id_TILE3][0];
+			pos_Y_ENTREE = TABLE_POS_ENTREES_NIVEAU1[id_TILE3][1];
+
+			SPR_setDefinition(sprite_ENTREE,TABLE_ADR_SPR_ENTREES_NIVEAU1[id_TILE3]);
+			SPR_setPosition(sprite_ENTREE,pos_X_ENTREE,pos_Y_ENTREE);
+			SPR_setPalette(sprite_ENTREE,TABLE_PAL_SPRITES_ENTREES[id_ENTREE]);
 		}
 	}
 }
-
-
-void test_SPRITE_ENTREE()
-{
-	u8 i = 0;
-
-	if(spr_ENTREE_OK == 1)
-	{
-		if(num_NIVEAU == 1)
-		{
-			for(i=0 ; i<4 ; i++)
-			{
-				if(TABLE_POS_ENTREES_NIVEAU1[i][0] == index_X_CARTE_NIVEAU)
-				{
-					if(TABLE_POS_ENTREES_NIVEAU1[i][1] == index_Y_CARTE_NIVEAU)
-					{
-						return;
-					}
-				}
-			}
-			
-			SPR_releaseSprite(sprite_ENTREE);
-			spr_ENTREE_OK = 0;
-		}
-	}
-}
-
-
 
 
 void scrolling_ECRAN()
@@ -268,12 +227,6 @@ void scrolling_ECRAN()
 	{
 		pos_Y_CAM += 4;
 		JOUEUR.pos_Y_JOUEUR -= 4;
-
-		if(spr_ENTREE_OK == 1)
-		{
-			pos_Y_ENTREE -= 4;
-			SPR_setPosition(sprite_ENTREE, pos_X_ENTREE, pos_Y_ENTREE);
-		}
 	}
 
 	//////////////////////////////////////////////////////////
@@ -283,12 +236,6 @@ void scrolling_ECRAN()
 	{
 		pos_Y_CAM -= 4;
 		JOUEUR.pos_Y_JOUEUR += 4;
-
-		if(spr_ENTREE_OK == 1)
-		{
-			pos_Y_ENTREE += 4;
-			SPR_setPosition(sprite_ENTREE, pos_X_ENTREE, pos_Y_ENTREE);
-		}
 	}
 
 	//////////////////////////////////////////////////////////
@@ -298,12 +245,6 @@ void scrolling_ECRAN()
 	{
 		pos_X_CAM += 4;
 		JOUEUR.pos_X_JOUEUR -= 4;
-
-		if(spr_ENTREE_OK == 1)
-		{
-			pos_X_ENTREE -= 4;
-			SPR_setPosition(sprite_ENTREE, pos_X_ENTREE, pos_Y_ENTREE);
-		}
 	}
 
 	//////////////////////////////////////////////////////////
@@ -313,12 +254,6 @@ void scrolling_ECRAN()
 	{
 		pos_X_CAM -= 4;
 		JOUEUR.pos_X_JOUEUR += 4;
-
-		if(spr_ENTREE_OK == 1)
-		{
-			pos_X_ENTREE += 4;
-			SPR_setPosition(sprite_ENTREE, pos_X_ENTREE, pos_Y_ENTREE);
-		}
 	}
 
 
@@ -335,7 +270,7 @@ void scrolling_ECRAN()
 	{		
 		compteur_SCROLLING = 0;
 		etat_JEU = 2;
-		test_SPRITE_ENTREE();
+		//test_SPRITE_ENTREE();
 	}
 }
 
@@ -452,6 +387,10 @@ void sortie_SCROLLING()
 }
 
 
+void entree_CAVE()
+{
+	//
+}
 
 
 void manette_JOUEUR()
@@ -492,8 +431,7 @@ void manette_JOUEUR()
 			{
 				axe_JOUEUR = BAS;
 				duree_SCROLLING = DUREE_SCROLL_V;
-				index_Y_CARTE_NIVEAU += 1;
-				crea_SPRITE_ENTREE();
+				index_Y_CARTE += 1;
 				
 				etat_JEU = 1;
 				return ;
@@ -501,8 +439,45 @@ void manette_JOUEUR()
 
 
 
+			
+			//******************************************************//
+			//                                                      //
+			//			    	  TEST COLLISION					//
+			//                                                      //
+			//******************************************************//	
+			
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
+			id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 
+			//////////////////////////////////////////////////////////
+			//			 	  TEST COLLISION ENTREE					//
+			//////////////////////////////////////////////////////////
+
+			if(id_TILE3 < 43)
+			{
+				if(id_TILE4 == id_TILE3)
+				{
+					// TYPE D'ENTREE
+					// 1 = ESCALIER
+					// 2 = DONJON
+					// 3 = PORTE
+					id_ENTREE = TABLE_ID_ENTREES_NIVEAU1[id_TILE3];
+
+					maj_SPRITE_ENTREE();
+
+					// TYPE DE DECOR
+					// 0 = NIVEAU
+					// 1 = SALLE OU DONJON
+					type_DECOR = 1;
+
+					// SEQUENCE ENTREE CAVE
+					etat_JEU = 3;
+					//
+					return;
+				}
+			}
+			
 
 
 
@@ -511,12 +486,12 @@ void manette_JOUEUR()
 			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
 
-			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 			// TOUCHE MUR //
 			if(id_TILE3 == 44)
 			{
-				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE VIDE //
 				if(id_TILE4 != 44)
@@ -529,7 +504,7 @@ void manette_JOUEUR()
 			// TOUCHE VIDE //
 			else if(id_TILE3 != 44)
 			{
-				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE MUR //
 				if(id_TILE4 == 44)
@@ -556,22 +531,7 @@ void manette_JOUEUR()
 			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 			
-			etat_JOUEUR = MARCHE;
-
-
-
-
-			//******************************************************//
-			//                                                      //
-			//                  DETECTION ENTREES                   //
-			//                                                      //
-			//******************************************************//
-			/*
-			if(id_TILE3 < 43 && id_TILE3 == id_TILE4 )
-			{
-				//
-			}
-			*/		
+			etat_JOUEUR = MARCHE;	
 			
 			return;
 		}
@@ -592,8 +552,7 @@ void manette_JOUEUR()
 			{
 				axe_JOUEUR = HAUT;
 				duree_SCROLLING = DUREE_SCROLL_V;
-				index_Y_CARTE_NIVEAU -= 1;
-				crea_SPRITE_ENTREE();
+				index_Y_CARTE -= 1;
 				
 				etat_JEU = 1;
 				return ;
@@ -602,6 +561,47 @@ void manette_JOUEUR()
 
 
 
+			//******************************************************//
+			//                                                      //
+			//			    	  TEST COLLISION					//
+			//                                                      //
+			//******************************************************//	
+			
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR-1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
+			id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR-1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
+
+
+			//////////////////////////////////////////////////////////
+			//			 	  TEST COLLISION ENTREE					//
+			//////////////////////////////////////////////////////////
+
+			if(id_TILE3 < 43)
+			{
+				if(id_TILE4 == id_TILE3)
+				{
+					// TYPE D'ENTREE
+					// 1 = ESCALIER
+					// 2 = DONJON
+					// 3 = PORTE
+					id_ENTREE = TABLE_ID_ENTREES_NIVEAU1[id_TILE3];
+
+					maj_SPRITE_ENTREE();
+					//SPR_setDepth(JOUEUR.sprite_JOUEUR,10);
+					//SPR_setDepth(sprite_ENTREE,8);
+
+
+					// TYPE DE DECOR
+					// 0 = NIVEAU
+					// 1 = SALLE OU DONJON
+					type_DECOR = 1;
+
+					// SEQUENCE ENTREE CAVE
+					etat_JEU = 3;
+					//
+					return;
+				}
+			}
+			
 
 
 
@@ -610,12 +610,12 @@ void manette_JOUEUR()
 			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
 
-			id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+			id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 			// TOUCHE MUR //
 			if(id_TILE1 == 44)
 			{
-				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE VIDE //
 				if(id_TILE2 != 44)
@@ -628,7 +628,7 @@ void manette_JOUEUR()
 			// TOUCHE VIDE //
 			else if(id_TILE1 != 44)
 			{
-				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE MUR //
 				if(id_TILE2 == 44)
@@ -645,6 +645,9 @@ void manette_JOUEUR()
 					axe_JOUEUR = HAUT;
 				}
 			}
+
+
+
 
 			maj_PT_COLL_DECOR();
 
@@ -676,8 +679,7 @@ void manette_JOUEUR()
 			{
 				axe_JOUEUR = DROITE;
 				duree_SCROLLING = DUREE_SCROLL_H;
-				index_X_CARTE_NIVEAU += 1;
-				crea_SPRITE_ENTREE();
+				index_X_CARTE += 1;
 				
 				etat_JEU = 1;
 				return ;
@@ -685,26 +687,46 @@ void manette_JOUEUR()
 
 
 
+
 			//******************************************************//
 			//                                                      //
-			//                CREATION SPRITE ENTREES               //
+			//			    	  TEST COLLISION					//
 			//                                                      //
-			//******************************************************//
+			//******************************************************//	
 			
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
+			id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 
-			//******************************************************//
-			//                                                      //
-			//                  DETECTION ENTREES                   //
-			//                                                      //
-			//******************************************************//
-			/*
-			if(id_TILE3 < 43 && id_TILE3 == id_TILE4 )
+			//////////////////////////////////////////////////////////
+			//			 	  TEST COLLISION ENTREE					//
+			//////////////////////////////////////////////////////////
+
+			if(id_TILE3 < 43)
 			{
-				//
-			}
-			*/
+				if(id_TILE4 == id_TILE3)
+				{
+					// TYPE D'ENTREE
+					// 1 = ESCALIER
+					// 2 = DONJON
+					// 3 = PORTE
+					id_ENTREE = TABLE_ID_ENTREES_NIVEAU1[id_TILE3];
 
+					maj_SPRITE_ENTREE();
+
+					// TYPE DE DECOR
+					// 0 = NIVEAU
+					// 1 = SALLE OU DONJON
+					type_DECOR = 1;
+
+					// SEQUENCE ENTREE CAVE
+					etat_JEU = 3;
+					//
+					return;
+				}
+			}
+			
+			
 
 
 
@@ -712,12 +734,12 @@ void manette_JOUEUR()
 			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
 
-			id_TILE4 = MAP_getTile(   map_COLLISION ,   (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU]   ,   ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU]   );
+			id_TILE4 = MAP_getTile(   map_COLLISION ,   (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE]   ,   ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE]   );
 
 			// TOUCHE MUR //
 			if(id_TILE4 == 44)
 			{
-				id_TILE2 = MAP_getTile(   map_COLLISION ,   (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU]   ,   ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU]   );
+				id_TILE2 = MAP_getTile(   map_COLLISION ,   (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE]   ,   ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE]   );
 
 				// TOUCHE VIDE //
 				if(id_TILE2 != 44)
@@ -730,7 +752,7 @@ void manette_JOUEUR()
 			// TOUCHE VIDE //
 			else if(id_TILE4 != 44)
 			{
-				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE MUR //
 				if(id_TILE2 == 44)
@@ -779,7 +801,7 @@ void manette_JOUEUR()
 			{
 				axe_JOUEUR = GAUCHE;
 				duree_SCROLLING = DUREE_SCROLL_H;
-				index_X_CARTE_NIVEAU -= 1;
+				index_X_CARTE -= 1;
 				
 				etat_JEU = 1;
 				return ;
@@ -788,6 +810,44 @@ void manette_JOUEUR()
 
 
 
+			//******************************************************//
+			//                                                      //
+			//			    	  TEST COLLISION					//
+			//                                                      //
+			//******************************************************//	
+			
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
+			id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
+
+
+			//////////////////////////////////////////////////////////
+			//			 	  TEST COLLISION ENTREE					//
+			//////////////////////////////////////////////////////////
+
+			if(id_TILE3 < 43)
+			{
+				if(id_TILE4 == id_TILE3)
+				{
+					// TYPE D'ENTREE
+					// 1 = ESCALIER
+					// 2 = DONJON
+					// 3 = PORTE
+					id_ENTREE = TABLE_ID_ENTREES_NIVEAU1[id_TILE3];
+
+					maj_SPRITE_ENTREE();
+
+					// TYPE DE DECOR
+					// 0 = NIVEAU
+					// 1 = SALLE OU DONJON
+					type_DECOR = 1;
+
+					// SEQUENCE ENTREE CAVE
+					etat_JEU = 3;
+					//
+					return;
+				}
+			}
+			
 
 
 
@@ -796,12 +856,12 @@ void manette_JOUEUR()
 			//			 	  TEST COLLISION DECOR					//
 			//////////////////////////////////////////////////////////
 
-			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 			// TOUCHE MUR //
 			if(id_TILE3 == 44)
 			{
-				id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+				id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE VIDE //
 				if(id_TILE1 != 44)
@@ -814,7 +874,7 @@ void manette_JOUEUR()
 			// TOUCHE VIDE //
 			else if(id_TILE3 != 44)
 			{
-				id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE_NIVEAU] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE_NIVEAU] );
+				id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE MUR //
 				if(id_TILE1 == 44)

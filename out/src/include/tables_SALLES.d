@@ -13,4 +13,4 @@ out/src/include/tables_SALLES.o: src/include/tables_SALLES.c \
  C:/sgdk/inc/joy.h C:/sgdk/inc/timer.h C:/sgdk/inc/task.h \
  C:/sgdk/inc/task_cst.h res/palettes.h res/sprites_DECOR.h \
  res/sprites_ENNEMIS.h res/maps_NIVEAUX.h res/maps_ENTREES.h \
- res/maps_SALLES.h
+ res/maps_SALLES.h res/maps_DONJONS.h

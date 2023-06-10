@@ -58,6 +58,8 @@ extern void init_WINDOW();
 
 extern void init_JOUEUR();
 
+extern void init_SPRITE_ENTREE();
+
 
 
 

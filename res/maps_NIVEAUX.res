@@ -37,3 +37,15 @@ MAP map_NIVEAU3_BG_A                        "maps/niveaux/tiles_NIVEAU1_BG_A.png
 MAP map_NIVEAU4_BG_B                        "maps/niveaux/tiles_NIVEAU1_BG_B.png"       tileset_NIVEAU4_BG_B        NONE
 MAP map_NIVEAU4_BG_A                        "maps/niveaux/tiles_NIVEAU1_BG_A.png"       tileset_NIVEAU4_BG_A        NONE
 
+
+
+
+//**********************************************************************************//
+//                                                                                  //
+//                                  COLLISIONS                                      //
+//                                                                                  //
+//**********************************************************************************//
+
+TILESET tileset_COLLISION_NIVEAU1               "maps/niveaux/tilemap_COLLISION_NIVEAU1.png"                                        NONE ALL
+TILEMAP tilemap_COLLISION_NIVEAU1               "maps/niveaux/tilemap_COLLISION_NIVEAU1.png"        tileset_COLLISION_NIVEAU1       NONE ALL
+MAP map_COLLISION_NIVEAU1                       "maps/niveaux/tilemap_COLLISION_NIVEAU1.png"        tileset_COLLISION_NIVEAU1       NONE

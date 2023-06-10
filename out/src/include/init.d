@@ -15,6 +15,7 @@ out/src/include/init.o: src/include/init.c C:/sgdk/inc/genesis.h \
  src/include/tables_JOUEUR.h src/include/tables_DONJONS.h \
  src/include/tables_ENTREES.h src/include/tables_MENU.h \
  src/include/tables_NIVEAUX.h src/include/tables_SALLES.h \
- src/include/outils.h src/include/sprites_JEU.h res/sprites_MENU.h \
- res/sprites_JOUEUR.h res/maps_GLOBAL.h res/maps_TITRE.h res/maps_MENU.h \
- res/maps_NIVEAUX.h res/maps_SALLES.h res/palettes.h
+ src/include/outils.h res/sprites_DECOR.h src/include/sprites_JEU.h \
+ res/sprites_JOUEUR.h res/sprites_MENU.h res/maps_GLOBAL.h \
+ res/maps_TITRE.h res/maps_MENU.h res/maps_NIVEAUX.h res/maps_SALLES.h \
+ res/palettes.h

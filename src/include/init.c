@@ -12,9 +12,10 @@
 
 #include "outils.h"
 
+#include "sprites_DECOR.h"
 #include "sprites_JEU.h"
-#include "sprites_MENU.h"
 #include "sprites_JOUEUR.h"
+#include "sprites_MENU.h"
 
 #include "maps_GLOBAL.h"
 #include "maps_TITRE.h"
@@ -56,7 +57,7 @@ void init_VARIABLES_GENERALES()
 	scene_JEU = 2;				// 0: TITRE   -  1: INTRO  -  2: JEU
 	etat_JEU = 0;
 
-	type_DECOR = 0;				// 0: NIVEAU  -  1: SALLE  -  2: DONJON
+	type_DECOR = 0;				// 0: NIVEAU  -  1: SALLE
 
 	PAUSE = 0;
 	GAMEOVER = 0;
@@ -67,11 +68,16 @@ void init_VARIABLES_GENERALES()
 	niveau_EPEE = 0;
 	niveau_BOUCLIER = 0;
 
-	id_TILE3 = 43;
-	id_TILE4 = 43;
+	id_TILE1 = 0;
+	id_TILE2 = 0;
+	id_TILE3 = 0;
+	id_TILE4 = 0;
 
 
 	compteur_SCROLLING = 0;
+	duree_SCROLLING = 0;
+
+	offset_TABLES_ENTREES = 0;
 
 
 	//******************************************************//
@@ -176,13 +182,19 @@ void init_VARIABLES_GENERALES()
 	//******************************************************//
 
 	niveau_OK = 0;
-	num_NIVEAU = 1;
+	num_NIVEAU = 0;
 
-	index_X_CARTE_NIVEAU = TABLE_INIT_INDEX_NIVEAUX[0][num_NIVEAU - 1];
-	index_Y_CARTE_NIVEAU = TABLE_INIT_INDEX_NIVEAUX[1][num_NIVEAU - 1];
+	pos_X_CAM_NIVEAU = 0;
+	pos_Y_CAM_NIVEAU = 0;
+
+	index_X_CARTE = TABLE_INIT_INDEX_NIVEAUX[0][num_NIVEAU];
+	index_Y_CARTE = TABLE_INIT_INDEX_NIVEAUX[1][num_NIVEAU];
 
 	adr_VRAM_BG_A = 0;
 	adr_VRAM_BG_B = 0;
+
+	pos_X_ENTREE = -32;
+	pos_Y_ENTREE = -40;
 
 
 	//******************************************************//
@@ -191,11 +203,11 @@ void init_VARIABLES_GENERALES()
 	//                                                      //
 	//******************************************************//
 	/*
-	pos_X_CAM_DONJON = TABLE_INIT_CAM_DONJONS[0][num_NIVEAU - 1];
-	pos_Y_CAM_DONJON = TABLE_INIT_CAM_DONJONS[1][num_NIVEAU - 1] - 40;
+	pos_X_CAM_DONJON = TABLE_INIT_CAM_DONJONS[0][num_NIVEAU];
+	pos_Y_CAM_DONJON = TABLE_INIT_CAM_DONJONS[1][num_NIVEAU] - 40;
 
-	index_X_CARTE_DONJONS = TABLE_INIT_INDEX_DONJONS[0][num_NIVEAU - 1];
-	index_X_CARTE_DONJONS = TABLE_INIT_INDEX_DONJONS[1][num_NIVEAU - 1];
+	index_X_CARTE_DONJONS = TABLE_INIT_INDEX_DONJONS[0][num_NIVEAU];
+	index_X_CARTE_DONJONS = TABLE_INIT_INDEX_DONJONS[1][num_NIVEAU];
 	*/
 
 
@@ -562,6 +574,12 @@ void init_JOUEUR()
 }
 
 
+void init_SPRITE_ENTREE()
+{
+	sprite_ENTREE = SPR_addSprite(&tiles_SPR_SANCTUAIRE, pos_X_ENTREE, pos_Y_ENTREE, TILE_ATTR(PAL2, FALSE, FALSE, FALSE));
+}
+
+
 
 
 //******************************************************//
@@ -573,7 +591,7 @@ void init_JOUEUR()
 void init_DECOR( u8 index , u8 type )
 {
 
-	index -= 1;
+	//index -= 1;
 
 	//////////////////////////////////////////////////////////
     //                        NIVEAU                        //
@@ -583,8 +601,8 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		//                     INIT CAMERA                      //
 		//////////////////////////////////////////////////////////
-		pos_X_CAM = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU - 1];
-		pos_Y_CAM = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU - 1];
+		pos_X_CAM = TABLE_INIT_CAM_NIVEAUX[0][num_NIVEAU];
+		pos_Y_CAM = TABLE_INIT_CAM_NIVEAUX[1][num_NIVEAU];
 
 
 
@@ -641,59 +659,71 @@ void init_DECOR( u8 index , u8 type )
 
 
 	//////////////////////////////////////////////////////////
-    //                         SALLE                        //
+    //                     SALLE + DONJON                   //
     //////////////////////////////////////////////////////////
 	else if(type == 1)
 	{
-		offset_TABLES_SALLES = TABLE_OFFSET_SALLES[num_NIVEAU - 1];
+		//////////////////////////////////////////////////////////
+		//						  DONJON					 	//
+		//////////////////////////////////////////////////////////
+
+		if(id_ENTREE != 1)
+		{
+			offset_TABLES_ENTREES = TABLE_OFFSET_ENTREES[num_NIVEAU];
+			
+			//////////////////////////////////////////////////////////
+			//                CHARGEMENT TILES BG_B                 //
+			//////////////////////////////////////////////////////////
+			VDP_loadTileSet(TABLE_TILESET_ENTREES[id_TILE3 + offset_TABLES_ENTREES], adr_VRAM_BG_B, CPU);
+			adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
+			SYS_doVBlankProcess();
+
+			//////////////////////////////////////////////////////////
+			//                  CREATION MAP BG_B                   //
+			//////////////////////////////////////////////////////////
+			map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_ENTREES[id_TILE3 + offset_TABLES_ENTREES], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
+			//map_BG_B_OK = 1;
+			SYS_doVBlankProcess();
+
+
+
+
+			//////////////////////////////////////////////////////////
+			//		  ON ENREGISTRE LA POSITION SUR LA CARTE		//
+			//////////////////////////////////////////////////////////
+			index_X_CARTE_NIVEAU = index_X_CARTE;
+			index_Y_CARTE_NIVEAU = index_Y_CARTE;
+
+
+
+
+			//////////////////////////////////////////////////////////
+			//			ON ENREGISTRE LA CAMERA DU NIVEAU			//
+			//////////////////////////////////////////////////////////
+			pos_X_CAM_NIVEAU = pos_X_CAM;
+			pos_Y_CAM_NIVEAU = pos_Y_CAM;
+
+			//////////////////////////////////////////////////////////
+			//                     INIT CAMERA                      //
+			//////////////////////////////////////////////////////////
+			pos_X_CAM = 0;
+			pos_Y_CAM = 0;
+
+
+
+
+			//////////////////////////////////////////////////////////
+			//                      INIT MAPS                       //
+			//////////////////////////////////////////////////////////
+			MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM, pos_Y_CAM);
+			SYS_doVBlankProcess();
+		}
+
+		else
+		{
+			//
+		}
 		
-		//////////////////////////////////////////////////////////
-		//                CHARGEMENT TILES BG_B                 //
-		//////////////////////////////////////////////////////////
-		VDP_loadTileSet(TABLE_TILESET_SALLES[id_TILE3 + offset_TABLES_SALLES], adr_VRAM_BG_B, CPU);
-		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
-		SYS_doVBlankProcess();
-
-		//////////////////////////////////////////////////////////
-		//                  CREATION MAP BG_B                   //
-		//////////////////////////////////////////////////////////
-		map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_SALLES[id_TILE3 + offset_TABLES_SALLES], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
-		//map_BG_B_OK = 1;
-		SYS_doVBlankProcess();
-
-
-
-
-		//////////////////////////////////////////////////////////
-		//                     INIT CAMERA                      //
-		//////////////////////////////////////////////////////////
-		pos_X_CAM_SALLE = 0;
-		pos_Y_CAM_SALLE = 0;
-
-
-
-
-		//////////////////////////////////////////////////////////
-		//                      INIT MAPS                       //
-		//////////////////////////////////////////////////////////
-		MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM_SALLE, pos_Y_CAM_SALLE);
-		SYS_doVBlankProcess();
-		
-	}
-
-	//////////////////////////////////////////////////////////
-    //                        DONJON                        //
-    //////////////////////////////////////////////////////////
-	else if(type == 2)
-	{
-		
-		//
-	}
-
-
-
-	
-
-	
+	}	
 }
 

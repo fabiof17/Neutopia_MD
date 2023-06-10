@@ -9,37 +9,42 @@
 
 char texteSortie[3];
 
-u8 scene_JEU = 0;
-u8 etat_JEU = 0;
-u8 etat_JOUEUR = 0;
+u8 scene_JEU = 0;                       //  init -->  init_VARIABLES_GENERALES()
+u8 etat_JEU = 0;                        //  init -->  init_VARIABLES_GENERALES()
 
-u8 type_DECOR = 0;
+u8 type_DECOR = 0;                      //  init -->  init_VARIABLES_GENERALES()
 
-bool PAUSE = 0;
-bool GAMEOVER = 0;
+bool PAUSE = 0;                         //  init -->  init_VARIABLES_GENERALES()
+bool GAMEOVER = 0;                      //  init -->  init_VARIABLES_GENERALES()
 
-u16 nb_BOMBES = 0;
-u16 nb_GOLD = 0;
+u16 nb_BOMBES = 0;                      //  init -->  init_VARIABLES_GENERALES()
+u16 nb_GOLD = 0;                        //  init -->  init_VARIABLES_GENERALES()
 
-u8 niveau_EPEE = 0;
-u8 niveau_BOUCLIER = 0;
+u8 niveau_EPEE = 0;                     //  init -->  init_VARIABLES_GENERALES()
+u8 niveau_BOUCLIER = 0;                 //  init -->  init_VARIABLES_GENERALES()
 u8 niveau_ARMURE = 0;
 
-bool tiles_ARRET_OK = 0;
-bool tiles_ATTAQUE_OK = 0;
+//bool tiles_ARRET_OK = 0;
+//bool tiles_ATTAQUE_OK = 0;
 
-u16 id_TILE1 = 0;
-u16 id_TILE2 = 0;
-u16 id_TILE3 = 0;
-u16 id_TILE4 = 0;
+u16 id_TILE1 = 0;                       //  init -->  init_VARIABLES_GENERALES()
+u16 id_TILE2 = 0;                       //  init -->  init_VARIABLES_GENERALES()
+u16 id_TILE3 = 0;                       //  init -->  init_VARIABLES_GENERALES()
+u16 id_TILE4 = 0;                       //  init -->  init_VARIABLES_GENERALES()
 
 
-u16 offset_TABLES_SALLES = 0;
 
-u8 axe_JOUEUR = 0;
+u8 etat_JOUEUR = 0;                     //  init -->  init_JOUEUR()
+u8 axe_JOUEUR = 0;                      //  init -->  init_JOUEUR()
 
-u8 compteur_SCROLLING = 0;
-u8 duree_SCROLLING = 0;
+u8 compteur_SCROLLING = 0;              //  init -->  init_VARIABLES_GENERALES()
+u8 duree_SCROLLING = 0;                 //  init -->  init_VARIABLES_GENERALES()
+
+u8 index_X_CARTE = 0;
+u8 index_Y_CARTE = 0;
+
+//u8 z_ORDER = 0;
+
 
 
 
@@ -49,8 +54,8 @@ u8 duree_SCROLLING = 0;
 //                                                      //
 //******************************************************//
 
-bool titre_OK = 0;
-u8 phase_TITRE = 0;
+bool titre_OK = 0;                      //  init -->  init_VARIABLES_GENERALES()
+u8 phase_TITRE = 0;                     //  init -->  init_VARIABLES_GENERALES()
 
 
 //******************************************************//
@@ -120,10 +125,13 @@ u8 nb_ENERGIE = 5;
 //******************************************************//
 
 bool niveau_OK = 0;
-u8 num_NIVEAU = 1;
+u8 num_NIVEAU = 0;
 
 u32 pos_X_CAM = 0;
 u32 pos_Y_CAM = 0;
+
+u32 pos_X_CAM_NIVEAU = 0;
+u32 pos_Y_CAM_NIVEAU = 0;
 
 u32 pos_X_ENTREE = 0;
 u32 pos_Y_ENTREE = 0;
@@ -137,6 +145,9 @@ u16 adr_VRAM_BG_B = 0;
 Map *map_NIVEAU_BG_A;
 Map *map_NIVEAU_BG_B;
 Map *map_COLLISION;
+
+u8 id_ENTREE = 0;
+u16 offset_TABLES_ENTREES = 0;          //  init -->  init_VARIABLES_GENERALES()
 
 bool spr_ENTREE_OK = 0;
 

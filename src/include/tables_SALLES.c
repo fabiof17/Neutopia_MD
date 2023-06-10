@@ -7,7 +7,7 @@
 #include "maps_NIVEAUX.h"
 #include "maps_ENTREES.h"
 #include "maps_SALLES.h"
-//#include "maps_DONJONS.h"
+#include "maps_DONJONS.h"
 
 
 //******************************************************//
@@ -16,9 +16,15 @@
 //                                                      //
 //******************************************************//
 
-const u16					TABLE_OFFSET_SALLES[4]					=	{0,43,NULL,NULL};
+// OFFSET POUR LIRE LES TABLEAUX SUIVANTS
+// NIVEAU 1 : 43 ENTREES
+// NIVEAU 2 :
+// NIVEAU 3 : 
+const u16					TABLE_OFFSET_ENTREES[4]					=	{0,43,NULL,NULL};
 
-const TileSet				*TABLE_TILESET_SALLES[43]				=	{ &tileset_SALLE_1 , NULL , &tileset_SALLE_2 , &tileset_SALLE_3 , &tileset_SALLE_4 , &tileset_SALLE_2 , &tileset_SALLE_5 ,
+
+// TILESET DES SALLES + DONJONS
+const TileSet				*TABLE_TILESET_ENTREES[43]				=	{ &tileset_SALLE_1 , NULL , &tileset_SALLE_2 , &tileset_SALLE_3 , &tileset_SALLE_4 , &tileset_SALLE_2 , &tileset_SALLE_5 ,
 																		  &tileset_SALLE_6 , &tileset_SALLE_7 , &tileset_SALLE_8 , &tileset_SALLE_7 , &tileset_SALLE_2 , &tileset_SALLE_7 ,
 																		  &tileset_SALLE_7 , &tileset_SALLE_5 , NULL , &tileset_SALLE_2 , &tileset_SALLE_5 , &tileset_SALLE_7 , NULL ,
 																		  &tileset_SALLE_2 , &tileset_SALLE_2 , &tileset_SALLE_6 ,
@@ -28,7 +34,9 @@ const TileSet				*TABLE_TILESET_SALLES[43]				=	{ &tileset_SALLE_1 , NULL , &til
 																		  &tileset_SALLE_4 , &tileset_SALLE_2 , &tileset_SALLE_7 , &tileset_SALLE_7 , NULL
 																		};
 
-const MapDefinition			*TABLE_MAPDEF_SALLES[43]				=	{ &map_SALLE_1 , NULL , &map_SALLE_2 , &map_SALLE_3 , &map_SALLE_4 , &map_SALLE_2 , &map_SALLE_5 ,
+
+// MAP DES SALLES + DONJONS
+const MapDefinition			*TABLE_MAPDEF_ENTREES[43]				=	{ &map_SALLE_1 , NULL , &map_SALLE_2 , &map_SALLE_3 , &map_SALLE_4 , &map_SALLE_2 , &map_SALLE_5 ,
 																		  &map_SALLE_6 , &map_SALLE_7 , &map_SALLE_8 , &map_SALLE_7 , &map_SALLE_2 , &map_SALLE_7 ,
 																		  &map_SALLE_7 , &map_SALLE_5 , NULL , &map_SALLE_2 , &map_SALLE_5 , &map_SALLE_7 , NULL ,
 																		  &map_SALLE_2 , &map_SALLE_2 , &map_SALLE_6 ,
@@ -38,7 +46,9 @@ const MapDefinition			*TABLE_MAPDEF_SALLES[43]				=	{ &map_SALLE_1 , NULL , &map
 																		  &map_SALLE_4 , &map_SALLE_2 , &map_SALLE_7 , &map_SALLE_7 , NULL
 																		};
 
-const Palette				*TABLE_ADR_PAL_SALLES[43]				=	{ &palette_SALLE_1,NULL,&palette_SALLE_2,&palette_SALLE_3,&palette_SALLE_4,&palette_SALLE_2,&palette_SALLE_5,
+
+// PALETTES DES SALLES + DONJONS
+const Palette				*TABLE_ADR_PAL_ENTREES[43]				=	{ &palette_SALLE_1,NULL,&palette_SALLE_2,&palette_SALLE_3,&palette_SALLE_4,&palette_SALLE_2,&palette_SALLE_5,
 																		  &palette_SALLE_6,&palette_SALLE_7,&palette_SALLE_8,&palette_SALLE_7,&palette_SALLE_2,&palette_SALLE_7,
 																		  &palette_SALLE_7,&palette_SALLE_5,NULL,&palette_SALLE_2,&palette_SALLE_5,&palette_SALLE_7,NULL,
 																		  &palette_SALLE_2,&palette_SALLE_2,&palette_SALLE_6,
