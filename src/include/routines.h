@@ -41,7 +41,7 @@ extern void scrolling_ECRAN();
 
 extern void sortie_SCROLLING();
 
-extern void entree_CAVE();
+extern void entree_ENTREE();
 
 extern void manette_JOUEUR();
 

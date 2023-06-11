@@ -177,7 +177,7 @@ extern Map *map_COLLISION;
 extern u8 id_ENTREE;
 extern u16 offset_TABLES_ENTREES;
 
-extern bool spr_ENTREE_OK;
+//extern bool spr_ENTREE_OK;
 
 //extern u8 z_ORDER;
 

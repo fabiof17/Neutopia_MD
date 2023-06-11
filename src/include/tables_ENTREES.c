@@ -38,20 +38,20 @@ const u8					TABLE_ID_ENTREES_NIVEAU1[43]		=	{ 0,1,0,0,0,2,0,
 // POSITION (EN PIXELS) DES SPRITES DES ENTREES
 // QUI VIENNENT PAR-DESSUS LE JOUEUR
 // LORSQU'IL RENTRE OU SORT D'UNE ENTREE
-const u8					TABLE_POS_ENTREES_NIVEAU1[43][2]	=	{ {NULL,NULL},
+const u8					TABLE_POS_ENTREES_NIVEAU1[43][2]	=	{ {192,128},
 																	  {120,120},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {112,64},
-																	  {NULL,NULL},
+																	  {112,120},
+																	  {160,160},
+																	  {64,112},
+																	  {104,56},
+																	  {80,128},
 
 																	  {56,24},
-																	  {120,120},
 																	  {120,24},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {112,64},
+																	  {48,40},
+																	  {40,24},
+																	  {128,120},
+																	  {136,56},
 
 																	  {NULL,NULL},
 																	  {NULL,NULL},
@@ -104,7 +104,7 @@ const SpriteDefinition		*TABLE_ADR_SPR_ENTREES_NIVEAU1[43]	=	{ NULL , &tiles_SPR
 // PALETTES DES SPRITES DES ENTREES
 // UTILISENT LA TABLE /
 // TABLE_ID_ENTREES_NIVEAU1[43]
-const u8					TABLE_PAL_SPRITES_ENTREES[4]		=	{ NULL,PAL2,PAL1,PAL2};
+const u8					TABLE_PAL_SPRITES_ENTREES[4]		=	{ PAL1,PAL2,PAL1,PAL2};
 
 /*
 const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };

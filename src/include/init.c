@@ -194,7 +194,7 @@ void init_VARIABLES_GENERALES()
 	adr_VRAM_BG_B = 0;
 
 	pos_X_ENTREE = -32;
-	pos_Y_ENTREE = -40;
+	pos_Y_ENTREE = -48;
 
 
 	//******************************************************//
@@ -577,6 +577,7 @@ void init_JOUEUR()
 void init_SPRITE_ENTREE()
 {
 	sprite_ENTREE = SPR_addSprite(&tiles_SPR_SANCTUAIRE, pos_X_ENTREE, pos_Y_ENTREE, TILE_ATTR(PAL2, FALSE, FALSE, FALSE));
+	//spr_ENTREE_OK = 1;
 }
 
 

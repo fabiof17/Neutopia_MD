@@ -139,7 +139,7 @@ void afficher_MENU(u8 type)
 	
 
 
-	SYS_doVBlankProcess();
+	//SYS_doVBlankProcess();
 }
 
 
@@ -185,6 +185,8 @@ void maj_PALETTES( u8 index , u8 type )
 }
 
 
+
+
 void maj_PT_COLL_DECOR()
 {
 	JOUEUR.pt1_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 4;
@@ -216,6 +218,8 @@ void maj_SPRITE_ENTREE()
 		}
 	}
 }
+
+
 
 
 void scrolling_ECRAN()
@@ -292,14 +296,17 @@ void sortie_SCROLLING()
 			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
-			etat_JOUEUR = MARCHE;			
+			etat_JOUEUR = MARCHE;
+			return;			
 		}
 
 		else
 		{
 			afficher_MENU(type_DECOR);
 			maj_PT_COLL_DECOR();
+			etat_JOUEUR = MARCHE;
 			etat_JEU = 0;
+			return;	
 		}
 	}
 
@@ -319,14 +326,17 @@ void sortie_SCROLLING()
 			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
-			etat_JOUEUR = MARCHE;			
+			etat_JOUEUR = MARCHE;
+			return;				
 		}
 
 		else
 		{
 			afficher_MENU(type_DECOR);
 			maj_PT_COLL_DECOR();
+			etat_JOUEUR = MARCHE;
 			etat_JEU = 0;
+			return;	
 		}
 	}
 
@@ -346,14 +356,17 @@ void sortie_SCROLLING()
 			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
-			etat_JOUEUR = MARCHE;			
+			etat_JOUEUR = MARCHE;
+			return;				
 		}
 
 		else
 		{
 			afficher_MENU(type_DECOR);
 			maj_PT_COLL_DECOR();
+			etat_JOUEUR = MARCHE;
 			etat_JEU = 0;
+			return;	
 		}
 	}
 
@@ -373,24 +386,46 @@ void sortie_SCROLLING()
 			SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
-			etat_JOUEUR = MARCHE;			
+			etat_JOUEUR = MARCHE;
+			return;				
 		}
 
 		else
 		{
 			afficher_MENU(type_DECOR);
 			maj_PT_COLL_DECOR();
+			etat_JOUEUR = MARCHE;
 			etat_JEU = 0;
+			return;	
 		}
 	}
 
 }
 
 
-void entree_CAVE()
+
+
+void entree_ENTREE()
 {
-	//
+	if(id_ENTREE == 0)
+	{
+		PAL_fadeOutAll(14,FALSE);
+	}
+
+	else
+	{
+		PAL_fadeOutAll(14,FALSE);
+		/*
+		if(PAL_isDoingFade() == TRUE)
+		{
+			JOUEUR.pos_Y_JOUEUR -= 1;
+			SPR_setPosition(JOUEUR.sprite_JOUEUR,JOUEUR.pos_X_JOUEUR,JOUEUR.pos_Y_JOUEUR);
+		}
+		*/
+	}
 }
+
+
 
 
 void manette_JOUEUR()

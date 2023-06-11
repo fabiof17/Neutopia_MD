@@ -173,6 +173,7 @@ int main(bool resetType)
                         else if(etat_JEU == 3)
                         {
                             JOY_setEventHandler(desactiver_Callback);
+                            entree_ENTREE();
                         }  
 
                         // SORTIE CAVE - DONJON - NIVEAU //
@@ -181,7 +182,7 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
-                        VDP_drawInt( id_TILE3 , 3 , 0 , 0 );
+                        VDP_drawInt( etat_JOUEUR , 3 , 0 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();

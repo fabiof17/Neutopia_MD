@@ -149,7 +149,7 @@ Map *map_COLLISION;
 u8 id_ENTREE = 0;
 u16 offset_TABLES_ENTREES = 0;          //  init -->  init_VARIABLES_GENERALES()
 
-bool spr_ENTREE_OK = 0;
+//bool spr_ENTREE_OK = 0;
 
 
 
