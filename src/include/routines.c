@@ -304,6 +304,7 @@ void sortie_SCROLLING()
 		{
 			afficher_MENU(type_DECOR);
 			maj_PT_COLL_DECOR();
+
 			etat_JOUEUR = MARCHE;
 			etat_JEU = 0;
 			return;	
@@ -334,6 +335,7 @@ void sortie_SCROLLING()
 		{
 			afficher_MENU(type_DECOR);
 			maj_PT_COLL_DECOR();
+
 			etat_JOUEUR = MARCHE;
 			etat_JEU = 0;
 			return;	
@@ -364,6 +366,7 @@ void sortie_SCROLLING()
 		{
 			afficher_MENU(type_DECOR);
 			maj_PT_COLL_DECOR();
+
 			etat_JOUEUR = MARCHE;
 			etat_JEU = 0;
 			return;	
@@ -394,6 +397,7 @@ void sortie_SCROLLING()
 		{
 			afficher_MENU(type_DECOR);
 			maj_PT_COLL_DECOR();
+			
 			etat_JOUEUR = MARCHE;
 			etat_JEU = 0;
 			return;	
