@@ -411,21 +411,33 @@ void sortie_SCROLLING()
 
 void entree_ENTREE()
 {
+	// ESCALIER
 	if(id_ENTREE == 0)
 	{
 		PAL_fadeOutAll(14,FALSE);
 	}
 
+	// CAVE OU DONJON
 	else
 	{
-		PAL_fadeOutAll(14,FALSE);
-		/*
+		if(PAL_isDoingFade() == FALSE)
+		{
+			PAL_fadeOutAll(14,TRUE);
+		}
+		
 		if(PAL_isDoingFade() == TRUE)
 		{
+			if(JOUEUR.pos_Y_JOUEUR == pos_Y_ENTREE )
+			{
+				// init SALLE OU DONJON
+			}
+			
 			JOUEUR.pos_Y_JOUEUR -= 1;
 			SPR_setPosition(JOUEUR.sprite_JOUEUR,JOUEUR.pos_X_JOUEUR,JOUEUR.pos_Y_JOUEUR);
 		}
-		*/
+
+		//PAL_waitFadeCompletion();
+		
 	}
 }
 

@@ -15,7 +15,7 @@
 #define DUREE_SCROLL_H          63
 #define DUREE_SCROLL_V          45
 
-
+extern bool toto;
 //******************************************************//
 //                                                      //
 //                       CONSTANTES                     //

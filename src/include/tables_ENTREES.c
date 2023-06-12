@@ -106,6 +106,18 @@ const SpriteDefinition		*TABLE_ADR_SPR_ENTREES_NIVEAU1[43]	=	{ NULL , &tiles_SPR
 // TABLE_ID_ENTREES_NIVEAU1[43]
 const u8					TABLE_PAL_SPRITES_ENTREES[4]		=	{ PAL1,PAL2,PAL1,PAL2};
 
+// DECLENCHEMENT DE L'OUVERTURE DES ENTREES CACHEES
+// NULL = AUCUNE OUVERTURE A DECLENCHER
+// 0 = OUVERTURE NON DECLENCHEE
+bool				TABLE_CONDITION_ENTREES_NIVEUA1[8][8]		=	{ {0 , NULL , NULL , 0 , NULL , NULL , NULL , 0 },
+																	  {NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL},
+																	  {NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL},
+																	  {NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL},
+																	  {NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL},
+																	  {NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL},
+																	  {NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL},
+																	  {NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL}
+																	};
 /*
 const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };
 */

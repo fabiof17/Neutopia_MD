@@ -182,7 +182,7 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
-                        //VDP_drawInt( etat_JOUEUR , 3 , 0 , 0 );
+                        VDP_drawInt( etat_JEU , 3 , 0 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();
