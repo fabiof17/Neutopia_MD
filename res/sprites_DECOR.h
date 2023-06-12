@@ -7,7 +7,8 @@ extern const SpriteDefinition tiles_SPR_ROCHER;
 extern const SpriteDefinition tiles_SPR_STATUE;
 extern const SpriteDefinition tiles_SPR_ESCALIER_NIVEAU1;
 extern const SpriteDefinition tiles_SPR_DONJON_NIVEAU1;
-extern const SpriteDefinition tiles_SPR_CAVE_NIVEAU1;
+extern const SpriteDefinition tiles_SPR_CAVE1_NIVEAU1;
+extern const SpriteDefinition tiles_SPR_CAVE2_NIVEAU1;
 extern const SpriteDefinition tiles_SPR_CAVERNE_NIVEAU1;
 extern const SpriteDefinition tiles_SPR_SANCTUAIRE;
 

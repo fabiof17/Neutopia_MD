@@ -53,17 +53,17 @@ const u8					TABLE_POS_ENTREES_NIVEAU1[43][2]	=	{ {192,128},
 																	  {128,120},
 																	  {136,56},
 
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
+																	  {88,16},
+																	  {152,16},
+																	  {80,144},
+																	  {120,16},
+																	  {40,16},
+																	  {80,128},
+																	  {112,104},
 
-																	  {NULL,NULL},
-																	  {NULL,NULL},
-																	  {NULL,NULL},
+																	  {8,40},
+																	  {128,168},
+																	  {200,16},
 
 																	  {120,88},
 																	  {168,40},
@@ -91,14 +91,14 @@ const u8					TABLE_POS_ENTREES_NIVEAU1[43][2]	=	{ {192,128},
 																	};
 
 // TILES DES SPRITES DES ENTREES
-const SpriteDefinition		*TABLE_ADR_SPR_ENTREES_NIVEAU1[43]	=	{ NULL , &tiles_SPR_DONJON_NIVEAU1 , NULL , NULL , NULL , &tiles_SPR_CAVE_NIVEAU1 , NULL , 
-																	  &tiles_SPR_CAVE_NIVEAU1 , &tiles_SPR_CAVE_NIVEAU1 , &tiles_SPR_CAVE_NIVEAU1 , &tiles_SPR_CAVE_NIVEAU1 , NULL , &tiles_SPR_CAVE_NIVEAU1 ,
-																	  &tiles_SPR_CAVE_NIVEAU1 , &tiles_SPR_CAVE_NIVEAU1 , NULL , &tiles_SPR_CAVE_NIVEAU1 , &tiles_SPR_CAVE_NIVEAU1 , NULL , &tiles_SPR_DONJON_NIVEAU1 ,
-																	  &tiles_SPR_CAVE_NIVEAU1 , NULL , &tiles_SPR_CAVE_NIVEAU1 ,
-																	  &tiles_SPR_CAVERNE_NIVEAU1 , &tiles_SPR_CAVE_NIVEAU1 , NULL ,
+const SpriteDefinition		*TABLE_ADR_SPR_ENTREES_NIVEAU1[43]	=	{ NULL , &tiles_SPR_DONJON_NIVEAU1 , NULL , NULL , NULL , &tiles_SPR_CAVE1_NIVEAU1 , NULL , 
+																	  &tiles_SPR_CAVE1_NIVEAU1 , &tiles_SPR_CAVE1_NIVEAU1 , &tiles_SPR_CAVE1_NIVEAU1 , &tiles_SPR_CAVE1_NIVEAU1 , NULL , &tiles_SPR_CAVE1_NIVEAU1 ,
+																	  &tiles_SPR_CAVE1_NIVEAU1 , &tiles_SPR_CAVE1_NIVEAU1 , NULL , &tiles_SPR_CAVE1_NIVEAU1 , &tiles_SPR_CAVE1_NIVEAU1 , NULL , &tiles_SPR_DONJON_NIVEAU1 ,
+																	  &tiles_SPR_CAVE2_NIVEAU1 , NULL , &tiles_SPR_CAVE1_NIVEAU1 ,
+																	  &tiles_SPR_CAVERNE_NIVEAU1 , &tiles_SPR_CAVE2_NIVEAU1 , NULL ,
 																	  NULL , NULL , NULL , NULL , NULL , NULL ,
 																	  NULL , NULL , &tiles_SPR_SANCTUAIRE , NULL , NULL , NULL ,
-																	  &tiles_SPR_CAVE_NIVEAU1 , &tiles_SPR_CAVE_NIVEAU1 , NULL , &tiles_SPR_CAVE_NIVEAU1 , NULL
+																	  &tiles_SPR_CAVE2_NIVEAU1 , &tiles_SPR_CAVE2_NIVEAU1 , NULL , &tiles_SPR_CAVE2_NIVEAU1 , NULL
 																	};
 
 // PALETTES DES SPRITES DES ENTREES
