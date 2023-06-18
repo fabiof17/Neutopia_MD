@@ -86,6 +86,36 @@ extern struct_JOUEUR_ JOUEUR;
 
 
 
+//******************************************************//
+//                                                      //
+//                   STRUCTURE ENTREE                   //
+//                                                      //
+//******************************************************//
+
+typedef struct
+{
+	const u8				type;			// 0 = ESCALIER  |  1 = DONJON  |  2 = CAVE  |  3 = ENTREE SURFACE
+
+	const u8				pos_X;			// EN TILES
+	const u8				pos_Y;			// EN TILES
+
+	const u16				h;
+	const u16				w;
+
+	const TileMap			*adr_TILES;     // adresse de la structure IMAGE
+	const u8				pal;
+	VDPPlane				bg;
+	bool					priorite;
+
+	bool					secret;			// 0 = ENTREE NORMALE  |  1 = ENTREE SECRETE
+	bool					condition;		// 0 = TUER ENNEMIS  |  1 = POUSSER ROCHER
+
+} struct_ENTREE_;
+
+
+
+
+
 
 
 

@@ -1,7 +1,6 @@
 #include <genesis.h>
 
 #include "variables.h"
-#include "structures.h"
 
 #include "tables_DONJONS.h"
 #include "tables_ENTREES.h"
@@ -427,7 +426,7 @@ void entree_ENTREE()
 		
 		if(PAL_isDoingFade() == TRUE)
 		{
-			if(JOUEUR.pos_Y_JOUEUR == pos_Y_ENTREE )
+			if(JOUEUR.pos_Y_JOUEUR == (s16)pos_Y_ENTREE )
 			{
 				// init SALLE OU DONJON
 			}
@@ -637,8 +636,6 @@ void manette_JOUEUR()
 					id_ENTREE = TABLE_ID_ENTREES_NIVEAU1[id_TILE3];
 
 					maj_SPRITE_ENTREE();
-					//SPR_setDepth(JOUEUR.sprite_JOUEUR,10);
-					//SPR_setDepth(sprite_ENTREE,8);
 
 
 					// TYPE DE DECOR

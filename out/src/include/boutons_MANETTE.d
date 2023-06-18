@@ -13,5 +13,6 @@ out/src/include/boutons_MANETTE.o: src/include/boutons_MANETTE.c \
  C:/sgdk/inc/joy.h C:/sgdk/inc/timer.h C:/sgdk/inc/task.h \
  C:/sgdk/inc/task_cst.h src/include/variables.h \
  src/include/tables_DONJONS.h src/include/tables_ENTREES.h \
- src/include/tables_MENU.h src/include/tables_NIVEAUX.h \
- src/include/tables_SALLES.h src/include/sprites_JEU.h res/maps_MENU.h
+ src/include/structures.h src/include/tables_MENU.h \
+ src/include/tables_NIVEAUX.h src/include/tables_SALLES.h \
+ src/include/sprites_JEU.h res/maps_MENU.h

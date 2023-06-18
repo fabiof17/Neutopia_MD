@@ -11,6 +11,7 @@ SPRITE tiles_SPR_ESCALIER_NIVEAU1           "sprites/niveau1/tiles_SPR_ESCALIER_
 SPRITE tiles_SPR_DONJON_NIVEAU1             "sprites/niveau1/tiles_SPR_DONJON_NIVEAU1.png"          4 6 NONE 0 NONE NONE
 SPRITE tiles_SPR_CAVE1_NIVEAU1              "sprites/niveau1/tiles_SPR_CAVE1_NIVEAU1.png"           4 6 NONE 0 NONE NONE
 SPRITE tiles_SPR_CAVE2_NIVEAU1              "sprites/niveau1/tiles_SPR_CAVE2_NIVEAU1.png"           4 6 NONE 0 NONE NONE
+SPRITE tiles_SPR_CAVE3_NIVEAU1              "sprites/niveau1/tiles_SPR_CAVE2_NIVEAU1.png"           4 6 NONE 0 NONE NONE
 SPRITE tiles_SPR_CAVERNE_NIVEAU1            "sprites/niveau1/tiles_SPR_CAVERNE_NIVEAU1.png"         4 6 NONE 0 NONE NONE
 SPRITE tiles_SPR_SANCTUAIRE                 "sprites/niveau1/tiles_SPR_SANCTUAIRE.png"              4 6 NONE 0 NONE NONE
 
