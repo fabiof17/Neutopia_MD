@@ -209,7 +209,7 @@ void afficher_ENTREE()
 	if(num_NIVEAU == 0)
 	{
 		VDP_loadTileSet(TABLE_ENTREES_NIVEAU1[id_TILE3].adr_Image->tileset, adr_VRAM_ENTREE, DMA);
-		VDP_drawImageEx( TABLE_ENTREES_NIVEAU1[id_TILE3].bg , TABLE_ENTREES_NIVEAU1[id_TILE3].adr_Image , TILE_ATTR_FULL(TABLE_ENTREES_NIVEAU1[id_TILE3].pal, TRUE, FALSE, FALSE, adr_VRAM_ENTREE) , TABLE_ENTREES_NIVEAU1[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , TABLE_ENTREES_NIVEAU1[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
+		VDP_drawImageEx( TABLE_ENTREES_NIVEAU1[id_TILE3].bg , TABLE_ENTREES_NIVEAU1[id_TILE3].adr_Image , TILE_ATTR_FULL(TABLE_ENTREES_NIVEAU1[id_TILE3].pal, TABLE_ENTREES_NIVEAU1[id_TILE3].priorite, FALSE, FALSE, adr_VRAM_ENTREE) , TABLE_ENTREES_NIVEAU1[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , TABLE_ENTREES_NIVEAU1[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
 		//VDP_setTileMapEx(TABLE_ENTREES_NIVEAU1[id_TILE3].bg, TABLE_ENTREES_NIVEAU1[id_TILE3].adr_Image->tilemap, TILE_ATTR_FULL(TABLE_ENTREES_NIVEAU1[id_TILE3].pal, TRUE, FALSE, FALSE, adr_VRAM_ENTREE), TABLE_ENTREES_NIVEAU1[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , TABLE_ENTREES_NIVEAU1[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , 0 , 0 , TABLE_ENTREES_NIVEAU1[id_TILE3].w, TABLE_ENTREES_NIVEAU1[id_TILE3].h, CPU);
 	}
 
@@ -507,8 +507,9 @@ void entree_ENTREE()
 		
 		if(PAL_isDoingFade() == TRUE)
 		{
-			if(JOUEUR.pos_Y_JOUEUR == (s16)pos_Y_ENTREE )
+			if(JOUEUR.pos_Y_JOUEUR == (TABLE_ENTREES_NIVEAU1[id_TILE3].pos_Y<<3) )
 			{
+				// effacer_NIVEAU();
 				// init SALLE OU DONJON
 			}
 			
@@ -589,25 +590,54 @@ void manette_JOUEUR()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					// TYPE D'ENTREE
-					// 0 = ESCALIER
-					// 1 = DONJON
-					// 2 = PORTE
-					id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+					if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 1)
+					{
+						if(entree_SECRET_OK == 1)
+						{
+							// TYPE D'ENTREE
+							// 0 = ESCALIER
+							// 1 = DONJON
+							// 2 = PORTE
+							id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
 
-					num_ENTREE = id_TILE3;
+							num_ENTREE = id_TILE3;
 
-					afficher_ENTREE();
+							afficher_ENTREE();
 
-					// TYPE DE DECOR
-					// 0 = NIVEAU
-					// 1 = SALLE OU DONJON
-					type_DECOR = 1;
+							// TYPE DE DECOR
+							// 0 = NIVEAU
+							// 1 = SALLE OU DONJON
+							type_DECOR = 1;
 
-					// SEQUENCE ENTREE CAVE
-					etat_JEU = 3;
-					//
-					return;
+							// SEQUENCE ENTREE CAVE
+							etat_JEU = 3;
+							//
+							return;
+						}
+					}
+
+					else
+					{
+						// TYPE D'ENTREE
+						// 0 = ESCALIER
+						// 1 = DONJON
+						// 2 = PORTE
+						id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+
+						num_ENTREE = id_TILE3;
+
+						afficher_ENTREE();
+
+						// TYPE DE DECOR
+						// 0 = NIVEAU
+						// 1 = SALLE OU DONJON
+						type_DECOR = 1;
+
+						// SEQUENCE ENTREE CAVE
+						etat_JEU = 3;
+						//
+						return;						
+					}
 				}
 			}
 			
@@ -700,8 +730,8 @@ void manette_JOUEUR()
 			//                                                      //
 			//******************************************************//	
 			
-			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR-1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
-			id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR-1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
+			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
+			id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 
 			//////////////////////////////////////////////////////////
@@ -712,26 +742,54 @@ void manette_JOUEUR()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					// TYPE D'ENTREE
-					// 1 = ESCALIER
-					// 2 = DONJON
-					// 3 = PORTE
-					id_ENTREE = TABLE_ID_ENTREES_NIVEAU1[id_TILE3];
+					if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 1)
+					{
+						if(entree_SECRET_OK == 1)
+						{
+							// TYPE D'ENTREE
+							// 0 = ESCALIER
+							// 1 = DONJON
+							// 2 = PORTE
+							id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
 
-					num_ENTREE = id_TILE3;
+							num_ENTREE = id_TILE3;
 
-					afficher_ENTREE();
+							afficher_ENTREE();
 
+							// TYPE DE DECOR
+							// 0 = NIVEAU
+							// 1 = SALLE OU DONJON
+							type_DECOR = 1;
 
-					// TYPE DE DECOR
-					// 0 = NIVEAU
-					// 1 = SALLE OU DONJON
-					type_DECOR = 1;
+							// SEQUENCE ENTREE CAVE
+							etat_JEU = 3;
+							//
+							return;
+						}
+					}
 
-					// SEQUENCE ENTREE CAVE
-					etat_JEU = 3;
-					//
-					return;
+					else
+					{
+						// TYPE D'ENTREE
+						// 0 = ESCALIER
+						// 1 = DONJON
+						// 2 = PORTE
+						id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+
+						num_ENTREE = id_TILE3;
+
+						afficher_ENTREE();
+
+						// TYPE DE DECOR
+						// 0 = NIVEAU
+						// 1 = SALLE OU DONJON
+						type_DECOR = 1;
+
+						// SEQUENCE ENTREE CAVE
+						etat_JEU = 3;
+						//
+						return;						
+					}
 				}
 			}
 			
@@ -745,32 +803,49 @@ void manette_JOUEUR()
 
 			id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
-			// TOUCHE MUR //
-			if(id_TILE1 == 44)
+
+			// TOUCHE MUR
+			// TOUCHE ENTREE SECRETE PAS DECOUVERTE
+			// TOUCHE PAS ESCALIER
+			if(id_TILE1 == 44 || (TABLE_ENTREES_NIVEAU1[id_TILE1].secret == 1 && entree_SECRET_OK == 0 && TABLE_ENTREES_NIVEAU1[id_TILE1].id != 0 ) ) 
 			{
+				
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
-				// TOUCHE VIDE //
-				if(id_TILE2 != 44)
+
+				// TOUCHE VIDE
+				// TOUCHE ENTREE SECRETE DECOUVERTE
+				// TOUCHE ENTREE PAS SECRETE
+				// TOUCHE ESCALIER
+				if(id_TILE2 == 43 || (TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 0 || TABLE_ENTREES_NIVEAU1[id_TILE2].id == 0 )
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
 					axe_JOUEUR = DROITE;
 				}
 			}
 
-			// TOUCHE VIDE //
-			else if(id_TILE1 != 44)
+			// TOUCHE VIDE
+			// TOUCHE ENTREE SECRETE DECOUVERTE
+			// TOUCHE ENTREE PAS SECRETE
+			// TOUCHE ESCALIER
+			if(id_TILE1 == 43 || (TABLE_ENTREES_NIVEAU1[id_TILE1].secret == 1 && entree_SECRET_OK == 1) || TABLE_ENTREES_NIVEAU1[id_TILE1].secret == 0 || TABLE_ENTREES_NIVEAU1[id_TILE1].id == 0 )
 			{
+				
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
-				// TOUCHE MUR //
-				if(id_TILE2 == 44)
+
+				// TOUCHE MUR
+				// TOUCHE ENTREE SECRETE PAS DECOUVERTE
+				// TOUCHE PAS ESCALIER
+				if(id_TILE2 == 44 || (TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 1 && entree_SECRET_OK == 0 && TABLE_ENTREES_NIVEAU1[id_TILE1].id != 0 ) )
 				{
 					JOUEUR.pos_X_JOUEUR -= 1;
 					axe_JOUEUR = GAUCHE;
 				}
 
+
 				// TOUCHE VIDE //
+				//else if(id_TILE2 == 43 || (TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 0 || TABLE_ENTREES_NIVEAU1[id_TILE2].id == 0)
 				else
 				{
 					JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
@@ -839,25 +914,54 @@ void manette_JOUEUR()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					// TYPE D'ENTREE
-					// 1 = ESCALIER
-					// 2 = DONJON
-					// 3 = PORTE
-					id_ENTREE = TABLE_ID_ENTREES_NIVEAU1[id_TILE3];
+					if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 1)
+					{
+						if(entree_SECRET_OK == 1)
+						{
+							// TYPE D'ENTREE
+							// 0 = ESCALIER
+							// 1 = DONJON
+							// 2 = PORTE
+							id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
 
-					num_ENTREE = id_TILE3;
+							num_ENTREE = id_TILE3;
 
-					afficher_ENTREE();
+							afficher_ENTREE();
 
-					// TYPE DE DECOR
-					// 0 = NIVEAU
-					// 1 = SALLE OU DONJON
-					type_DECOR = 1;
+							// TYPE DE DECOR
+							// 0 = NIVEAU
+							// 1 = SALLE OU DONJON
+							type_DECOR = 1;
 
-					// SEQUENCE ENTREE CAVE
-					etat_JEU = 3;
-					//
-					return;
+							// SEQUENCE ENTREE CAVE
+							etat_JEU = 3;
+							//
+							return;
+						}
+					}
+
+					else
+					{
+						// TYPE D'ENTREE
+						// 0 = ESCALIER
+						// 1 = DONJON
+						// 2 = PORTE
+						id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+
+						num_ENTREE = id_TILE3;
+
+						afficher_ENTREE();
+
+						// TYPE DE DECOR
+						// 0 = NIVEAU
+						// 1 = SALLE OU DONJON
+						type_DECOR = 1;
+
+						// SEQUENCE ENTREE CAVE
+						etat_JEU = 3;
+						//
+						return;						
+					}
 				}
 			}
 			
@@ -963,25 +1067,54 @@ void manette_JOUEUR()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					// TYPE D'ENTREE
-					// 1 = ESCALIER
-					// 2 = DONJON
-					// 3 = PORTE
-					id_ENTREE = TABLE_ID_ENTREES_NIVEAU1[id_TILE3];
+					if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 1)
+					{
+						if(entree_SECRET_OK == 1)
+						{
+							// TYPE D'ENTREE
+							// 0 = ESCALIER
+							// 1 = DONJON
+							// 2 = PORTE
+							id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
 
-					num_ENTREE = id_TILE3;
+							num_ENTREE = id_TILE3;
 
-					afficher_ENTREE();
+							afficher_ENTREE();
 
-					// TYPE DE DECOR
-					// 0 = NIVEAU
-					// 1 = SALLE OU DONJON
-					type_DECOR = 1;
+							// TYPE DE DECOR
+							// 0 = NIVEAU
+							// 1 = SALLE OU DONJON
+							type_DECOR = 1;
 
-					// SEQUENCE ENTREE CAVE
-					etat_JEU = 3;
-					//
-					return;
+							// SEQUENCE ENTREE CAVE
+							etat_JEU = 3;
+							//
+							return;
+						}
+					}
+
+					else
+					{
+						// TYPE D'ENTREE
+						// 0 = ESCALIER
+						// 1 = DONJON
+						// 2 = PORTE
+						id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+
+						num_ENTREE = id_TILE3;
+
+						afficher_ENTREE();
+
+						// TYPE DE DECOR
+						// 0 = NIVEAU
+						// 1 = SALLE OU DONJON
+						type_DECOR = 1;
+
+						// SEQUENCE ENTREE CAVE
+						etat_JEU = 3;
+						//
+						return;						
+					}
 				}
 			}
 			

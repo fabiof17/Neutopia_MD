@@ -182,8 +182,9 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
-                        VDP_drawInt( num_ENTREE , 3 , 0 , 0 );
-                        //SYS_showFrameLoad(TRUE);
+                        //VDP_drawInt( id_TILE1 , 2 , 0 , 0 );
+                        //VDP_drawInt( id_TILE2 , 2 , 6 , 0 );
+                        SYS_showFrameLoad(TRUE);
 
                         SPR_update();
                         SYS_doVBlankProcess();

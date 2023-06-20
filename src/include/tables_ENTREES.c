@@ -143,7 +143,7 @@ const TileMap				*TABLE_TILESET_ENTREES_NIVEAU1[43]	=	{ &tileset_SALLE_0_0,  };
 // SECRET : 0 = NON | 1 = OUI
 // CONDITION : 0 = TUER ENNEMIS | 1 = POUSSER ROCHER | 2 = POSER BOMBE/BRULER ARBRE
 const struct_ENTREE_			TABLE_ENTREES_NIVEAU1[43]	=	{	// 0 - 6
-																	{0, 24,16, &image_ESCALIER_NIVEAU1, PAL1,BG_B,FALSE, 1,0},
+																	{0, 24,15, &image_ESCALIER_NIVEAU1, PAL1,BG_B,FALSE, 1,0},
 																	{1, 15,15, &image_DONJON_NIVEAU1,   PAL2,BG_A,TRUE , 0,0},
 																	{0, 14,16, &image_ESCALIER_NIVEAU1, PAL1,BG_B,FALSE, 0,0},
 																	{0, 20,20, &image_ESCALIER_NIVEAU1, PAL1,BG_B,FALSE, 1,0},
@@ -170,13 +170,22 @@ const struct_ENTREE_			TABLE_ENTREES_NIVEAU1[43]	=	{	// 0 - 6
 
 																	// 20 - 22
 																	{2, 1 ,5 , &image_CAVE2_NIVEAU1,	PAL1,BG_B,TRUE , 1,2},
-																	{0, 19,21, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 1,2},
+																	{0, 19,21, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 0,0},
 																	{2, 23,4 , &image_CAVE1_NIVEAU1,	PAL1,BG_B,TRUE , 0,0},
 
 																	// 23 - 25
 																	{2, 15,11, &image_CAVERNE_NIVEAU1,	PAL2,BG_A,TRUE , 0,0},
 																	{2, 21,5 , &image_CAVE2_NIVEAU1,	PAL1,BG_B,TRUE , 0,0},
-																	{0, 10,18, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 1,2}
+																	{0, 10,18, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 1,2},
+
+																	// 7 - 12
+																	{0, 16,15, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 0,0},
+																	{0, 18,17, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 0,0},
+																	{0, 18,15, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 0,0},
+																	{0, 10,17, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 0,0},
+																	{0, 12,17, &image_ESCALIER_NIVEAU1, PAL1,BG_B,FALSE, 0,0},
+																	{0, 14,17, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 1,2}
+
 																	};
 
 
