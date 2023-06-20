@@ -170,8 +170,8 @@ const struct_ENTREE_			TABLE_ENTREES_NIVEAU1[43]	=	{	// 0 - 6
 
 																	// 20 - 22
 																	{2, 1 ,5 , &image_CAVE2_NIVEAU1,	PAL1,BG_B,TRUE , 1,2},
-																	{0, 19,21, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 0,0},
-																	{2, 23,4 , &image_CAVE1_NIVEAU1,	PAL1,BG_B,TRUE , 0,0},
+																	{0, 16,21, &image_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 0,0},
+																	{2, 25,3 , &image_CAVE1_NIVEAU1,	PAL1,BG_B,TRUE , 0,0},
 
 																	// 23 - 25
 																	{2, 15,11, &image_CAVERNE_NIVEAU1,	PAL2,BG_A,TRUE , 0,0},
