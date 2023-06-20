@@ -170,14 +170,17 @@ extern u8 index_Y_CARTE_NIVEAU;
 extern u16 adr_VRAM_BG_A;
 extern u16 adr_VRAM_BG_B;
 
+extern u16 adr_VRAM_ENTREE;
+
 extern Map *map_NIVEAU_BG_A;
 extern Map *map_NIVEAU_BG_B;
 extern Map *map_COLLISION;
 
 extern u8 id_ENTREE;
+extern u8 num_ENTREE;
 extern u16 offset_TABLES_ENTREES;
 
-//extern bool spr_ENTREE_OK;
+extern bool entree_SECRET_OK;
 
 //extern u8 z_ORDER;
 

@@ -573,13 +573,13 @@ void init_JOUEUR()
 
 }
 
-
+/*
 void init_SPRITE_ENTREE()
 {
 	sprite_ENTREE = SPR_addSprite(&tiles_SPR_SANCTUAIRE, pos_X_ENTREE, pos_Y_ENTREE, TILE_ATTR(PAL2, FALSE, FALSE, FALSE));
 	//spr_ENTREE_OK = 1;
 }
-
+*/
 
 
 
@@ -635,6 +635,7 @@ void init_DECOR( u8 index , u8 type )
 		//                  CREATION MAP BG_A                   //
 		//////////////////////////////////////////////////////////
 		map_NIVEAU_BG_A = MAP_create(TABLE_MAPDEF_NIVEAUX[1][index], BG_A, TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE, adr_VRAM_BG_A));
+		adr_VRAM_ENTREE = adr_VRAM_BG_A + TABLE_TILESET_NIVEAUX[1][index]->numTile;
 		SYS_doVBlankProcess();
 
 

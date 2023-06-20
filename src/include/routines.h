@@ -22,6 +22,8 @@ extern void boucle_TITRE();
 
 extern void afficher_MENU(u8 type);
 
+extern void collision_ENTREE();
+
 
 
 
@@ -35,7 +37,7 @@ extern void maj_PALETTES( u8 index , u8 type );
 
 extern void maj_PT_COLL_DECOR();
 
-extern void maj_SPRITE_ENTREE();
+extern void afficher_ENTREE();
 
 extern void scrolling_ECRAN();
 

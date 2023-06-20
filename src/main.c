@@ -107,7 +107,7 @@ int main(bool resetType)
 
                 init_MENU();
                 init_WINDOW();
-                init_SPRITE_ENTREE();
+                //init_SPRITE_ENTREE();
                 init_JOUEUR();
 
                 menu_OK = 1;
@@ -182,7 +182,7 @@ int main(bool resetType)
                             JOY_setEventHandler(desactiver_Callback);
                         }
 
-                        //VDP_drawInt( etat_JEU , 3 , 0 , 0 );
+                        VDP_drawInt( num_ENTREE , 3 , 0 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         SPR_update();
