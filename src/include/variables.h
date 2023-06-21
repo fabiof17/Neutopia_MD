@@ -12,10 +12,35 @@
 #define DROITE                  2
 #define GAUCHE                  3
 
+
+
 #define DUREE_SCROLL_H          63
 #define DUREE_SCROLL_V          45
 
-extern bool toto;
+
+
+
+#define NIVEAU                  0
+#define SCROLLING_NIVEAU        1
+#define SORTIE_SCROLLING_NIVEAU 2
+#define ENTREE_CAVE             3
+#define ENTREE_NIVEAU           4
+
+
+#define SALLE                   10
+#define SCROLLING_SALLE         11
+#define SORTIE_SCROLLING_SALLE  12
+#define SORTIE_SALLE            13
+
+
+#define DONJON                  20
+#define SCROLLING_DONJON        21
+#define SORTIE_SCROLLING_DONJON 22
+#define SORTIE_DONJON           23
+
+
+
+
 //******************************************************//
 //                                                      //
 //                       CONSTANTES                     //

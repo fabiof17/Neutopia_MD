@@ -114,10 +114,7 @@ typedef struct
 
 } struct_ENTREE_;
 
-
-
-
-
+extern const struct_ENTREE_ *ptr_TABLE_ENTREES;
 
 
 

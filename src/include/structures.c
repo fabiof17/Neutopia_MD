@@ -22,3 +22,7 @@ struct_JOUEUR_ JOUEUR;
 
 struct_ELEMENT_DECOR_ ELEMENT_DECOR;
 
+
+
+const struct_ENTREE_ *ptr_TABLE_ENTREES;
+

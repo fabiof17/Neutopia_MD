@@ -1,5 +1,6 @@
 #include <genesis.h>
 
+#include "structures.h"
 #include "variables.h"
 
 #include "tables_DONJONS.h"
@@ -208,9 +209,8 @@ void afficher_ENTREE()
 {
 	if(num_NIVEAU == 0)
 	{
-		VDP_loadTileSet(TABLE_ENTREES_NIVEAU1[id_TILE3].adr_Image->tileset, adr_VRAM_ENTREE, DMA);
-		VDP_drawImageEx( TABLE_ENTREES_NIVEAU1[id_TILE3].bg , TABLE_ENTREES_NIVEAU1[id_TILE3].adr_Image , TILE_ATTR_FULL(TABLE_ENTREES_NIVEAU1[id_TILE3].pal, TABLE_ENTREES_NIVEAU1[id_TILE3].priorite, FALSE, FALSE, adr_VRAM_ENTREE) , TABLE_ENTREES_NIVEAU1[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , TABLE_ENTREES_NIVEAU1[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
-		//VDP_setTileMapEx(TABLE_ENTREES_NIVEAU1[id_TILE3].bg, TABLE_ENTREES_NIVEAU1[id_TILE3].adr_Image->tilemap, TILE_ATTR_FULL(TABLE_ENTREES_NIVEAU1[id_TILE3].pal, TRUE, FALSE, FALSE, adr_VRAM_ENTREE), TABLE_ENTREES_NIVEAU1[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , TABLE_ENTREES_NIVEAU1[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , 0 , 0 , TABLE_ENTREES_NIVEAU1[id_TILE3].w, TABLE_ENTREES_NIVEAU1[id_TILE3].h, CPU);
+		VDP_loadTileSet(ptr_TABLE_ENTREES[id_TILE3].adr_Image->tileset, adr_VRAM_ENTREE, DMA);
+		VDP_drawImageEx( ptr_TABLE_ENTREES[id_TILE3].bg , ptr_TABLE_ENTREES[id_TILE3].adr_Image , TILE_ATTR_FULL(ptr_TABLE_ENTREES[id_TILE3].pal, ptr_TABLE_ENTREES[id_TILE3].priorite, FALSE, FALSE, adr_VRAM_ENTREE) , ptr_TABLE_ENTREES[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ptr_TABLE_ENTREES[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
 	}
 
 }
@@ -234,7 +234,7 @@ void collision_ENTREE()
 			// 1 = ESCALIER
 			// 2 = DONJON
 			// 3 = CAVE
-			id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+			id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 			// DONJON OU CAVE
 			if(id_ENTREE != 0)
@@ -256,7 +256,7 @@ void collision_ENTREE()
 			else
 			{
 				// PAS ENTREE SECRETE
-				if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 0)
+				if(ptr_TABLE_ENTREES[id_TILE3].secret == 0)
 				{
 					// TYPE DE DECOR
 					// 0 = NIVEAU
@@ -507,7 +507,7 @@ void entree_ENTREE()
 		
 		if(PAL_isDoingFade() == TRUE)
 		{
-			if(JOUEUR.pos_Y_JOUEUR == (TABLE_ENTREES_NIVEAU1[id_TILE3].pos_Y<<3) )
+			if(JOUEUR.pos_Y_JOUEUR == (ptr_TABLE_ENTREES[id_TILE3].pos_Y<<3) )
 			{
 				// effacer_NIVEAU();
 				// init SALLE OU DONJON
@@ -533,7 +533,7 @@ void manette_JOUEUR()
 	//                  SI PAS TIR OU TOUCHE                //
 	//////////////////////////////////////////////////////////
 	if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE)
-	{
+	{		
 		//******************************************************//
 		//                                                      //
 		//                        ARRET                         //
@@ -590,7 +590,8 @@ void manette_JOUEUR()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 1)
+					
+					if(ptr_TABLE_ENTREES[id_TILE3].secret == 1)
 					{
 						if(entree_SECRET_OK == 1)
 						{
@@ -598,7 +599,7 @@ void manette_JOUEUR()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 							num_ENTREE = id_TILE3;
 
@@ -622,7 +623,7 @@ void manette_JOUEUR()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 						num_ENTREE = id_TILE3;
 
@@ -742,7 +743,7 @@ void manette_JOUEUR()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 1)
+					if(ptr_TABLE_ENTREES[id_TILE3].secret == 1)
 					{
 						if(entree_SECRET_OK == 1)
 						{
@@ -750,7 +751,7 @@ void manette_JOUEUR()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 							num_ENTREE = id_TILE3;
 
@@ -774,7 +775,7 @@ void manette_JOUEUR()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 						num_ENTREE = id_TILE3;
 
@@ -807,7 +808,7 @@ void manette_JOUEUR()
 			// TOUCHE MUR
 			// TOUCHE ENTREE SECRETE PAS DECOUVERTE
 			// TOUCHE PAS ESCALIER
-			if(id_TILE1 == 44 || (TABLE_ENTREES_NIVEAU1[id_TILE1].secret == 1 && entree_SECRET_OK == 0 && TABLE_ENTREES_NIVEAU1[id_TILE1].id != 0 ) ) 
+			if(id_TILE1 == 44 || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE1].id != 0 ) ) 
 			{
 				
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
@@ -817,7 +818,7 @@ void manette_JOUEUR()
 				// TOUCHE ENTREE SECRETE DECOUVERTE
 				// TOUCHE ENTREE PAS SECRETE
 				// TOUCHE ESCALIER
-				if(id_TILE2 == 43 || (TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 0 || TABLE_ENTREES_NIVEAU1[id_TILE2].id == 0 )
+				if(id_TILE2 == 43 || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE2].secret == 0 || ptr_TABLE_ENTREES[id_TILE2].id == 0 )
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
 					axe_JOUEUR = DROITE;
@@ -828,7 +829,7 @@ void manette_JOUEUR()
 			// TOUCHE ENTREE SECRETE DECOUVERTE
 			// TOUCHE ENTREE PAS SECRETE
 			// TOUCHE ESCALIER
-			if(id_TILE1 == 43 || (TABLE_ENTREES_NIVEAU1[id_TILE1].secret == 1 && entree_SECRET_OK == 1) || TABLE_ENTREES_NIVEAU1[id_TILE1].secret == 0 || TABLE_ENTREES_NIVEAU1[id_TILE1].id == 0 )
+			if(id_TILE1 == 43 || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE1].secret == 0 || ptr_TABLE_ENTREES[id_TILE1].id == 0 )
 			{
 				
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
@@ -837,7 +838,7 @@ void manette_JOUEUR()
 				// TOUCHE MUR
 				// TOUCHE ENTREE SECRETE PAS DECOUVERTE
 				// TOUCHE PAS ESCALIER
-				if(id_TILE2 == 44 || (TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 1 && entree_SECRET_OK == 0 && TABLE_ENTREES_NIVEAU1[id_TILE1].id != 0 ) )
+				if(id_TILE2 == 44 || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE1].id != 0 ) )
 				{
 					JOUEUR.pos_X_JOUEUR -= 1;
 					axe_JOUEUR = GAUCHE;
@@ -845,7 +846,7 @@ void manette_JOUEUR()
 
 
 				// TOUCHE VIDE //
-				//else if(id_TILE2 == 43 || (TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || TABLE_ENTREES_NIVEAU1[id_TILE2].secret == 0 || TABLE_ENTREES_NIVEAU1[id_TILE2].id == 0)
+				//else if(id_TILE2 == 43 || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE2].secret == 0 || ptr_TABLE_ENTREES[id_TILE2].id == 0)
 				else
 				{
 					JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
@@ -914,7 +915,7 @@ void manette_JOUEUR()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 1)
+					if(ptr_TABLE_ENTREES[id_TILE3].secret == 1)
 					{
 						if(entree_SECRET_OK == 1)
 						{
@@ -922,7 +923,7 @@ void manette_JOUEUR()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 							num_ENTREE = id_TILE3;
 
@@ -946,7 +947,7 @@ void manette_JOUEUR()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 						num_ENTREE = id_TILE3;
 
@@ -1067,7 +1068,7 @@ void manette_JOUEUR()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					if(TABLE_ENTREES_NIVEAU1[id_TILE3].secret == 1)
+					if(ptr_TABLE_ENTREES[id_TILE3].secret == 1)
 					{
 						if(entree_SECRET_OK == 1)
 						{
@@ -1075,7 +1076,7 @@ void manette_JOUEUR()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 							num_ENTREE = id_TILE3;
 
@@ -1099,7 +1100,7 @@ void manette_JOUEUR()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = TABLE_ENTREES_NIVEAU1[id_TILE3].id;
+						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 						num_ENTREE = id_TILE3;
 

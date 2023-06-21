@@ -599,6 +599,24 @@ void init_DECOR( u8 index , u8 type )
     //////////////////////////////////////////////////////////
 	if(type == 0)
 	{
+		if(num_NIVEAU == 0)
+		{
+			ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU1;
+		}
+		else if(num_NIVEAU == 1)
+		{
+			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU2;
+		}
+		else if(num_NIVEAU == 2)
+		{
+			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU3;
+		}		
+		else if(num_NIVEAU == 3)
+		{
+			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU4;
+		}
+
+
 		//////////////////////////////////////////////////////////
 		//                     INIT CAMERA                      //
 		//////////////////////////////////////////////////////////
