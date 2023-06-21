@@ -214,7 +214,7 @@ void afficher_ENTREE()
 
 }
 
-
+/*
 void collision_ENTREE()
 {
 	id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR-1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
@@ -298,7 +298,7 @@ void collision_ENTREE()
 		}
 	}
 }
-
+*/
 
 
 
@@ -828,7 +828,7 @@ void manette_JOUEUR()
 			// TOUCHE ENTREE SECRETE DECOUVERTE
 			// TOUCHE ENTREE PAS SECRETE
 			// TOUCHE ESCALIER
-			if(id_TILE1 == 43 || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE1].secret == 0 || ptr_TABLE_ENTREES[id_TILE1].id == 0 )
+			else if(id_TILE1 == 43 || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE1].secret == 0 || ptr_TABLE_ENTREES[id_TILE1].id == 0 )
 			{
 				
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );

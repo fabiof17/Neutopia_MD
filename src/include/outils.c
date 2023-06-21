@@ -8,6 +8,8 @@
 #include "tables_NIVEAUX.h"
 #include "tables_SALLES.h"
 
+#include "variables.h"
+
 #include "maps_MENU.h"
 
 
@@ -17,10 +19,20 @@
 //                                                      //
 //******************************************************//
 
+
+
 void VDP_drawInt(u16 valeur,u8 zeros,s16 x, s16 y)
 {
 	intToStr(valeur,texteSortie,zeros); //MIN -500.000.000 - MAX 500.000.000
 	VDP_drawTextBG(WINDOW,texteSortie,x,y);
+}
+
+
+void debug_JEU()
+{
+	VDP_drawInt( id_TILE1 , 2 , 0 , 0 );
+	VDP_drawInt( id_TILE2 , 2 , 6 , 0 );
+	SYS_showFrameLoad(TRUE);
 }
 
 

@@ -133,13 +133,17 @@ int main(bool resetType)
                         niveau_OK = 1;
                     }
 
+
                     ///////////////////////////////////////////////////////////////////////////////////////
                     //                                        JEU                                        //
                     ///////////////////////////////////////////////////////////////////////////////////////
+
                     else
                     {
-                        // NIVEAU //
-                        if(etat_JEU == NIVEAU)
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                      NIVEAU                                       //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        while(etat_JEU == NIVEAU)
                         {
                             if(PAUSE == NON)
                             {
@@ -152,42 +156,86 @@ int main(bool resetType)
                             {
                                 JOY_setEventHandler(menu_Callback);
                             }
+
+                            //debug_JEU();
+
+                            SPR_update();
+                            SYS_doVBlankProcess();  
                         }
 
-                        // SCROLLING NIVEAU ECRAN SUIVANT //
-                        else if(etat_JEU == SCROLLING_NIVEAU)
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                 SCROLLING NIVEAU                                  //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        while(etat_JEU == SCROLLING_NIVEAU)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             scrolling_ECRAN();
+
+                            //debug_JEU();
+
+                            SPR_update();
+                            SYS_doVBlankProcess();  
                         }
                         
-                        // POSITIONNEMENT JOUEUR FIN SCROLLING NIVEAU //
-                        else if(etat_JEU == FIN_SCROLLING_NIVEAU)
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                               FIN SCROLLING NIVEAU                                //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        while(etat_JEU == FIN_SCROLLING_NIVEAU)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             sortie_SCROLLING();
                             tiles_JOUEUR();
+
+                            //debug_JEU();
+
+                            SPR_update();
+                            SYS_doVBlankProcess();  
                         }                       
 
-                        // ENTREE SALLE - DONJON //
-                        else if(etat_JEU == ENTREE_CAVE)
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                   ENTREE CAVE                                     //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        while(etat_JEU == ENTREE_CAVE)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             entree_ENTREE();
+
+                            //debug_JEU();
+
+                            SPR_update();
+                            SYS_doVBlankProcess();  
                         }  
 
-                        // SORTIE SALLE //
-                        else if(etat_JEU == SORTIE_SALLE)
+
+
+
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                      SALLE                                        //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        while(etat_JEU == SORTIE_SALLE)
                         {
                             JOY_setEventHandler(desactiver_Callback);
+
+                            //debug_JEU();
+
+                            SPR_update();
+                            SYS_doVBlankProcess();  
                         }
+
+
+
+
+
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                      DONJON                                       //
+                        ///////////////////////////////////////////////////////////////////////////////////////
 
                         //VDP_drawInt( id_TILE1 , 2 , 0 , 0 );
                         //VDP_drawInt( id_TILE2 , 2 , 6 , 0 );
-                        SYS_showFrameLoad(TRUE);
+                        //SYS_showFrameLoad(TRUE);
 
-                        SPR_update();
-                        SYS_doVBlankProcess();
+                        //SPR_update();
+                        //SYS_doVBlankProcess();
 
                         
                     }
