@@ -24,6 +24,7 @@ extern const Image image_CAVE1_NIVEAU1;
 extern const Image image_CAVE2_NIVEAU1;
 extern const Image image_CAVE3_NIVEAU1;
 extern const Image image_CAVE4_NIVEAU1;
+extern const Image image_CAVE5_NIVEAU1;
 extern const Image image_CAVERNE_NIVEAU1;
 extern const TileSet tileset_COLLISION_NIVEAU1;
 extern const TileMap tilemap_COLLISION_NIVEAU1;

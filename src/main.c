@@ -138,10 +138,10 @@ int main(bool resetType)
                     ///////////////////////////////////////////////////////////////////////////////////////
                     else
                     {
-                        // JEU //
-                        if(etat_JEU == 0)
+                        // NIVEAU //
+                        if(etat_JEU == NIVEAU)
                         {
-                            if(PAUSE == 0)
+                            if(PAUSE == NON)
                             {
                                 JOY_setEventHandler(niveau_Callback);
                                 manette_JOUEUR();
@@ -154,30 +154,30 @@ int main(bool resetType)
                             }
                         }
 
-                        // SCROLLING ECRAN SUIVANT //
-                        else if(etat_JEU == 1)
+                        // SCROLLING NIVEAU ECRAN SUIVANT //
+                        else if(etat_JEU == SCROLLING_NIVEAU)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             scrolling_ECRAN();
                         }
                         
-                        // POSITIONNEMENT JOUEUR FIN SCROLLING //
-                        else if(etat_JEU == 2)
+                        // POSITIONNEMENT JOUEUR FIN SCROLLING NIVEAU //
+                        else if(etat_JEU == FIN_SCROLLING_NIVEAU)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             sortie_SCROLLING();
                             tiles_JOUEUR();
                         }                       
 
-                        // ENTREE CAVE - DONJON - NIVEAU //
-                        else if(etat_JEU == 3)
+                        // ENTREE SALLE - DONJON //
+                        else if(etat_JEU == ENTREE_CAVE)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             entree_ENTREE();
                         }  
 
-                        // SORTIE CAVE - DONJON - NIVEAU //
-                        else if(etat_JEU == 3)
+                        // SORTIE SALLE //
+                        else if(etat_JEU == SORTIE_SALLE)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                         }

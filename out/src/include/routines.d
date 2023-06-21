@@ -17,4 +17,4 @@ out/src/include/routines.o: src/include/routines.c C:/sgdk/inc/genesis.h \
  src/include/tables_NIVEAUX.h src/include/tables_SALLES.h \
  src/include/boutons_MANETTE.h src/include/outils.h \
  src/include/sprites_JEU.h res/sprites_MENU.h res/maps_GLOBAL.h \
- res/maps_MENU.h res/maps_NIVEAUX.h res/maps_ENTREES.h res/palettes.h
+ res/maps_MENU.h res/maps_NIVEAUX.h res/palettes.h

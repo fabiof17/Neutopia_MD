@@ -37,7 +37,7 @@ extern Sprite *sprite_POINT2;
 extern Sprite *sprite_POINT3;
 extern Sprite *sprite_POINT4;
 
-extern Sprite *sprite_ENTREE;
+
 
 
 #endif // _MAIN

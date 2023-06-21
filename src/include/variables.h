@@ -1,6 +1,9 @@
 #ifndef _VARIABLES_H
 #define _VARIABLES_H
 
+#define NON                     0
+#define OUI                     1
+
 
 #define ARRET                   0
 #define MARCHE                  1
@@ -22,20 +25,20 @@
 
 #define NIVEAU                  0
 #define SCROLLING_NIVEAU        1
-#define SORTIE_SCROLLING_NIVEAU 2
+#define FIN_SCROLLING_NIVEAU    2
 #define ENTREE_CAVE             3
 #define ENTREE_NIVEAU           4
 
 
 #define SALLE                   10
 #define SCROLLING_SALLE         11
-#define SORTIE_SCROLLING_SALLE  12
+#define FIN_SCROLLING_SALLE     12
 #define SORTIE_SALLE            13
 
 
 #define DONJON                  20
 #define SCROLLING_DONJON        21
-#define SORTIE_SCROLLING_DONJON 22
+#define FIN_SCROLLING_DONJON    22
 #define SORTIE_DONJON           23
 
 

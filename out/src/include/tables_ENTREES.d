@@ -13,4 +13,4 @@ out/src/include/tables_ENTREES.o: src/include/tables_ENTREES.c \
  C:/sgdk/inc/joy.h C:/sgdk/inc/timer.h C:/sgdk/inc/task.h \
  C:/sgdk/inc/task_cst.h res/palettes.h src/include/structures.h \
  res/sprites_DECOR.h res/sprites_ENNEMIS.h res/maps_NIVEAUX.h \
- res/maps_ENTREES.h res/maps_SALLES.h src/include/tables_ENTREES.h
+ res/maps_SALLES.h src/include/tables_ENTREES.h

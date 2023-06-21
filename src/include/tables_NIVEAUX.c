@@ -5,9 +5,7 @@
 #include "sprites_ENNEMIS.h"
 
 #include "maps_NIVEAUX.h"
-#include "maps_ENTREES.h"
 #include "maps_SALLES.h"
-//#include "maps_DONJONS.h"
 
 
 //******************************************************//
@@ -143,13 +141,13 @@ const u8					TABLE_ADR_ENNEMIS_NIVEAU1[169]		=	{ 0,0,1,1,1,1,2,2,3,4,4,4,0,0,4,4
 // 3-6
 // 768
 // -40+184+(184*6)
-const s16					TABLE_INIT_CAM_NIVEAUX[2][4]		=	{ {0,512,1536,256},
-																	  {-40+184 , 1104 , 736 , 184 }
+const s16					TABLE_INIT_CAM_NIVEAUX[2][4]		=	{ {768      , 512  , 1536 , 256 },
+																	  {-40+184+(184*6) , 1104 , 736  , 184 }
 																	};
 //3
 //6
-const u8					TABLE_INIT_INDEX_NIVEAUX[2][4]		=	{ {0,2,6,1},
-																	  {0,6,4,1}
+const u8					TABLE_INIT_INDEX_NIVEAUX[2][4]		=	{ {3,2,6,1},
+																	  {6,6,4,1}
 																	};
 
 const TileSet				*TABLE_TILESET_NIVEAUX[2][4]		=	{ {&tileset_NIVEAU1_BG_B,&tileset_NIVEAU2_BG_B,&tileset_NIVEAU3_BG_B,&tileset_NIVEAU4_BG_B},

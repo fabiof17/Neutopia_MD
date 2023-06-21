@@ -5,9 +5,7 @@
 #include "sprites_ENNEMIS.h"
 
 #include "maps_NIVEAUX.h"
-#include "maps_ENTREES.h"
 #include "maps_SALLES.h"
-//#include "maps_DONJONS.h"
 
 
 //******************************************************//

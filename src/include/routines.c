@@ -19,7 +19,6 @@
 #include "maps_GLOBAL.h"
 #include "maps_MENU.h"
 #include "maps_NIVEAUX.h"
-#include "maps_ENTREES.h"
 
 #include "palettes.h"
 
@@ -247,7 +246,7 @@ void collision_ENTREE()
 				type_DECOR = 1;
 
 				// SEQUENCE ENTREE CAVE
-				etat_JEU = 3;
+				etat_JEU = ENTREE_CAVE;
 				//
 				return;
 			}
@@ -264,7 +263,7 @@ void collision_ENTREE()
 					type_DECOR = 1;
 
 					// SEQUENCE ENTREE CAVE
-					etat_JEU = 3;
+					etat_JEU = ENTREE_CAVE;
 					//
 					return;
 				}
@@ -281,7 +280,7 @@ void collision_ENTREE()
 						type_DECOR = 1;
 
 						// SEQUENCE ENTREE CAVE
-						etat_JEU = 3;
+						etat_JEU = ENTREE_CAVE;
 						//
 						return;
 					}
@@ -354,7 +353,7 @@ void scrolling_ECRAN()
 	if(compteur_SCROLLING > duree_SCROLLING)
 	{		
 		compteur_SCROLLING = 0;
-		etat_JEU = 2;
+		etat_JEU = FIN_SCROLLING_NIVEAU;
 	}
 }
 
@@ -386,7 +385,7 @@ void sortie_SCROLLING()
 			maj_PT_COLL_DECOR();
 
 			etat_JOUEUR = MARCHE;
-			etat_JEU = 0;
+			etat_JEU = NIVEAU;
 			return;	
 		}
 	}
@@ -417,7 +416,7 @@ void sortie_SCROLLING()
 			maj_PT_COLL_DECOR();
 
 			etat_JOUEUR = MARCHE;
-			etat_JEU = 0;
+			etat_JEU = NIVEAU;
 			return;	
 		}
 	}
@@ -448,7 +447,7 @@ void sortie_SCROLLING()
 			maj_PT_COLL_DECOR();
 
 			etat_JOUEUR = MARCHE;
-			etat_JEU = 0;
+			etat_JEU = NIVEAU;
 			return;	
 		}
 	}
@@ -479,7 +478,7 @@ void sortie_SCROLLING()
 			maj_PT_COLL_DECOR();
 			
 			etat_JOUEUR = MARCHE;
-			etat_JEU = 0;
+			etat_JEU = NIVEAU;
 			return;	
 		}
 	}
@@ -565,7 +564,7 @@ void manette_JOUEUR()
 				duree_SCROLLING = DUREE_SCROLL_V;
 				index_Y_CARTE += 1;
 				
-				etat_JEU = 1;
+				etat_JEU = SCROLLING_NIVEAU;
 				return ;
 			}
 
@@ -611,7 +610,7 @@ void manette_JOUEUR()
 							type_DECOR = 1;
 
 							// SEQUENCE ENTREE CAVE
-							etat_JEU = 3;
+							etat_JEU = ENTREE_CAVE;
 							//
 							return;
 						}
@@ -635,7 +634,7 @@ void manette_JOUEUR()
 						type_DECOR = 1;
 
 						// SEQUENCE ENTREE CAVE
-						etat_JEU = 3;
+						etat_JEU = ENTREE_CAVE;
 						//
 						return;						
 					}
@@ -718,7 +717,7 @@ void manette_JOUEUR()
 				duree_SCROLLING = DUREE_SCROLL_V;
 				index_Y_CARTE -= 1;
 				
-				etat_JEU = 1;
+				etat_JEU = SCROLLING_NIVEAU;
 				return ;
 			}
 
@@ -763,7 +762,7 @@ void manette_JOUEUR()
 							type_DECOR = 1;
 
 							// SEQUENCE ENTREE CAVE
-							etat_JEU = 3;
+							etat_JEU = ENTREE_CAVE;
 							//
 							return;
 						}
@@ -787,7 +786,7 @@ void manette_JOUEUR()
 						type_DECOR = 1;
 
 						// SEQUENCE ENTREE CAVE
-						etat_JEU = 3;
+						etat_JEU = ENTREE_CAVE;
 						//
 						return;						
 					}
@@ -890,7 +889,7 @@ void manette_JOUEUR()
 				duree_SCROLLING = DUREE_SCROLL_H;
 				index_X_CARTE += 1;
 				
-				etat_JEU = 1;
+				etat_JEU = SCROLLING_NIVEAU;
 				return ;
 			}
 
@@ -935,7 +934,7 @@ void manette_JOUEUR()
 							type_DECOR = 1;
 
 							// SEQUENCE ENTREE CAVE
-							etat_JEU = 3;
+							etat_JEU = ENTREE_CAVE;
 							//
 							return;
 						}
@@ -959,7 +958,7 @@ void manette_JOUEUR()
 						type_DECOR = 1;
 
 						// SEQUENCE ENTREE CAVE
-						etat_JEU = 3;
+						etat_JEU = ENTREE_CAVE;
 						//
 						return;						
 					}
@@ -1043,7 +1042,7 @@ void manette_JOUEUR()
 				duree_SCROLLING = DUREE_SCROLL_H;
 				index_X_CARTE -= 1;
 				
-				etat_JEU = 1;
+				etat_JEU = SCROLLING_NIVEAU;
 				return ;
 			}
 
@@ -1088,7 +1087,7 @@ void manette_JOUEUR()
 							type_DECOR = 1;
 
 							// SEQUENCE ENTREE CAVE
-							etat_JEU = 3;
+							etat_JEU = ENTREE_CAVE;
 							//
 							return;
 						}
@@ -1112,7 +1111,7 @@ void manette_JOUEUR()
 						type_DECOR = 1;
 
 						// SEQUENCE ENTREE CAVE
-						etat_JEU = 3;
+						etat_JEU = ENTREE_CAVE;
 						//
 						return;						
 					}
