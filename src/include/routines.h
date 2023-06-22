@@ -22,8 +22,6 @@ extern void boucle_TITRE();
 
 extern void afficher_MENU(u8 type);
 
-//extern void collision_ENTREE();
-
 
 
 
@@ -45,10 +43,12 @@ extern void sortie_SCROLLING();
 
 extern void entree_ENTREE();
 
-extern void manette_JOUEUR();
+extern void manette_JOUEUR_NIVEAU();
 
 extern void tiles_JOUEUR();
 
+extern void tiles_EAU_NIVEAU();
+extern void tiles_CASCADE_NIVEAU();
 
 
 

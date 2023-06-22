@@ -72,6 +72,10 @@ extern const MapDefinition			*TABLE_MAPCOLL_NIVEAUX[4];
 
 extern const u16                    TABLE_OFFSET_COLLISION[8][8];
 
+extern const Image					*TABLE_ADR_EAU_NIVEAUX[4][4];
+
+extern const Image					*TABLE_ADR_CASCADE_NIVEAUX[4][4];
+
 
 
 

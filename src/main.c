@@ -148,8 +148,12 @@ int main(bool resetType)
                             if(PAUSE == NON)
                             {
                                 JOY_setEventHandler(niveau_Callback);
-                                manette_JOUEUR();
+
+                                manette_JOUEUR_NIVEAU();
+
                                 tiles_JOUEUR();
+                                tiles_EAU_NIVEAU();
+                                tiles_CASCADE_NIVEAU();
                             }
 
                             else
@@ -169,7 +173,11 @@ int main(bool resetType)
                         while(etat_JEU == SCROLLING_NIVEAU)
                         {
                             JOY_setEventHandler(desactiver_Callback);
+
                             scrolling_ECRAN();
+                            
+                            tiles_EAU_NIVEAU();
+                            tiles_CASCADE_NIVEAU();
 
                             //debug_JEU();
 
@@ -183,8 +191,12 @@ int main(bool resetType)
                         while(etat_JEU == FIN_SCROLLING_NIVEAU)
                         {
                             JOY_setEventHandler(desactiver_Callback);
+
                             sortie_SCROLLING();
+
                             tiles_JOUEUR();
+                            tiles_EAU_NIVEAU();
+                            tiles_CASCADE_NIVEAU();
 
                             //debug_JEU();
 

@@ -158,10 +158,20 @@ const MapDefinition			*TABLE_MAPDEF_NIVEAUX[2][4]			=	{ {&map_NIVEAU1_BG_B,&map_
 																	  {&map_NIVEAU1_BG_A,&map_NIVEAU2_BG_A,&map_NIVEAU3_BG_A,&map_NIVEAU4_BG_A}
 																	};
 
-const MapDefinition			*TABLE_MAPCOLL_NIVEAUX[4]			=	{&map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1};																	
+const MapDefinition			*TABLE_MAPCOLL_NIVEAUX[4]			=	{ &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 , &map_COLLISION_NIVEAU1 };																	
 
 const u16					TABLE_OFFSET_COLLISION[8][8]		=	{ {0  , 32 , 64 , 96 , 128 , 160 , 192 , 224},
 																	  {18 , 41 , 64 , 87 , 110 , 133 , 156 , 179}
 																	};
 
+const Image					*TABLE_ADR_EAU_NIVEAUX[4][4]		=	{ {&image_EAU1_NIVEAU1  , &image_EAU2_NIVEAU1 , &image_EAU3_NIVEAU1 , &image_EAU4_NIVEAU1},
+																	  {&image_EAU1_NIVEAU1  , &image_EAU2_NIVEAU1 , &image_EAU3_NIVEAU1 , &image_EAU4_NIVEAU1},
+																	  {&image_EAU1_NIVEAU1  , &image_EAU2_NIVEAU1 , &image_EAU3_NIVEAU1 , &image_EAU4_NIVEAU1},
+																	  {&image_EAU1_NIVEAU1  , &image_EAU2_NIVEAU1 , &image_EAU3_NIVEAU1 , &image_EAU4_NIVEAU1}
+																	};
 
+const Image					*TABLE_ADR_CASCADE_NIVEAUX[4][4]	=	{ {&image_CASCADE1_NIVEAU1  , &image_CASCADE2_NIVEAU1 , &image_CASCADE3_NIVEAU1 , &image_CASCADE4_NIVEAU1},
+																	  {&image_CASCADE1_NIVEAU1  , &image_CASCADE2_NIVEAU1 , &image_CASCADE3_NIVEAU1 , &image_CASCADE4_NIVEAU1},
+																	  {&image_CASCADE1_NIVEAU1  , &image_CASCADE2_NIVEAU1 , &image_CASCADE3_NIVEAU1 , &image_CASCADE4_NIVEAU1},
+																	  {&image_CASCADE1_NIVEAU1  , &image_CASCADE2_NIVEAU1 , &image_CASCADE3_NIVEAU1 , &image_CASCADE4_NIVEAU1}
+																	};

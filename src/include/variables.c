@@ -138,20 +138,38 @@ u32 pos_Y_ENTREE = 0;
 u8 index_X_CARTE_NIVEAU = 0;
 u8 index_Y_CARTE_NIVEAU = 0;
 
+
+
+
 u16 adr_VRAM_BG_A = 0;
 u16 adr_VRAM_BG_B = 0;
 
 u16 adr_VRAM_ENTREE = 0;
 
+
+
+
 Map *map_NIVEAU_BG_A;
 Map *map_NIVEAU_BG_B;
 Map *map_COLLISION;
 
+
+
+
 u8 id_ENTREE = 0;
 u8 num_ENTREE = 0;
 u16 offset_TABLES_ENTREES = 0;          //  init -->  init_VARIABLES_GENERALES()
-
 bool entree_SECRET_OK = 0;
+const Image *ptr_TABLE_EAU = NULL;
+const Image *ptr_TABLE_CASCADE = NULL;
+
+
+
+
+u8 compteur_EAU = 0;
+u8 compteur_CASCADE = 0;
+
+
 
 
 //******************************************************//

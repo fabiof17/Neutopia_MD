@@ -184,8 +184,6 @@ void maj_PALETTES( u8 index , u8 type )
 }
 
 
-
-
 void maj_PT_COLL_DECOR()
 {
 	JOUEUR.pt1_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 4;
@@ -214,91 +212,6 @@ void afficher_ENTREE()
 
 }
 
-/*
-void collision_ENTREE()
-{
-	id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR-1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
-	id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR-1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
-
-
-	//////////////////////////////////////////////////////////
-	//			 	  TEST COLLISION ENTREE					//
-	//////////////////////////////////////////////////////////
-
-	if(id_TILE3 < 43)
-	{
-		if(id_TILE4 == id_TILE3)
-		{
-			// TYPE D'ENTREE
-			// 1 = ESCALIER
-			// 2 = DONJON
-			// 3 = CAVE
-			id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
-
-			// DONJON OU CAVE
-			if(id_ENTREE != 0)
-			{
-				afficher_ENTREE();
-
-				// TYPE DE DECOR
-				// 0 = NIVEAU
-				// 1 = SALLE OU DONJON
-				type_DECOR = 1;
-
-				// SEQUENCE ENTREE CAVE
-				etat_JEU = ENTREE_CAVE;
-				//
-				return;
-			}
-
-			// ESCALIER
-			else
-			{
-				// PAS ENTREE SECRETE
-				if(ptr_TABLE_ENTREES[id_TILE3].secret == 0)
-				{
-					// TYPE DE DECOR
-					// 0 = NIVEAU
-					// 1 = SALLE OU DONJON
-					type_DECOR = 1;
-
-					// SEQUENCE ENTREE CAVE
-					etat_JEU = ENTREE_CAVE;
-					//
-					return;
-				}
-
-				// ENTREE SECRETE
-				else
-				{
-					// ENTREE REVELEE
-					if(entree_SECRET_OK == 1)
-					{
-						// TYPE DE DECOR
-						// 0 = NIVEAU
-						// 1 = SALLE OU DONJON
-						type_DECOR = 1;
-
-						// SEQUENCE ENTREE CAVE
-						etat_JEU = ENTREE_CAVE;
-						//
-						return;
-					}
-
-					// ENTREE PAS REVELEE
-					else
-					{
-						// ON DEPLACE LE JOUEUR
-						JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
-						JOUEUR.pos_Y_JOUEUR -= 1;
-						axe_JOUEUR = HAUT;
-					}
-				}
-			}
-		}
-	}
-}
-*/
 
 
 
@@ -524,7 +437,7 @@ void entree_ENTREE()
 
 
 
-void manette_JOUEUR()
+void manette_JOUEUR_NIVEAU()
 {
 	u16 value=JOY_readJoypad(JOY_1);
 
@@ -817,7 +730,7 @@ void manette_JOUEUR()
 				// TOUCHE ENTREE SECRETE DECOUVERTE
 				// TOUCHE ENTREE PAS SECRETE
 				// TOUCHE ESCALIER
-				if(id_TILE2 == 43 || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE2].secret == 0 || ptr_TABLE_ENTREES[id_TILE2].id == 0 )
+				if(id_TILE2 == 43 || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || (ptr_TABLE_ENTREES[id_TILE2].secret == 0 && id_TILE2 < 43) || (ptr_TABLE_ENTREES[id_TILE2].id == 0 && id_TILE2 < 43) )
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
 					axe_JOUEUR = DROITE;
@@ -828,7 +741,7 @@ void manette_JOUEUR()
 			// TOUCHE ENTREE SECRETE DECOUVERTE
 			// TOUCHE ENTREE PAS SECRETE
 			// TOUCHE ESCALIER
-			else if(id_TILE1 == 43 || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE1].secret == 0 || ptr_TABLE_ENTREES[id_TILE1].id == 0 )
+			else if(id_TILE1 == 43 || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 1) || (ptr_TABLE_ENTREES[id_TILE1].secret == 0 && id_TILE1 < 43) || (ptr_TABLE_ENTREES[id_TILE1].id == 0 && id_TILE1 < 43) )
 			{
 				
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
@@ -867,6 +780,9 @@ void manette_JOUEUR()
 			SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 			
 			etat_JOUEUR = MARCHE;
+
+			//VDP_drawInt( id_TILE1 , 2 , 0 , 0 );
+			//VDP_drawInt( id_TILE2 , 2 , 6 , 0 );
 
 			return;
 		}
@@ -1180,6 +1096,8 @@ void manette_JOUEUR()
 }
 
 
+
+
 void tiles_JOUEUR()
 {
 	//////////////////////////////////////////////////////////
@@ -1266,5 +1184,79 @@ void tiles_JOUEUR()
 
 			SPR_setPosition(JOUEUR.sprite_EPEE, 0, -16);
 		}
+	}
+}
+
+
+void tiles_EAU_NIVEAU()
+{
+	if(compteur_EAU == 0)
+	{
+		ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][0];
+		VDP_loadTileSet(ptr_TABLE_EAU->tileset, adr_VRAM_BG_B, CPU);
+	}
+
+	else if(compteur_EAU == 29)
+	{
+		ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][1];
+		VDP_loadTileSet(ptr_TABLE_EAU->tileset, adr_VRAM_BG_B, CPU);
+	}
+
+	else if(compteur_EAU == 59)
+	{
+		ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][2];
+		VDP_loadTileSet(ptr_TABLE_EAU->tileset, adr_VRAM_BG_B, CPU);
+	}
+
+	else if(compteur_EAU == 89)
+	{
+		ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][3];;
+		VDP_loadTileSet(ptr_TABLE_EAU->tileset, adr_VRAM_BG_B, CPU);
+	}
+
+	compteur_EAU += 1;
+
+	if(compteur_EAU == 118)
+	{
+		compteur_EAU = 0;
+	}
+}
+
+
+void tiles_CASCADE_NIVEAU()
+{
+	// LES 4 PREMIERS TILES DU BG_B
+	// SONT RESERVEES AUX TILES DE L'EAU
+	// DONC ON AJOUTE 4 A L'ADRESSE VRAM
+	
+	if(compteur_CASCADE == 0)
+	{
+		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][0];
+		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 4, CPU);
+	}
+
+	else if(compteur_CASCADE == 9)
+	{
+		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][1];
+		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 4, CPU);
+	}
+
+	else if(compteur_CASCADE == 19)
+	{
+		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][2];
+		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 4, CPU);
+	}
+
+	else if(compteur_CASCADE == 29)
+	{
+		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][3];;
+		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 4, CPU);
+	}
+
+	compteur_CASCADE += 1;
+
+	if(compteur_CASCADE == 38)
+	{
+		compteur_CASCADE = 0;
 	}
 }

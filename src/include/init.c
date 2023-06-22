@@ -616,6 +616,11 @@ void init_DECOR( u8 index , u8 type )
 			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU4;
 		}
 
+		ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][0];
+		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][0];		
+
+
+
 
 		//////////////////////////////////////////////////////////
 		//                     INIT CAMERA                      //
@@ -632,6 +637,17 @@ void init_DECOR( u8 index , u8 type )
 		VDP_loadTileSet(TABLE_TILESET_NIVEAUX[0][index], adr_VRAM_BG_B, CPU);
 		adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
 		SYS_doVBlankProcess();
+
+
+
+
+		//////////////////////////////////////////////////////////
+		//                CHARGEMENT TILES EAU                  //
+		//////////////////////////////////////////////////////////
+		VDP_loadTileSet(ptr_TABLE_EAU->tileset, adr_VRAM_BG_B, CPU);
+
+
+
 
 		//////////////////////////////////////////////////////////
 		//                  CREATION MAP BG_B                   //

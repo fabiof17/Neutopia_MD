@@ -44,6 +44,11 @@
 
 
 
+#define MAX_ETAPES_EAU          3
+
+
+
+
 //******************************************************//
 //                                                      //
 //                       CONSTANTES                     //
@@ -195,22 +200,38 @@ extern u32 pos_Y_ENTREE;
 extern u8 index_X_CARTE_NIVEAU;
 extern u8 index_Y_CARTE_NIVEAU;
 
+
+
+
 extern u16 adr_VRAM_BG_A;
 extern u16 adr_VRAM_BG_B;
 
 extern u16 adr_VRAM_ENTREE;
 
+
+
+
 extern Map *map_NIVEAU_BG_A;
 extern Map *map_NIVEAU_BG_B;
 extern Map *map_COLLISION;
 
+
+
+
 extern u8 id_ENTREE;
 extern u8 num_ENTREE;
 extern u16 offset_TABLES_ENTREES;
-
 extern bool entree_SECRET_OK;
+extern const Image *ptr_TABLE_EAU;
+extern const Image *ptr_TABLE_CASCADE;
 
-//extern u8 z_ORDER;
+
+
+
+extern u8 compteur_EAU;
+extern u8 compteur_CASCADE;
+
+
 
 
 //******************************************************//
