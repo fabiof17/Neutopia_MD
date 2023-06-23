@@ -532,10 +532,10 @@ void init_JOUEUR()
 	JOUEUR.compteur_ATTAQUE = 0;
 
 
-	sprite_POINT1 = SPR_addSprite(&tiles_Sprite_POINT, 0, 0, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
-	sprite_POINT2 = SPR_addSprite(&tiles_Sprite_POINT, 0, 0, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
-	sprite_POINT3 = SPR_addSprite(&tiles_Sprite_POINT, 0, 0, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
-	sprite_POINT4 = SPR_addSprite(&tiles_Sprite_POINT, 0, 0, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
+	//sprite_POINT1 = SPR_addSprite(&tiles_Sprite_POINT, 0, 0, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
+	//sprite_POINT2 = SPR_addSprite(&tiles_Sprite_POINT, 0, 0, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
+	//sprite_POINT3 = SPR_addSprite(&tiles_Sprite_POINT, 0, 0, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
+	//sprite_POINT4 = SPR_addSprite(&tiles_Sprite_POINT, 0, 0, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_EPEE], FALSE, FALSE, FALSE));
 
 
 
@@ -568,10 +568,10 @@ void init_JOUEUR()
 	JOUEUR.pt4_X_COLL_DECOR = JOUEUR.pos_X_JOUEUR + 19;
 	JOUEUR.pt4_Y_COLL_DECOR = JOUEUR.pos_Y_JOUEUR + 32;
 
-	SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
-	SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
-	SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
-	SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
+	//SPR_setPosition(sprite_POINT1, JOUEUR.pt1_X_COLL_DECOR, JOUEUR.pt1_Y_COLL_DECOR);
+	//SPR_setPosition(sprite_POINT2, JOUEUR.pt2_X_COLL_DECOR, JOUEUR.pt2_Y_COLL_DECOR);			
+	//SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
+	//SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
 }
 
