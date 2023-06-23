@@ -192,7 +192,7 @@ int main(bool resetType)
                         {
                             JOY_setEventHandler(desactiver_Callback);
 
-                            sortie_SCROLLING();
+                            sortie_SCROLLING_NIVEAU();
 
                             tiles_JOUEUR();
                             tiles_EAU_NIVEAU();

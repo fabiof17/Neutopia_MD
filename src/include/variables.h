@@ -44,7 +44,8 @@
 
 
 
-#define MAX_ETAPES_EAU          3
+#define TILE_VIDE               44
+#define TILE_MUR                45
 
 
 

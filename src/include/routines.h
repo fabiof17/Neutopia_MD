@@ -39,7 +39,7 @@ extern void afficher_ENTREE();
 
 extern void scrolling_ECRAN();
 
-extern void sortie_SCROLLING();
+extern void sortie_SCROLLING_NIVEAU();
 
 extern void entree_ENTREE();
 

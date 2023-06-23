@@ -98,12 +98,8 @@ typedef struct
 
 	const u8				pos_X;			// EN TILES
 	const u8				pos_Y;			// EN TILES
-
-    //const u16				w;
-	//const u16				h;
 	
 	const Image             *adr_Image;     // adresse de la structure IMAGE
-    //const u8                adr_VRAM;
 
 	const u8				pal;
 	VDPPlane				bg;
@@ -111,6 +107,8 @@ typedef struct
 
 	bool					secret;			// 0 = ENTREE NORMALE  |  1 = ENTREE SECRETE
 	u8                      condition;		// 0 = TUER ENNEMIS  |  1 = POUSSER ROCHER  |  2 = BOMBE MUR
+
+    bool                    bloque;         // 0 = ON PEUT MARCHER DESSUS | 1 = PASSAGE BLOQUE
 
 } struct_ENTREE_;
 

@@ -196,6 +196,8 @@ void init_VARIABLES_GENERALES()
 	pos_X_ENTREE = -32;
 	pos_Y_ENTREE = -48;
 
+	entree_SECRET_OK = 0;
+
 
 	//******************************************************//
 	//                                                      //

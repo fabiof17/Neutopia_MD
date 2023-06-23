@@ -271,7 +271,7 @@ void scrolling_ECRAN()
 }
 
 
-void sortie_SCROLLING()
+void sortie_SCROLLING_NIVEAU()
 {
 	if(axe_JOUEUR == BAS)
 	{
@@ -498,7 +498,7 @@ void manette_JOUEUR_NIVEAU()
 			//			 	  TEST COLLISION ENTREE					//
 			//////////////////////////////////////////////////////////
 
-			if(id_TILE3 < 43)
+			if(id_TILE3 < TILE_VIDE)
 			{
 				if(id_TILE4 == id_TILE3)
 				{
@@ -564,26 +564,34 @@ void manette_JOUEUR_NIVEAU()
 
 			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
-			// TOUCHE MUR //
-			if(id_TILE3 == 44)
+			// TOUCHE MUR
+			// TOUCHE ENTREE SECRETE PAS DECOUVERTE ET BLOQUANTE
+			if(id_TILE3 == TILE_MUR || (ptr_TABLE_ENTREES[id_TILE3].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE3].bloque == 1 && id_TILE3 < TILE_VIDE ))
 			{
 				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
-				// TOUCHE VIDE //
-				if(id_TILE4 != 44)
+				// TOUCHE VIDE
+				// TOUCHE ENTREE SECRETE DECOUVERTE
+				// TOUCHE ENTREE PAS SECRETE
+				// TOUCHE ENTREE PAS BLOQUANTE
+				if(id_TILE4 == TILE_VIDE || (ptr_TABLE_ENTREES[id_TILE4].secret == 1 && entree_SECRET_OK == 1 && id_TILE4 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE4].secret == 0 && id_TILE4 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE4].bloque == 0 && id_TILE4 < TILE_VIDE ))
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
 					axe_JOUEUR = DROITE;
 				}
 			}
 
-			// TOUCHE VIDE //
-			else if(id_TILE3 != 44)
+			// TOUCHE VIDE
+			// TOUCHE ENTREE SECRETE DECOUVERTE
+			// TOUCHE ENTREE PAS SECRETE
+			// TOUCHE ENTREE PAS BLOQUANTE
+			else if(id_TILE3 == TILE_VIDE || (ptr_TABLE_ENTREES[id_TILE3].secret == 1 && entree_SECRET_OK == 1 && id_TILE3 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE3].secret == 0 && id_TILE3 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE3].bloque == 0 && id_TILE3 < TILE_VIDE ))
 			{
 				id_TILE4 = MAP_getTile( map_COLLISION , (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
-				// TOUCHE MUR //
-				if(id_TILE4 == 44)
+				// TOUCHE MUR
+				// TOUCHE ENTREE SECRETE PAS DECOUVERTE ET BLOQUANTE
+				if(id_TILE4 == TILE_MUR || (ptr_TABLE_ENTREES[id_TILE4].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE4].bloque == 1 && id_TILE4 < TILE_VIDE ))
 				{
 					JOUEUR.pos_X_JOUEUR -= 1;
 					axe_JOUEUR = GAUCHE;
@@ -651,7 +659,7 @@ void manette_JOUEUR_NIVEAU()
 			//			 	  TEST COLLISION ENTREE					//
 			//////////////////////////////////////////////////////////
 
-			if(id_TILE3 < 43)
+			if(id_TILE3 < TILE_VIDE)
 			{
 				if(id_TILE4 == id_TILE3)
 				{
@@ -718,9 +726,8 @@ void manette_JOUEUR_NIVEAU()
 
 
 			// TOUCHE MUR
-			// TOUCHE ENTREE SECRETE PAS DECOUVERTE
-			// TOUCHE PAS ESCALIER
-			if(id_TILE1 == 44 || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE1].id != 0 ) ) 
+			// TOUCHE ENTREE SECRETE PAS DECOUVERTE ET BLOQUANTE
+			if(id_TILE1 == TILE_MUR || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE1].bloque == 1 && id_TILE1 < TILE_VIDE ) ) 
 			{
 				
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
@@ -729,8 +736,8 @@ void manette_JOUEUR_NIVEAU()
 				// TOUCHE VIDE
 				// TOUCHE ENTREE SECRETE DECOUVERTE
 				// TOUCHE ENTREE PAS SECRETE
-				// TOUCHE ESCALIER
-				if(id_TILE2 == 43 || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || (ptr_TABLE_ENTREES[id_TILE2].secret == 0 && id_TILE2 < 43) || (ptr_TABLE_ENTREES[id_TILE2].id == 0 && id_TILE2 < 43) )
+				// TOUCHE ENTREE PAS BLOQUANTE
+				if(id_TILE2 == TILE_VIDE || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 1 && id_TILE2 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE2].secret == 0 && id_TILE2 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE2].bloque == 0 && id_TILE2 < TILE_VIDE ))
 				{
 					JOUEUR.pos_X_JOUEUR += 1;
 					axe_JOUEUR = DROITE;
@@ -740,17 +747,16 @@ void manette_JOUEUR_NIVEAU()
 			// TOUCHE VIDE
 			// TOUCHE ENTREE SECRETE DECOUVERTE
 			// TOUCHE ENTREE PAS SECRETE
-			// TOUCHE ESCALIER
-			else if(id_TILE1 == 43 || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 1) || (ptr_TABLE_ENTREES[id_TILE1].secret == 0 && id_TILE1 < 43) || (ptr_TABLE_ENTREES[id_TILE1].id == 0 && id_TILE1 < 43) )
+			// TOUCHE ENTREE PAS BLOQUANTE
+			else if(id_TILE1 == TILE_VIDE || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 1 && id_TILE1 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE1].secret == 0 && id_TILE1 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE1].bloque == 0 && id_TILE1 < TILE_VIDE ))
 			{
 				
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 
 				// TOUCHE MUR
-				// TOUCHE ENTREE SECRETE PAS DECOUVERTE
-				// TOUCHE PAS ESCALIER
-				if(id_TILE2 == 44 || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE1].id != 0 ) )
+				// TOUCHE ENTREE SECRETE PAS DECOUVERTE ET BLOQUANTE
+				if(id_TILE2 == TILE_MUR || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE2].bloque == 1 && id_TILE2 < TILE_VIDE ) )
 				{
 					JOUEUR.pos_X_JOUEUR -= 1;
 					axe_JOUEUR = GAUCHE;
@@ -758,7 +764,6 @@ void manette_JOUEUR_NIVEAU()
 
 
 				// TOUCHE VIDE //
-				//else if(id_TILE2 == 43 || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE2].secret == 0 || ptr_TABLE_ENTREES[id_TILE2].id == 0)
 				else
 				{
 					JOUEUR.pos_X_JOUEUR += aligner_JOUEUR(JOUEUR.pos_X_JOUEUR + 4);
@@ -826,7 +831,7 @@ void manette_JOUEUR_NIVEAU()
 			//			 	  TEST COLLISION ENTREE					//
 			//////////////////////////////////////////////////////////
 
-			if(id_TILE3 < 43)
+			if(id_TILE3 < TILE_VIDE)
 			{
 				if(id_TILE4 == id_TILE3)
 				{
@@ -892,12 +897,12 @@ void manette_JOUEUR_NIVEAU()
 			id_TILE4 = MAP_getTile(   map_COLLISION ,   (JOUEUR.pt4_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE]   ,   ((JOUEUR.pt4_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE]   );
 
 			// TOUCHE MUR //
-			if(id_TILE4 == 44)
+			if(id_TILE4 == TILE_MUR || (ptr_TABLE_ENTREES[id_TILE4].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE4].bloque == 1 && id_TILE4 < TILE_VIDE ) ) 
 			{
 				id_TILE2 = MAP_getTile(   map_COLLISION ,   (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE]   ,   ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE]   );
 
 				// TOUCHE VIDE //
-				if(id_TILE2 != 44)
+				if(id_TILE2 == TILE_VIDE || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 1 && id_TILE2 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE2].secret == 0 && id_TILE2 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE2].bloque == 0 && id_TILE2 < TILE_VIDE ))
 				{
 					JOUEUR.pos_Y_JOUEUR -= 1;
 					axe_JOUEUR = HAUT;
@@ -905,12 +910,12 @@ void manette_JOUEUR_NIVEAU()
 			}
 
 			// TOUCHE VIDE //
-			else if(id_TILE4 != 44)
+			else if(id_TILE4 == TILE_VIDE || (ptr_TABLE_ENTREES[id_TILE4].secret == 1 && entree_SECRET_OK == 1 && id_TILE4 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE4].secret == 0 && id_TILE4 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE4].bloque == 0 && id_TILE4 < TILE_VIDE ))
 			{
 				id_TILE2 = MAP_getTile( map_COLLISION , (JOUEUR.pt2_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt2_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE MUR //
-				if(id_TILE2 == 44)
+				if(id_TILE2 == TILE_MUR || (ptr_TABLE_ENTREES[id_TILE2].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE2].bloque == 1 && id_TILE2 < TILE_VIDE ) ) 
 				{
 					JOUEUR.pos_Y_JOUEUR += 1;
 					axe_JOUEUR = BAS;
@@ -979,7 +984,7 @@ void manette_JOUEUR_NIVEAU()
 			//			 	  TEST COLLISION ENTREE					//
 			//////////////////////////////////////////////////////////
 
-			if(id_TILE3 < 43)
+			if(id_TILE3 < TILE_VIDE)
 			{
 				if(id_TILE4 == id_TILE3)
 				{
@@ -1045,12 +1050,12 @@ void manette_JOUEUR_NIVEAU()
 			id_TILE3 = MAP_getTile( map_COLLISION , (JOUEUR.pt3_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt3_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 			// TOUCHE MUR //
-			if(id_TILE3 == 44)
+			if(id_TILE3 == TILE_MUR || (ptr_TABLE_ENTREES[id_TILE3].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE3].bloque == 1 && id_TILE3 < TILE_VIDE ) ) 
 			{
 				id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE VIDE //
-				if(id_TILE1 != 44)
+				if(id_TILE1 == TILE_VIDE || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 1 && id_TILE1 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE1].secret == 0 && id_TILE1 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE1].bloque == 0 && id_TILE1 < TILE_VIDE ))
 				{
 					JOUEUR.pos_Y_JOUEUR -= 1;
 					axe_JOUEUR = HAUT;
@@ -1058,12 +1063,12 @@ void manette_JOUEUR_NIVEAU()
 			}
 
 			// TOUCHE VIDE //
-			else if(id_TILE3 != 44)
+			else if(id_TILE3 == TILE_VIDE || (ptr_TABLE_ENTREES[id_TILE3].secret == 1 && entree_SECRET_OK == 1 && id_TILE3 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE3].secret == 0 && id_TILE3 < TILE_VIDE) || (ptr_TABLE_ENTREES[id_TILE3].bloque == 0 && id_TILE3 < TILE_VIDE ))
 			{
 				id_TILE1 = MAP_getTile( map_COLLISION , (JOUEUR.pt1_X_COLL_DECOR>>3) + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ((JOUEUR.pt1_Y_COLL_DECOR+1)>>3) + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] );
 
 				// TOUCHE MUR //
-				if(id_TILE1 == 44)
+				if(id_TILE1 == TILE_MUR || (ptr_TABLE_ENTREES[id_TILE1].secret == 1 && entree_SECRET_OK == 0 && ptr_TABLE_ENTREES[id_TILE1].bloque == 1 && id_TILE1 < TILE_VIDE ) ) 
 				{
 					JOUEUR.pos_Y_JOUEUR += 1;
 					axe_JOUEUR = BAS;
