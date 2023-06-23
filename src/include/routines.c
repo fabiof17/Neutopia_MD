@@ -510,7 +510,7 @@ void manette_JOUEUR_NIVEAU()
 							// TYPE D'ENTREE
 							// 0 = ESCALIER
 							// 1 = DONJON
-							// 2 = PORTE
+							// 2 = CAVE
 							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
 
 							num_ENTREE = id_TILE3;
@@ -1237,25 +1237,25 @@ void tiles_CASCADE_NIVEAU()
 	if(compteur_CASCADE == 0)
 	{
 		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][0];
-		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 4, CPU);
+		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 5, CPU);
 	}
 
 	else if(compteur_CASCADE == 9)
 	{
 		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][1];
-		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 4, CPU);
+		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 5, CPU);
 	}
 
 	else if(compteur_CASCADE == 19)
 	{
 		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][2];
-		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 4, CPU);
+		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 5, CPU);
 	}
 
 	else if(compteur_CASCADE == 29)
 	{
 		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][3];;
-		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 4, CPU);
+		VDP_loadTileSet(ptr_TABLE_CASCADE->tileset, adr_VRAM_BG_B + 5, CPU);
 	}
 
 	compteur_CASCADE += 1;
