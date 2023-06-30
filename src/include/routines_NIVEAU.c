@@ -15,6 +15,7 @@
 #include "outils.h"
 
 #include "sprites_JEU.h"
+#include "sprites_JOUEUR.h"
 #include "sprites_MENU.h"
 
 #include "maps_GLOBAL.h"
@@ -29,19 +30,53 @@
 //                        GLOBAL                        //
 //                                                      //
 //******************************************************//
-/*
-void init_TIR()
+
+void crea_TIR()
 {
 	TIR.etat = 1;
-
-	TIR.pos_X = ;
-	TIR.pos_Y = ;
 
 	TIR.compteur_ANIM = 0;
 	TIR.index_ANIM = 0;
 
+	if(axe_JOUEUR == BAS)
+	{
+		TIR.pos_X = JOUEUR.pos_X_JOUEUR + 4;
+		TIR.pos_Y = JOUEUR.pos_Y_JOUEUR + 38;
+
+		TIR.vel_X = 0;
+		TIR.vel_Y = 1;
+	}
+
+	else if(axe_JOUEUR == HAUT)
+	{
+		TIR.pos_X = JOUEUR.pos_X_JOUEUR + 5;
+		TIR.pos_Y = JOUEUR.pos_Y_JOUEUR + 3;
+
+		TIR.vel_X = 0;
+		TIR.vel_Y = -1;
+	}	
+
+	else if(axe_JOUEUR == DROITE)
+	{
+		TIR.pos_X = JOUEUR.pos_X_JOUEUR + 22;
+		TIR.pos_Y = JOUEUR.pos_Y_JOUEUR + 19;
+
+		TIR.vel_X = 1;
+		TIR.vel_Y = 0;
+	}
+
+	else if(axe_JOUEUR == GAUCHE)
+	{
+		TIR.pos_X = JOUEUR.pos_X_JOUEUR - 14;
+		TIR.pos_Y = JOUEUR.pos_Y_JOUEUR + 19;
+
+		TIR.vel_X = -1;
+		TIR.vel_Y = 0;
+	}
+
+
 	TIR.sprite_TIR = SPR_addSprite(&tiles_Sprite_TIR, TIR.pos_X, TIR.pos_Y, TILE_ATTR(PAL3, FALSE, FALSE, FALSE));
-}*/
+}
 
 
 
@@ -528,7 +563,7 @@ void sortie_SCROLLING_NIVEAU()
 {
 	if(axe_JOUEUR == BAS)
 	{
-		if(JOUEUR.pos_Y_JOUEUR < 35)
+		if(JOUEUR.pos_Y_JOUEUR < 28)
 		{
 			JOUEUR.pos_Y_JOUEUR += 1;
 			maj_PT_COLL_DECOR();
@@ -560,7 +595,7 @@ void sortie_SCROLLING_NIVEAU()
 
 	else if(axe_JOUEUR == HAUT)
 	{
-		if(JOUEUR.pos_Y_JOUEUR > 192)
+		if(JOUEUR.pos_Y_JOUEUR > 195)
 		{
 			JOUEUR.pos_Y_JOUEUR -= 1;
 			maj_PT_COLL_DECOR();
@@ -700,7 +735,7 @@ void manette_JOUEUR_NIVEAU()
 	//////////////////////////////////////////////////////////
 	//                  SI PAS TIR OU TOUCHE                //
 	//////////////////////////////////////////////////////////
-	if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE)
+	if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE && etat_JOUEUR != TIR_BAGUETTE)
 	{		
 		//******************************************************//
 		//                                                      //
@@ -727,7 +762,7 @@ void manette_JOUEUR_NIVEAU()
 			//                   TEST SORTIE ECRAN                  //
 			//                                                      //
 			//******************************************************//				
-			if(JOUEUR.pos_Y_JOUEUR > 194)
+			if(JOUEUR.pos_Y_JOUEUR > 194+3)
 			{
 				axe_JOUEUR = BAS;
 				duree_SCROLLING = DUREE_SCROLL_V;
@@ -1598,24 +1633,60 @@ void tiles_JOUEUR()
 	//                        ATTAQUE                       //
 	//////////////////////////////////////////////////////////
 	else if(etat_JOUEUR == ATTAQUE)
-	{
-		SPR_setPosition(JOUEUR.sprite_EPEE, JOUEUR.pos_X_JOUEUR + TABLE_POS_EPEE[0][axe_JOUEUR], JOUEUR.pos_Y_JOUEUR +  + TABLE_POS_EPEE[1][axe_JOUEUR]);
-
-		SPR_setAnim(JOUEUR.sprite_EPEE,axe_JOUEUR);
-
-		SPR_setAnim(JOUEUR.sprite_JOUEUR,axe_JOUEUR + 4);
-		SPR_setFrame(JOUEUR.sprite_JOUEUR,0);
-
+	{		
 		JOUEUR.compteur_ATTAQUE += 1;
+		
+		if(JOUEUR.compteur_ATTAQUE == 1)
+		{
+			SPR_setPosition(JOUEUR.sprite_EPEE, JOUEUR.pos_X_JOUEUR + TABLE_POS_EPEE[0][axe_JOUEUR], JOUEUR.pos_Y_JOUEUR +  + TABLE_POS_EPEE[1][axe_JOUEUR]);
 
-		if(JOUEUR.compteur_ATTAQUE > 7)
+			SPR_setAnim(JOUEUR.sprite_EPEE,axe_JOUEUR);
+
+			SPR_setAnim(JOUEUR.sprite_JOUEUR,axe_JOUEUR + 4);
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,0);
+		}	
+
+		else if(JOUEUR.compteur_ATTAQUE == 8)
+		{
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,1);
+			SPR_setPosition(JOUEUR.sprite_EPEE, 0, -16);
+		}
+
+		else if(JOUEUR.compteur_ATTAQUE == 16)
 		{
 			JOUEUR.compteur_ATTAQUE = 0;
 			etat_JOUEUR = ARRET;
-
-			SPR_setPosition(JOUEUR.sprite_EPEE, 0, -16);
-		}
+		}		
 	}
+
+	//////////////////////////////////////////////////////////
+	//                      TIR BAGUETTE                    //
+	//////////////////////////////////////////////////////////
+	else if(etat_JOUEUR == TIR_BAGUETTE)
+	{
+		JOUEUR.compteur_ATTAQUE += 1;
+		
+		if(JOUEUR.compteur_ATTAQUE == 1)
+		{
+			SPR_setAnim(JOUEUR.sprite_JOUEUR,axe_JOUEUR + 4);
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,2);
+		}
+
+		else if(JOUEUR.compteur_ATTAQUE == 10)
+		{
+			SPR_setFrame(JOUEUR.sprite_JOUEUR,3);
+		}
+
+		else if(JOUEUR.compteur_ATTAQUE == 20)
+		{
+			JOUEUR.compteur_ATTAQUE = 0;
+			etat_JOUEUR = ARRET;
+		}	
+	}
+
+	//VDP_drawInt( JOUEUR.compteur_ATTAQUE , 2 , 0 , 0 );
+
+
 }
 
 

@@ -8,7 +8,8 @@
 #define ARRET                   0
 #define MARCHE                  1
 #define ATTAQUE                 2
-#define TOUCHE                  3
+#define TIR_BAGUETTE            3
+#define TOUCHE                  4
 
 #define BAS                     0
 #define HAUT                    1
@@ -51,6 +52,7 @@
 
 
 #define		MAX_OBJET_DECOR     2
+#define		MAX_TIR             2
 
 #define     ARBRE               0
 #define     ROCHER              1

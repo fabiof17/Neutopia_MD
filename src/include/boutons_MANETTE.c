@@ -13,6 +13,7 @@
 #include "maps_MENU.h"
 
 
+
 //******************************************************//
 //                                                      //
 //                        TITRE                         //
@@ -142,6 +143,7 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
             VDP_setTileMapEx(WINDOW, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[index_Y_MENU][index_X_MENU], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[index_Y_MENU][index_X_MENU]), 3, 2, 0, 0, 2, 2, CPU);
 
             PAUSE = 1;
+            //return;
         }
 
         //////////////////////////////////////////////////////////
@@ -149,8 +151,25 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
 		//////////////////////////////////////////////////////////
         else if(changed & state & BUTTON_B)
         {
-            etat_JOUEUR = ATTAQUE;
+            if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE)
+            {
+                etat_JOUEUR = ATTAQUE;
+                //return;
+            }
         }
+
+        //////////////////////////////////////////////////////////
+		//                      TIR BAGUETTE                    //
+		//////////////////////////////////////////////////////////
+        else if(changed & state & BUTTON_A)
+        {
+            if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE)
+            {
+                etat_JOUEUR = TIR_BAGUETTE;
+                //init_TIR();
+                //return;
+            }
+        }        
     }
 }
 

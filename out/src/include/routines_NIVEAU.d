@@ -15,5 +15,6 @@ out/src/include/routines_NIVEAU.o: src/include/routines_NIVEAU.c \
  src/include/tables_ENTREES.h src/include/tables_JOUEUR.h \
  src/include/tables_MENU.h src/include/tables_NIVEAUX.h \
  src/include/tables_OBJETS_DECOR.h src/include/boutons_MANETTE.h \
- src/include/outils.h src/include/sprites_JEU.h res/sprites_MENU.h \
- res/maps_GLOBAL.h res/maps_MENU.h res/maps_NIVEAUX.h res/palettes.h
+ src/include/outils.h src/include/sprites_JEU.h res/sprites_JOUEUR.h \
+ res/sprites_MENU.h res/maps_GLOBAL.h res/maps_MENU.h res/maps_NIVEAUX.h \
+ res/palettes.h

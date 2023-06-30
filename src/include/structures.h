@@ -63,10 +63,13 @@ extern struct_JOUEUR_ JOUEUR;
 
 typedef struct
 {
-	u8 etat;
+	u8 etat;				// 0 = NON CREE  |  1 = AVANCE  |  2 = RECULE
 
     s16 pos_X;
     s16 pos_Y;
+
+	u8 vel_X;				// vélocité en X
+	u8 vel_Y;				// vélocité en Y
 
     u8 compteur_ANIM;		// compteur frame d'animation
     u8 index_ANIM;          // index frame d'animation
