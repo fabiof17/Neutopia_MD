@@ -8,6 +8,7 @@
 #include "tables_ENTREES.h"
 #include "tables_MENU.h"
 #include "tables_NIVEAUX.h"
+#include "tables_OBJETS_DECOR.h"
 #include "tables_SALLES.h"
 
 #include "outils.h"
@@ -197,6 +198,10 @@ void init_VARIABLES_GENERALES()
 	pos_Y_ENTREE = -48;
 
 	entree_SECRET_OK = 0;
+
+	compteur_EAU = 15;
+
+	nb_OBJET_DECOR = 0;
 
 
 	//******************************************************//
@@ -604,18 +609,26 @@ void init_DECOR( u8 index , u8 type )
 		if(num_NIVEAU == 0)
 		{
 			ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU1;
+			ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU1[0][0];
+			ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU1[0][0];
 		}
 		else if(num_NIVEAU == 1)
 		{
 			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU2;
+			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU2[0][0];
+			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU2[0][0];
 		}
 		else if(num_NIVEAU == 2)
 		{
 			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU3;
+			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU3[0][0];
+			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU3[0][0];
 		}		
 		else if(num_NIVEAU == 3)
 		{
 			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU4;
+			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU4[0][0];
+			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU4[0][0];
 		}
 
 		ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][0];

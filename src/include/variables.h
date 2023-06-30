@@ -50,6 +50,14 @@
 
 
 
+#define		MAX_OBJET_DECOR     2
+
+#define     ARBRE               0
+#define     ROCHER              1
+
+
+
+
 //******************************************************//
 //                                                      //
 //                       CONSTANTES                     //
@@ -103,6 +111,8 @@ extern u8 duree_SCROLLING;
 
 extern u8 index_X_CARTE;
 extern u8 index_Y_CARTE;
+
+extern u8 nb_ENNEMIS;
 
 
 
@@ -225,12 +235,16 @@ extern u16 offset_TABLES_ENTREES;
 extern bool entree_SECRET_OK;
 extern const Image *ptr_TABLE_EAU;
 extern const Image *ptr_TABLE_CASCADE;
-
+extern const u8 *ptr_TABLE_ID_ENTREES;
 
 
 
 extern u8 compteur_EAU;
 extern u8 compteur_CASCADE;
+
+extern u8 nb_OBJET_DECOR;
+extern bool arbre_BRULE_OK;
+extern bool objet_ECRAN;
 
 
 

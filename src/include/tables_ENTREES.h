@@ -16,6 +16,7 @@
 
 extern const struct_ENTREE_			TABLE_ENTREES_NIVEAU1[44];
 
+extern const u8                     TABLE_ID_ENTREES_NIVEAU1[8][8];
 
 
 

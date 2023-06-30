@@ -3,41 +3,10 @@
 
 
 
-//******************************************************//
-//                                                      //
-//                     SPRITE DECOR                     //
-//                                                      //
-//******************************************************//
-
-typedef struct
-{
-    Sprite* sprite_DECOR;
- 
-    s16 pos_X;
-    s16 pos_Y;
-
-    u8 taille_H;                // 16
-    u8 taille_V;                // ID=2 : 16 - sinon 32
-
-    s16 pt_Coll_HG_X;
-    s16 pt_Coll_HG_Y;
-    s16 pt_Coll_BD_X;
-    s16 pt_Coll_BD_Y;
-
-    u8 ID;						// Type de sprite : arbre, rocher, statue, etc...
-    
-    u8 compteur_ANIM;		// compteur frame d'animation
-
-} struct_ELEMENT_DECOR_;
-
-extern struct_ELEMENT_DECOR_ ELEMENT_DECOR;
-
-
-
 
 //******************************************************//
 //                                                      //
-//                     SPRITE JOUEUR                    //
+//                    STRUCTURE JOUEUR                  //
 //                                                      //
 //******************************************************//
 
@@ -88,6 +57,32 @@ extern struct_JOUEUR_ JOUEUR;
 
 //******************************************************//
 //                                                      //
+//                      STRUCTURE TIR                   //
+//                                                      //
+//******************************************************//
+
+typedef struct
+{
+	u8 etat;
+
+    s16 pos_X;
+    s16 pos_Y;
+
+    u8 compteur_ANIM;		// compteur frame d'animation
+    u8 index_ANIM;          // index frame d'animation
+
+    //SpriteDefinition *adr_TILES;
+	Sprite* sprite_TIR;
+
+} struct_TIR_;
+
+extern struct_TIR_ TIR;
+
+
+
+
+//******************************************************//
+//                                                      //
 //                   STRUCTURE ENTREE                   //
 //                                                      //
 //******************************************************//
@@ -99,7 +94,8 @@ typedef struct
 	const u8				pos_X;			// EN TILES
 	const u8				pos_Y;			// EN TILES
 	
-	const Image             *adr_Image;     // adresse de la structure IMAGE
+	const Image             *adr_Image_ENTREE;     // adresse des TILES des entrées
+	const Image             *adr_Image_CACHE;      // adresse des TILES des caches
 
 	const u8				pal;
 	VDPPlane				bg;
@@ -112,10 +108,83 @@ typedef struct
 
 } struct_ENTREE_;
 
+
+// POINTEUR SUR LA TABLE DES ENTREES DU NIVEAU EN COURS
 extern const struct_ENTREE_ *ptr_TABLE_ENTREES;
 
 
 
+
+//******************************************************//
+//                                                      //
+//                  STRUCTURE ENNEMI                    //
+//                                                      //
+//******************************************************//
+
+typedef struct
+{
+	u8 type;
+	
+	u8 pos_X;
+	u8 pos_Y;
+	
+	u8 etat;
+	u8 axe;
+	bool destructible;
+
+	u8 pts_VIE;
+
+	u8 w;
+	u8 h;
+
+	u8 compteur;
+	u8 compteur_ANIM;
+	u8 index_ANIM;
+	u8 offset_ANIM;
+	
+	SpriteDefinition *adr_TILES;
+	
+	Sprite *sprite_ENNEMI;
+	Sprite *sprite_OMBRE;
+	Sprite *sprite_PROJECTILE;
+	
+} struct_ENNEMI_;
+
+
+
+
+//******************************************************//
+//                                                      //
+//                 STRUCTURE OBJET DECOR                //
+//                                                      //
+//******************************************************//
+
+typedef struct
+{
+	bool type;
+	
+	s16 pos_X;
+	s16 pos_Y;
+	
+	u8 etat;
+	u8 axe;
+	
+	u8 compteur_ANIM;
+	u8 index_ANIM;
+	
+	SpriteDefinition *adr_TILES;	
+	Sprite *sprite_OBJET;
+
+	u8 pal;
+	
+} struct_OBJET_DECOR_;
+
+
+// LISTE DES OBJETS DANS LE NIVEAU EN COURS
+extern struct_OBJET_DECOR_						LISTE_OBJETS_DECOR[2];
+
+// POINTEUR SUR LA TABLE DES OBJETS DU NIVEAU EN COURS
+extern const struct_OBJET_DECOR_				*ptr_TABLE_OBJETS_DECOR;
 
 
 

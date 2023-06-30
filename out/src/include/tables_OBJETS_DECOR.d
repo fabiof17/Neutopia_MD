@@ -1,4 +1,4 @@
-out/src/include/tables_ENTREES.o: src/include/tables_ENTREES.c \
+out/src/include/tables_OBJETS_DECOR.o: src/include/tables_OBJETS_DECOR.c \
  C:/sgdk/inc/genesis.h C:/sgdk/inc/types.h C:/sgdk/inc/config.h \
  C:/sgdk/inc/asm.h C:/sgdk/inc/sys.h C:/sgdk/inc/sram.h \
  C:/sgdk/inc/mapper.h C:/sgdk/inc/memory.h C:/sgdk/inc/memory_base.h \
@@ -12,4 +12,4 @@ out/src/include/tables_ENTREES.o: src/include/tables_ENTREES.c \
  C:/sgdk/inc/z80_ctrl.h C:/sgdk/inc/ym2612.h C:/sgdk/inc/psg.h \
  C:/sgdk/inc/joy.h C:/sgdk/inc/timer.h C:/sgdk/inc/task.h \
  C:/sgdk/inc/task_cst.h res/palettes.h src/include/structures.h \
- res/maps_NIVEAUX.h
+ src/include/variables.h res/sprites_DECOR.h

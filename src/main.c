@@ -4,7 +4,7 @@
 #include "include/structures.h"
 #include "include/variables.h"
 #include "include/init.h"
-#include "include/routines.h"
+#include "include/routines_NIVEAU.h"
 #include "include/boutons_MANETTE.h"
 
 
@@ -149,11 +149,14 @@ int main(bool resetType)
                             {
                                 JOY_setEventHandler(niveau_Callback);
 
+                                collision_TIR();
+
                                 manette_JOUEUR_NIVEAU();
 
                                 tiles_JOUEUR();
                                 tiles_EAU_NIVEAU();
                                 tiles_CASCADE_NIVEAU();
+                                tiles_ARBRE_BRULE();
                             }
 
                             else
@@ -162,6 +165,7 @@ int main(bool resetType)
                             }
 
                             //debug_JEU();
+                            //VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
 
                             SPR_update();
                             SYS_doVBlankProcess();  
@@ -174,7 +178,7 @@ int main(bool resetType)
                         {
                             JOY_setEventHandler(desactiver_Callback);
 
-                            scrolling_ECRAN();
+                            scrolling_ECRAN_NIVEAU();
                             
                             tiles_EAU_NIVEAU();
                             tiles_CASCADE_NIVEAU();
@@ -211,6 +215,7 @@ int main(bool resetType)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             entree_ENTREE();
+                            VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
 
                             //debug_JEU();
 

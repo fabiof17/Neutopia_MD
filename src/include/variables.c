@@ -42,7 +42,7 @@ u8 duree_SCROLLING = 0;                 //  init -->  init_VARIABLES_GENERALES()
 u8 index_X_CARTE = 0;
 u8 index_Y_CARTE = 0;
 
-//u8 z_ORDER = 0;
+u8 nb_ENNEMIS = 0;
 
 
 
@@ -162,12 +162,17 @@ u16 offset_TABLES_ENTREES = 0;          //  init -->  init_VARIABLES_GENERALES()
 bool entree_SECRET_OK = 0;
 const Image *ptr_TABLE_EAU = NULL;
 const Image *ptr_TABLE_CASCADE = NULL;
+const u8 *ptr_TABLE_ID_ENTREES = NULL;
 
 
 
 
 u8 compteur_EAU = 0;
 u8 compteur_CASCADE = 0;
+
+u8 nb_OBJET_DECOR = 0;
+bool arbre_BRULE_OK = 0;
+bool objet_ECRAN = NULL;
 
 
 

@@ -1,59 +1,91 @@
-#include <genesis.h>
-
-#include "structures.h"
-
-
-//******************************************************//
-//                                                      //
-//                    STRUCTURE JOUEUR                  //
-//                                                      //
-//******************************************************//
-
-struct_JOUEUR_ JOUEUR;
-
-
+#ifndef _ROUTINES_NIVEAU_H
+#define _ROUTINES_NIVEAU_H
 
 
 //******************************************************//
 //                                                      //
-//                      STRUCTURE TIR                   //
+//                        GLOBAL                        //
 //                                                      //
 //******************************************************//
 
-struct_TIR_ TIR;
+//extern void init_TIR();
 
 
 
 
 //******************************************************//
 //                                                      //
-//                   STRUCTURE ENTREE                   //
+//                        TITRE                         //
 //                                                      //
 //******************************************************//
 
-const struct_ENTREE_					*ptr_TABLE_ENTREES;
-
-
-
-
-//******************************************************//
-//                                                      //
-//                  STRUCTURE ENNEMI                    //
-//                                                      //
-//******************************************************//
+extern void anim_TITRE();
+extern void boucle_TITRE();
 
 
 
 
 //******************************************************//
 //                                                      //
-//                 STRUCTURE OBJET DECOR                //
+//                         MENU                         //
 //                                                      //
 //******************************************************//
 
-																				
-// LISTE DES OBJETS DANS LE NIVEAU EN COURS
-struct_OBJET_DECOR_						LISTE_OBJETS_DECOR[2];
+extern void afficher_MENU(u8 type);
 
-// POINTEUR SUR LA TABLE DES OBJETS DU NIVEAU EN COURS
-const struct_OBJET_DECOR_				*ptr_TABLE_OBJETS_DECOR;
+
+
+
+//******************************************************//
+//                                                      //
+//                     NIVEAU GLOBAL                    //
+//                                                      //
+//******************************************************//
+
+extern void maj_PALETTES( u8 index , u8 type );
+
+
+
+
+//******************************************************//
+//                                                      //
+//                        NIVEAU                        //
+//                                                      //
+//******************************************************//
+
+extern void scrolling_ECRAN_NIVEAU();
+
+extern void sortie_SCROLLING_NIVEAU();
+
+extern void entree_ENTREE();
+
+
+
+
+extern void manette_JOUEUR_NIVEAU();
+
+extern void collision_TIR();
+
+
+
+
+//******************************************************//
+//                                                      //
+//                         TILES                        //
+//                                                      //
+//******************************************************//
+
+extern void tiles_JOUEUR();
+
+extern void tiles_EAU_NIVEAU();
+
+extern void tiles_CASCADE_NIVEAU();
+
+extern void tiles_ARBRE_BRULE();
+
+
+
+
+
+
+#endif // _MAIN
