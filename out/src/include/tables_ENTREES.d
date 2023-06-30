@@ -12,4 +12,4 @@ out/src/include/tables_ENTREES.o: src/include/tables_ENTREES.c \
  C:/sgdk/inc/z80_ctrl.h C:/sgdk/inc/ym2612.h C:/sgdk/inc/psg.h \
  C:/sgdk/inc/joy.h C:/sgdk/inc/timer.h C:/sgdk/inc/task.h \
  C:/sgdk/inc/task_cst.h res/palettes.h src/include/structures.h \
- res/maps_NIVEAUX.h
+ res/maps_ENTREES.h res/maps_NIVEAUX.h

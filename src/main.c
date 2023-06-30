@@ -166,7 +166,7 @@ int main(bool resetType)
 
                             //debug_JEU();
                             //VDP_drawInt( etat_JOUEUR , 2 , 0 , 0 );
-                            SYS_showFrameLoad(TRUE);
+                            //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
                             SYS_doVBlankProcess();  
@@ -185,7 +185,7 @@ int main(bool resetType)
                             tiles_CASCADE_NIVEAU();
 
                             //debug_JEU();
-                            SYS_showFrameLoad(TRUE);
+                            //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
                             SYS_doVBlankProcess();  
@@ -205,7 +205,7 @@ int main(bool resetType)
                             tiles_CASCADE_NIVEAU();
 
                             //debug_JEU();
-                            SYS_showFrameLoad(TRUE);
+                            //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
                             SYS_doVBlankProcess();  
@@ -221,7 +221,7 @@ int main(bool resetType)
                             VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
 
                             //debug_JEU();
-                            SYS_showFrameLoad(TRUE);
+                            //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
                             SYS_doVBlankProcess();  
@@ -251,8 +251,6 @@ int main(bool resetType)
                         //                                      DONJON                                       //
                         ///////////////////////////////////////////////////////////////////////////////////////
 
-                        //VDP_drawInt( id_TILE1 , 2 , 0 , 0 );
-                        //VDP_drawInt( id_TILE2 , 2 , 6 , 0 );
                         //SYS_showFrameLoad(TRUE);
 
                         //SPR_update();

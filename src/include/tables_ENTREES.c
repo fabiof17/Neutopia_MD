@@ -7,6 +7,7 @@
 //#include "sprites_DECOR.h"
 //#include "sprites_ENNEMIS.h"
 
+#include "maps_ENTREES.h"
 #include "maps_NIVEAUX.h"
 //#include "maps_SALLES.h"
 
@@ -69,7 +70,7 @@ const struct_ENTREE_			TABLE_ENTREES_NIVEAU1[44]	=	{	// 0 - 6
 
 																	// 23 - 25
 																	{2, 15,11, &image_CAVERNE_NIVEAU1	, &image_CAVERNE_NIVEAU1,			PAL2,BG_A,TRUE , 0,0 , 0},
-																	{2, 21,5 , &image_CAVE2_NIVEAU1		, &image_CAVE2_NIVEAU1,				PAL1,BG_B,TRUE , 0,0 , 0},
+																	{2, 21,5 , &image_CAVE7_NIVEAU1		, &image_CAVE2_NIVEAU1,				PAL1,BG_B,TRUE , 0,0 , 0},
 																	{0, 14,11, &image_ESCALIER2_NIVEAU1 , &image_CACHE2_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 1,1 , 1},
 
 																	// 26 - 31
