@@ -1684,9 +1684,6 @@ void tiles_JOUEUR()
 		}	
 	}
 
-	//VDP_drawInt( JOUEUR.compteur_ATTAQUE , 2 , 0 , 0 );
-
-
 }
 
 
