@@ -18,6 +18,7 @@
 
 
 
+
 #define DUREE_SCROLL_H          63
 #define DUREE_SCROLL_V          45
 
@@ -58,6 +59,14 @@
 #define     ROCHER              1
 
 
+
+#define     BOMBE               0
+#define     FIOLE               1
+#define     BAGUETTE            2
+#define     CLOCHE              3
+#define     AILES               4
+#define     POTION              5
+#define     ANNEAU              6
 
 
 //******************************************************//
