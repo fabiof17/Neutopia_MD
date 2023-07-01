@@ -90,8 +90,8 @@ const struct_ENTREE_			TABLE_ENTREES_NIVEAU1[44]	=	{	// 0 - 6
 																	{0, 24,9 , &image_ESCALIER1_NIVEAU1 , NULL,								PAL1,BG_B,FALSE, 0,0 , 0},
 
 																	// 38 - 42
-																	{2, 5 ,5 , &image_CAVE2_NIVEAU1		, &image_CAVE2_NIVEAU1,				PAL1,BG_B,TRUE , 0,0 , 0},
-																	{2, 5 ,5 , &image_CAVE2_NIVEAU1		, &image_CAVE2_NIVEAU1,				PAL1,BG_B,TRUE , 0,0 , 0},
+																	{2, 5 ,5 , &image_CAVE7_NIVEAU1		, &image_CAVE7_NIVEAU1,				PAL1,BG_B,TRUE , 0,0 , 0},
+																	{2, 5 ,5 , &image_CAVE7_NIVEAU1		, &image_CAVE7_NIVEAU1,				PAL1,BG_B,TRUE , 0,0 , 0},
 																	{0, 18,13, &image_ESCALIER1_NIVEAU1 , NULL,								PAL1,BG_B,FALSE, 0,0 , 0},
 																	{2, 25,5 , &image_CAVE6_NIVEAU1		, &image_CAVE6_NIVEAU1,				PAL1,BG_B,TRUE , 0,0 , 0},
 																	{0, 16,13, &image_ESCALIER2_NIVEAU1 , &image_CACHE2_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 1,1 , 1},
