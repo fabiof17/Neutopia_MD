@@ -158,6 +158,8 @@ extern u16 pos_Y_CURSEUR;
 extern u8 index_X_CARTE_MENU;
 extern u8 index_Y_CARTE_MENU;
 
+extern u8 id_OBJET_MENU;
+
 extern bool cle_OK;
 extern bool crystal_OK;
 

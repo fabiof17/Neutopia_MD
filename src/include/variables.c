@@ -83,6 +83,8 @@ u16 pos_Y_CURSEUR = 0;
 u8 index_X_CARTE_MENU = 0;
 u8 index_Y_CARTE_MENU = 0;
 
+u8 id_OBJET_MENU = 0;
+
 bool cle_OK = 0;
 bool crystal_OK = 0;
 

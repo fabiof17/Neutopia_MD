@@ -61,6 +61,7 @@ void menu_Callback(u16 joy, u16 changed, u16 state)
 
                 VDP_setTileMapEx(WINDOW, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[index_Y_MENU][index_X_MENU], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[index_Y_MENU][index_X_MENU]), 3, 2, 0, 0, 2, 2, CPU);
 
+                id_OBJET_MENU = (index_Y_MENU << 2) + index_X_MENU;
             }
         }
 
@@ -77,6 +78,7 @@ void menu_Callback(u16 joy, u16 changed, u16 state)
 
                 VDP_setTileMapEx(WINDOW, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[index_Y_MENU][index_X_MENU], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[index_Y_MENU][index_X_MENU]), 3, 2, 0, 0, 2, 2, CPU);
 
+                id_OBJET_MENU = (index_Y_MENU << 2) + index_X_MENU;
             }
         }
 
@@ -93,6 +95,7 @@ void menu_Callback(u16 joy, u16 changed, u16 state)
 
                 VDP_setTileMapEx(WINDOW, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[index_Y_MENU][index_X_MENU], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[index_Y_MENU][index_X_MENU]), 3, 2, 0, 0, 2, 2, CPU);
 
+                id_OBJET_MENU = (index_Y_MENU << 2) + index_X_MENU;
             }
         }
 
@@ -109,6 +112,7 @@ void menu_Callback(u16 joy, u16 changed, u16 state)
 
                 VDP_setTileMapEx(WINDOW, image_OBJET.tilemap, TILE_ATTR_FULL(TABLE_PAL_OBJETS_HAUT[index_Y_MENU][index_X_MENU], TRUE, FALSE, FALSE, TABLE_ADR_VRAM_OBJETS_HAUT[index_Y_MENU][index_X_MENU]), 3, 2, 0, 0, 2, 2, CPU);
 
+                id_OBJET_MENU = (index_Y_MENU << 2) + index_X_MENU;
             }
         }
     }
@@ -134,6 +138,8 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
         {
             pos_X_CURSEUR = 20 + (index_X_MENU * 24);
             pos_Y_CURSEUR = 76 + (index_Y_MENU * 24);
+
+            id_OBJET_MENU = (index_Y_MENU << 2) + index_X_MENU;
 
             SPR_setPosition(sprite_CURSEUR, pos_X_CURSEUR, pos_Y_CURSEUR);
 
