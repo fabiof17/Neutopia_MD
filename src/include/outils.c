@@ -86,7 +86,13 @@ void maj_SCORE(u16 nombre , u8 nb_TILES , u16 pos_X , u16 pos_Y)
 
 	u8 i = 0;
 	u8 digit = 0;
-	
+
+	if(nombre == 0)
+	{
+		VDP_setTileMapEx(WINDOW , image_ENERGIE_VIDE.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_CHIFFRES), pos_X - i , pos_Y, 0, 0, 1, 1, CPU);
+		return;
+	}
+
 	// afficher gold
 	while(nombre > 0)
 	{

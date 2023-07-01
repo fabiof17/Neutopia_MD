@@ -63,8 +63,8 @@ void init_VARIABLES_GENERALES()
 	PAUSE = 0;
 	GAMEOVER = 0;
 
-	nb_BOMBES = 10;
-	nb_GOLD = 20;
+	nb_BOMBES = 0;
+	nb_GOLD = 0;
 
 	niveau_EPEE = 0;
 	niveau_BOUCLIER = 0;
