@@ -63,7 +63,7 @@ extern struct_JOUEUR_ JOUEUR;
 
 typedef struct
 {
-	u8 etat;				// 0 = NON CREE  |  1 = AVANCE  |  2 = RECULE
+	u8 etat;				// 0 = NON CREE  |  1 = NORMAL  |  2 = BOOMERANG
 
     s16 pos_X;
     s16 pos_Y;
@@ -81,6 +81,8 @@ typedef struct
 
 extern struct_TIR_ TIR;
 
+// LISTE DES TIRS
+extern struct_TIR_						LISTE_TIR[2];
 
 
 

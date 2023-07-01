@@ -52,6 +52,8 @@ int calcul_DIGITS(u16 nombre)
 }
 
 
+
+
 void effacer_SCORE(u8 nb_TILES , u16 pos_X , u16 pos_Y)
 {
 	u8 i = 0;
@@ -62,6 +64,19 @@ void effacer_SCORE(u8 nb_TILES , u16 pos_X , u16 pos_Y)
 		VDP_setTileMapEx(WINDOW , image_ENERGIE_VIDE.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, 1), pos_X - i, pos_Y, 0, 0, 1, 1, CPU);
 	}
 }
+
+
+void effacer_ENERGIE()
+{
+	u8 i = 0;
+
+	for(i=0 ; i<energie_MAX ; i++)
+	{
+		VDP_setTileMapEx(WINDOW, image_ENERGIE_VIDE.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_VIDE), 13 + i, 3, 0, 0, 1, 1, CPU);
+	}	
+}
+
+
 
 
 void maj_SCORE(u16 nombre , u8 nb_TILES , u16 pos_X , u16 pos_Y)
@@ -81,6 +96,10 @@ void maj_SCORE(u16 nombre , u8 nb_TILES , u16 pos_X , u16 pos_Y)
 		nombre /= 10;
 	}
 }
+
+
+
+
 
 
 s16 aligner_JOUEUR(u16 x)

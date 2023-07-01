@@ -21,7 +21,6 @@ extern const Image image_CAVE6_NIVEAU1;
 extern const Image image_CAVE7_NIVEAU1;
 extern const Image image_CACHE1_CAVE_NIVEAU1;
 extern const Image image_CACHE2_CAVE_NIVEAU1;
-extern const Image image_CACHE3_CAVE_NIVEAU1;
 extern const Image image_CAVERNE_NIVEAU1;
 extern const Image image_EAU1_NIVEAU1;
 extern const Image image_EAU2_NIVEAU1;

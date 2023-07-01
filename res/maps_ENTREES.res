@@ -28,7 +28,6 @@ IMAGE image_CAVE7_NIVEAU1                   "maps/niveaux/tiles_CAVE7_NIVEAU1.pn
 
 IMAGE image_CACHE1_CAVE_NIVEAU1             "maps/niveaux/tiles_CACHE1_CAVE_NIVEAU1.png"            NONE ALL
 IMAGE image_CACHE2_CAVE_NIVEAU1             "maps/niveaux/tiles_CACHE2_CAVE_NIVEAU1.png"            NONE ALL
-IMAGE image_CACHE3_CAVE_NIVEAU1             "maps/niveaux/tiles_CACHE3_CAVE_NIVEAU1.png"            NONE ALL
 
 IMAGE image_CAVERNE_NIVEAU1                 "maps/niveaux/tiles_CAVERNE_NIVEAU1.png"                NONE ALL
 

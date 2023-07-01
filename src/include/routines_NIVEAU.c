@@ -318,28 +318,21 @@ inline static void effacer_ENTREE_CACHEE()
 		if(axe_JOUEUR == BAS || axe_JOUEUR == HAUT)
 		{
 			u8 index = index_X_CARTE + ( (index_Y_CARTE + offset_Y_CARTE) <<3 );
-			//VDP_drawInt( index , 2 , 0 , 0 );
-			//VDP_drawInt( index_X_CARTE , 2 , 3 , 0 );
-			//VDP_drawInt( index_Y_CARTE + offset_Y_CARTE , 2 , 6 , 0 );
 			
 			if( ptr_TABLE_ID_ENTREES[index] != NULL )
 			{
 				num_ENTREE = ptr_TABLE_ID_ENTREES[index];
-				//VDP_drawInt( num_ENTREE , 2 , 0 , 0 );
 
 				if(ptr_TABLE_ENTREES[num_ENTREE].secret == 1)
 				{
 					VDP_loadTileSet(ptr_TABLE_ENTREES[num_ENTREE].adr_Image_CACHE->tileset, adr_VRAM_ENTREE, DMA);
 					VDP_drawImageEx(ptr_TABLE_ENTREES[num_ENTREE].bg , ptr_TABLE_ENTREES[num_ENTREE].adr_Image_CACHE , TILE_ATTR_FULL(ptr_TABLE_ENTREES[num_ENTREE].pal, FALSE, FALSE, FALSE, adr_VRAM_ENTREE) , ptr_TABLE_ENTREES[num_ENTREE].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ptr_TABLE_ENTREES[num_ENTREE].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + offset_Y_TILEMAP , FALSE , FALSE );
-				
-					//VDP_drawInt( ptr_TABLE_ENTREES[num_ENTREE].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , 2 , 3 , 0 );
-					//VDP_drawInt( ptr_TABLE_ENTREES[num_ENTREE].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + offset_Y_TILEMAP , 2 , 6 , 0 );
 				}
 			}
 		}
 		
 		//VDP_drawInt( ptr_TABLE_ID_ENTREES[index] , 3 , 0 , 0 );
-		//entree_SECRET_OK = 0;
+		entree_SECRET_OK = 0;
 	}
 
 	
@@ -1403,7 +1396,7 @@ void manette_JOUEUR_NIVEAU()
 void collision_TIR()
 {
 	// LE JOUEUR A TIRÉ
-	if(TIR.etat == 1)
+	if(TIR.etat != 0)
 	{
 		//////////////////////////////////////////////////////////
 		//			 	  TEST COLLISION DECOR					//

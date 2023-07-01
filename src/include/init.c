@@ -1,7 +1,8 @@
 #include <genesis.h>
 
-#include "variables.h"
+#include "outils.h"
 #include "structures.h"
+#include "variables.h"
 
 #include "tables_JOUEUR.h"
 #include "tables_DONJONS.h"
@@ -11,7 +12,6 @@
 #include "tables_OBJETS_DECOR.h"
 #include "tables_SALLES.h"
 
-#include "outils.h"
 
 #include "sprites_DECOR.h"
 #include "sprites_JEU.h"

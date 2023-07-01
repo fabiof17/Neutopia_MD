@@ -113,6 +113,7 @@ u16 adr_VRAM_SCEPTRE = 0;
 u16 adr_VRAM_CHIFFRES = 0;
 
 u8 nb_ENERGIE = 5;
+u8 energie_MAX = 5;
 
 
 

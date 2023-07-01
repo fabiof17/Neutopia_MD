@@ -188,6 +188,7 @@ extern u16 adr_VRAM_SCEPTRE;
 extern u16 adr_VRAM_CHIFFRES;
 
 extern u8 nb_ENERGIE;
+extern u8 energie_MAX;
 
 
 

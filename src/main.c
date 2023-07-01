@@ -218,7 +218,7 @@ int main(bool resetType)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             entree_ENTREE();
-                            VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
+                            //VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
 
                             //debug_JEU();
                             //SYS_showFrameLoad(TRUE);

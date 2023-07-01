@@ -40,8 +40,8 @@ PALETTE palette_OBJETS_VIOLET               "palettes/menu/palette_OBJETS_VIOLET
 //                                                      //
 //******************************************************//
 
-PALETTE palette_NIVEAU1_BG_B                "palettes/niveaux/palette_NIVEAU1_BG_B.png"
-PALETTE palette_NIVEAU1_BG_A                "palettes/niveaux/palette_NIVEAU1_BG_A.png"
+PALETTE palette_NIVEAU1_BG_B                "maps/niveaux/tiles_NIVEAU1_BG_B.png"
+PALETTE palette_NIVEAU1_BG_A                "maps/niveaux/tiles_NIVEAU1_BG_A.png"
 
 
 
