@@ -33,49 +33,472 @@
 
 void crea_TIR()
 {
-	TIR.etat = 1;
+	u8 i = 0;
 
-	TIR.compteur_ANIM = 0;
-	TIR.index_ANIM = 0;
-
-	if(axe_JOUEUR == BAS)
+	for(i=0 ; i<MAX_TIR ; i++)
 	{
-		TIR.pos_X = JOUEUR.pos_X_JOUEUR + 4;
-		TIR.pos_Y = JOUEUR.pos_Y_JOUEUR + 38;
+		if(LISTE_TIR[i].etat == 0)
+		{
+			LISTE_TIR[i].etat = 1;
 
-		TIR.vel_X = 0;
-		TIR.vel_Y = 1;
+			LISTE_TIR[i].marge_X = 0;
+			LISTE_TIR[i].marge_Y = 0;
+
+			LISTE_TIR[i].compteur_ANIM = 0;
+			LISTE_TIR[i].index_ANIM = 0;
+
+			if(axe_JOUEUR == BAS)
+			{
+				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR + 4;
+				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 38;
+
+				LISTE_TIR[i].vel_X = 0;
+				LISTE_TIR[i].vel_Y = VEL_TIR;
+			}
+
+			else if(axe_JOUEUR == HAUT)
+			{
+				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR + 5;
+				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 3;
+
+				LISTE_TIR[i].vel_X = 0;
+				LISTE_TIR[i].vel_Y = -VEL_TIR;
+			}	
+
+			else if(axe_JOUEUR == DROITE)
+			{
+				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR + 22;
+				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 19;
+
+				LISTE_TIR[i].vel_X = VEL_TIR;
+				LISTE_TIR[i].vel_Y = 0;
+			}
+
+			else if(axe_JOUEUR == GAUCHE)
+			{
+				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR - 14;
+				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 19;
+
+				LISTE_TIR[i].vel_X = -VEL_TIR;
+				LISTE_TIR[i].vel_Y = 0;
+			}
+
+
+			LISTE_TIR[i].sprite_TIR = SPR_addSprite(&tiles_Sprite_TIR, LISTE_TIR[i].pos_X, LISTE_TIR[i].pos_Y, TILE_ATTR(PAL3, FALSE, FALSE, FALSE));
+			SPR_setAnim(LISTE_TIR[i].sprite_TIR,0);
+			SPR_setFrame(LISTE_TIR[i].sprite_TIR,0);
+
+			nb_TIR += 1;
+
+			return;
+		}
+	}
+}
+
+
+void collision_TIR()
+{
+	u8 i = 0;
+	
+	//**************************************//
+	//										//
+	//				SORTIE ECRAN			//
+	//										//
+	//**************************************// 
+
+	// LE JOUEUR A TIRÉ // 
+	if(nb_TIR != 0)
+	{
+		// POUR CHAQUE TIR //
+		for(i=0 ; i<MAX_TIR ; i++)
+		{
+			if(LISTE_TIR[i].etat != 0 && LISTE_TIR[i].etat != 9)
+			{
+				if(LISTE_TIR[i].pos_X < -31 || LISTE_TIR[i].pos_X > 254 || LISTE_TIR[i].pos_Y < -31 || LISTE_TIR[i].pos_Y > 223)
+				{
+					LISTE_TIR[i].etat = 0;
+					SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+					nb_TIR -= 1;
+				}
+			}
+		}
 	}
 
-	else if(axe_JOUEUR == HAUT)
+
+	//**************************************//
+	//										//
+	//			  COLLISION ARBRE			//
+	//										//
+	//**************************************// 
+
+	// LE JOUEUR A TIRÉ
+	if(nb_TIR != 0)
 	{
-		TIR.pos_X = JOUEUR.pos_X_JOUEUR + 5;
-		TIR.pos_Y = JOUEUR.pos_Y_JOUEUR + 3;
+		// L'OBJET DE L'ÉCRAN EN COURS EST UN ARBRE
+		if(objet_ECRAN == ARBRE)
+		{
+			// ENTRÉE SECRETE PAS ENCORE DÉCOUVERTE
+			if(entree_SECRET_OK == 0)
+			{
+				u16 id_TILE;
 
-		TIR.vel_X = 0;
-		TIR.vel_Y = -1;
-	}	
+				// POUR CHAQUE TIR
+				for(i=0 ; i<MAX_TIR ; i++)
+				{
+					if(LISTE_TIR[i].etat == 1 || LISTE_TIR[i].etat == 2)
+					{				
+						
+						//////////////////////////////////////////////////////////
+						//					POINT HAUT GAUCHE					//
+						//////////////////////////////////////////////////////////
 
-	else if(axe_JOUEUR == DROITE)
-	{
-		TIR.pos_X = JOUEUR.pos_X_JOUEUR + 22;
-		TIR.pos_Y = JOUEUR.pos_Y_JOUEUR + 19;
+						// ID DE LA TILE
+						id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((LISTE_TIR[i].pos_X + 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (LISTE_TIR[i].pos_Y + 4) >>3 ) ));
+					
+						// TOUCHE ENTRÉE
+						if(id_TILE < TILE_VIDE)
+						{
+							// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
+							if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
+							{
+								// ENTRÉE SECRETE DÉCOUVERTE
+								entree_SECRET_OK = 1;
 
-		TIR.vel_X = 1;
-		TIR.vel_Y = 0;
+								// EFFACE SPRITE DU TIR
+								LISTE_TIR[i].etat = 0;
+								SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+
+								// CREATION SPRITE ARBRE BRULE
+								//crea_ARBRE_BRULE();
+
+								// L'ARBRE BRULE
+								arbre_BRULE_OK = 1;
+
+								break;
+							}
+						}
+
+
+						//////////////////////////////////////////////////////////
+						//					POINT HAUT DROITE					//
+						//////////////////////////////////////////////////////////
+
+						if(LISTE_TIR[i].etat == 1 || LISTE_TIR[i].etat == 2)
+						{	
+							// ID DE LA TILE
+							id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((LISTE_TIR[i].pos_X - 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (LISTE_TIR[i].pos_Y + 4) >>3 ) ));
+						
+							// TOUCHE ENTRÉE
+							if(id_TILE < TILE_VIDE)
+							{
+								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
+								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
+								{
+									// ENTRÉE SECRETE DÉCOUVERTE
+									entree_SECRET_OK = 1;
+
+									// EFFACE SPRITE DU TIR
+									LISTE_TIR[i].etat = 0;
+									SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+
+									// CREATION SPRITE ARBRE BRULE
+									//crea_ARBRE_BRULE();
+
+									// L'ARBRE BRULE
+									arbre_BRULE_OK = 1;
+
+									break;
+								}
+							}
+						}
+
+
+							//////////////////////////////////////////////////////////
+							//					POINT BAS GAUCHE					//
+							//////////////////////////////////////////////////////////
+
+						if(LISTE_TIR[i].etat == 1 || LISTE_TIR[i].etat == 2)
+						{	
+							// ID DE LA TILE
+							id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((LISTE_TIR[i].pos_X + 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (LISTE_TIR[i].pos_Y - 4) >>3 ) ));
+						
+							// TOUCHE ENTRÉE
+							if(id_TILE < TILE_VIDE)
+							{
+								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
+								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
+								{
+									// ENTRÉE SECRETE DÉCOUVERTE
+									entree_SECRET_OK = 1;
+
+									// EFFACE SPRITE DU TIR
+									LISTE_TIR[i].etat = 0;
+									SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+
+									// CREATION SPRITE ARBRE BRULE
+									//crea_ARBRE_BRULE();
+
+									// L'ARBRE BRULE
+									arbre_BRULE_OK = 1;
+
+									break;
+								}
+							}
+						}
+
+
+							//////////////////////////////////////////////////////////
+							//					POINT BAS DROITE					//
+							//////////////////////////////////////////////////////////
+
+						if(LISTE_TIR[i].etat == 1 || LISTE_TIR[i].etat == 2)
+						{	
+							// ID DE LA TILE
+							id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((LISTE_TIR[i].pos_X - 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (LISTE_TIR[i].pos_Y - 4) >>3 ) ));
+						
+							// TOUCHE ENTRÉE
+							if(id_TILE < TILE_VIDE)
+							{
+								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
+								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
+								{
+									// ENTRÉE SECRETE DÉCOUVERTE
+									entree_SECRET_OK = 1;
+
+									// EFFACE SPRITE DU TIR
+									LISTE_TIR[i].etat = 0;
+									SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+
+									// CREATION SPRITE ARBRE BRULE
+									//crea_ARBRE_BRULE();
+
+									// L'ARBRE BRULE
+									arbre_BRULE_OK = 1;
+
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
-	else if(axe_JOUEUR == GAUCHE)
-	{
-		TIR.pos_X = JOUEUR.pos_X_JOUEUR - 14;
-		TIR.pos_Y = JOUEUR.pos_Y_JOUEUR + 19;
 
-		TIR.vel_X = -1;
-		TIR.vel_Y = 0;
+
+
+	//**************************************//
+	//										//
+	//			  COLLISION DECOR			//
+	//										//
+	//**************************************// 
+
+
+
+
+
+	//**************************************//
+	//										//
+	//			  COLLISION JOUEUR			//
+	//										//
+	//**************************************// 
+
+
+
+
+
+	//**************************************//
+	//										//
+	//			  COLLISION ENEMIS			//
+	//										//
+	//**************************************// 	
+	/*
+	// COLLISION ENNEMIS
+	if(nb_ENNEMIS != 0)
+	{
+		
+	}
+	*/
+	
+
+
+}
+
+
+void anim_TIR()
+{
+	if(nb_TIR != 0)
+	{
+		u8 i = 0;
+
+		for(i=0 ; i<MAX_TIR ; i++)
+		{
+			if(LISTE_TIR[i].etat == 1 || LISTE_TIR[i].etat == 2)
+			{
+				LISTE_TIR[i].pos_X += LISTE_TIR[i].vel_X;
+				LISTE_TIR[i].pos_Y += LISTE_TIR[i].vel_Y;
+
+				SPR_setPosition(LISTE_TIR[i].sprite_TIR , LISTE_TIR[i].pos_X , LISTE_TIR[i].pos_Y );
+				//VDP_drawInt( LISTE_TIR[i].pos_Y , 2 , 0 , 0 );
+			}
+		}
+	}
+}
+
+
+inline static void scrolling_TIR(s16 x , s16 y)
+{
+	if(nb_TIR != 0)
+	{
+		u8 i = 0;
+
+		for(i=0;i<MAX_TIR;i++)
+		{
+			if(LISTE_TIR[i].etat != 0)
+			{
+				LISTE_TIR[i].pos_X += x;
+				LISTE_TIR[i].pos_Y += y;
+
+				SPR_setPosition(LISTE_TIR[i].sprite_TIR,LISTE_TIR[i].pos_X,LISTE_TIR[i].pos_Y);
+			}
+		}
+	}
+}
+
+
+void tiles_TIR()
+{
+	if(nb_TIR != 0)
+	{
+		u8 i = 0;
+
+		for(i=0 ; i<MAX_TIR ; i++)
+		{
+			if(LISTE_TIR[i].etat == 1 ||  LISTE_TIR[i].etat == 2)
+			{
+				//VDP_drawInt( LISTE_TIR[i].compteur_ANIM , 2 , 0 , 0 );
+				
+				LISTE_TIR[i].compteur_ANIM += 1;
+
+				if(LISTE_TIR[i].compteur_ANIM == 5)
+				{
+					LISTE_TIR[i].index_ANIM += 1;
+					SPR_setFrame(LISTE_TIR[i].sprite_TIR , LISTE_TIR[i].index_ANIM);
+					return;
+				}
+
+				else if(LISTE_TIR[i].compteur_ANIM == 10)
+				{
+					LISTE_TIR[i].index_ANIM += 1;
+					SPR_setFrame(LISTE_TIR[i].sprite_TIR , LISTE_TIR[i].index_ANIM);
+					return;
+				}
+
+				else if(LISTE_TIR[i].compteur_ANIM == 15)
+				{
+					LISTE_TIR[i].index_ANIM += 1;
+					SPR_setFrame(LISTE_TIR[i].sprite_TIR , LISTE_TIR[i].index_ANIM);
+					return;
+				}
+
+				else if(LISTE_TIR[i].compteur_ANIM == 20)
+				{
+					LISTE_TIR[i].index_ANIM += 1;
+					SPR_setFrame(LISTE_TIR[i].sprite_TIR , LISTE_TIR[i].index_ANIM);
+					return;
+				}
+				
+				else if(LISTE_TIR[i].compteur_ANIM == 25)
+				{
+					LISTE_TIR[i].etat = 9;
+					LISTE_TIR[i].compteur_ANIM = 0;
+					LISTE_TIR[i].index_ANIM = 0;
+					SPR_setAnim(LISTE_TIR[i].sprite_TIR , 1);
+					SPR_setFrame(LISTE_TIR[i].sprite_TIR , LISTE_TIR[i].index_ANIM);
+					return;
+				}
+			}
+			
+			else if(LISTE_TIR[i].etat == 9)
+			{
+				LISTE_TIR[i].compteur_ANIM += 1;
+
+				if(LISTE_TIR[i].compteur_ANIM == 5)
+				{
+					LISTE_TIR[i].index_ANIM += 1;
+					SPR_setFrame(LISTE_TIR[i].sprite_TIR , LISTE_TIR[i].index_ANIM);
+					return;
+				}
+
+				else if(LISTE_TIR[i].compteur_ANIM == 10)
+				{
+					LISTE_TIR[i].index_ANIM += 1;
+					SPR_setFrame(LISTE_TIR[i].sprite_TIR , LISTE_TIR[i].index_ANIM);
+					return;
+				}
+
+				else if(LISTE_TIR[i].compteur_ANIM == 15)
+				{
+					LISTE_TIR[i].etat = 0;
+					SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+					nb_TIR -= 1;
+					return;
+				}				//
+			}
+		}
+	}
+}
+
+
+inline static void effacer_TIR()
+{
+	if(nb_TIR != 0)
+	{
+		u8 i;
+
+		for(i=0 ; i<MAX_TIR ; i++)
+		{
+			if(LISTE_TIR[i].etat != 0)
+			{
+				LISTE_TIR[i].etat = 0;
+				SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+				nb_TIR -= 1;
+			}
+		}
+	}
+}
+
+
+
+inline static void maj_ENERGIE()
+{
+	u8 i = 0;
+
+	if(nb_ENERGIE %2 == 0)
+	{
+		for(i=0 ; i<energie_MAX ; i++)
+		{
+			VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
+		}
 	}
 
+	else
+	{
+		u8 entier = 0;
+		//u8 reste = 0;
 
-	TIR.sprite_TIR = SPR_addSprite(&tiles_Sprite_TIR, TIR.pos_X, TIR.pos_Y, TILE_ATTR(PAL3, FALSE, FALSE, FALSE));
+		entier = nb_ENERGIE >>1<<1;
+		//reste = nb_ENERGIE - entier;
+
+		for(i=0 ; i<entier ; i++)
+		{
+			VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
+		}
+
+		VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_MOITIE), 13 + entier, 3, 0, 0, 1, 1, CPU);
+	}
+
 }
 
 
@@ -268,12 +691,6 @@ inline static void maj_PT_COLL_DECOR()
 
 inline static void afficher_ENTREE()
 {
-	/*if(num_NIVEAU == 0)
-	{
-		VDP_loadTileSet(ptr_TABLE_ENTREES[id_TILE3].adr_Image_ENTREE->tileset, adr_VRAM_ENTREE, DMA);
-		VDP_drawImageEx(ptr_TABLE_ENTREES[id_TILE3].bg , ptr_TABLE_ENTREES[id_TILE3].adr_Image_ENTREE , TILE_ATTR_FULL(ptr_TABLE_ENTREES[id_TILE3].pal, ptr_TABLE_ENTREES[id_TILE3].priorite, FALSE, FALSE, adr_VRAM_ENTREE) , ptr_TABLE_ENTREES[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ptr_TABLE_ENTREES[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
-	}*/
-
 	VDP_loadTileSet(ptr_TABLE_ENTREES[id_TILE3].adr_Image_ENTREE->tileset, adr_VRAM_ENTREE, DMA);
 	VDP_drawImageEx(ptr_TABLE_ENTREES[id_TILE3].bg , ptr_TABLE_ENTREES[id_TILE3].adr_Image_ENTREE , TILE_ATTR_FULL(ptr_TABLE_ENTREES[id_TILE3].pal, ptr_TABLE_ENTREES[id_TILE3].priorite, FALSE, FALSE, adr_VRAM_ENTREE) , ptr_TABLE_ENTREES[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ptr_TABLE_ENTREES[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
 }
@@ -405,7 +822,7 @@ inline static void crea_ROCHER_DECOR()
 
 inline static void crea_ARBRE_BRULE()
 {
-	LISTE_OBJETS_DECOR[0].type = ROCHER;
+	LISTE_OBJETS_DECOR[0].type = ARBRE;
 	LISTE_OBJETS_DECOR[0].pos_X = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_X;
 	LISTE_OBJETS_DECOR[0].pos_Y = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_Y;
 
@@ -449,7 +866,7 @@ inline static void effacer_OBJET_DECOR_SCROLLING()
 }
 
 
-inline static void anim_OBJET_DECOR(s16 x , s16 y)
+inline static void scrolling_OBJET_DECOR(s16 x , s16 y)
 {
 	if(nb_OBJET_DECOR != 0)
 	{
@@ -497,7 +914,8 @@ void scrolling_ECRAN_NIVEAU()
 		pos_Y_CAM += 4;
 		JOUEUR.pos_Y_JOUEUR -= 4;
 
-		anim_OBJET_DECOR(0,-1);
+		scrolling_OBJET_DECOR(0,-4);
+		scrolling_TIR(0,-4);
 	}
 
 	//////////////////////////////////////////////////////////
@@ -508,7 +926,8 @@ void scrolling_ECRAN_NIVEAU()
 		pos_Y_CAM -= 4;
 		JOUEUR.pos_Y_JOUEUR += 4;
 
-		anim_OBJET_DECOR(0,1);
+		scrolling_OBJET_DECOR(0,4);
+		scrolling_TIR(0,4);
 	}
 
 	//////////////////////////////////////////////////////////
@@ -519,7 +938,8 @@ void scrolling_ECRAN_NIVEAU()
 		pos_X_CAM += 4;
 		JOUEUR.pos_X_JOUEUR -= 4;
 
-		anim_OBJET_DECOR(-1,0);
+		scrolling_OBJET_DECOR(-4,0);
+		scrolling_TIR(-4,0);
 	}
 
 	//////////////////////////////////////////////////////////
@@ -530,7 +950,8 @@ void scrolling_ECRAN_NIVEAU()
 		pos_X_CAM -= 4;
 		JOUEUR.pos_X_JOUEUR += 4;
 
-		anim_OBJET_DECOR(1,0);
+		scrolling_OBJET_DECOR(4,0);
+		scrolling_TIR(4,0);
 	}
 
 
@@ -546,6 +967,7 @@ void scrolling_ECRAN_NIVEAU()
 	if(compteur_SCROLLING > duree_SCROLLING)
 	{		
 		compteur_SCROLLING = 0;
+		effacer_TIR();
 		//effacer_OBJET_DECOR_SCROLLING();
 		etat_JEU = FIN_SCROLLING_NIVEAU;
 	}
@@ -761,6 +1183,8 @@ void manette_JOUEUR_NIVEAU()
 				duree_SCROLLING = DUREE_SCROLL_V;
 				index_Y_CARTE += 1;
 
+				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
+
 				//crea_ROCHER_DECOR();
 				
 				etat_JEU = SCROLLING_NIVEAU;
@@ -923,6 +1347,8 @@ void manette_JOUEUR_NIVEAU()
 				axe_JOUEUR = HAUT;
 				duree_SCROLLING = DUREE_SCROLL_V;
 				index_Y_CARTE -= 1;
+
+				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
 				//crea_ROCHER_DECOR();
 				
@@ -1098,6 +1524,8 @@ void manette_JOUEUR_NIVEAU()
 				duree_SCROLLING = DUREE_SCROLL_H;
 				index_X_CARTE += 1;
 
+				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
+
 				//crea_ROCHER_DECOR();
 				
 				etat_JEU = SCROLLING_NIVEAU;
@@ -1253,6 +1681,8 @@ void manette_JOUEUR_NIVEAU()
 				duree_SCROLLING = DUREE_SCROLL_H;
 				index_X_CARTE -= 1;
 
+				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
+
 				//crea_ROCHER_DECOR();
 				
 				etat_JEU = SCROLLING_NIVEAU;
@@ -1392,158 +1822,6 @@ void manette_JOUEUR_NIVEAU()
 	}
 }
 
-
-void collision_TIR()
-{
-	// LE JOUEUR A TIRÉ
-	if(TIR.etat != 0)
-	{
-		//////////////////////////////////////////////////////////
-		//			 	  TEST COLLISION DECOR					//
-		//////////////////////////////////////////////////////////
-
-		// L'OBJET DE L'ÉCRAN EN COURS EST UN ARBRE
-		if(objet_ECRAN == ARBRE)
-		{
-			// ENTRÉE SECRETE PAS ENCORE DÉCOUVERTE
-			if(entree_SECRET_OK == 0)
-			{
-				u16 id_TILE;
-
-				//////////////////////////////////////////////////////////
-				//					POINT HAUT GAUCHE					//
-				//////////////////////////////////////////////////////////
-
-				// ID DE LA TILE
-				id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((TIR.pos_X + 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (TIR.pos_Y + 4) >>3 ) ));
-			
-				// TOUCHE ENTRÉE
-				if(id_TILE < TILE_VIDE)
-				{
-					// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
-					if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
-					{
-						// ENTRÉE SECRETE DÉCOUVERTE
-						entree_SECRET_OK = 1;
-
-						// EFFACE SPRITE DU TIR
-						TIR.etat = 0;
-						SPR_releaseSprite(TIR.sprite_TIR);
-
-						// CREATION SPRITE ARBRE BRULE
-						//
-
-						// L'ARBRE BRULE
-						arbre_BRULE_OK = 1;
-
-						return;
-					}
-				}
-
-
-				//////////////////////////////////////////////////////////
-				//					POINT HAUT DROITE					//
-				//////////////////////////////////////////////////////////
-
-				// ID DE LA TILE
-				id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((TIR.pos_X - 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (TIR.pos_Y + 4) >>3 ) ));
-			
-				// TOUCHE ENTRÉE
-				if(id_TILE < TILE_VIDE)
-				{
-					// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
-					if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
-					{
-						// ENTRÉE SECRETE DÉCOUVERTE
-						entree_SECRET_OK = 1;
-
-						// EFFACE SPRITE DU TIR
-						TIR.etat = 0;
-						SPR_releaseSprite(TIR.sprite_TIR);
-
-						// CREATION SPRITE ARBRE BRULE
-						//
-
-						// L'ARBRE BRULE
-						arbre_BRULE_OK = 1;
-
-						return;
-					}
-				}
-
-
-				//////////////////////////////////////////////////////////
-				//					POINT BAS GAUCHE					//
-				//////////////////////////////////////////////////////////
-
-				// ID DE LA TILE
-				id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((TIR.pos_X + 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (TIR.pos_Y - 4) >>3 ) ));
-			
-				// TOUCHE ENTRÉE
-				if(id_TILE < TILE_VIDE)
-				{
-					// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
-					if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
-					{
-						// ENTRÉE SECRETE DÉCOUVERTE
-						entree_SECRET_OK = 1;
-
-						// EFFACE SPRITE DU TIR
-						TIR.etat = 0;
-						SPR_releaseSprite(TIR.sprite_TIR);
-
-						// CREATION SPRITE ARBRE BRULE
-						//
-
-						// L'ARBRE BRULE
-						arbre_BRULE_OK = 1;
-
-						return;
-					}
-				}
-
-
-				//////////////////////////////////////////////////////////
-				//					POINT BAS DROITE					//
-				//////////////////////////////////////////////////////////
-
-				// ID DE LA TILE
-				id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((TIR.pos_X - 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (TIR.pos_Y - 4) >>3 ) ));
-			
-				// TOUCHE ENTRÉE
-				if(id_TILE < TILE_VIDE)
-				{
-					// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
-					if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
-					{
-						// ENTRÉE SECRETE DÉCOUVERTE
-						entree_SECRET_OK = 1;
-
-						// EFFACE SPRITE DU TIR
-						TIR.etat = 0;
-						SPR_releaseSprite(TIR.sprite_TIR);
-
-						// CREATION SPRITE ARBRE BRULE
-						//
-
-						// L'ARBRE BRULE
-						arbre_BRULE_OK = 1;
-
-						return;
-					}
-				}
-			}
-		}
-		/*
-		// COLLISION ENNEMIS
-		if(nb_ENNEMIS != 0)
-		{
-			//u8 i;
-		}
-		*/
-		
-	}
-}
 
 
 

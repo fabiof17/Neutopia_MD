@@ -40,7 +40,7 @@ const u8					TABLE_NB_SPRITES_NIVEAU1[8][8]  	=   { {0,0,0,1,0,1,0,1},
 														  		      {0,0,0,0,0,0,0,1}
 																	};
 
-const SpriteDefinition		*TABLE_ADR_SPRITES_NIVEAU1[4]		= 	{ &tiles_SPR_ARBRE_VERT , &tiles_SPR_ARBRE_MARRON , &tiles_SPR_ROCHER , &tiles_SPR_STATUE };
+//const SpriteDefinition		*TABLE_ADR_SPRITES_NIVEAU1[4]		= 	{ &tiles_SPR_ARBRE_VERT , &tiles_SPR_ARBRE_MARRON , &tiles_SPR_ROCHER , &tiles_SPR_STATUE };
 
 const u8					TABLE_ID_SPRITES_NIVEAU1[8][8]  	= 	{ {NULL,NULL,NULL,0   ,NULL,1   ,NULL,2   },
 														  		      {NULL,NULL,NULL,NULL,NULL,NULL,2   ,NULL},

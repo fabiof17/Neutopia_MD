@@ -20,7 +20,7 @@ extern const Palette				*TABLE_ADR_PAL_NIVEAUX[2][4];
 
 extern const u8					    TABLE_NB_SPRITES_NIVEAU1[8][8];
 
-extern const SpriteDefinition		*TABLE_ADR_SPRITES_NIVEAU1[4];
+//extern const SpriteDefinition		*TABLE_ADR_SPRITES_NIVEAU1[4];
 
 extern const u8					    TABLE_ID_SPRITES_NIVEAU1[8][8];
 

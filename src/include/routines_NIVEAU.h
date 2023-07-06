@@ -64,7 +64,13 @@ extern void entree_ENTREE();
 
 extern void manette_JOUEUR_NIVEAU();
 
+extern void crea_TIR();
+
 extern void collision_TIR();
+
+extern void anim_TIR();
+
+extern void tiles_TIR();
 
 
 

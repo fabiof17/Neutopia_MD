@@ -22,6 +22,7 @@ u16 nb_GOLD = 0;                        //  init -->  init_VARIABLES_GENERALES()
 u8 niveau_EPEE = 0;                     //  init -->  init_VARIABLES_GENERALES()
 u8 niveau_BOUCLIER = 0;                 //  init -->  init_VARIABLES_GENERALES()
 u8 niveau_ARMURE = 0;
+u8 niveau_BAGUETTE = 0;
 
 //bool tiles_ARRET_OK = 0;
 //bool tiles_ATTAQUE_OK = 0;
@@ -43,6 +44,7 @@ u8 index_X_CARTE = 0;
 u8 index_Y_CARTE = 0;
 
 u8 nb_ENNEMIS = 0;
+u8 nb_TIR = 0;
 
 
 

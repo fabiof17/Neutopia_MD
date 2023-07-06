@@ -49,14 +49,16 @@
 #define TILE_VIDE               44
 #define TILE_MUR                45
 
+#define VEL_TIR                 2
+
 
 
 
 #define		MAX_OBJET_DECOR     2
 #define		MAX_TIR             2
 
-#define     ARBRE               0
-#define     ROCHER              1
+#define     ARBRE               1
+#define     ROCHER              2
 
 
 
@@ -103,6 +105,7 @@ extern u16 nb_GOLD;
 extern u8 niveau_EPEE;
 extern u8 niveau_BOUCLIER;
 extern u8 niveau_ARMURE;
+extern u8 niveau_BAGUETTE;
 
 //extern bool tiles_ARRET_OK;
 //extern bool tiles_ATTAQUE_OK ;
@@ -124,6 +127,7 @@ extern u8 index_X_CARTE;
 extern u8 index_Y_CARTE;
 
 extern u8 nb_ENNEMIS;
+extern u8 nb_TIR;
 
 
 

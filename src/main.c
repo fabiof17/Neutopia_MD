@@ -149,9 +149,13 @@ int main(bool resetType)
                             {
                                 JOY_setEventHandler(niveau_Callback);
 
-                                collision_TIR();
-
                                 manette_JOUEUR_NIVEAU();
+
+                                collision_TIR();
+                                anim_TIR();
+                                tiles_TIR();
+
+                                
 
                                 tiles_JOUEUR();
                                 tiles_EAU_NIVEAU();
@@ -165,8 +169,8 @@ int main(bool resetType)
                             }
 
                             //debug_JEU();
-                            //VDP_drawInt( id_OBJET_MENU , 2 , 0 , 0 );
-                            //SYS_showFrameLoad(TRUE);
+                            VDP_drawInt( nb_TIR , 2 , 0 , 0 );
+                            SYS_showFrameLoad(TRUE);
 
                             SPR_update();
                             SYS_doVBlankProcess();  
@@ -185,7 +189,7 @@ int main(bool resetType)
                             tiles_CASCADE_NIVEAU();
 
                             //debug_JEU();
-                            //SYS_showFrameLoad(TRUE);
+                            SYS_showFrameLoad(TRUE);
 
                             SPR_update();
                             SYS_doVBlankProcess();  
@@ -205,7 +209,7 @@ int main(bool resetType)
                             tiles_CASCADE_NIVEAU();
 
                             //debug_JEU();
-                            //SYS_showFrameLoad(TRUE);
+                            SYS_showFrameLoad(TRUE);
 
                             SPR_update();
                             SYS_doVBlankProcess();  
@@ -221,7 +225,7 @@ int main(bool resetType)
                             //VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
 
                             //debug_JEU();
-                            //SYS_showFrameLoad(TRUE);
+                            SYS_showFrameLoad(TRUE);
 
                             SPR_update();
                             SYS_doVBlankProcess();  

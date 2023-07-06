@@ -1,5 +1,6 @@
 #include <genesis.h>
 
+#include "routines_NIVEAU.h"
 #include "variables.h"
 
 #include "tables_DONJONS.h"
@@ -157,7 +158,7 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
 		//////////////////////////////////////////////////////////
         else if(changed & state & BUTTON_B)
         {
-            if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE)
+            if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TIR_BAGUETTE && etat_JOUEUR != TOUCHE)
             {
                 etat_JOUEUR = ATTAQUE;
                 //return;
@@ -169,11 +170,14 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
 		//////////////////////////////////////////////////////////
         else if(changed & state & BUTTON_A)
         {
-            if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TOUCHE)
+            if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TIR_BAGUETTE && etat_JOUEUR != TOUCHE)
             {
-                etat_JOUEUR = TIR_BAGUETTE;
-                //init_TIR();
-                //return;
+                if(nb_TIR < MAX_TIR)
+                {
+                    etat_JOUEUR = TIR_BAGUETTE;
+                    crea_TIR();
+                    //return;
+                }
             }
         }        
     }
