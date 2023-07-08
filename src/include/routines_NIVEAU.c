@@ -56,11 +56,14 @@ inline static void crea_ROCHER_DECOR()
 		{
 			offset_POS_Y = -184;
 		}
-		else if(axe_JOUEUR == DROITE || axe_JOUEUR == GAUCHE)
+		else if(axe_JOUEUR == DROITE)
 		{
 			offset_POS_X = 256;
 		}
-
+		else if(axe_JOUEUR == GAUCHE)
+		{
+			offset_POS_X = -256;
+		}
 
 		u8 i = 0;
 
@@ -79,7 +82,7 @@ inline static void crea_ROCHER_DECOR()
 
 
 				LISTE_OBJETS_DECOR[i].compteur_ANIM = 0;
-				//LISTE_OBJETS_DECOR[i].index_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].index_ANIM;
+				LISTE_OBJETS_DECOR[i].index_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].index_ANIM;
 
 				LISTE_OBJETS_DECOR[i].adr_TILES = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].adr_TILES;
 				

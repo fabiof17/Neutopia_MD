@@ -42,8 +42,8 @@ const struct_ENTREE_			TABLE_ENTREES_NIVEAU1[44]	=	{	// 0 - 6
 																	{1, 15,15, &image_DONJON_NIVEAU1    , &image_DONJON_NIVEAU1,			PAL2,BG_A,TRUE , 0,0 , 0},
 																	{0, 14,13, &image_ESCALIER2_NIVEAU1 , &image_CACHE2_ESCALIER_NIVEAU1, 	PAL1,BG_B,FALSE, 1,1 , 1},
 																	{0, 20,19, &image_ESCALIER1_NIVEAU1 , NULL,								PAL1,BG_B,FALSE, 1,0 , 1},
-																	{0, 8 ,12, &image_ESCALIER3_NIVEAU1 , &image_CACHE4_ESCALIER_NIVEAU1, 	PAL1,BG_B,FALSE, 1,1 , 1},
-																	{2, 13,7 , &image_CAVE4_NIVEAU1     , &image_CACHE2_CAVE_NIVEAU1,		PAL1,BG_B,TRUE , 1,1 , 0},
+																	{0, 8 ,11, &image_ESCALIER3_NIVEAU1 , &image_CACHE4_ESCALIER_NIVEAU1, 	PAL1,BG_B,FALSE, 1,1 , 1},
+																	{2, 13,7 , &image_CAVE4_NIVEAU1     , &image_CACHE2_CAVE_NIVEAU1,		PAL1,BG_B,TRUE , 1,1 , 1},
 																	{0, 10,16, &image_ESCALIER1_NIVEAU1 , &image_CACHE1_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 1,1 , 0},
 
 																	// 7 - 12
