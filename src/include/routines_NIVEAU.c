@@ -242,7 +242,7 @@ void crea_TIR()
 			else if(axe_JOUEUR == HAUT)
 			{
 				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR + 5;
-				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 3;
+				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 8;
 
 				LISTE_TIR[i].vel_X = 0;
 				LISTE_TIR[i].vel_Y = -VEL_TIR;
@@ -605,7 +605,7 @@ void tiles_TIR()
 					return;
 				}
 				
-				else if(LISTE_TIR[i].compteur_ANIM == 25)
+				else if(LISTE_TIR[i].compteur_ANIM == 26)
 				{
 					LISTE_TIR[i].etat = 9;
 					LISTE_TIR[i].compteur_ANIM = 0;
