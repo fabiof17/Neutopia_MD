@@ -129,6 +129,8 @@ extern u8 index_Y_CARTE;
 extern u8 nb_ENNEMIS;
 extern u8 nb_TIR;
 
+extern bool surcharge_OK;
+
 
 
 //******************************************************//

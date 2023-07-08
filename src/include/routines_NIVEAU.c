@@ -27,7 +27,198 @@
 
 //******************************************************//
 //                                                      //
+//                     OBJET DECOR                      //
+//                                                      //
+//******************************************************//
+
+inline static void afficher_ENTREE(u16 num)
+{
+	VDP_loadTileSet(ptr_TABLE_ENTREES[num].adr_Image_ENTREE->tileset, adr_VRAM_ENTREE, DMA);
+	VDP_drawImageEx(ptr_TABLE_ENTREES[num].bg , ptr_TABLE_ENTREES[num].adr_Image_ENTREE , TILE_ATTR_FULL(ptr_TABLE_ENTREES[num].pal, ptr_TABLE_ENTREES[num].priorite, FALSE, FALSE, adr_VRAM_ENTREE) , ptr_TABLE_ENTREES[num].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ptr_TABLE_ENTREES[num].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
+}
+
+
+
+
+inline static void crea_ROCHER_DECOR()
+{
+	if(ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type == ROCHER)
+	{
+
+		s16 offset_POS_X = 0;
+		s16 offset_POS_Y = 0;
+
+		if(axe_JOUEUR == BAS)
+		{
+			offset_POS_Y = 184;
+		}
+		else if(axe_JOUEUR == HAUT)
+		{
+			offset_POS_Y = -184;
+		}
+		else if(axe_JOUEUR == DROITE || axe_JOUEUR == GAUCHE)
+		{
+			offset_POS_X = 256;
+		}
+
+
+		u8 i = 0;
+
+		for(i=0 ; i<MAX_OBJET_DECOR ; i++)
+		{
+			if(LISTE_OBJETS_DECOR[i].type != NULL)
+			{
+				LISTE_OBJETS_DECOR[i].type = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
+
+
+				LISTE_OBJETS_DECOR[i].pos_X = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_X + offset_POS_X;
+				LISTE_OBJETS_DECOR[i].pos_Y = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_Y + offset_POS_Y;
+
+				LISTE_OBJETS_DECOR[i].etat = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].etat;
+				LISTE_OBJETS_DECOR[i].axe = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].axe;
+
+
+				LISTE_OBJETS_DECOR[i].compteur_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].compteur_ANIM;
+				LISTE_OBJETS_DECOR[i].index_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].index_ANIM;
+
+				LISTE_OBJETS_DECOR[i].adr_TILES = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].adr_TILES;
+				
+				LISTE_OBJETS_DECOR[i].sprite_OBJET = SPR_addSprite(LISTE_OBJETS_DECOR[i].adr_TILES, LISTE_OBJETS_DECOR[i].pos_X, LISTE_OBJETS_DECOR[i].pos_Y, TILE_ATTR(PAL1, FALSE, FALSE, FALSE));
+
+				nb_OBJET_DECOR += 1;
+
+				objet_ECRAN = ROCHER;
+
+				return;
+			}
+		}
+	}
+}
+
+
+inline static void crea_ARBRE_BRULE()
+{
+	LISTE_OBJETS_DECOR[0].type = ARBRE;
+	LISTE_OBJETS_DECOR[0].pos_X = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_X;
+	LISTE_OBJETS_DECOR[0].pos_Y = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_Y;
+
+	LISTE_OBJETS_DECOR[0].etat = NULL;  // POUR LE ROCHER
+	LISTE_OBJETS_DECOR[0].axe = NULL;	// POUR LE ROCHER
+
+	LISTE_OBJETS_DECOR[0].compteur_ANIM = 0;
+	LISTE_OBJETS_DECOR[0].index_ANIM = 0;
+
+	LISTE_OBJETS_DECOR[0].adr_TILES = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].adr_TILES;
+
+	LISTE_OBJETS_DECOR[0].pal = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pal;
+
+
+	LISTE_OBJETS_DECOR[0].sprite_OBJET = SPR_addSprite(LISTE_OBJETS_DECOR[0].adr_TILES , LISTE_OBJETS_DECOR[0].pos_X , LISTE_OBJETS_DECOR[0].pos_Y , TILE_ATTR(LISTE_OBJETS_DECOR[0].pal, FALSE, FALSE, FALSE));
+	
+	nb_OBJET_DECOR += 1;
+}
+
+
+inline static void effacer_OBJET_DECOR_SCROLLING()
+{
+	if(nb_OBJET_DECOR != 0)
+	{
+		u8 i = 0;
+
+		for(i=0;i<MAX_OBJET_DECOR;i++)
+		{
+			if(LISTE_OBJETS_DECOR[i].type != NULL)
+			{
+				if(LISTE_OBJETS_DECOR[i].pos_X > 255 || LISTE_OBJETS_DECOR[i].pos_X < -15 || LISTE_OBJETS_DECOR[i].pos_Y > 223 || LISTE_OBJETS_DECOR[i].pos_Y < 9)
+				{
+					SPR_releaseSprite(LISTE_OBJETS_DECOR[i].sprite_OBJET);
+					LISTE_OBJETS_DECOR[i].type = NULL;
+					nb_OBJET_DECOR -= 1;
+					return;
+				}
+			}
+		}
+	}
+}
+
+
+inline static void scrolling_OBJET_DECOR(s16 x , s16 y)
+{
+	if(nb_OBJET_DECOR != 0)
+	{
+		u8 i = 0;
+
+		for(i=0;i<MAX_OBJET_DECOR;i++)
+		{
+			if(LISTE_OBJETS_DECOR[i].type != NULL)
+			{
+				LISTE_OBJETS_DECOR[i].pos_X += x;
+				LISTE_OBJETS_DECOR[i].pos_Y += y;
+
+				SPR_setPosition(LISTE_OBJETS_DECOR[i].sprite_OBJET,LISTE_OBJETS_DECOR[i].pos_X,LISTE_OBJETS_DECOR[i].pos_Y);
+			}
+		}
+	}
+}
+
+
+
+
+//******************************************************//
+//                                                      //
 //                        GLOBAL                        //
+//                                                      //
+//******************************************************//
+
+inline static void maj_SURCHARGE()
+{
+	if(energie_MAX - nb_ENERGIE > 2)
+	{
+		surcharge_OK = 0;
+	}
+	else
+	{
+		surcharge_OK = 1;
+	}
+}
+
+
+inline static void maj_ENERGIE()
+{
+	u8 i = 0;
+
+	if(nb_ENERGIE %2 == 0)
+	{
+		for(i=0 ; i<energie_MAX ; i++)
+		{
+			VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
+		}
+	}
+
+	else
+	{
+		u8 entier = 0;
+		//u8 reste = 0;
+
+		entier = nb_ENERGIE >>1<<1;
+		//reste = nb_ENERGIE - entier;
+
+		for(i=0 ; i<entier ; i++)
+		{
+			VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
+		}
+
+		VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_MOITIE), 13 + entier, 3, 0, 0, 1, 1, CPU);
+	}
+
+}
+
+
+
+
+//******************************************************//
+//                                                      //
+//                         TIR                          //
 //                                                      //
 //******************************************************//
 
@@ -39,14 +230,6 @@ void crea_TIR()
 	{
 		if(LISTE_TIR[i].etat == 0)
 		{
-			LISTE_TIR[i].etat = 1;
-
-			LISTE_TIR[i].marge_X = 0;
-			LISTE_TIR[i].marge_Y = 0;
-
-			LISTE_TIR[i].compteur_ANIM = 0;
-			LISTE_TIR[i].index_ANIM = 0;
-
 			if(axe_JOUEUR == BAS)
 			{
 				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR + 4;
@@ -76,19 +259,32 @@ void crea_TIR()
 
 			else if(axe_JOUEUR == GAUCHE)
 			{
-				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR - 14;
+				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR - 12;
 				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 19;
 
 				LISTE_TIR[i].vel_X = -VEL_TIR;
 				LISTE_TIR[i].vel_Y = 0;
 			}
 
+			if(LISTE_TIR[i].pos_X > -16 || LISTE_TIR[i].pos_X < 255 || LISTE_TIR[i].pos_Y > 24 || LISTE_TIR[i].pos_Y < 224)
+			{
 
-			LISTE_TIR[i].sprite_TIR = SPR_addSprite(&tiles_Sprite_TIR, LISTE_TIR[i].pos_X, LISTE_TIR[i].pos_Y, TILE_ATTR(PAL3, FALSE, FALSE, FALSE));
-			SPR_setAnim(LISTE_TIR[i].sprite_TIR,0);
-			SPR_setFrame(LISTE_TIR[i].sprite_TIR,0);
+				LISTE_TIR[i].etat = 1;
 
-			nb_TIR += 1;
+				LISTE_TIR[i].marge_X = 0;
+				LISTE_TIR[i].marge_Y = 0;
+
+				LISTE_TIR[i].compteur_ANIM = 0;
+				LISTE_TIR[i].index_ANIM = 0;
+
+
+
+				LISTE_TIR[i].sprite_TIR = SPR_addSprite(&tiles_Sprite_TIR, LISTE_TIR[i].pos_X, LISTE_TIR[i].pos_Y, TILE_ATTR(PAL3, FALSE, FALSE, FALSE));
+				SPR_setAnim(LISTE_TIR[i].sprite_TIR,0);
+				SPR_setFrame(LISTE_TIR[i].sprite_TIR,0);
+
+				nb_TIR += 1;
+			}
 
 			return;
 		}
@@ -114,7 +310,7 @@ void collision_TIR()
 		{
 			if(LISTE_TIR[i].etat != 0 && LISTE_TIR[i].etat != 9)
 			{
-				if(LISTE_TIR[i].pos_X < -31 || LISTE_TIR[i].pos_X > 254 || LISTE_TIR[i].pos_Y < -31 || LISTE_TIR[i].pos_Y > 223)
+				if(LISTE_TIR[i].pos_X < -16 || LISTE_TIR[i].pos_X > 255 || LISTE_TIR[i].pos_Y < 24 || LISTE_TIR[i].pos_Y > 224)
 				{
 					LISTE_TIR[i].etat = 0;
 					SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
@@ -156,25 +352,25 @@ void collision_TIR()
 						id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((LISTE_TIR[i].pos_X + 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (LISTE_TIR[i].pos_Y + 4) >>3 ) ));
 					
 						// TOUCHE ENTRÉE
-						if(id_TILE < TILE_VIDE)
+						if(id_TILE < TILE_VIDE -1)
 						{
-							// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
-							if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
+							// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE
+							if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) )
 							{
 								// ENTRÉE SECRETE DÉCOUVERTE
 								entree_SECRET_OK = 1;
 
-								// EFFACE SPRITE DU TIR
-								LISTE_TIR[i].etat = 0;
-								SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+								num_ENTREE = id_TILE;
+
+								afficher_ENTREE(num_ENTREE);
 
 								// CREATION SPRITE ARBRE BRULE
-								//crea_ARBRE_BRULE();
+								crea_ARBRE_BRULE();
 
 								// L'ARBRE BRULE
 								arbre_BRULE_OK = 1;
 
-								break;
+								return;
 							}
 						}
 
@@ -189,25 +385,25 @@ void collision_TIR()
 							id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((LISTE_TIR[i].pos_X - 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (LISTE_TIR[i].pos_Y + 4) >>3 ) ));
 						
 							// TOUCHE ENTRÉE
-							if(id_TILE < TILE_VIDE)
+							if(id_TILE < TILE_VIDE -1)
 							{
-								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
-								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
+								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE
+								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) )
 								{
 									// ENTRÉE SECRETE DÉCOUVERTE
 									entree_SECRET_OK = 1;
 
-									// EFFACE SPRITE DU TIR
-									LISTE_TIR[i].etat = 0;
-									SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+									num_ENTREE = id_TILE;
+
+									afficher_ENTREE(num_ENTREE);
 
 									// CREATION SPRITE ARBRE BRULE
-									//crea_ARBRE_BRULE();
+									crea_ARBRE_BRULE();
 
 									// L'ARBRE BRULE
 									arbre_BRULE_OK = 1;
 
-									break;
+									return;
 								}
 							}
 						}
@@ -223,25 +419,25 @@ void collision_TIR()
 							id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((LISTE_TIR[i].pos_X + 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (LISTE_TIR[i].pos_Y - 4) >>3 ) ));
 						
 							// TOUCHE ENTRÉE
-							if(id_TILE < TILE_VIDE)
+							if(id_TILE < TILE_VIDE -1)
 							{
-								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
-								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
+								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE
+								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) )
 								{
 									// ENTRÉE SECRETE DÉCOUVERTE
 									entree_SECRET_OK = 1;
 
-									// EFFACE SPRITE DU TIR
-									LISTE_TIR[i].etat = 0;
-									SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+									num_ENTREE = id_TILE;
+
+									afficher_ENTREE(num_ENTREE);
 
 									// CREATION SPRITE ARBRE BRULE
-									//crea_ARBRE_BRULE();
+									crea_ARBRE_BRULE();
 
 									// L'ARBRE BRULE
 									arbre_BRULE_OK = 1;
 
-									break;
+									return;
 								}
 							}
 						}
@@ -257,25 +453,25 @@ void collision_TIR()
 							id_TILE = MAP_getTile(map_COLLISION , TABLE_OFFSET_COLLISION[0][index_X_CARTE] + ((LISTE_TIR[i].pos_X - 4) >>3) , ( TABLE_OFFSET_COLLISION[1][index_Y_CARTE] + ( (LISTE_TIR[i].pos_Y - 4) >>3 ) ));
 						
 							// TOUCHE ENTRÉE
-							if(id_TILE < TILE_VIDE)
+							if(id_TILE < TILE_VIDE -1)
 							{
-								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE OU TILE BLOQUANTE
-								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) || ptr_TABLE_ENTREES[id_TILE].bloque == 1)
+								// ENTRÉE SECRETE QUI SE DÉBLOQUE EN BRULANT UN ARBRE
+								if( ( ptr_TABLE_ENTREES[id_TILE].secret == 1 && ptr_TABLE_ENTREES[id_TILE].condition == 1  ) )
 								{
 									// ENTRÉE SECRETE DÉCOUVERTE
 									entree_SECRET_OK = 1;
 
-									// EFFACE SPRITE DU TIR
-									LISTE_TIR[i].etat = 0;
-									SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
+									num_ENTREE = id_TILE;
+
+									afficher_ENTREE(num_ENTREE);
 
 									// CREATION SPRITE ARBRE BRULE
-									//crea_ARBRE_BRULE();
+									crea_ARBRE_BRULE();
 
 									// L'ARBRE BRULE
 									arbre_BRULE_OK = 1;
 
-									break;
+									return;
 								}
 							}
 						}
@@ -471,38 +667,6 @@ inline static void effacer_TIR()
 
 
 
-inline static void maj_ENERGIE()
-{
-	u8 i = 0;
-
-	if(nb_ENERGIE %2 == 0)
-	{
-		for(i=0 ; i<energie_MAX ; i++)
-		{
-			VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
-		}
-	}
-
-	else
-	{
-		u8 entier = 0;
-		//u8 reste = 0;
-
-		entier = nb_ENERGIE >>1<<1;
-		//reste = nb_ENERGIE - entier;
-
-		for(i=0 ; i<entier ; i++)
-		{
-			VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
-		}
-
-		VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_MOITIE), 13 + entier, 3, 0, 0, 1, 1, CPU);
-	}
-
-}
-
-
-
 
 //******************************************************//
 //                                                      //
@@ -689,13 +853,6 @@ inline static void maj_PT_COLL_DECOR()
 //                                                      //
 //******************************************************//
 
-inline static void afficher_ENTREE()
-{
-	VDP_loadTileSet(ptr_TABLE_ENTREES[id_TILE3].adr_Image_ENTREE->tileset, adr_VRAM_ENTREE, DMA);
-	VDP_drawImageEx(ptr_TABLE_ENTREES[id_TILE3].bg , ptr_TABLE_ENTREES[id_TILE3].adr_Image_ENTREE , TILE_ATTR_FULL(ptr_TABLE_ENTREES[id_TILE3].pal, ptr_TABLE_ENTREES[id_TILE3].priorite, FALSE, FALSE, adr_VRAM_ENTREE) , ptr_TABLE_ENTREES[id_TILE3].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ptr_TABLE_ENTREES[id_TILE3].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
-}
-
-
 inline static void effacer_ENTREE()
 {
 	u8 id = index_X_CARTE + ( index_Y_CARTE <<3 );
@@ -753,136 +910,6 @@ inline static void effacer_ENTREE_CACHEE()
 	}
 
 	
-}
-
-
-
-
-//******************************************************//
-//                                                      //
-//                     OBJET DECOR                      //
-//                                                      //
-//******************************************************//
-
-inline static void crea_ROCHER_DECOR()
-{
-	if(ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type == ROCHER)
-	{
-
-		s16 offset_POS_X = 0;
-		s16 offset_POS_Y = 0;
-
-		if(axe_JOUEUR == BAS)
-		{
-			offset_POS_Y = 184;
-		}
-		else if(axe_JOUEUR == HAUT)
-		{
-			offset_POS_Y = -184;
-		}
-		else if(axe_JOUEUR == DROITE || axe_JOUEUR == GAUCHE)
-		{
-			offset_POS_X = 256;
-		}
-
-
-		u8 i = 0;
-
-		for(i=0 ; i<MAX_OBJET_DECOR ; i++)
-		{
-			if(LISTE_OBJETS_DECOR[i].type != NULL)
-			{
-				LISTE_OBJETS_DECOR[i].type = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
-
-
-				LISTE_OBJETS_DECOR[i].pos_X = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_X + offset_POS_X;
-				LISTE_OBJETS_DECOR[i].pos_Y = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_Y + offset_POS_Y;
-
-				LISTE_OBJETS_DECOR[i].etat = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].etat;
-				LISTE_OBJETS_DECOR[i].axe = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].axe;
-
-
-				LISTE_OBJETS_DECOR[i].compteur_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].compteur_ANIM;
-				LISTE_OBJETS_DECOR[i].index_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].index_ANIM;
-
-				LISTE_OBJETS_DECOR[i].adr_TILES = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].adr_TILES;
-				
-				LISTE_OBJETS_DECOR[i].sprite_OBJET = SPR_addSprite(LISTE_OBJETS_DECOR[i].adr_TILES, LISTE_OBJETS_DECOR[i].pos_X, LISTE_OBJETS_DECOR[i].pos_Y, TILE_ATTR(PAL1, FALSE, FALSE, FALSE));
-
-				nb_OBJET_DECOR += 1;
-
-				objet_ECRAN = ROCHER;
-
-				return;
-			}
-		}
-	}
-}
-
-
-inline static void crea_ARBRE_BRULE()
-{
-	LISTE_OBJETS_DECOR[0].type = ARBRE;
-	LISTE_OBJETS_DECOR[0].pos_X = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_X;
-	LISTE_OBJETS_DECOR[0].pos_Y = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_Y;
-
-	LISTE_OBJETS_DECOR[0].etat = NULL;
-	LISTE_OBJETS_DECOR[0].axe = NULL;
-
-	LISTE_OBJETS_DECOR[0].compteur_ANIM = 0;
-	LISTE_OBJETS_DECOR[0].index_ANIM = 0;
-
-	LISTE_OBJETS_DECOR[0].adr_TILES = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].adr_TILES;
-
-	LISTE_OBJETS_DECOR[0].pal = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pal;
-
-
-	LISTE_OBJETS_DECOR[0].sprite_OBJET = SPR_addSprite(LISTE_OBJETS_DECOR[0].adr_TILES , LISTE_OBJETS_DECOR[0].pos_X , LISTE_OBJETS_DECOR[0].pos_Y , TILE_ATTR(LISTE_OBJETS_DECOR[0].pal, FALSE, FALSE, FALSE));
-	
-	nb_OBJET_DECOR += 1;
-}
-
-
-inline static void effacer_OBJET_DECOR_SCROLLING()
-{
-	if(nb_OBJET_DECOR != 0)
-	{
-		u8 i = 0;
-
-		for(i=0;i<MAX_OBJET_DECOR;i++)
-		{
-			if(LISTE_OBJETS_DECOR[i].type != NULL)
-			{
-				if(LISTE_OBJETS_DECOR[i].pos_X > 255 || LISTE_OBJETS_DECOR[i].pos_X < -15 || LISTE_OBJETS_DECOR[i].pos_Y > 223 || LISTE_OBJETS_DECOR[i].pos_Y < 9)
-				{
-					SPR_releaseSprite(LISTE_OBJETS_DECOR[i].sprite_OBJET);
-					LISTE_OBJETS_DECOR[i].type = NULL;
-					nb_OBJET_DECOR -= 1;
-					return;
-				}
-			}
-		}
-	}
-}
-
-
-inline static void scrolling_OBJET_DECOR(s16 x , s16 y)
-{
-	if(nb_OBJET_DECOR != 0)
-	{
-		u8 i = 0;
-
-		for(i=0;i<MAX_OBJET_DECOR;i++)
-		{
-			if(LISTE_OBJETS_DECOR[i].type != NULL)
-			{
-				LISTE_OBJETS_DECOR[i].pos_X += x;
-				LISTE_OBJETS_DECOR[i].pos_Y += y;
-
-				SPR_setPosition(LISTE_OBJETS_DECOR[i].sprite_OBJET,LISTE_OBJETS_DECOR[i].pos_X,LISTE_OBJETS_DECOR[i].pos_Y);
-			}
-		}
-	}
 }
 
 
@@ -968,7 +995,7 @@ void scrolling_ECRAN_NIVEAU()
 	{		
 		compteur_SCROLLING = 0;
 		effacer_TIR();
-		//effacer_OBJET_DECOR_SCROLLING();
+		effacer_OBJET_DECOR_SCROLLING();
 		etat_JEU = FIN_SCROLLING_NIVEAU;
 	}
 }
@@ -1182,6 +1209,8 @@ void manette_JOUEUR_NIVEAU()
 				axe_JOUEUR = BAS;
 				duree_SCROLLING = DUREE_SCROLL_V;
 				index_Y_CARTE += 1;
+				arbre_BRULE_OK = 0;
+				entree_SECRET_OK = 0;
 
 				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
@@ -1225,7 +1254,7 @@ void manette_JOUEUR_NIVEAU()
 
 							num_ENTREE = id_TILE3;
 
-							afficher_ENTREE();
+							afficher_ENTREE(num_ENTREE);
 
 							// TYPE DE DECOR
 							// 0 = NIVEAU
@@ -1249,7 +1278,7 @@ void manette_JOUEUR_NIVEAU()
 
 						num_ENTREE = id_TILE3;
 
-						afficher_ENTREE();
+						afficher_ENTREE(num_ENTREE);
 
 						// TYPE DE DECOR
 						// 0 = NIVEAU
@@ -1347,6 +1376,8 @@ void manette_JOUEUR_NIVEAU()
 				axe_JOUEUR = HAUT;
 				duree_SCROLLING = DUREE_SCROLL_V;
 				index_Y_CARTE -= 1;
+				arbre_BRULE_OK = 0;
+				entree_SECRET_OK = 0;
 
 				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
@@ -1389,7 +1420,7 @@ void manette_JOUEUR_NIVEAU()
 
 							num_ENTREE = id_TILE3;
 
-							afficher_ENTREE();
+							afficher_ENTREE(num_ENTREE);
 
 							// TYPE DE DECOR
 							// 0 = NIVEAU
@@ -1413,7 +1444,7 @@ void manette_JOUEUR_NIVEAU()
 
 						num_ENTREE = id_TILE3;
 
-						afficher_ENTREE();
+						afficher_ENTREE(num_ENTREE);
 
 						// TYPE DE DECOR
 						// 0 = NIVEAU
@@ -1523,6 +1554,8 @@ void manette_JOUEUR_NIVEAU()
 				axe_JOUEUR = DROITE;
 				duree_SCROLLING = DUREE_SCROLL_H;
 				index_X_CARTE += 1;
+				arbre_BRULE_OK = 0;
+				entree_SECRET_OK = 0;
 
 				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
@@ -1565,7 +1598,7 @@ void manette_JOUEUR_NIVEAU()
 
 							num_ENTREE = id_TILE3;
 
-							afficher_ENTREE();
+							afficher_ENTREE(num_ENTREE);
 
 							// TYPE DE DECOR
 							// 0 = NIVEAU
@@ -1589,7 +1622,7 @@ void manette_JOUEUR_NIVEAU()
 
 						num_ENTREE = id_TILE3;
 
-						afficher_ENTREE();
+						afficher_ENTREE(num_ENTREE);
 
 						// TYPE DE DECOR
 						// 0 = NIVEAU
@@ -1680,6 +1713,8 @@ void manette_JOUEUR_NIVEAU()
 				axe_JOUEUR = GAUCHE;
 				duree_SCROLLING = DUREE_SCROLL_H;
 				index_X_CARTE -= 1;
+				arbre_BRULE_OK = 0;
+				entree_SECRET_OK = 0;
 
 				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
@@ -1722,7 +1757,7 @@ void manette_JOUEUR_NIVEAU()
 
 							num_ENTREE = id_TILE3;
 
-							afficher_ENTREE();
+							afficher_ENTREE(num_ENTREE);
 
 							// TYPE DE DECOR
 							// 0 = NIVEAU
@@ -1746,7 +1781,7 @@ void manette_JOUEUR_NIVEAU()
 
 						num_ENTREE = id_TILE3;
 
-						afficher_ENTREE();
+						afficher_ENTREE(num_ENTREE);
 
 						// TYPE DE DECOR
 						// 0 = NIVEAU
@@ -2034,11 +2069,87 @@ void tiles_CASCADE_NIVEAU()
 
 void tiles_ARBRE_BRULE()
 {
-	// SI L'ARBRE BULE
+	// SI L'ARBRE BRULE
 	if(arbre_BRULE_OK == 1)
 	{
+		if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 1)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 6)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 11)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 16)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 21)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 26)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 31)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 36)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 41)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 46)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 51)
+		{
+			LISTE_OBJETS_DECOR[0].index_ANIM += 1;
+			SPR_setFrame(LISTE_OBJETS_DECOR[0].sprite_OBJET,LISTE_OBJETS_DECOR[0].index_ANIM);
+		}
+
+		else if(LISTE_OBJETS_DECOR[0].compteur_ANIM == 56)
+		{
+			LISTE_OBJETS_DECOR[0].type = NULL;
+			SPR_releaseSprite(LISTE_OBJETS_DECOR[0].sprite_OBJET);
+			arbre_BRULE_OK = 0;
+			nb_OBJET_DECOR -= 1;
+			return;
+		}
+
+
+
 		LISTE_OBJETS_DECOR[0].compteur_ANIM += 1;
 
-		//if(LISTE_OBJETS_DECOR[0].compteur_ANIM ==3)
 	}
 }

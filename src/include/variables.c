@@ -46,6 +46,8 @@ u8 index_Y_CARTE = 0;
 u8 nb_ENNEMIS = 0;
 u8 nb_TIR = 0;
 
+bool surcharge_OK = 0 ;
+
 
 
 
@@ -116,8 +118,8 @@ u16 adr_VRAM_SCEPTRE = 0;
 
 u16 adr_VRAM_CHIFFRES = 0;
 
-u8 nb_ENERGIE = 5;
-u8 energie_MAX = 5;
+u8 nb_ENERGIE = 5;      //10
+u8 energie_MAX = 5;     //10
 
 
 

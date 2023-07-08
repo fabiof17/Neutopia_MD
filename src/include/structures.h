@@ -180,7 +180,7 @@ typedef struct
 	u8 compteur_ANIM;
 	u8 index_ANIM;
 	
-	SpriteDefinition *adr_TILES;	
+	const SpriteDefinition *adr_TILES;	
 	Sprite *sprite_OBJET;
 
 	u8 pal;
