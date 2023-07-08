@@ -66,7 +66,7 @@ inline static void crea_ROCHER_DECOR()
 
 		for(i=0 ; i<MAX_OBJET_DECOR ; i++)
 		{
-			if(LISTE_OBJETS_DECOR[i].type != NULL)
+			if(LISTE_OBJETS_DECOR[i].type == NULL)
 			{
 				LISTE_OBJETS_DECOR[i].type = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
@@ -74,19 +74,19 @@ inline static void crea_ROCHER_DECOR()
 				LISTE_OBJETS_DECOR[i].pos_X = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_X + offset_POS_X;
 				LISTE_OBJETS_DECOR[i].pos_Y = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].pos_Y + offset_POS_Y;
 
-				LISTE_OBJETS_DECOR[i].etat = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].etat;
-				LISTE_OBJETS_DECOR[i].axe = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].axe;
+				LISTE_OBJETS_DECOR[i].etat = 0;
+				LISTE_OBJETS_DECOR[i].axe = 0;
 
 
-				LISTE_OBJETS_DECOR[i].compteur_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].compteur_ANIM;
-				LISTE_OBJETS_DECOR[i].index_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].index_ANIM;
+				LISTE_OBJETS_DECOR[i].compteur_ANIM = 0;
+				//LISTE_OBJETS_DECOR[i].index_ANIM = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].index_ANIM;
 
 				LISTE_OBJETS_DECOR[i].adr_TILES = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].adr_TILES;
 				
 				LISTE_OBJETS_DECOR[i].sprite_OBJET = SPR_addSprite(LISTE_OBJETS_DECOR[i].adr_TILES, LISTE_OBJETS_DECOR[i].pos_X, LISTE_OBJETS_DECOR[i].pos_Y, TILE_ATTR(PAL1, FALSE, FALSE, FALSE));
 
-				nb_OBJET_DECOR += 1;
 
+				nb_OBJET_DECOR += 1;
 				objet_ECRAN = ROCHER;
 
 				return;
@@ -210,6 +210,8 @@ inline static void maj_ENERGIE()
 
 		VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_MOITIE), 13 + entier, 3, 0, 0, 1, 1, CPU);
 	}
+
+	maj_SURCHARGE();
 
 }
 
@@ -1209,7 +1211,7 @@ void manette_JOUEUR_NIVEAU()
 
 				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
-				//crea_ROCHER_DECOR();
+				crea_ROCHER_DECOR();
 				
 				etat_JEU = SCROLLING_NIVEAU;
 				return ;
@@ -1376,7 +1378,7 @@ void manette_JOUEUR_NIVEAU()
 
 				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
-				//crea_ROCHER_DECOR();
+				crea_ROCHER_DECOR();
 				
 				etat_JEU = SCROLLING_NIVEAU;
 				return ;
@@ -1551,7 +1553,7 @@ void manette_JOUEUR_NIVEAU()
 
 				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
-				//crea_ROCHER_DECOR();
+				crea_ROCHER_DECOR();
 				
 				etat_JEU = SCROLLING_NIVEAU;
 				return ;
@@ -1710,7 +1712,7 @@ void manette_JOUEUR_NIVEAU()
 
 				objet_ECRAN = ptr_TABLE_OBJETS_DECOR[index_X_CARTE + ( index_Y_CARTE <<3 )].type;
 
-				//crea_ROCHER_DECOR();
+				crea_ROCHER_DECOR();
 				
 				etat_JEU = SCROLLING_NIVEAU;
 				return ;

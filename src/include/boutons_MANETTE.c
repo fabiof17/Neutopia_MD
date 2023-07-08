@@ -170,13 +170,16 @@ void niveau_Callback(u16 joy, u16 changed, u16 state)
 		//////////////////////////////////////////////////////////
         else if(changed & state & BUTTON_A)
         {
-            if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TIR_BAGUETTE && etat_JOUEUR != TOUCHE)
+            if(id_OBJET_MENU == 2)
             {
-                if(nb_TIR < MAX_TIR)
+                if(etat_JOUEUR != ATTAQUE && etat_JOUEUR != TIR_BAGUETTE && etat_JOUEUR != TOUCHE)
                 {
-                    etat_JOUEUR = TIR_BAGUETTE;
-                    crea_TIR();
-                    //return;
+                    if(nb_TIR < MAX_TIR)
+                    {
+                        etat_JOUEUR = TIR_BAGUETTE;
+                        crea_TIR();
+                        //return;
+                    }
                 }
             }
         }        

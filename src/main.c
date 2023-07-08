@@ -169,7 +169,7 @@ int main(bool resetType)
                             }
 
                             //debug_JEU();
-                            //VDP_drawInt( num_ENTREE , 2 , 0 , 0 );
+                            //VDP_drawInt( nb_OBJET_DECOR , 2 , 0 , 0 );
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
