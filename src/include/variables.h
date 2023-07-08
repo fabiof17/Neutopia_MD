@@ -50,6 +50,7 @@
 #define TILE_MUR                45
 
 #define VEL_TIR                 2
+#define MARGE_TIR               6
 
 
 
