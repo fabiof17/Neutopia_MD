@@ -68,6 +68,8 @@ void init_VARIABLES_GENERALES()
 
 	niveau_EPEE = 0;
 	niveau_BOUCLIER = 0;
+	niveau_ARMURE = 0;
+	niveau_BAGUETTE = 0;
 
 	id_TILE1 = 0;
 	id_TILE2 = 0;
@@ -75,10 +77,22 @@ void init_VARIABLES_GENERALES()
 	id_TILE4 = 0;
 
 
+
+	//etat_JOUEUR = ARRET; 
+	//axe_JOUEUR = BAS; 
+
 	compteur_SCROLLING = 0;
 	duree_SCROLLING = 0;
 
-	offset_TABLES_ENTREES = 0;
+	index_X_CARTE = 0;
+	index_Y_CARTE = 0;
+
+	nb_ENNEMIS = 0;
+	nb_TIR = 0;
+
+	surcharge_OK = 0;
+
+
 
 
 	//******************************************************//
@@ -117,6 +131,8 @@ void init_VARIABLES_GENERALES()
 	index_X_CARTE_MENU = 0;
 	index_Y_CARTE_MENU = 0;
 
+	id_OBJET_MENU = 0;
+
 	cle_OK = 0;
 	crystal_OK = 0;
 
@@ -146,7 +162,8 @@ void init_VARIABLES_GENERALES()
 
 	adr_VRAM_CHIFFRES = 0;
 
-	nb_ENERGIE = 5;
+	nb_ENERGIE = 10;
+	energie_MAX = 10;
 
 
 	//////////////////////////////////////////////////////////
@@ -185,23 +202,43 @@ void init_VARIABLES_GENERALES()
 	niveau_OK = 0;
 	num_NIVEAU = 0;
 
+	pos_X_CAM = 0;
+	pos_Y_CAM = 0;
+
 	pos_X_CAM_NIVEAU = 0;
 	pos_Y_CAM_NIVEAU = 0;
-
-	index_X_CARTE = TABLE_INIT_INDEX_NIVEAUX[0][num_NIVEAU];
-	index_Y_CARTE = TABLE_INIT_INDEX_NIVEAUX[1][num_NIVEAU];
-
-	adr_VRAM_BG_A = 0;
-	adr_VRAM_BG_B = 0;
 
 	pos_X_ENTREE = -32;
 	pos_Y_ENTREE = -48;
 
+	index_X_CARTE = TABLE_INIT_INDEX_NIVEAUX[0][num_NIVEAU];
+	index_Y_CARTE = TABLE_INIT_INDEX_NIVEAUX[1][num_NIVEAU];
+
+
+
+
+	adr_VRAM_BG_A = 0;
+	adr_VRAM_BG_B = 0;
+
+	adr_VRAM_ENTREE = 0;
+
+
+
+
+	id_ENTREE = 0;
+	num_ENTREE = 0;
+	offset_TABLES_ENTREES = 0;
 	entree_SECRET_OK = 0;
 
+
 	compteur_EAU = 15;
+	compteur_CASCADE = 0;
 
 	nb_OBJET_DECOR = 0;
+	arbre_BRULE_OK = 0;
+	objet_ECRAN = NULL;
+
+	
 
 
 	//******************************************************//
@@ -224,6 +261,9 @@ void init_VARIABLES_GENERALES()
 	//                         SALLES                       //
 	//                                                      //
 	//******************************************************//
+
+	pos_X_CAM_SALLE = 0;
+	pos_Y_CAM_SALLE = 0;
 
 }
 
@@ -497,12 +537,15 @@ void init_WINDOW()
 	//                                                      //
 	//******************************************************//
 
+	/*
 	u8 i = 0;
 
 	for(i=0 ; i<nb_ENERGIE ; i++)
 	{
 		VDP_setTileMapEx(WINDOW, image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
 	}
+	*/
+	maj_ENERGIE();
 
 
 	//******************************************************//
@@ -529,7 +572,7 @@ void init_WINDOW()
 void init_JOUEUR()
 {
 	etat_JOUEUR = ARRET;
-	axe_JOUEUR = 0;
+	axe_JOUEUR = BAS;
 
 
 	JOUEUR.compteur_ANIM = 0;
@@ -611,24 +654,28 @@ void init_DECOR( u8 index , u8 type )
 			ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU1;
 			ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU1[0][0];
 			ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU1[0][0];
+			ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU1[0];
 		}
 		else if(num_NIVEAU == 1)
 		{
 			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU2;
 			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU2[0][0];
 			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU2[0][0];
+			//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU2;
 		}
 		else if(num_NIVEAU == 2)
 		{
 			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU3;
 			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU3[0][0];
 			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU3[0][0];
+			//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU3;
 		}		
 		else if(num_NIVEAU == 3)
 		{
 			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU4;
 			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU4[0][0];
 			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU4[0][0];
+			//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU4;
 		}
 
 		ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][0];
@@ -708,7 +755,7 @@ void init_DECOR( u8 index , u8 type )
 		SYS_doVBlankProcess();
 	}
 
-
+	/*
 	//////////////////////////////////////////////////////////
     //                     SALLE + DONJON                   //
     //////////////////////////////////////////////////////////
@@ -775,6 +822,6 @@ void init_DECOR( u8 index , u8 type )
 			//
 		}
 		
-	}	
+	}*/	
 }
 

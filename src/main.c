@@ -44,7 +44,7 @@ int main(bool resetType)
             //////////////////////////////////////////////////////////////////////////////////////
             //                            CHARGEMENT ECRAN TITRE                                //
             //////////////////////////////////////////////////////////////////////////////////////         
-            if(titre_OK == 0)
+            if(titre_OK == NON)
             {
                 // init TITRE //
                 //init_TITRE();
@@ -74,7 +74,7 @@ int main(bool resetType)
             ///////////////////////////////////////////////////////////////////////////////////////
             //                                CHARGEMENT INTRO                                   //
             ///////////////////////////////////////////////////////////////////////////////////////
-            if(intro_OK==0)
+            if(intro_OK == NON)
             {
                 // init INTRO //
                 //init_INTRO();
@@ -115,12 +115,12 @@ int main(bool resetType)
 
             else
             {                   
-                while(GAMEOVER == 0)
+                while(GAMEOVER == NON)
                 {
                     ///////////////////////////////////////////////////////////////////////////////////////
                     //                                     INIT DECOR                                    //
                     ///////////////////////////////////////////////////////////////////////////////////////
-                    if(niveau_OK == 0)
+                    if(niveau_OK == NON)
                     {
                         // Init NIVEAU //
                         init_DECOR(num_NIVEAU , type_DECOR);
@@ -130,7 +130,7 @@ int main(bool resetType)
                         init_PALETTES_MENU();
                         maj_PALETTES(num_NIVEAU , type_DECOR);
 
-                        niveau_OK = 1;
+                        niveau_OK = OUI;
                     }
 
 
@@ -168,8 +168,7 @@ int main(bool resetType)
                                 JOY_setEventHandler(menu_Callback);
                             }
 
-                            //debug_JEU();
-                            VDP_drawInt( nb_OBJET_DECOR , 2 , 0 , 0 );
+                            //VDP_drawInt( nb_OBJET_DECOR , 2 , 0 , 0 );
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
@@ -188,7 +187,7 @@ int main(bool resetType)
                             tiles_EAU_NIVEAU();
                             tiles_CASCADE_NIVEAU();
 
-                            //debug_JEU();
+                            
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
@@ -208,7 +207,7 @@ int main(bool resetType)
                             tiles_EAU_NIVEAU();
                             tiles_CASCADE_NIVEAU();
 
-                            //debug_JEU();
+                            
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
@@ -224,7 +223,7 @@ int main(bool resetType)
                             entree_ENTREE();
                             //VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
 
-                            //debug_JEU();
+                            
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
@@ -241,7 +240,7 @@ int main(bool resetType)
                         {
                             JOY_setEventHandler(desactiver_Callback);
 
-                            //debug_JEU();
+                            
 
                             SPR_update();
                             SYS_doVBlankProcess();  

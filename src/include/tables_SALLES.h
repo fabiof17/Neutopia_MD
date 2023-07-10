@@ -8,13 +8,13 @@
 //                                                      //
 //******************************************************//
 
-extern const u16					TABLE_OFFSET_ENTREES[4];
+//////////////////////////////////////////////////////////
+//                     SALLES NIVEAU 1                  //
+//////////////////////////////////////////////////////////
 
-extern const TileSet				*TABLE_TILESET_ENTREES[43];
+extern const Image					*TABLE_SALLES_NIVEAU1[44];
 
-extern const MapDefinition			*TABLE_MAPDEF_ENTREES[43];
-
-extern const Palette				*TABLE_ADR_PAL_ENTREES[43];
+extern const Image					*ptr_TABLE_SALLES; 
 
 
 

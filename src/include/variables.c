@@ -21,11 +21,9 @@ u16 nb_GOLD = 0;                        //  init -->  init_VARIABLES_GENERALES()
 
 u8 niveau_EPEE = 0;                     //  init -->  init_VARIABLES_GENERALES()
 u8 niveau_BOUCLIER = 0;                 //  init -->  init_VARIABLES_GENERALES()
-u8 niveau_ARMURE = 0;
-u8 niveau_BAGUETTE = 0;
+u8 niveau_ARMURE = 0;                   //  init -->  init_VARIABLES_GENERALES()
+u8 niveau_BAGUETTE = 0;                 //  init -->  init_VARIABLES_GENERALES()
 
-//bool tiles_ARRET_OK = 0;
-//bool tiles_ATTAQUE_OK = 0;
 
 u16 id_TILE1 = 0;                       //  init -->  init_VARIABLES_GENERALES()
 u16 id_TILE2 = 0;                       //  init -->  init_VARIABLES_GENERALES()
@@ -40,13 +38,13 @@ u8 axe_JOUEUR = 0;                      //  init -->  init_JOUEUR()
 u8 compteur_SCROLLING = 0;              //  init -->  init_VARIABLES_GENERALES()
 u8 duree_SCROLLING = 0;                 //  init -->  init_VARIABLES_GENERALES()
 
-u8 index_X_CARTE = 0;
-u8 index_Y_CARTE = 0;
+u8 index_X_CARTE = 0;                   //  init -->  init_VARIABLES_GENERALES()
+u8 index_Y_CARTE = 0;                   //  init -->  init_VARIABLES_GENERALES()
 
-u8 nb_ENNEMIS = 0;
-u8 nb_TIR = 0;
+u8 nb_ENNEMIS = 0;                      //  init -->  init_VARIABLES_GENERALES()
+u8 nb_TIR = 0;                          //  init -->  init_VARIABLES_GENERALES()
 
-bool surcharge_OK = 0 ;
+bool surcharge_OK = 0;                  //  init -->  init_VARIABLES_GENERALES()
 
 
 
@@ -67,7 +65,7 @@ u8 phase_TITRE = 0;                     //  init -->  init_VARIABLES_GENERALES()
 //                                                      //
 //******************************************************//
 
-bool intro_OK = 0;
+bool intro_OK = 0;                      //  init -->  init_VARIABLES_GENERALES()
 
 
 //******************************************************//
@@ -76,32 +74,32 @@ bool intro_OK = 0;
 //                                                      //
 //******************************************************//
 
-bool menu_OK = 0;
+bool menu_OK = 0;                       //  init -->  init_VARIABLES_GENERALES()
 
-u8 index_X_MENU = 0;
-u8 index_Y_MENU = 0;
+u8 index_X_MENU = 0;                    //  init -->  init_VARIABLES_GENERALES()
+u8 index_Y_MENU = 0;                    //  init -->  init_VARIABLES_GENERALES()
 
-u16 pos_X_CURSEUR = 0;
-u16 pos_Y_CURSEUR = 0;
+u16 pos_X_CURSEUR = 0;                  //  init -->  init_VARIABLES_GENERALES()
+u16 pos_Y_CURSEUR = 0;                  //  init -->  init_VARIABLES_GENERALES()
 
-u8 index_X_CARTE_MENU = 0;
-u8 index_Y_CARTE_MENU = 0;
+u8 index_X_CARTE_MENU = 0;              //  init -->  init_VARIABLES_GENERALES()
+u8 index_Y_CARTE_MENU = 0;              //  init -->  init_VARIABLES_GENERALES()
 
-u8 id_OBJET_MENU = 0;
+u8 id_OBJET_MENU = 0;                   //  init -->  init_VARIABLES_GENERALES()
 
-bool cle_OK = 0;
-bool crystal_OK = 0;
+bool cle_OK = 0;                        //  init -->  init_VARIABLES_GENERALES()
+bool crystal_OK = 0;                    //  init -->  init_VARIABLES_GENERALES()
 
-u16 adr_VRAM_MENU = 0;
-u16 adr_VRAM_BOUSSOLE = 0;
+u16 adr_VRAM_MENU = 0;                  //  init -->  init_VARIABLES_GENERALES()
+u16 adr_VRAM_BOUSSOLE = 0;              //  init -->  init_VARIABLES_GENERALES()
 
-u16 adr_VRAM_ENERGIE_PLEIN = 0;
-u16 adr_VRAM_ENERGIE_MOITIE = 0;
-u16 adr_VRAM_ENERGIE_VIDE = 0;
+u16 adr_VRAM_ENERGIE_PLEIN = 0;         //  init -->  init_VARIABLES_GENERALES()
+u16 adr_VRAM_ENERGIE_MOITIE = 0;        //  init -->  init_VARIABLES_GENERALES()
+u16 adr_VRAM_ENERGIE_VIDE = 0;          //  init -->  init_VARIABLES_GENERALES()
 
-u16 adr_VRAM_VIDE = 0;
-u16 adr_VRAM_AILES = 0;
-u16 adr_VRAM_ANNEAU = 0;
+u16 adr_VRAM_VIDE = 0;                  //  init -->  init_VARIABLES_GENERALES()
+u16 adr_VRAM_AILES = 0;                 //  init -->  init_VARIABLES_GENERALES()
+u16 adr_VRAM_ANNEAU = 0;                //  init -->  init_VARIABLES_GENERALES()
 u16 adr_VRAM_ARMURE = 0;
 u16 adr_VRAM_BOMBE = 0;
 u16 adr_VRAM_BOTTES = 0;
@@ -118,8 +116,8 @@ u16 adr_VRAM_SCEPTRE = 0;
 
 u16 adr_VRAM_CHIFFRES = 0;
 
-u8 nb_ENERGIE = 5;      //10
-u8 energie_MAX = 5;     //10
+u8 nb_ENERGIE = 10;      //10
+u8 energie_MAX = 10;     //10
 
 
 

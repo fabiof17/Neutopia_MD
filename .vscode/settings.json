@@ -30,7 +30,8 @@
         "tables_salles.h": "c",
         "boutons_manette.h": "c",
         "tables_niveaux.h": "c",
-        "tables_menu.h": "c"
+        "tables_menu.h": "c",
+        "routines_niveau.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

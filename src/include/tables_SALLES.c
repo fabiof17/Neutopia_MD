@@ -14,48 +14,22 @@
 //                                                      //
 //******************************************************//
 
-// OFFSET POUR LIRE LES TABLEAUX SUIVANTS
-// NIVEAU 1 : 43 ENTREES
-// NIVEAU 2 :
-// NIVEAU 3 : 
-const u16					TABLE_OFFSET_ENTREES[4]					=	{0,43,NULL,NULL};
+//////////////////////////////////////////////////////////
+//                     SALLES NIVEAU 1                  //
+//////////////////////////////////////////////////////////
 
-
-// TILESET DES SALLES + DONJONS
-const TileSet				*TABLE_TILESET_ENTREES[43]				=	{ &tileset_SALLE_1 , NULL , &tileset_SALLE_2 , &tileset_SALLE_3 , &tileset_SALLE_4 , &tileset_SALLE_2 , &tileset_SALLE_5 ,
-																		  &tileset_SALLE_6 , &tileset_SALLE_7 , &tileset_SALLE_8 , &tileset_SALLE_7 , &tileset_SALLE_2 , &tileset_SALLE_7 ,
-																		  &tileset_SALLE_7 , &tileset_SALLE_5 , NULL , &tileset_SALLE_2 , &tileset_SALLE_5 , &tileset_SALLE_7 , NULL ,
-																		  &tileset_SALLE_2 , &tileset_SALLE_2 , &tileset_SALLE_6 ,
-																		  &tileset_SALLE_5 , &tileset_SALLE_1 , &tileset_SALLE_1 ,
-																		  &tileset_SALLE_2 , &tileset_SALLE_7 , NULL , NULL , &tileset_SALLE_4 , &tileset_SALLE_3 ,
-																		  NULL , &tileset_SALLE_3 , &tileset_SALLE_9 , &tileset_SALLE_2 , &tileset_SALLE_7 , &tileset_SALLE_5 ,
-																		  &tileset_SALLE_4 , &tileset_SALLE_2 , &tileset_SALLE_7 , &tileset_SALLE_7 , NULL
+const Image					*TABLE_SALLES_NIVEAU1[44]				=	{ &image_SALLE_1 , NULL , &image_SALLE_2 , &image_SALLE_3 , &image_SALLE_4 , &image_SALLE_2 , &image_SALLE_5 ,
+																		  &image_SALLE_6 , &image_SALLE_7 , &image_SALLE_8 , &image_SALLE_7 , &image_SALLE_2 , &image_SALLE_7 ,
+																		  &image_SALLE_7 , &image_SALLE_5 , NULL , &image_SALLE_2 , &image_SALLE_5 , &image_SALLE_7 , NULL ,
+																		  &image_SALLE_2 , &image_SALLE_2 , &image_SALLE_6 ,
+																		  &image_SALLE_5 , &image_SALLE_1 , &image_SALLE_1 ,
+																		  &image_SALLE_2 , &image_SALLE_7 , NULL , NULL , &image_SALLE_4 , &image_SALLE_3 ,
+																		  NULL , &image_SALLE_3 , &image_SALLE_9 , &image_SALLE_2 , &image_SALLE_7 , &image_SALLE_5 ,
+																		  &image_SALLE_4 , &image_SALLE_2 , &image_SALLE_7 , &image_SALLE_7 , NULL
 																		};
 
-
-// MAP DES SALLES + DONJONS
-const MapDefinition			*TABLE_MAPDEF_ENTREES[43]				=	{ &map_SALLE_1 , NULL , &map_SALLE_2 , &map_SALLE_3 , &map_SALLE_4 , &map_SALLE_2 , &map_SALLE_5 ,
-																		  &map_SALLE_6 , &map_SALLE_7 , &map_SALLE_8 , &map_SALLE_7 , &map_SALLE_2 , &map_SALLE_7 ,
-																		  &map_SALLE_7 , &map_SALLE_5 , NULL , &map_SALLE_2 , &map_SALLE_5 , &map_SALLE_7 , NULL ,
-																		  &map_SALLE_2 , &map_SALLE_2 , &map_SALLE_6 ,
-																		  &map_SALLE_5 , &map_SALLE_1 , &map_SALLE_1 ,
-																		  &map_SALLE_2 , &map_SALLE_7 , NULL , NULL , &map_SALLE_4 , &map_SALLE_3 ,
-																		  NULL , &map_SALLE_3 , &map_SALLE_9 , &map_SALLE_2 , &map_SALLE_7 , &map_SALLE_5 ,
-																		  &map_SALLE_4 , &map_SALLE_2 , &map_SALLE_7 , &map_SALLE_7 , NULL
-																		};
-
-
-// PALETTES DES SALLES + DONJONS
-const Palette				*TABLE_ADR_PAL_ENTREES[43]				=	{ &palette_SALLE_1,NULL,&palette_SALLE_2,&palette_SALLE_3,&palette_SALLE_4,&palette_SALLE_2,&palette_SALLE_5,
-																		  &palette_SALLE_6,&palette_SALLE_7,&palette_SALLE_8,&palette_SALLE_7,&palette_SALLE_2,&palette_SALLE_7,
-																		  &palette_SALLE_7,&palette_SALLE_5,NULL,&palette_SALLE_2,&palette_SALLE_5,&palette_SALLE_7,NULL,
-																		  &palette_SALLE_2,&palette_SALLE_2,&palette_SALLE_6,
-																		  &palette_SALLE_5,&palette_SALLE_1,&palette_SALLE_1,
-																		  &palette_SALLE_2,&palette_SALLE_7,NULL,NULL,&palette_SALLE_4,&palette_SALLE_3,
-																		  NULL,&palette_SALLE_3,&palette_SALLE_9,&palette_SALLE_2,&palette_SALLE_7,&palette_SALLE_5,
-																		  &palette_SALLE_4,&palette_SALLE_2,&palette_SALLE_7,&palette_SALLE_7,NULL
-																		};
-
+// POINTEUR SUR LA TABLE DES SALLESDU NIVEAU EN COURS
+const Image					*ptr_TABLE_SALLES;
 
 
 

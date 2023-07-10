@@ -21,18 +21,30 @@
 
 
 
+
+void maj_ENERGIE()
+{
+	u8 i = 0;
+
+	u8 entier = nb_ENERGIE >>1;
+	
+	
+	for(i=0 ; i< entier ; i++)
+	{
+		VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
+	}
+
+	if(nb_ENERGIE %2 != 0)
+	{
+		VDP_setTileMapEx(WINDOW , image_ENERGIE_MOITIE.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_MOITIE), 13 + entier, 3, 0, 0, 1, 1, CPU);
+	}
+}
+
+
 void VDP_drawInt(u16 valeur,u8 zeros,s16 x, s16 y)
 {
 	intToStr(valeur,texteSortie,zeros); //MIN -500.000.000 - MAX 500.000.000
 	VDP_drawTextBG(WINDOW,texteSortie,x,y);
-}
-
-
-void debug_JEU()
-{
-	VDP_drawInt( id_TILE1 , 2 , 0 , 0 );
-	VDP_drawInt( id_TILE2 , 2 , 6 , 0 );
-	SYS_showFrameLoad(TRUE);
 }
 
 

@@ -186,39 +186,6 @@ inline static void maj_SURCHARGE()
 }
 
 
-inline static void maj_ENERGIE()
-{
-	u8 i = 0;
-
-	if(nb_ENERGIE %2 == 0)
-	{
-		for(i=0 ; i<energie_MAX ; i++)
-		{
-			VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
-		}
-	}
-
-	else
-	{
-		u8 entier = 0;
-		//u8 reste = 0;
-
-		entier = nb_ENERGIE >>1<<1;
-		//reste = nb_ENERGIE - entier;
-
-		for(i=0 ; i<entier ; i++)
-		{
-			VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_PLEIN), 13 + i, 3, 0, 0, 1, 1, CPU);
-		}
-
-		VDP_setTileMapEx(WINDOW , image_ENERGIE_PLEIN.tilemap, TILE_ATTR_FULL(PAL0, TRUE, FALSE, FALSE, adr_VRAM_ENERGIE_MOITIE), 13 + entier, 3, 0, 0, 1, 1, CPU);
-	}
-
-	maj_SURCHARGE();
-
-}
-
-
 
 
 //******************************************************//
@@ -238,7 +205,7 @@ void crea_TIR()
 			if(axe_JOUEUR == BAS)
 			{
 				LISTE_TIR[i].pos_X = JOUEUR.pos_X_JOUEUR + 4;
-				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 38;
+				LISTE_TIR[i].pos_Y = JOUEUR.pos_Y_JOUEUR + 35;
 
 				LISTE_TIR[i].vel_X = 0;
 				LISTE_TIR[i].vel_Y = VEL_TIR;
@@ -850,6 +817,36 @@ inline static void maj_PT_COLL_DECOR()
 }
 
 
+inline static void sauvegarder_VARIABLES_NIVEAU()
+{
+	pos_X_CAM_NIVEAU = pos_X_CAM;
+	pos_Y_CAM_NIVEAU = pos_Y_CAM;
+
+	index_X_CARTE_NIVEAU = index_X_CARTE;
+	index_Y_CARTE_NIVEAU = index_Y_CARTE;
+}
+
+
+inline static void effacer_NIVEAU()
+{
+	sauvegarder_VARIABLES_NIVEAU();
+
+	MAP_scrollTo(map_NIVEAU_BG_B, 0, 0);
+	MAP_scrollTo(map_NIVEAU_BG_A, 0, 0);
+
+	VDP_clearPlane(BG_B,TRUE);
+	DMA_waitCompletion();
+	
+	VDP_clearPlane(BG_A,TRUE);
+	DMA_waitCompletion();
+
+	MEM_free(map_NIVEAU_BG_B);
+	MEM_free(map_NIVEAU_BG_A);
+	MEM_free(map_COLLISION);
+
+	entree_SECRET_OK = 0;
+	arbre_BRULE_OK = 0;
+}
 
 
 //******************************************************//
@@ -859,22 +856,6 @@ inline static void maj_PT_COLL_DECOR()
 //******************************************************//
 
 inline static void effacer_ENTREE()
-{
-	u8 id = index_X_CARTE + ( index_Y_CARTE <<3 );
-	
-	num_ENTREE = ptr_TABLE_ID_ENTREES[id];
-
-	if(ptr_TABLE_ENTREES[num_ENTREE].id != 0)
-	{
-		VDP_loadTileSet(ptr_TABLE_ENTREES[num_ENTREE].adr_Image_ENTREE->tileset, adr_VRAM_ENTREE, DMA);
-		VDP_drawImageEx(ptr_TABLE_ENTREES[num_ENTREE].bg , ptr_TABLE_ENTREES[num_ENTREE].adr_Image_ENTREE , TILE_ATTR_FULL(ptr_TABLE_ENTREES[num_ENTREE].pal, FALSE, FALSE, FALSE, adr_VRAM_ENTREE) , ptr_TABLE_ENTREES[num_ENTREE].pos_X + TABLE_OFFSET_COLLISION[0][index_X_CARTE] , ptr_TABLE_ENTREES[num_ENTREE].pos_Y + TABLE_OFFSET_COLLISION[1][index_Y_CARTE] , FALSE , FALSE );
-	}
-
-	entree_SECRET_OK = 0;	
-}
-
-
-inline static void effacer_ENTREE_CACHEE()
 {
 	if(entree_SECRET_OK == 1)
 	{
@@ -917,6 +898,39 @@ inline static void effacer_ENTREE_CACHEE()
 }
 
 
+void entree_ENTREE()
+{
+	// ESCALIER
+	if(id_ENTREE == 0)
+	{
+		PAL_fadeOutAll(14,FALSE);
+	}
+
+	// CAVE OU DONJON
+	else
+	{
+		if(PAL_isDoingFade() == FALSE)
+		{
+			PAL_fadeOutAll(14,TRUE);
+		}
+		
+		if(PAL_isDoingFade() == TRUE)
+		{
+			if(JOUEUR.pos_Y_JOUEUR == (ptr_TABLE_ENTREES[id_TILE3].pos_Y<<3) )
+			{
+				effacer_NIVEAU();
+				// init SALLE OU DONJON
+			}
+			
+			JOUEUR.pos_Y_JOUEUR -= 1;
+			SPR_setPosition(JOUEUR.sprite_JOUEUR,JOUEUR.pos_X_JOUEUR,JOUEUR.pos_Y_JOUEUR);
+		}
+
+		//PAL_waitFadeCompletion();
+		
+	}
+}
+
 
 
 //******************************************************//
@@ -924,16 +938,6 @@ inline static void effacer_ENTREE_CACHEE()
 //                        NIVEAU                        //
 //                                                      //
 //******************************************************//
-
-inline static void sauvegarder_VARIABLES_NIVEAU()
-{
-	pos_X_CAM_NIVEAU = pos_X_CAM;
-	pos_Y_CAM_NIVEAU = pos_Y_CAM;
-
-	index_X_CARTE_NIVEAU = index_X_CARTE;
-	index_Y_CARTE_NIVEAU = index_Y_CARTE;
-}
-
 
 void scrolling_ECRAN_NIVEAU()
 {
@@ -1029,7 +1033,7 @@ void sortie_SCROLLING_NIVEAU()
 		else
 		{
 			afficher_MENU(type_DECOR);
-			effacer_ENTREE_CACHEE();
+			effacer_ENTREE();
 			maj_PT_COLL_DECOR();
 
 			etat_JOUEUR = MARCHE;
@@ -1134,38 +1138,8 @@ void sortie_SCROLLING_NIVEAU()
 }
 
 
-void entree_ENTREE()
-{
-	// ESCALIER
-	if(id_ENTREE == 0)
-	{
-		PAL_fadeOutAll(14,FALSE);
-	}
 
-	// CAVE OU DONJON
-	else
-	{
-		if(PAL_isDoingFade() == FALSE)
-		{
-			PAL_fadeOutAll(14,TRUE);
-		}
-		
-		if(PAL_isDoingFade() == TRUE)
-		{
-			if(JOUEUR.pos_Y_JOUEUR == (ptr_TABLE_ENTREES[id_TILE3].pos_Y<<3) )
-			{
-				// effacer_NIVEAU();
-				// init SALLE OU DONJON
-			}
-			
-			JOUEUR.pos_Y_JOUEUR -= 1;
-			SPR_setPosition(JOUEUR.sprite_JOUEUR,JOUEUR.pos_X_JOUEUR,JOUEUR.pos_Y_JOUEUR);
-		}
 
-		//PAL_waitFadeCompletion();
-		
-	}
-}
 
 
 
