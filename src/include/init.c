@@ -755,73 +755,32 @@ void init_DECOR( u8 index , u8 type )
 		SYS_doVBlankProcess();
 	}
 
-	/*
+	
 	//////////////////////////////////////////////////////////
-    //                     SALLE + DONJON                   //
+    //                         SALLE                        //
     //////////////////////////////////////////////////////////
 	else if(type == 1)
 	{
 		//////////////////////////////////////////////////////////
-		//						  DONJON					 	//
+		//                CHARGEMENT TILES BG_B                 //
+		//////////////////////////////////////////////////////////
+		VDP_loadTileSet(ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset, adr_VRAM_BG_B, CPU);
+		adr_VRAM_PNJ = adr_VRAM_BG_B + ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset->numTile;
+		SYS_doVBlankProcess();
+
+		//////////////////////////////////////////////////////////
+		//                  CHARGEMENT SPRITES                  //
 		//////////////////////////////////////////////////////////
 
-		if(id_ENTREE != 1)
-		{
-			offset_TABLES_ENTREES = TABLE_OFFSET_ENTREES[num_NIVEAU];
-			
-			//////////////////////////////////////////////////////////
-			//                CHARGEMENT TILES BG_B                 //
-			//////////////////////////////////////////////////////////
-			VDP_loadTileSet(TABLE_TILESET_ENTREES[id_TILE3 + offset_TABLES_ENTREES], adr_VRAM_BG_B, CPU);
-			adr_VRAM_BG_A = adr_VRAM_BG_B + TABLE_TILESET_NIVEAUX[0][index]->numTile;
-			SYS_doVBlankProcess();
+		//
 
-			//////////////////////////////////////////////////////////
-			//                  CREATION MAP BG_B                   //
-			//////////////////////////////////////////////////////////
-			map_NIVEAU_BG_B = MAP_create(TABLE_MAPDEF_ENTREES[id_TILE3 + offset_TABLES_ENTREES], BG_B, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B));
-			//map_BG_B_OK = 1;
-			SYS_doVBlankProcess();
+		//////////////////////////////////////////////////////////
+		//                  CHARGEMENT PALETTE                  //
+		//////////////////////////////////////////////////////////
 
-
-
-
-			//////////////////////////////////////////////////////////
-			//		  ON ENREGISTRE LA POSITION SUR LA CARTE		//
-			//////////////////////////////////////////////////////////
-			index_X_CARTE_NIVEAU = index_X_CARTE;
-			index_Y_CARTE_NIVEAU = index_Y_CARTE;
-
-
-
-
-			//////////////////////////////////////////////////////////
-			//			ON ENREGISTRE LA CAMERA DU NIVEAU			//
-			//////////////////////////////////////////////////////////
-			pos_X_CAM_NIVEAU = pos_X_CAM;
-			pos_Y_CAM_NIVEAU = pos_Y_CAM;
-
-			//////////////////////////////////////////////////////////
-			//                     INIT CAMERA                      //
-			//////////////////////////////////////////////////////////
-			pos_X_CAM = 0;
-			pos_Y_CAM = 0;
-
-
-
-
-			//////////////////////////////////////////////////////////
-			//                      INIT MAPS                       //
-			//////////////////////////////////////////////////////////
-			MAP_scrollTo(map_NIVEAU_BG_B, pos_X_CAM, pos_Y_CAM);
-			SYS_doVBlankProcess();
-		}
-
-		else
-		{
-			//
-		}
-		
-	}*/	
+		PAL_setPalette(PAL1, ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->palette->data, DMA);
+		SYS_doVBlankProcess();
+	
+	}
 }
 

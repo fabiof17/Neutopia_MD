@@ -25,12 +25,6 @@
 #include "palettes.h"
 
 
-//******************************************************//
-//                                                      //
-//                     OBJET DECOR                      //
-//                                                      //
-//******************************************************//
-
 inline static void afficher_ENTREE(u16 num)
 {
 	VDP_loadTileSet(ptr_TABLE_ENTREES[num].adr_Image_ENTREE->tileset, adr_VRAM_ENTREE, DMA);
@@ -39,6 +33,12 @@ inline static void afficher_ENTREE(u16 num)
 
 
 
+
+//******************************************************//
+//                                                      //
+//                     OBJET DECOR                      //
+//                                                      //
+//******************************************************//
 
 inline static void crea_ROCHER_DECOR()
 {
@@ -165,6 +165,24 @@ inline static void scrolling_OBJET_DECOR(s16 x , s16 y)
 }
 
 
+inline static void reset_OBJET_DECOR_GLOBAL()
+{
+	if(nb_TIR != 0)
+	{
+		u8 i;
+
+		for(i=0 ; i<MAX_OBJET_DECOR ; i++)
+		{
+			if(LISTE_OBJETS_DECOR[i].etat != NULL)
+			{
+				LISTE_OBJETS_DECOR[i].etat = NULL;
+				SPR_releaseSprite(LISTE_OBJETS_DECOR[i].sprite_OBJET);
+			}
+		}
+	}
+}
+
+
 
 
 //******************************************************//
@@ -200,7 +218,7 @@ void crea_TIR()
 
 	for(i=0 ; i<MAX_TIR ; i++)
 	{
-		if(LISTE_TIR[i].etat == 0)
+		if(LISTE_TIR[i].etat == NULL)
 		{
 			if(axe_JOUEUR == BAS)
 			{
@@ -284,7 +302,7 @@ void collision_TIR()
 			{
 				if(LISTE_TIR[i].pos_X < -16 || LISTE_TIR[i].pos_X > 255 || LISTE_TIR[i].pos_Y < 24 || LISTE_TIR[i].pos_Y > 224)
 				{
-					LISTE_TIR[i].etat = 0;
+					LISTE_TIR[i].etat = NULL;
 					SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
 					nb_TIR -= 1;
 				}
@@ -608,7 +626,7 @@ void tiles_TIR()
 
 				else if(LISTE_TIR[i].compteur_ANIM == 15)
 				{
-					LISTE_TIR[i].etat = 0;
+					LISTE_TIR[i].etat = NULL;
 					SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
 					nb_TIR -= 1;
 					return;
@@ -629,9 +647,27 @@ inline static void effacer_TIR()
 		{
 			if(LISTE_TIR[i].etat != 0)
 			{
-				LISTE_TIR[i].etat = 0;
+				LISTE_TIR[i].etat = NULL;
 				SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
 				nb_TIR -= 1;
+			}
+		}
+	}
+}
+
+
+inline static void reset_TIR_GLOBAL()
+{
+	if(nb_TIR != 0)
+	{
+		u8 i;
+
+		for(i=0 ; i<MAX_TIR ; i++)
+		{
+			if(LISTE_TIR[i].etat != NULL)
+			{
+				LISTE_TIR[i].etat = NULL;
+				SPR_releaseSprite(LISTE_TIR[i].sprite_TIR);
 			}
 		}
 	}
@@ -919,15 +955,14 @@ void entree_ENTREE()
 			if(JOUEUR.pos_Y_JOUEUR == (ptr_TABLE_ENTREES[id_TILE3].pos_Y<<3) )
 			{
 				effacer_NIVEAU();
-				// init SALLE OU DONJON
+				reset_TIR_GLOBAL();
+				reset_OBJET_DECOR_GLOBAL();
+				//reset_ENNEMIS_GLOBAL();
 			}
 			
 			JOUEUR.pos_Y_JOUEUR -= 1;
 			SPR_setPosition(JOUEUR.sprite_JOUEUR,JOUEUR.pos_X_JOUEUR,JOUEUR.pos_Y_JOUEUR);
 		}
-
-		//PAL_waitFadeCompletion();
-		
 	}
 }
 
@@ -1215,54 +1250,41 @@ void manette_JOUEUR_NIVEAU()
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					
-					if(ptr_TABLE_ENTREES[id_TILE3].secret == 1)
-					{
-						if(entree_SECRET_OK == 1)
-						{
-							// TYPE D'ENTREE
-							// 0 = ESCALIER
-							// 1 = DONJON
-							// 2 = CAVE
-							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
-
-							num_ENTREE = id_TILE3;
-
-							afficher_ENTREE(num_ENTREE);
-
-							// TYPE DE DECOR
-							// 0 = NIVEAU
-							// 1 = SALLE OU DONJON
-							type_DECOR = 1;
-
-							// SEQUENCE ENTREE CAVE
-							etat_JEU = ENTREE_CAVE;
-							//
-							return;
-						}
-					}
-
-					else
+					if(  (ptr_TABLE_ENTREES[id_TILE3].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE3].secret == 0)
 					{
 						// TYPE D'ENTREE
 						// 0 = ESCALIER
-						// 1 = DONJON
-						// 2 = PORTE
-						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
+						// 1 = SALLE
+						// 2 = DONJON
+						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
-						num_ENTREE = id_TILE3;
-
-						afficher_ENTREE(num_ENTREE);
 
 						// TYPE DE DECOR
 						// 0 = NIVEAU
-						// 1 = SALLE OU DONJON
-						type_DECOR = 1;
+						// 1 = SALLE
+						// 2 = DONJON
+						if(id_ENTREE == 1)
+						{
+							// DECOR DONJON
+							type_DECOR = 2;
+						}
+						else
+						{
+							// DECOR SALLE
+							type_DECOR = 1;
+						}
+						
+
+
+						num_ENTREE = id_TILE3;
+
+						afficher_ENTREE(num_ENTREE);	
+
 
 						// SEQUENCE ENTREE CAVE
 						etat_JEU = ENTREE_CAVE;
-						//
-						return;						
+						
+						return;
 					}
 				}
 			}
@@ -1390,7 +1412,7 @@ void manette_JOUEUR_NIVEAU()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
+							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 							num_ENTREE = id_TILE3;
 
@@ -1414,7 +1436,7 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
+						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 						num_ENTREE = id_TILE3;
 
@@ -1565,7 +1587,7 @@ void manette_JOUEUR_NIVEAU()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
+							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 							num_ENTREE = id_TILE3;
 
@@ -1589,7 +1611,7 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
+						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 						num_ENTREE = id_TILE3;
 
@@ -1724,7 +1746,7 @@ void manette_JOUEUR_NIVEAU()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
+							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 							num_ENTREE = id_TILE3;
 
@@ -1748,7 +1770,7 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].id;
+						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 						num_ENTREE = id_TILE3;
 

@@ -294,6 +294,8 @@ extern u8 index_Y_CARTE_DONJONS;
 extern u32 pos_X_CAM_SALLE;
 extern u32 pos_Y_CAM_SALLE;
 
+extern u16 adr_VRAM_PNJ;
+
 
 
 

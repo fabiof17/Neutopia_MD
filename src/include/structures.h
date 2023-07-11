@@ -97,7 +97,7 @@ extern struct_TIR_						LISTE_TIR[2];
 
 typedef struct
 {
-	const u8				id;			    // 0 = ESCALIER  |  1 = DONJON  |  2 = CAVE
+	const u8				type;			    // 0 = ESCALIER  |  1 = DONJON  |  2 = CAVE
 
 	const u8				pos_X;			// EN TILES
 	const u8				pos_Y;			// EN TILES
@@ -193,6 +193,30 @@ extern struct_OBJET_DECOR_						LISTE_OBJETS_DECOR[2];
 
 // POINTEUR SUR LA TABLE DES OBJETS DU NIVEAU EN COURS
 extern const struct_OBJET_DECOR_				*ptr_TABLE_OBJETS_DECOR;
+
+
+
+
+//******************************************************//
+//                                                      //
+//                    STRUCTURE SALLE                   //
+//                                                      //
+//******************************************************//
+
+typedef struct
+{
+	const Image		*adr_Image_SALLE;		// ADRESSES DES TILES DES SALLES
+	const SpriteDefinition *adr_TILES;		// ADRESSE DES TILES DES PNJ
+	
+	Sprite *sprite_PNJ;
+	
+} struct_SALLE_;
+
+
+// POINTEUR SUR LA TABLE DES SALLES DU NIVEAU EN COURS
+extern const struct_SALLE_					*ptr_TABLE_SALLES;
+
+
 
 
 

@@ -12,9 +12,8 @@
 //                     SALLES NIVEAU 1                  //
 //////////////////////////////////////////////////////////
 
-extern const Image					*TABLE_SALLES_NIVEAU1[44];
+extern const struct_SALLE_					TABLE_SALLES_NIVEAU1[44];
 
-extern const Image					*ptr_TABLE_SALLES; 
 
 
 
