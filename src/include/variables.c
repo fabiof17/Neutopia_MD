@@ -161,7 +161,7 @@ Map *map_COLLISION;
 
 
 
-u8 id_ENTREE = 0;
+u8 type_ENTREE = 0;
 u8 num_ENTREE = 0;
 u16 offset_TABLES_ENTREES = 0;          //  init -->  init_VARIABLES_GENERALES()
 bool entree_SECRET_OK = 0;

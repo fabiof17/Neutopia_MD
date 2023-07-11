@@ -225,7 +225,7 @@ void init_VARIABLES_GENERALES()
 
 
 
-	id_ENTREE = 0;
+	type_ENTREE = 0;
 	num_ENTREE = 0;
 	offset_TABLES_ENTREES = 0;
 	entree_SECRET_OK = 0;

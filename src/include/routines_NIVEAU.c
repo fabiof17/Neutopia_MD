@@ -937,7 +937,7 @@ inline static void effacer_ENTREE()
 void entree_ENTREE()
 {
 	// ESCALIER
-	if(id_ENTREE == 0)
+	if(type_ENTREE == 0)
 	{
 		PAL_fadeOutAll(14,FALSE);
 	}
@@ -1256,14 +1256,14 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = ESCALIER
 						// 1 = SALLE
 						// 2 = DONJON
-						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
+						type_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 
 						// TYPE DE DECOR
 						// 0 = NIVEAU
 						// 1 = SALLE
 						// 2 = DONJON
-						if(id_ENTREE == 1)
+						if(type_ENTREE == 1)
 						{
 							// DECOR DONJON
 							type_DECOR = 2;
@@ -1400,57 +1400,45 @@ void manette_JOUEUR_NIVEAU()
 			//			 	  TEST COLLISION ENTREE					//
 			//////////////////////////////////////////////////////////
 
-			if(id_TILE3 < TILE_VIDE -1)
+			if(id_TILE3 < TILE_VIDE-1)
 			{
 				if(id_TILE4 == id_TILE3)
 				{
-					if(ptr_TABLE_ENTREES[id_TILE3].secret == 1)
-					{
-						if(entree_SECRET_OK == 1)
-						{
-							// TYPE D'ENTREE
-							// 0 = ESCALIER
-							// 1 = DONJON
-							// 2 = PORTE
-							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
-
-							num_ENTREE = id_TILE3;
-
-							afficher_ENTREE(num_ENTREE);
-
-							// TYPE DE DECOR
-							// 0 = NIVEAU
-							// 1 = SALLE OU DONJON
-							type_DECOR = 1;
-
-							// SEQUENCE ENTREE CAVE
-							etat_JEU = ENTREE_CAVE;
-							//
-							return;
-						}
-					}
-
-					else
+					if(  (ptr_TABLE_ENTREES[id_TILE3].secret == 1 && entree_SECRET_OK == 1) || ptr_TABLE_ENTREES[id_TILE3].secret == 0)
 					{
 						// TYPE D'ENTREE
 						// 0 = ESCALIER
-						// 1 = DONJON
-						// 2 = PORTE
-						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
+						// 1 = SALLE
+						// 2 = DONJON
+						type_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
-						num_ENTREE = id_TILE3;
-
-						afficher_ENTREE(num_ENTREE);
 
 						// TYPE DE DECOR
 						// 0 = NIVEAU
-						// 1 = SALLE OU DONJON
-						type_DECOR = 1;
+						// 1 = SALLE
+						// 2 = DONJON
+						if(type_ENTREE == 1)
+						{
+							// DECOR DONJON
+							type_DECOR = 2;
+						}
+						else
+						{
+							// DECOR SALLE
+							type_DECOR = 1;
+						}
+						
+
+
+						num_ENTREE = id_TILE3;
+
+						afficher_ENTREE(num_ENTREE);	
+
 
 						// SEQUENCE ENTREE CAVE
 						etat_JEU = ENTREE_CAVE;
-						//
-						return;						
+						
+						return;
 					}
 				}
 			}
@@ -1587,7 +1575,7 @@ void manette_JOUEUR_NIVEAU()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
+							type_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 							num_ENTREE = id_TILE3;
 
@@ -1611,7 +1599,7 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
+						type_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 						num_ENTREE = id_TILE3;
 
@@ -1746,7 +1734,7 @@ void manette_JOUEUR_NIVEAU()
 							// 0 = ESCALIER
 							// 1 = DONJON
 							// 2 = PORTE
-							id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
+							type_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 							num_ENTREE = id_TILE3;
 
@@ -1770,7 +1758,7 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = ESCALIER
 						// 1 = DONJON
 						// 2 = PORTE
-						id_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
+						type_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 						num_ENTREE = id_TILE3;
 

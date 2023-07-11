@@ -250,7 +250,7 @@ extern Map *map_COLLISION;
 
 
 
-extern u8 id_ENTREE;
+extern u8 type_ENTREE;
 extern u8 num_ENTREE;
 extern u16 offset_TABLES_ENTREES;
 extern bool entree_SECRET_OK;
