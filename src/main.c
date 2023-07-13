@@ -107,8 +107,9 @@ int main(bool resetType)
 
                 init_MENU();
                 init_WINDOW();
-                //init_SPRITE_ENTREE();
                 init_JOUEUR();
+
+                init_POINTEURS_TABLES();
 
                 menu_OK = 1;
             }    
@@ -125,7 +126,6 @@ int main(bool resetType)
                         // Init NIVEAU //
                         init_DECOR(num_NIVEAU , type_DECOR);
                         afficher_MENU(type_DECOR);
-                        //init_JOUEUR();
 
                         init_PALETTES_MENU();
                         maj_PALETTES(num_NIVEAU , type_DECOR);
@@ -143,7 +143,7 @@ int main(bool resetType)
                         ///////////////////////////////////////////////////////////////////////////////////////
                         //                                      NIVEAU                                       //
                         ///////////////////////////////////////////////////////////////////////////////////////
-                        while(etat_JEU == NIVEAU)
+                        if(etat_JEU == NIVEAU)
                         {
                             if(PAUSE == NON)
                             {
@@ -172,13 +172,15 @@ int main(bool resetType)
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
-                            SYS_doVBlankProcess();  
+                            SYS_doVBlankProcess();
+
+                            break;
                         }
 
                         ///////////////////////////////////////////////////////////////////////////////////////
                         //                                 SCROLLING NIVEAU                                  //
                         ///////////////////////////////////////////////////////////////////////////////////////
-                        while(etat_JEU == SCROLLING_NIVEAU)
+                        else if(etat_JEU == SCROLLING_NIVEAU)
                         {
                             JOY_setEventHandler(desactiver_Callback);
 
@@ -191,13 +193,15 @@ int main(bool resetType)
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
-                            SYS_doVBlankProcess();  
+                            SYS_doVBlankProcess();
+
+                            break;
                         }
                         
                         ///////////////////////////////////////////////////////////////////////////////////////
                         //                               FIN SCROLLING NIVEAU                                //
                         ///////////////////////////////////////////////////////////////////////////////////////
-                        while(etat_JEU == FIN_SCROLLING_NIVEAU)
+                        else if(etat_JEU == FIN_SCROLLING_NIVEAU)
                         {
                             JOY_setEventHandler(desactiver_Callback);
 
@@ -211,23 +215,48 @@ int main(bool resetType)
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
-                            SYS_doVBlankProcess();  
+                            SYS_doVBlankProcess();
+
+                            break;
                         }                       
 
                         ///////////////////////////////////////////////////////////////////////////////////////
                         //                                   ENTREE CAVE                                     //
                         ///////////////////////////////////////////////////////////////////////////////////////
-                        while(etat_JEU == ENTREE_CAVE)
+                        else if(etat_JEU == ENTREE_CAVE)
                         {
                             JOY_setEventHandler(desactiver_Callback);
-                            entree_ENTREE();
+                            entree_CAVE();
                             //VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
 
                             
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
-                            SYS_doVBlankProcess();  
+                            SYS_doVBlankProcess();
+
+                            break;  
+                        }  
+
+
+
+
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                  ENTREE SALLE                                     //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        else if(etat_JEU == ENTREE_SALLE)
+                        {
+                            JOY_setEventHandler(desactiver_Callback);
+                            //entree_SALLE();
+                            //VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
+
+                            
+                            //SYS_showFrameLoad(TRUE);
+
+                            SPR_update();
+                            SYS_doVBlankProcess();
+
+                            break;  
                         }  
 
 
@@ -236,14 +265,16 @@ int main(bool resetType)
                         ///////////////////////////////////////////////////////////////////////////////////////
                         //                                      SALLE                                        //
                         ///////////////////////////////////////////////////////////////////////////////////////
-                        while(etat_JEU == SORTIE_SALLE)
+                        else if(etat_JEU == SORTIE_SALLE)
                         {
                             JOY_setEventHandler(desactiver_Callback);
 
                             
 
                             SPR_update();
-                            SYS_doVBlankProcess();  
+                            SYS_doVBlankProcess();
+
+                            break; 
                         }
 
 

@@ -206,15 +206,39 @@ extern const struct_OBJET_DECOR_				*ptr_TABLE_OBJETS_DECOR;
 typedef struct
 {
 	const Image		*adr_Image_SALLE;		// ADRESSES DES TILES DES SALLES
-	const SpriteDefinition *adr_TILES;		// ADRESSE DES TILES DES PNJ
-	
-	Sprite *sprite_PNJ;
+	const Image		*adr_Image_PNJ;			// ADRESSES DES TILES DES SALLES
 	
 } struct_SALLE_;
 
 
 // POINTEUR SUR LA TABLE DES SALLES DU NIVEAU EN COURS
 extern const struct_SALLE_					*ptr_TABLE_SALLES;
+
+
+
+
+//******************************************************//
+//                                                      //
+//                    STRUCTURE JOYAU                   //
+//                                                      //
+//******************************************************//
+
+typedef struct
+{
+	u16 pos_X;
+	u16 pos_Y;
+
+	const Image		*adr_Image_JOYAU;		// ADRESSES DES TILES DES JOYAUX
+	
+} struct_JOYAU_;
+
+
+
+
+
+
+
+
 
 
 

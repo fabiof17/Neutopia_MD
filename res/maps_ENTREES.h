@@ -1,7 +1,7 @@
 #ifndef _RES_MAPS_ENTREES_H_
 #define _RES_MAPS_ENTREES_H_
 
-extern const Image image_SANCTUAIRE;
+extern const Image image_ENTREE_SANCTUAIRE;
 extern const Image image_DONJON_NIVEAU1;
 extern const Image image_ESCALIER1_NIVEAU1;
 extern const Image image_ESCALIER2_NIVEAU1;

@@ -1,11 +1,13 @@
 #include <genesis.h>
 
+#include "structures.h"
 #include "variables.h"
 
 #include "tables_DONJONS.h"
 #include "tables_ENTREES.h"
 #include "tables_MENU.h"
 #include "tables_NIVEAUX.h"
+#include "tables_OBJETS_DECOR.h"
 #include "tables_SALLES.h"
 
 #include "variables.h"
@@ -20,6 +22,40 @@
 //******************************************************//
 
 
+void init_POINTEURS_TABLES()
+{
+	if(num_NIVEAU == 0)
+	{
+		ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU1;
+		ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU1[0][0];
+		ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU1[0][0];
+		ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU1[0];
+	}
+	else if(num_NIVEAU == 1)
+	{
+		//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU2;
+		//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU2[0][0];
+		//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU2[0][0];
+		//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU2;
+	}
+	else if(num_NIVEAU == 2)
+	{
+		//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU3;
+		//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU3[0][0];
+		//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU3[0][0];
+		//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU3;
+	}		
+	else if(num_NIVEAU == 3)
+	{
+		//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU4;
+		//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU4[0][0];
+		//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU4[0][0];
+		//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU4;
+	}
+
+	ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][0];
+	ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][0];	
+}
 
 
 void maj_ENERGIE()

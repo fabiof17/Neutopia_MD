@@ -9,7 +9,7 @@
 #include "tables_MENU.h"
 #include "tables_NIVEAUX.h"
 #include "tables_OBJETS_DECOR.h"
-//#include "tables_SALLES.h"
+#include "tables_SALLES.h"
 
 #include "boutons_MANETTE.h"
 #include "outils.h"
@@ -870,15 +870,21 @@ inline static void effacer_NIVEAU()
 	MAP_scrollTo(map_NIVEAU_BG_B, 0, 0);
 	MAP_scrollTo(map_NIVEAU_BG_A, 0, 0);
 
+	MEM_free(map_NIVEAU_BG_B);
+	MEM_free(map_NIVEAU_BG_A);
+	MEM_free(map_COLLISION);
+
 	VDP_clearPlane(BG_B,TRUE);
 	DMA_waitCompletion();
 	
 	VDP_clearPlane(BG_A,TRUE);
 	DMA_waitCompletion();
 
-	MEM_free(map_NIVEAU_BG_B);
-	MEM_free(map_NIVEAU_BG_A);
-	MEM_free(map_COLLISION);
+	VDP_setHorizontalScroll(BG_B, 0);
+	VDP_setVerticalScroll(BG_B, 0);	
+
+	VDP_setHorizontalScroll(BG_A, 0);
+	VDP_setVerticalScroll(BG_A, 0);	
 
 	entree_SECRET_OK = 0;
 	arbre_BRULE_OK = 0;
@@ -934,8 +940,8 @@ inline static void effacer_ENTREE()
 }
 
 
-void entree_ENTREE()
-{
+void entree_CAVE()
+{	/*
 	// ESCALIER
 	if(type_ENTREE == 0)
 	{
@@ -944,7 +950,7 @@ void entree_ENTREE()
 
 	// CAVE OU DONJON
 	else
-	{
+	{	
 		if(PAL_isDoingFade() == FALSE)
 		{
 			PAL_fadeOutAll(14,TRUE);
@@ -958,12 +964,32 @@ void entree_ENTREE()
 				reset_TIR_GLOBAL();
 				reset_OBJET_DECOR_GLOBAL();
 				//reset_ENNEMIS_GLOBAL();
+
+				niveau_OK = NON;
+				//VDP_drawInt( niveau_OK , 2 , 0 , 0 );
+
+				return;
 			}
 			
 			JOUEUR.pos_Y_JOUEUR -= 1;
 			SPR_setPosition(JOUEUR.sprite_JOUEUR,JOUEUR.pos_X_JOUEUR,JOUEUR.pos_Y_JOUEUR);
 		}
-	}
+	}*/
+	effacer_NIVEAU();
+	reset_TIR_GLOBAL();
+	reset_OBJET_DECOR_GLOBAL();
+	//reset_ENNEMIS_GLOBAL();
+
+	niveau_OK = NON;
+	//VDP_drawInt( niveau_OK , 2 , 0 , 0 );
+
+	return;
+}
+
+
+void entree_SALLE()
+{
+	//
 }
 
 
@@ -1256,6 +1282,7 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = ESCALIER
 						// 1 = SALLE
 						// 2 = DONJON
+						// 9 = SANCTUAIRE
 						type_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 
@@ -1263,17 +1290,23 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = NIVEAU
 						// 1 = SALLE
 						// 2 = DONJON
-						if(type_ENTREE == 1)
-						{
-							// DECOR DONJON
-							type_DECOR = 2;
-						}
-						else
+						// 3 = SANCTUAIRE
+						if(type_ENTREE == 0 || type_ENTREE == 2)
 						{
 							// DECOR SALLE
 							type_DECOR = 1;
 						}
-						
+
+						else if(type_ENTREE == 1)
+						{
+							// DECOR DONJON
+							type_DECOR = 2;
+						}
+						else if(type_ENTREE == 9)
+						{
+							// DECOR SANCTUAIRE
+							type_DECOR = 3;
+						}
 
 
 						num_ENTREE = id_TILE3;
@@ -1410,6 +1443,7 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = ESCALIER
 						// 1 = SALLE
 						// 2 = DONJON
+						// 9 = SANCTUAIRE
 						type_ENTREE = ptr_TABLE_ENTREES[id_TILE3].type;
 
 
@@ -1417,17 +1451,23 @@ void manette_JOUEUR_NIVEAU()
 						// 0 = NIVEAU
 						// 1 = SALLE
 						// 2 = DONJON
-						if(type_ENTREE == 1)
-						{
-							// DECOR DONJON
-							type_DECOR = 2;
-						}
-						else
+						// 3 = SANCTUAIRE
+						if(type_ENTREE == 0 || type_ENTREE == 2)
 						{
 							// DECOR SALLE
 							type_DECOR = 1;
 						}
-						
+
+						else if(type_ENTREE == 1)
+						{
+							// DECOR DONJON
+							type_DECOR = 2;
+						}
+						else if(type_ENTREE == 9)
+						{
+							// DECOR SANCTUAIRE
+							type_DECOR = 3;
+						}
 
 
 						num_ENTREE = id_TILE3;

@@ -9,6 +9,11 @@ extern const Image image_SALLE_5;
 extern const Image image_SALLE_6;
 extern const Image image_SALLE_7;
 extern const Image image_SALLE_8;
-extern const Image image_SALLE_9;
+extern const Image image_SANCTUAIRE;
+extern const Image image_DALLE_JOYAU;
+extern const Image image_JOYAU_JAUNE;
+extern const Image image_JOYAU_VERT;
+extern const Image image_JOYAU_ARGENT;
+extern const Image image_JOYAU_ROUGE;
 
 #endif // _RES_MAPS_SALLES_H_

@@ -642,46 +642,13 @@ void init_SPRITE_ENTREE()
 void init_DECOR( u8 index , u8 type )
 {
 
-	//index -= 1;
-
 	//////////////////////////////////////////////////////////
     //                        NIVEAU                        //
     //////////////////////////////////////////////////////////
 	if(type == 0)
 	{
-		if(num_NIVEAU == 0)
-		{
-			ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU1;
-			ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU1[0][0];
-			ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU1[0][0];
-			ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU1[0];
-		}
-		else if(num_NIVEAU == 1)
-		{
-			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU2;
-			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU2[0][0];
-			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU2[0][0];
-			//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU2;
-		}
-		else if(num_NIVEAU == 2)
-		{
-			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU3;
-			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU3[0][0];
-			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU3[0][0];
-			//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU3;
-		}		
-		else if(num_NIVEAU == 3)
-		{
-			//ptr_TABLE_ENTREES = TABLE_ENTREES_NIVEAU4;
-			//ptr_TABLE_ID_ENTREES = &TABLE_ID_ENTREES_NIVEAU4[0][0];
-			//ptr_TABLE_OBJETS_DECOR = &TABLE_OBJETS_DECOR_NIVEAU4[0][0];
-			//ptr_TABLE_SALLES = &TABLE_SALLES_NIVEAU4;
-		}
-
-		ptr_TABLE_EAU = TABLE_ADR_EAU_NIVEAUX[num_NIVEAU][0];
-		ptr_TABLE_CASCADE = TABLE_ADR_CASCADE_NIVEAUX[num_NIVEAU][0];		
-
-
+		
+		init_POINTEURS_TABLES();
 
 
 		//////////////////////////////////////////////////////////
@@ -753,9 +720,13 @@ void init_DECOR( u8 index , u8 type )
 		
 		MAP_scrollTo(map_NIVEAU_BG_A, (u32)pos_X_CAM, (u32)pos_Y_CAM);
 		SYS_doVBlankProcess();
+
+		//etat_JEU = ENTREE_NIVEAU;
 	}
 
 	
+
+
 	//////////////////////////////////////////////////////////
     //                         SALLE                        //
     //////////////////////////////////////////////////////////
@@ -768,6 +739,21 @@ void init_DECOR( u8 index , u8 type )
 		adr_VRAM_PNJ = adr_VRAM_BG_B + ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset->numTile;
 		SYS_doVBlankProcess();
 
+
+		//******************************************************//
+		//                                                      //
+		//                        BG_B                          //
+		//                                                      //
+		//******************************************************//
+
+		VDP_setTileMapEx(BG_B, ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tilemap, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B), 0 , 5 , 0 , 0 , 32, 28, CPU);
+
+		VDP_setHorizontalScroll(BG_B, 0);
+		VDP_setVerticalScroll(BG_B, 40);	
+
+		VDP_setHorizontalScroll(BG_A, 0);
+		VDP_setVerticalScroll(BG_A, 40);	
+
 		//////////////////////////////////////////////////////////
 		//                  CHARGEMENT SPRITES                  //
 		//////////////////////////////////////////////////////////
@@ -779,8 +765,74 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 
 		PAL_setPalette(PAL1, ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->palette->data, DMA);
+		etat_JEU = ENTREE_SALLE;
+
+		VDP_drawInt( niveau_OK , 2 , 0 , 0 );
+		
 		SYS_doVBlankProcess();
-	
+
+		
 	}
+
+
+
+
+	//////////////////////////////////////////////////////////
+    //                         DONJON                       //
+    //////////////////////////////////////////////////////////
+	else if(type == 2)
+	{
+
+
+	}
+
+
+
+
+	//////////////////////////////////////////////////////////
+    //                       SANCTUAIRE                     //
+    //////////////////////////////////////////////////////////
+	else if(type == 9)
+	{
+		u16 adr_VRAM_DALLE_JOYAU = 0;
+	
+		u16 adr_VRAM_JOYAU_JAUNE = 0;
+		u16 adr_VRAM_JOYAU_VERT = 0;
+		u16 adr_VRAM_JOYAU_ARGENT = 0;
+		u16 adr_VRAM_JOYAU_ROUGE = 0;
+		
+		//////////////////////////////////////////////////////////
+		//                CHARGEMENT TILES BG_B                 //
+		//////////////////////////////////////////////////////////
+		VDP_loadTileSet(image_SANCTUAIRE.tileset, adr_VRAM_BG_B, CPU);
+		
+		adr_VRAM_DALLE_JOYAU = adr_VRAM_BG_B + image_SANCTUAIRE.tileset->numTile;
+		VDP_loadTileSet(image_DALLE_JOYAU.tileset, adr_VRAM_DALLE_JOYAU, CPU);
+
+		adr_VRAM_JOYAU_JAUNE = adr_VRAM_DALLE_JOYAU + image_DALLE_JOYAU.tileset->numTile;		
+		VDP_loadTileSet(image_JOYAU_JAUNE.tileset, adr_VRAM_JOYAU_JAUNE, CPU);
+
+		adr_VRAM_JOYAU_VERT = adr_VRAM_JOYAU_JAUNE + image_JOYAU_JAUNE.tileset->numTile;
+		VDP_loadTileSet(image_JOYAU_VERT.tileset, adr_VRAM_JOYAU_VERT, CPU);
+
+		adr_VRAM_JOYAU_ARGENT = adr_VRAM_JOYAU_VERT + image_JOYAU_VERT.tileset->numTile;
+		VDP_loadTileSet(image_JOYAU_ARGENT.tileset, adr_VRAM_JOYAU_ARGENT, CPU);
+
+		adr_VRAM_JOYAU_ROUGE = adr_VRAM_JOYAU_ARGENT + image_JOYAU_ARGENT.tileset->numTile;
+		VDP_loadTileSet(image_JOYAU_ROUGE.tileset, adr_VRAM_JOYAU_ROUGE, CPU);
+
+		SYS_doVBlankProcess();
+
+
+
+
+		//////////////////////////////////////////////////////////
+		//                  CHARGEMENT PALETTE                  //
+		//////////////////////////////////////////////////////////
+
+		PAL_setPalette(PAL1, image_SANCTUAIRE.palette->data, DMA);
+		PAL_setPalette(PAL2, image_JOYAU_JAUNE.palette->data, DMA);
+	}
+
 }
 

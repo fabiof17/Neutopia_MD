@@ -29,13 +29,14 @@
 #define SCROLLING_NIVEAU        1
 #define FIN_SCROLLING_NIVEAU    2
 #define ENTREE_CAVE             3
-#define ENTREE_NIVEAU           4
+#define ENTREE_NIVEAU           5
 
 
 #define SALLE                   10
-#define SCROLLING_SALLE         11
-#define FIN_SCROLLING_SALLE     12
-#define SORTIE_SALLE            13
+#define ENTREE_SALLE            11
+#define SCROLLING_SALLE         12
+#define FIN_SCROLLING_SALLE     13
+#define SORTIE_SALLE            14
 
 
 #define DONJON                  20

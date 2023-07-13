@@ -17,6 +17,17 @@ extern const struct_SALLE_					TABLE_SALLES_NIVEAU1[44];
 
 
 
+//******************************************************//
+//                                                      //
+//                     TABLES SALLES                    //
+//                                                      //
+//******************************************************//
+
+extern const struct_JOYAU_                 TABLE_JOYAUX[8];
+
+
+
+
 
 
 

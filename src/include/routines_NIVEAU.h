@@ -10,6 +10,8 @@
 
 //extern void crea_TIR();
 
+extern void entree_SALLE();
+
 
 
 
@@ -57,7 +59,7 @@ extern void scrolling_ECRAN_NIVEAU();
 
 extern void sortie_SCROLLING_NIVEAU();
 
-extern void entree_ENTREE();
+extern void entree_CAVE();
 
 
 

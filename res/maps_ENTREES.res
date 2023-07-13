@@ -4,7 +4,7 @@
 //                                                                                  //
 //**********************************************************************************//
 
-IMAGE image_SANCTUAIRE                      "maps/niveaux/tiles_SANCTUAIRE.png"                     NONE ALL
+IMAGE image_ENTREE_SANCTUAIRE                      "maps/niveaux/tiles_SANCTUAIRE.png"                     NONE ALL
 IMAGE image_DONJON_NIVEAU1                  "maps/niveaux/tiles_DONJON_NIVEAU1.png"                 NONE ALL
 
 IMAGE image_ESCALIER1_NIVEAU1               "maps/niveaux/tiles_ESCALIER1_NIVEAU1.png"              NONE ALL

@@ -84,7 +84,7 @@ const struct_ENTREE_			TABLE_ENTREES_NIVEAU1[44]	=	{	// 0 - 6
 																	// 32 - 37
 																	{0, 28,17, &image_ESCALIER3_NIVEAU1 , &image_CACHE4_ESCALIER_NIVEAU1,	PAL1,BG_B,FALSE, 1,1 , 1},
 																	{0, 8 ,15, &image_ESCALIER1_NIVEAU1 , NULL,								PAL1,BG_B,FALSE, 0,0 , 0},
-																	{9, 15,15, &image_SANCTUAIRE		, &image_SANCTUAIRE,				PAL2,BG_A,TRUE , 0,0 , 0},
+																	{9, 15,15, &image_ENTREE_SANCTUAIRE	, &image_ENTREE_SANCTUAIRE,				PAL2,BG_A,TRUE , 0,0 , 0},
 																	{0, 24,17, &image_ESCALIER1_NIVEAU1 , NULL,								PAL1,BG_B,FALSE, 0,0 , 0},
 																	{0, 6 ,9 , &image_ESCALIER1_NIVEAU1 , &image_CACHE5_ESCALIER_NIVEAU1, 	PAL1,BG_B,FALSE, 1,1 , 0},
 																	{0, 24,9 , &image_ESCALIER1_NIVEAU1 , NULL,								PAL1,BG_B,FALSE, 0,0 , 0},
