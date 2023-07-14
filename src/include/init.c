@@ -767,7 +767,7 @@ void init_DECOR( u8 index , u8 type )
 		//                                                      //
 		//******************************************************//
 
-		VDP_setTileMapEx(BG_A, ptr_TABLE_SALLES[num_ENTREE].adr_Image_PNJ->tilemap, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, adr_VRAM_BG_B + ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset->numTile), 16 , 11 , 0 , 0 , 2, 4, CPU);
+		VDP_setTileMapEx(BG_A, ptr_TABLE_SALLES[num_ENTREE].adr_Image_PNJ->tilemap, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, adr_VRAM_BG_B + ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset->numTile), 16 , 11 - 5 + 23 , 0 , 0 , 2, 4, CPU);
 
 
 		//////////////////////////////////////////////////////////
