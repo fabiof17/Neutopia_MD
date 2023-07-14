@@ -24,6 +24,13 @@
 
 
 
+#define DECOR_NIVEAU            0
+#define DECOR_SALLE             1
+#define DECOR_DONJON            2
+#define DECOR_SANCTUAIRE        9
+
+
+
 
 #define NIVEAU                  0
 #define SCROLLING_NIVEAU        1
@@ -34,9 +41,10 @@
 
 #define SALLE                   10
 #define ENTREE_SALLE            11
-#define SCROLLING_SALLE         12
-#define FIN_SCROLLING_SALLE     13
-#define SORTIE_SALLE            14
+#define FIN_ENTREE_SALLE        12
+#define SCROLLING_SALLE         13
+#define FIN_SCROLLING_SALLE     14
+#define SORTIE_SALLE            15
 
 
 #define DONJON                  20
@@ -91,6 +99,8 @@
 //******************************************************//
 
 extern char texteSortie[3];
+
+extern u16 palette_64[64];
 
 extern u8 scene_JEU;
 extern u8 etat_JEU;

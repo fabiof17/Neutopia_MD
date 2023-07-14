@@ -12,6 +12,8 @@
 
 extern void entree_SALLE();
 
+extern void fin_ENTREE_SALLE();
+
 
 
 

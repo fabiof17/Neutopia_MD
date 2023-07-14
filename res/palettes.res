@@ -4,7 +4,8 @@
 //                                                      //
 //******************************************************//
 
-PALETTE palette_NOIR_64                     "palettes/global/palette_NOIR.png"
+PALETTE palette_NOIR_64                     "palettes/global/palette_NOIR_64.png"
+PALETTE palette_NOIR_16                     "palettes/global/palette_NOIR_16.png"
 
 
 

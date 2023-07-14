@@ -823,7 +823,7 @@ void maj_PALETTES( u8 index , u8 type )
 	else if(type == 1)
 	{
 		//PAL_setPalette(PAL1, TABLE_ADR_PAL_ENTREES[id_TILE3 + offset_TABLES_ENTREES]->data, DMA);
-		//PAL_setPalette(PAL2, TABLE_ADR_PAL_NIVEAUX[1][index]->data, DMA);
+		//PAL_setPalette(PAL2, TABLE_ADR_PAL_NIVEAUX[1][num_NIVEAU]->data, DMA);
 	}
 
 
@@ -941,11 +941,21 @@ inline static void effacer_ENTREE()
 
 
 void entree_CAVE()
-{	/*
+{	
+	
 	// ESCALIER
 	if(type_ENTREE == 0)
 	{
 		PAL_fadeOutAll(14,FALSE);
+
+		effacer_NIVEAU();
+		reset_TIR_GLOBAL();
+		reset_OBJET_DECOR_GLOBAL();
+		//reset_ENNEMIS_GLOBAL();
+
+		niveau_OK = NON;
+
+		return;		
 	}
 
 	// CAVE OU DONJON
@@ -954,9 +964,10 @@ void entree_CAVE()
 		if(PAL_isDoingFade() == FALSE)
 		{
 			PAL_fadeOutAll(14,TRUE);
+			
 		}
 		
-		if(PAL_isDoingFade() == TRUE)
+		else if(PAL_isDoingFade() == TRUE)
 		{
 			if(JOUEUR.pos_Y_JOUEUR == (ptr_TABLE_ENTREES[id_TILE3].pos_Y<<3) )
 			{
@@ -965,8 +976,9 @@ void entree_CAVE()
 				reset_OBJET_DECOR_GLOBAL();
 				//reset_ENNEMIS_GLOBAL();
 
+				PAL_interruptFade();
+
 				niveau_OK = NON;
-				//VDP_drawInt( niveau_OK , 2 , 0 , 0 );
 
 				return;
 			}
@@ -974,23 +986,32 @@ void entree_CAVE()
 			JOUEUR.pos_Y_JOUEUR -= 1;
 			SPR_setPosition(JOUEUR.sprite_JOUEUR,JOUEUR.pos_X_JOUEUR,JOUEUR.pos_Y_JOUEUR);
 		}
-	}*/
-	effacer_NIVEAU();
-	reset_TIR_GLOBAL();
-	reset_OBJET_DECOR_GLOBAL();
-	//reset_ENNEMIS_GLOBAL();
-
-	niveau_OK = NON;
-	//VDP_drawInt( niveau_OK , 2 , 0 , 0 );
-
-	return;
+	}	
 }
 
 
 void entree_SALLE()
 {
-	//
+	PAL_fadeInAll(palette_64, 16, FALSE);
+
+	etat_JEU = FIN_ENTREE_SALLE;
 }
+
+
+void fin_ENTREE_SALLE()
+{
+	if(JOUEUR.pos_Y_JOUEUR > 116)
+	{
+		JOUEUR.pos_Y_JOUEUR -= 1;
+		SPR_setPosition(JOUEUR.sprite_JOUEUR , JOUEUR.pos_X_JOUEUR , JOUEUR.pos_Y_JOUEUR);
+	}
+
+	else
+	{
+		etat_JEU = SALLE;
+	}
+}
+
 
 
 
@@ -1126,6 +1147,7 @@ void sortie_SCROLLING_NIVEAU()
 		else
 		{
 			afficher_MENU(type_DECOR);
+			effacer_ENTREE();
 			maj_PT_COLL_DECOR();
 
 			etat_JOUEUR = MARCHE;
@@ -1294,18 +1316,18 @@ void manette_JOUEUR_NIVEAU()
 						if(type_ENTREE == 0 || type_ENTREE == 2)
 						{
 							// DECOR SALLE
-							type_DECOR = 1;
+							type_DECOR = DECOR_SALLE;
 						}
 
 						else if(type_ENTREE == 1)
 						{
 							// DECOR DONJON
-							type_DECOR = 2;
+							type_DECOR = DECOR_DONJON;
 						}
 						else if(type_ENTREE == 9)
 						{
 							// DECOR SANCTUAIRE
-							type_DECOR = 3;
+							type_DECOR = DECOR_SANCTUAIRE;
 						}
 
 
@@ -1455,18 +1477,18 @@ void manette_JOUEUR_NIVEAU()
 						if(type_ENTREE == 0 || type_ENTREE == 2)
 						{
 							// DECOR SALLE
-							type_DECOR = 1;
+							type_DECOR = DECOR_SALLE;
 						}
 
 						else if(type_ENTREE == 1)
 						{
 							// DECOR DONJON
-							type_DECOR = 2;
+							type_DECOR = DECOR_DONJON;
 						}
 						else if(type_ENTREE == 9)
 						{
 							// DECOR SANCTUAIRE
-							type_DECOR = 3;
+							type_DECOR = DECOR_SANCTUAIRE;
 						}
 
 

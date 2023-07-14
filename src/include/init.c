@@ -58,7 +58,7 @@ void init_VARIABLES_GENERALES()
 	scene_JEU = 2;				// 0: TITRE   -  1: INTRO  -  2: JEU
 	etat_JEU = 0;
 
-	type_DECOR = 0;				// 0: NIVEAU  -  1: SALLE
+	type_DECOR = NIVEAU;				// 0: NIVEAU  -  1: SALLE
 
 	PAUSE = 0;
 	GAMEOVER = 0;
@@ -645,7 +645,7 @@ void init_DECOR( u8 index , u8 type )
 	//////////////////////////////////////////////////////////
     //                        NIVEAU                        //
     //////////////////////////////////////////////////////////
-	if(type == 0)
+	if(type == DECOR_NIVEAU)
 	{
 		
 		init_POINTEURS_TABLES();
@@ -730,7 +730,7 @@ void init_DECOR( u8 index , u8 type )
 	//////////////////////////////////////////////////////////
     //                         SALLE                        //
     //////////////////////////////////////////////////////////
-	else if(type == 1)
+	else if(type == DECOR_SALLE)
 	{
 		//////////////////////////////////////////////////////////
 		//                CHARGEMENT TILES BG_B                 //
@@ -760,17 +760,37 @@ void init_DECOR( u8 index , u8 type )
 
 		//
 
+
+		//////////////////////////////////////////////////////////
+		//                    POSITION JOUEUR                   //
+		//////////////////////////////////////////////////////////
+
+		JOUEUR.pos_X_JOUEUR = 124;
+		JOUEUR.pos_Y_JOUEUR = 218;
+
+		etat_JOUEUR = MARCHE;
+		axe_JOUEUR = HAUT;
+
+		//SPR_setAnim(JOUEUR.sprite_JOUEUR,0);
+		//SPR_setFrame(JOUEUR.sprite_JOUEUR,0);
+
+		SPR_setPosition(JOUEUR.sprite_JOUEUR , JOUEUR.pos_X_JOUEUR , JOUEUR.pos_Y_JOUEUR);
+
+		SPR_update();
+
 		//////////////////////////////////////////////////////////
 		//                  CHARGEMENT PALETTE                  //
 		//////////////////////////////////////////////////////////
 
-		PAL_setPalette(PAL1, ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->palette->data, DMA);
+		// COPIE PALETTES DANS BUFFER POUR FADE IN
+		memcpy( &palette_64[0]  , palette_MENU.data , 16 * 2 );
+		memcpy( &palette_64[16] , ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->palette->data , 16 * 2 );
+		//memcpy( &palette_64[32] , palette_MENU.data , 16 * 2 );
+		memcpy( &palette_64[48] , palette_OBJETS_VIOLET.data , 16 * 2 );
+
 		etat_JEU = ENTREE_SALLE;
-
-		VDP_drawInt( niveau_OK , 2 , 0 , 0 );
 		
-		SYS_doVBlankProcess();
-
+		return;
 		
 	}
 
@@ -780,7 +800,7 @@ void init_DECOR( u8 index , u8 type )
 	//////////////////////////////////////////////////////////
     //                         DONJON                       //
     //////////////////////////////////////////////////////////
-	else if(type == 2)
+	else if(type == DECOR_DONJON)
 	{
 
 

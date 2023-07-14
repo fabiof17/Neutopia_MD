@@ -105,11 +105,16 @@ int main(bool resetType)
                 //                                 INIT MENU + WINDOW                                //
                 ///////////////////////////////////////////////////////////////////////////////////////
 
+                //VDP_setDisable();
+
                 init_MENU();
                 init_WINDOW();
                 init_JOUEUR();
 
                 init_POINTEURS_TABLES();
+
+                //init_PALETTES_MENU();
+                //maj_PALETTES(num_NIVEAU , type_DECOR);               
 
                 menu_OK = 1;
             }    
@@ -168,7 +173,7 @@ int main(bool resetType)
                                 JOY_setEventHandler(menu_Callback);
                             }
 
-                            //VDP_drawInt( nb_OBJET_DECOR , 2 , 0 , 0 );
+                            VDP_drawInt(type_DECOR,2,0,0);
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
@@ -227,8 +232,6 @@ int main(bool resetType)
                         {
                             JOY_setEventHandler(desactiver_Callback);
                             entree_CAVE();
-                            //VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
-
                             
                             //SYS_showFrameLoad(TRUE);
 
@@ -247,9 +250,7 @@ int main(bool resetType)
                         else if(etat_JEU == ENTREE_SALLE)
                         {
                             JOY_setEventHandler(desactiver_Callback);
-                            //entree_SALLE();
-                            //VDP_drawInt( id_ENTREE , 2 , 0 , 0 );
-
+                            entree_SALLE();
                             
                             //SYS_showFrameLoad(TRUE);
 
@@ -259,15 +260,47 @@ int main(bool resetType)
                             break;  
                         }  
 
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                FIN ENTREE SALLE                                   //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        else if(etat_JEU == FIN_ENTREE_SALLE)
+                        {
+                            JOY_setEventHandler(desactiver_Callback);
+                            fin_ENTREE_SALLE();
+                            tiles_JOUEUR();
+                            
+                            //SYS_showFrameLoad(TRUE);
 
+                            SPR_update();
+                            SYS_doVBlankProcess();
 
+                            break;  
+                        }  
 
                         ///////////////////////////////////////////////////////////////////////////////////////
-                        //                                      SALLE                                        //
+                        //                                       SALLE                                       //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        else if(etat_JEU == SALLE)
+                        {
+                            JOY_setEventHandler(desactiver_Callback);
+
+                            VDP_drawInt(type_DECOR,2,0,0);
+                            //SYS_showFrameLoad(TRUE);
+
+                            SPR_update();
+                            SYS_doVBlankProcess();
+
+                            break;  
+                        } 
+
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                     SORTIE SALLE                                  //
                         ///////////////////////////////////////////////////////////////////////////////////////
                         else if(etat_JEU == SORTIE_SALLE)
                         {
                             JOY_setEventHandler(desactiver_Callback);
+
+                            
 
                             
 

@@ -2,6 +2,7 @@
 #define _RES_PALETTES_H_
 
 extern const Palette palette_NOIR_64;
+extern const Palette palette_NOIR_16;
 extern const Palette palette_TITRE_BG_B1;
 extern const Palette palette_TITRE_BG_B2;
 extern const Palette palette_TITRE_BG_A;

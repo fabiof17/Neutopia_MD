@@ -8,6 +8,8 @@
 
 char texteSortie[3];
 
+u16 palette_64[64];
+
 u8 scene_JEU = 0;                       //  init -->  init_VARIABLES_GENERALES()
 u8 etat_JEU = 0;                        //  init -->  init_VARIABLES_GENERALES()
 
