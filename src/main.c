@@ -130,7 +130,7 @@ int main(bool resetType)
                     {
                         // Init NIVEAU //
                         init_DECOR(num_NIVEAU , type_DECOR);
-                        afficher_MENU(type_DECOR);
+                        afficher_MENU();
 
                         //init_PALETTES_MENU();
                         //maj_PALETTES(num_NIVEAU , type_DECOR);
@@ -315,10 +315,16 @@ int main(bool resetType)
                         ///////////////////////////////////////////////////////////////////////////////////////
                         else if(etat_JEU == SALLE)
                         {
-                            JOY_setEventHandler(desactiver_Callback);
+                            if(PAUSE == NON)
+                            {
+                                JOY_setEventHandler(niveau_Callback);
 
-                            //VDP_drawInt(type_DECOR,2,0,0);
-                            //SYS_showFrameLoad(TRUE);
+                            }
+
+                            else
+                            {
+                                JOY_setEventHandler(menu_Callback);
+                            }
 
                             SPR_update();
                             SYS_doVBlankProcess();

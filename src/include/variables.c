@@ -210,4 +210,4 @@ u8 index_Y_CARTE_DONJONS = 0;
 u32 pos_X_CAM_SALLE = 0;
 u32 pos_Y_CAM_SALLE = 0;
 
-u16 adr_VRAM_PNJ = 0;
+//u16 adr_VRAM_PNJ = 0;

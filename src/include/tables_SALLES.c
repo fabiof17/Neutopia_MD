@@ -7,7 +7,6 @@
 #include "sprites_ENNEMIS.h"
 
 #include "maps_NIVEAUX.h"
-#include "maps_PNJ.h"
 #include "maps_SALLES.h"
 
 
@@ -67,11 +66,11 @@ const struct_SALLE_					TABLE_SALLES_NIVEAU1[44]		=	{
 																			{&image_SALLE_7 , NULL},
 																			{&image_SALLE_5 , NULL},
 
-																		   	{&image_SALLE_4 , NULL},
-																			{&image_SALLE_2 , NULL},
-																			{&image_SALLE_7 , NULL},
-																			{&image_SALLE_7 , NULL},
-																			{&image_SALLE_1 , NULL}
+																		   	{&image_SALLE_4 , &tiles_PNJ5},
+																			{&image_SALLE_2 , &tiles_PNJ7},
+																			{&image_SALLE_7 , &tiles_PNJ7},
+																			{&image_SALLE_7 , &tiles_PNJ8},
+																			{&image_SALLE_1 , &tiles_PNJ1}
 																		};
 																		
 //******************************************************//

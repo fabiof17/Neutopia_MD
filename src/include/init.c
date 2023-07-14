@@ -741,8 +741,7 @@ void init_DECOR( u8 index , u8 type )
 		//////////////////////////////////////////////////////////
 		//                CHARGEMENT TILES BG_B                 //
 		//////////////////////////////////////////////////////////
-		VDP_loadTileSet(ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset, adr_VRAM_BG_B, CPU);
-		adr_VRAM_PNJ = adr_VRAM_BG_B + ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset->numTile;
+		VDP_loadTileSet(ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset , adr_VRAM_BG_B , CPU);
 		SYS_doVBlankProcess();
 
 
@@ -752,13 +751,41 @@ void init_DECOR( u8 index , u8 type )
 		//                                                      //
 		//******************************************************//
 
-		VDP_setTileMapEx(BG_B, ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tilemap, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B), 0 , 5 , 0 , 0 , 32, 28, CPU);
+		VDP_setTileMapEx(BG_B, ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tilemap, TILE_ATTR_FULL(PAL1, FALSE, FALSE, FALSE, adr_VRAM_BG_B), 0 , 0 , 0 , 0 , 32, 46, CPU);
 
-		VDP_setHorizontalScroll(BG_B, 0);
-		VDP_setVerticalScroll(BG_B, 40);	
 
-		VDP_setHorizontalScroll(BG_A, 0);
-		VDP_setVerticalScroll(BG_A, 40);	
+		//////////////////////////////////////////////////////////
+		//                CHARGEMENT TILES BG_A                 //
+		//////////////////////////////////////////////////////////
+		VDP_loadTileSet(ptr_TABLE_SALLES[num_ENTREE].adr_Image_PNJ->tileset , adr_VRAM_BG_B + ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset->numTile , CPU);
+		SYS_doVBlankProcess();
+
+
+		//******************************************************//
+		//                                                      //
+		//                        BG_A                          //
+		//                                                      //
+		//******************************************************//
+
+		VDP_setTileMapEx(BG_A, ptr_TABLE_SALLES[num_ENTREE].adr_Image_PNJ->tilemap, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, adr_VRAM_BG_B + ptr_TABLE_SALLES[num_ENTREE].adr_Image_SALLE->tileset->numTile), 16 , 11 , 0 , 0 , 2, 4, CPU);
+
+
+		//////////////////////////////////////////////////////////
+		//                    POSITION CAMERA                   //
+		//////////////////////////////////////////////////////////
+
+		pos_X_CAM = 0;
+		pos_Y_CAM = -40+184;
+
+		index_X_CARTE = 0;
+		index_Y_CARTE = 0;
+
+
+		VDP_setHorizontalScroll(BG_B, pos_X_CAM);
+		VDP_setVerticalScroll(BG_B, pos_Y_CAM);	
+
+		VDP_setHorizontalScroll(BG_A, pos_X_CAM);
+		VDP_setVerticalScroll(BG_A, pos_Y_CAM);	
 
 
 

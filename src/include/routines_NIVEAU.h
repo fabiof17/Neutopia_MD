@@ -37,7 +37,7 @@ extern void boucle_TITRE();
 //                                                      //
 //******************************************************//
 
-extern void afficher_MENU(u8 type);
+extern void afficher_MENU();
 
 
 

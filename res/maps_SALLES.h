@@ -15,5 +15,13 @@ extern const Image image_JOYAU_JAUNE;
 extern const Image image_JOYAU_VERT;
 extern const Image image_JOYAU_ARGENT;
 extern const Image image_JOYAU_ROUGE;
+extern const Image tiles_PNJ1;
+extern const Image tiles_PNJ2;
+extern const Image tiles_PNJ3;
+extern const Image tiles_PNJ4;
+extern const Image tiles_PNJ5;
+extern const Image tiles_PNJ6;
+extern const Image tiles_PNJ7;
+extern const Image tiles_PNJ8;
 
 #endif // _RES_MAPS_SALLES_H_
