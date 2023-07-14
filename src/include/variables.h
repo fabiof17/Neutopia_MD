@@ -33,10 +33,11 @@
 
 
 #define NIVEAU                  0
-#define SCROLLING_NIVEAU        1
-#define FIN_SCROLLING_NIVEAU    2
-#define ENTREE_CAVE             3
-#define ENTREE_NIVEAU           5
+#define ENTREE_NIVEAU           1
+#define FIN_ENTREE_NIVEAU       2
+#define SCROLLING_NIVEAU        3
+#define FIN_SCROLLING_NIVEAU    4
+#define ENTREE_CAVE             5
 
 
 #define SALLE                   10
@@ -142,6 +143,8 @@ extern u8 nb_ENNEMIS;
 extern u8 nb_TIR;
 
 extern bool surcharge_OK;
+
+extern bool depart_SANCTUAIRE;
 
 
 

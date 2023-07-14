@@ -48,6 +48,8 @@ u8 nb_TIR = 0;                          //  init -->  init_VARIABLES_GENERALES()
 
 bool surcharge_OK = 0;                  //  init -->  init_VARIABLES_GENERALES()
 
+bool depart_SANCTUAIRE = 0;
+
 
 
 

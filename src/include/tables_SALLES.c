@@ -60,9 +60,9 @@ const struct_SALLE_					TABLE_SALLES_NIVEAU1[44]		=	{
 																			{&image_SALLE_4, NULL},
 																			{&image_SALLE_3 , NULL},
 
-																		   	{NULL , NULL},
+																		   	{&image_SALLE_4 , NULL},
 																			{&image_SALLE_3 , NULL},
-																			{NULL , NULL},
+																			{&image_SANCTUAIRE, NULL},
 																			{&image_SALLE_2 , NULL},
 																			{&image_SALLE_7 , NULL},
 																			{&image_SALLE_5 , NULL},
@@ -71,7 +71,7 @@ const struct_SALLE_					TABLE_SALLES_NIVEAU1[44]		=	{
 																			{&image_SALLE_2 , NULL},
 																			{&image_SALLE_7 , NULL},
 																			{&image_SALLE_7 , NULL},
-																			{&image_SALLE_2 , NULL}
+																			{&image_SALLE_1 , NULL}
 																		};
 																		
 //******************************************************//

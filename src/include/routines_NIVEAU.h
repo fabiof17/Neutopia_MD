@@ -8,11 +8,13 @@
 //                                                      //
 //******************************************************//
 
-//extern void crea_TIR();
-
 extern void entree_SALLE();
 
 extern void fin_ENTREE_SALLE();
+
+extern void entree_NIVEAU();
+
+extern void fin_ENTREE_NIVEAU();
 
 
 

@@ -132,8 +132,8 @@ int main(bool resetType)
                         init_DECOR(num_NIVEAU , type_DECOR);
                         afficher_MENU(type_DECOR);
 
-                        init_PALETTES_MENU();
-                        maj_PALETTES(num_NIVEAU , type_DECOR);
+                        //init_PALETTES_MENU();
+                        //maj_PALETTES(num_NIVEAU , type_DECOR);
 
                         niveau_OK = OUI;
                     }
@@ -146,9 +146,42 @@ int main(bool resetType)
                     else
                     {
                         ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                  ENTREE NIVEAU                                    //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        if(etat_JEU == ENTREE_NIVEAU)
+                        {
+                            JOY_setEventHandler(desactiver_Callback);
+                            entree_NIVEAU();
+                            
+                            //SYS_showFrameLoad(TRUE);
+
+                            SPR_update();
+                            SYS_doVBlankProcess();
+
+                            break;  
+                        }  
+
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        //                                FIN ENTREE NIVEAU                                  //
+                        ///////////////////////////////////////////////////////////////////////////////////////
+                        if(etat_JEU == FIN_ENTREE_NIVEAU)
+                        {
+                            JOY_setEventHandler(desactiver_Callback);
+                            fin_ENTREE_NIVEAU();
+                            tiles_JOUEUR();
+                            
+                            //SYS_showFrameLoad(TRUE);
+
+                            SPR_update();
+                            SYS_doVBlankProcess();
+
+                            break;  
+                        }  
+
+                        ///////////////////////////////////////////////////////////////////////////////////////
                         //                                      NIVEAU                                       //
                         ///////////////////////////////////////////////////////////////////////////////////////
-                        if(etat_JEU == NIVEAU)
+                        else if(etat_JEU == NIVEAU)
                         {
                             if(PAUSE == NON)
                             {
@@ -173,7 +206,7 @@ int main(bool resetType)
                                 JOY_setEventHandler(menu_Callback);
                             }
 
-                            VDP_drawInt(type_DECOR,2,0,0);
+                            //VDP_drawInt(type_DECOR,2,0,0);
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();
@@ -284,7 +317,7 @@ int main(bool resetType)
                         {
                             JOY_setEventHandler(desactiver_Callback);
 
-                            VDP_drawInt(type_DECOR,2,0,0);
+                            //VDP_drawInt(type_DECOR,2,0,0);
                             //SYS_showFrameLoad(TRUE);
 
                             SPR_update();

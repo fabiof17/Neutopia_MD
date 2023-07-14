@@ -56,7 +56,7 @@ void init_VARIABLES_GENERALES()
 	//******************************************************//
 
 	scene_JEU = 2;				// 0: TITRE   -  1: INTRO  -  2: JEU
-	etat_JEU = 0;
+	etat_JEU = ENTREE_NIVEAU;
 
 	type_DECOR = NIVEAU;				// 0: NIVEAU  -  1: SALLE
 
@@ -91,6 +91,8 @@ void init_VARIABLES_GENERALES()
 	nb_TIR = 0;
 
 	surcharge_OK = 0;
+
+	depart_SANCTUAIRE = 0;
 
 
 
@@ -226,7 +228,7 @@ void init_VARIABLES_GENERALES()
 
 
 	type_ENTREE = 0;
-	num_ENTREE = 0;
+	num_ENTREE = 34;
 	offset_TABLES_ENTREES = 0;
 	entree_SECRET_OK = 0;
 
@@ -571,7 +573,7 @@ void init_WINDOW()
 
 void init_JOUEUR()
 {
-	etat_JOUEUR = ARRET;
+	etat_JOUEUR = MARCHE;
 	axe_JOUEUR = BAS;
 
 
@@ -597,7 +599,7 @@ void init_JOUEUR()
 
 	
 	JOUEUR.pos_X_JOUEUR = 124;
-	JOUEUR.pos_Y_JOUEUR = 148;
+	JOUEUR.pos_Y_JOUEUR = 108;
 
 	JOUEUR.sprite_JOUEUR = SPR_addSprite(&tiles_Sprite_JOUEUR, JOUEUR.pos_X_JOUEUR, JOUEUR.pos_Y_JOUEUR, TILE_ATTR(TABLE_PAL_JOUEUR[niveau_ARMURE], FALSE, FALSE, FALSE));
 
@@ -621,15 +623,10 @@ void init_JOUEUR()
 	//SPR_setPosition(sprite_POINT3, JOUEUR.pt3_X_COLL_DECOR, JOUEUR.pt3_Y_COLL_DECOR);
 	//SPR_setPosition(sprite_POINT4, JOUEUR.pt4_X_COLL_DECOR, JOUEUR.pt4_Y_COLL_DECOR);
 
+	SPR_update();
+
 }
 
-/*
-void init_SPRITE_ENTREE()
-{
-	sprite_ENTREE = SPR_addSprite(&tiles_SPR_SANCTUAIRE, pos_X_ENTREE, pos_Y_ENTREE, TILE_ATTR(PAL2, FALSE, FALSE, FALSE));
-	//spr_ENTREE_OK = 1;
-}
-*/
 
 
 
@@ -721,7 +718,16 @@ void init_DECOR( u8 index , u8 type )
 		MAP_scrollTo(map_NIVEAU_BG_A, (u32)pos_X_CAM, (u32)pos_Y_CAM);
 		SYS_doVBlankProcess();
 
-		//etat_JEU = ENTREE_NIVEAU;
+
+		//////////////////////////////////////////////////////////
+		//                  CHARGEMENT PALETTE                  //
+		//////////////////////////////////////////////////////////
+
+		// COPIE PALETTES DANS BUFFER POUR FADE IN
+		memcpy( &palette_64[0]  , palette_MENU.data , 16 * 2 );
+		memcpy( &palette_64[16] , TABLE_ADR_PAL_NIVEAUX[0][num_NIVEAU]->data , 16 * 2 );
+		memcpy( &palette_64[32] , TABLE_ADR_PAL_NIVEAUX[1][num_NIVEAU]->data , 16 * 2 );
+		memcpy( &palette_64[48] , palette_OBJETS_VIOLET.data , 16 * 2 );
 	}
 
 	
@@ -754,11 +760,16 @@ void init_DECOR( u8 index , u8 type )
 		VDP_setHorizontalScroll(BG_A, 0);
 		VDP_setVerticalScroll(BG_A, 40);	
 
+
+
+
 		//////////////////////////////////////////////////////////
 		//                  CHARGEMENT SPRITES                  //
 		//////////////////////////////////////////////////////////
 
 		//
+
+
 
 
 		//////////////////////////////////////////////////////////
@@ -777,6 +788,9 @@ void init_DECOR( u8 index , u8 type )
 		SPR_setPosition(JOUEUR.sprite_JOUEUR , JOUEUR.pos_X_JOUEUR , JOUEUR.pos_Y_JOUEUR);
 
 		SPR_update();
+
+
+
 
 		//////////////////////////////////////////////////////////
 		//                  CHARGEMENT PALETTE                  //
